@@ -1,0 +1,79 @@
+.region {
+    -fx-fill:  LightGray;
+}
+
+.shapeboard {
+    -fx-fill:  Red;
+}
+
+.rectangle {
+    -fx-fill: LightGray;
+}
+
+
+#blank {
+    -fx-fill: rgba(255, 255, 255, 0.0);
+    -fx-stroke: rgba(109, 118, 127, 0.8);
+    -fx-stroke-width: .5;
+}
+
+#active
+{
+    -fx-fill: LightBlue;
+    -fx-stroke: rgba(109, 118, 127, 0.8);
+    -fx-stroke-width: .5;
+}
+
+#select {
+    -fx-fill: LightGray;
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#selvariant{
+    -fx-fill: rgba(82, 79, 161, 1);
+}
+
+#ent {
+    -fx-fill: rgba(109, 118, 127, 0.8);
+}
+
+#lin {
+    -fx-stroke: rgba(82, 79, 161, 0.5);
+}
+
+#td {
+    -fx-fill: white;
+}
+
+#blanktxt {
+    -fx-fill: darkgray;
+    -fx-font-size: 9;
+    -fx-font-weight: lighter;
+    -fx-font-family: monospace;
+}
+
+#seltxt {
+    -fx-fill: black;
+    -fx-font-size: 10;
+    -fx-font-weight: bolder;
+    -fx-font-family: monospace;
+}
+
+#blankbound {
+    -fx-fill: rgba(255, 255, 255, 0.0);
+    -fx-stroke: rgba(0, 0, 0, 0.5);
+    -fx-stroke-width: 0.5;
+}
+
+#selbound {
+    -fx-fill: rgba(255, 255, 255, 0.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 1.0;
+}
+
+#blankgraphics {
+    -fx-fill: rgba(80, 80, 80, 1.0);
+    -fx-stroke: rgba(255, 255, 255, 1.0);
+    -fx-stroke-width: .5;
+}

@@ -1,16 +1,33 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import leyout.LeyoutComponentWiev;
 
 //Канбан для рабочего места
-public class ShapeCanban extends LeyoutElementWiev {
+public class ShapeCanban extends LeyoutComponentWiev {
 //    private String style;
 
     public ShapeCanban(){
         super();
 //        this.style = "-fx-fill: RGBA(82,79,161,0.6)";
         paint();
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     public void paint(){
@@ -47,6 +64,11 @@ public class ShapeCanban extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

@@ -1,6 +1,8 @@
 package leyout.wievs;
 
 
+import javafx.scene.input.MouseButton;
+import leyout.LeyoutComponentWiev;
 import leyout.controllers.EmployerController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ShapeEmployeCard extends LeyoutElementWiev {
+public class ShapeEmployeCard extends LeyoutComponentWiev {
     private int size;
     private String id;
     private String description;
@@ -31,6 +33,21 @@ public class ShapeEmployeCard extends LeyoutElementWiev {
             super.exited();
             employerController.boardUnselect();
         });
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     protected void paint() {
@@ -82,5 +99,10 @@ public class ShapeEmployeCard extends LeyoutElementWiev {
 
     public void setEmployerController(EmployerController employerController) {
         this.employerController = employerController;
+    }
+
+    @Override
+    public void showInfo() {
+
     }
 }

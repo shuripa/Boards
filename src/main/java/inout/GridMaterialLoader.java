@@ -61,10 +61,10 @@ public class GridMaterialLoader {
         SetBoards sbs = SetBoards.getInstance();
         for (String l: lines){                                      //??? непонятній цикл
             tokens = l.split(";");
-            for (GroupBoard gb: arrBoards) {                        //Перебор GroupBoard. ???-GroupBoard передается по параметру в конструкторе.
+            for (GroupBoard gb: arrBoards) {                        //Перебор CompositBoard. ???-CompositBoard передается по параметру в конструкторе.
                 gb.setMaterial(arrWkPcGrMat.get(gb.getDescription()));  //Устанавливаем набор материала для рабочего места.
             }
-//            for (GroupBoardController gbc: sbs.getGroupBoardControllersByTitle(tokens[0])) {    //Перероблений цикл завантаження матеріалу                    //Перебор GroupBoard. ???-GroupBoard передается по параметру в конструкторе.
+//            for (CompositBoardController gbc: sbs.getGroupBoardControllersByTitle(tokens[0])) {    //Перероблений цикл завантаження матеріалу                    //Перебор CompositBoard. ???-CompositBoard передается по параметру в конструкторе.
 //                gbc.addMateril(tokens[1]);
 //            }
         }

@@ -1,9 +1,10 @@
 package leyout.controllers;
 
+import leyout.LeyoutComponentController;
 import leyout.wievs.ShapeTestTable;
 import model.TestTable;
 
-public class TestTableController extends LeyoutElementController {
+public class TestTableController extends LeyoutComponentController {
 
     public TestTableController (){
         super();

@@ -1,6 +1,6 @@
 package leyout.wievs;
 
-import leyout.controllers.LeyoutElementController;
+import leyout.LeyoutComponentController;
 import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -75,7 +75,7 @@ public class ShapeInfo extends Popup{
 //    private void paint(int hight) {
 //    }
 
-    public ShapeInfo(LeyoutElementController controller) {
+    public ShapeInfo(LeyoutComponentController controller) {
         this.setAutoHide(true);
         this.setHideOnEscape(true);
         String s = controller.toString();

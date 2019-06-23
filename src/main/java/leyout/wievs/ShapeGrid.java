@@ -1,12 +1,14 @@
 package leyout.wievs;
 
-import leyout.controllers.LeyoutElementController;
+import javafx.scene.input.MouseButton;
+import leyout.LeyoutComponentController;
 import javafx.scene.shape.Rectangle;
+import leyout.LeyoutComponentWiev;
 
 import java.util.ArrayList;
 
 
-public class ShapeGrid extends LeyoutElementWiev {
+public class ShapeGrid extends LeyoutComponentWiev {
 
     private Integer size;
     private ArrayList<String> material;
@@ -25,8 +27,23 @@ public class ShapeGrid extends LeyoutElementWiev {
 //        paint();
     }
 
-    public ShapeGrid(LeyoutElementController controller, int size){
+    public ShapeGrid(LeyoutComponentController controller, int size){
         super(controller, size);
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
 //    public ArrayList<String> getMaterials() {
@@ -56,6 +73,11 @@ public class ShapeGrid extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

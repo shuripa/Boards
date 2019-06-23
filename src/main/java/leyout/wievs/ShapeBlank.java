@@ -1,12 +1,14 @@
 package leyout.wievs;
 
 import javafx.geometry.Bounds;
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import leyout.LeyoutComponentWiev;
 
 //Заготовка
-public class ShapeBlank extends LeyoutElementWiev {
+public class ShapeBlank extends LeyoutComponentWiev {
     private int width;
     private int height;
     private int size;
@@ -29,6 +31,21 @@ public class ShapeBlank extends LeyoutElementWiev {
             shinfo.show(this, bounds.getMaxX(), bounds.getMinY() -10);    //
         });
         paint();
+
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
 
     }
 
@@ -89,4 +106,8 @@ public class ShapeBlank extends LeyoutElementWiev {
 
     }
 
+    @Override
+    public void showInfo() {
+
+    }
 }

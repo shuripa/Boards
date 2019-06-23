@@ -1,6 +1,6 @@
 package sets;
 
-import leyout.groups.test.GroupBoardController;
+import leyout.groups.test.CompositBoardController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class SetBoards {
 
     private static SetBoards instance;
-    private HashMap<Integer, GroupBoardController> mapBoardControllers;
+    private HashMap<Integer, CompositBoardController> mapBoardControllers;
 
     private SetBoards(){
         mapBoardControllers = new HashMap<>();
@@ -22,17 +22,17 @@ public class SetBoards {
         return instance;
     }
 
-    public void addGroupBoardController(GroupBoardController gbc){
+    public void addGroupBoardController(CompositBoardController gbc){
         mapBoardControllers.put(gbc.getID(), gbc);
     }
 
-    public GroupBoardController getGroupBoardController(Integer id){
+    public CompositBoardController getGroupBoardController(Integer id){
         return (mapBoardControllers.containsKey(id) ? mapBoardControllers.get(id) : null);
     }
 
-    public ArrayList<GroupBoardController> getGroupBoardControllersByTitle(String title){
-        ArrayList<GroupBoardController> arrBoardControllers = new ArrayList<>();
-        for (GroupBoardController gbc: mapBoardControllers.values()) {
+    public ArrayList<CompositBoardController> getGroupBoardControllersByTitle(String title){
+        ArrayList<CompositBoardController> arrBoardControllers = new ArrayList<>();
+        for (CompositBoardController gbc: mapBoardControllers.values()) {
             if (gbc.getTitle() == title) arrBoardControllers.add(gbc);
         }
         return arrBoardControllers;

@@ -4,6 +4,7 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -12,13 +13,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import leyout.groups.GroupEmployeCard;
 import leyout.Layout;
-import leyout.wievs.LeyoutElementWiev;
+import leyout.LeyoutComponentWiev;
 import panes.TablePlan;
 
 import java.io.IOException;
 
 
-public class StartMenuItem extends LeyoutElementWiev {
+public class StartMenuItem extends LeyoutComponentWiev {
     public StartMenuItem(Stage stage, int w, int h, int x, int y, String text){
 
 
@@ -142,6 +143,21 @@ public class StartMenuItem extends LeyoutElementWiev {
     }
 
     @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
+    }
+
+    @Override
     protected void paint() {
 
     }
@@ -153,6 +169,11 @@ public class StartMenuItem extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

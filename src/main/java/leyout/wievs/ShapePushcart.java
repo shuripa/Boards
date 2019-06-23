@@ -1,13 +1,30 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
+import leyout.LeyoutComponentWiev;
 
 //Pushcart тележка, ручная тележка, детский стул на колесах
-public class ShapePushcart extends LeyoutElementWiev {
+public class ShapePushcart extends LeyoutComponentWiev {
     public ShapePushcart(){
         super();
         paint();
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     protected void paint() {
@@ -54,6 +71,11 @@ public class ShapePushcart extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

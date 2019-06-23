@@ -1,4 +1,4 @@
-package leyout;
+package sets;
 
 import leyout.groups.GroupBoard;
 
@@ -45,7 +45,7 @@ public class BoardsController {
         idBoards.put(id, gb);
     }
 
-//    GroupBoard bg1 = new GroupBoard("1271", "KM 029", 60, 15, 55, 0, 180);
+//    CompositBoard bg1 = new CompositBoard("1271", "KM 029", 60, 15, 55, 0, 180);
 
     public ArrayList<GroupBoard> getArrBoards() {
         return arrBoards;

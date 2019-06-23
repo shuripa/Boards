@@ -1,17 +1,34 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
+import leyout.LeyoutComponentWiev;
 import leyout.controllers.HumanController;
 import leyout.elements.Human;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
-public class ShapeHuman extends LeyoutElementWiev {
+public class ShapeHuman extends LeyoutComponentWiev {
     Text t;
 
     public ShapeHuman(HumanController controller){
         super(controller);
         t = new Text();
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     @Override
@@ -35,4 +52,8 @@ public class ShapeHuman extends LeyoutElementWiev {
         t.setText("" + ((Human)controller.element()).getLogined());
     }
 
+    @Override
+    public void showInfo() {
+
+    }
 }

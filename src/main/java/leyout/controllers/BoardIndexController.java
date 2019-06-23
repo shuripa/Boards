@@ -1,13 +1,13 @@
 package leyout.controllers;
 
+import leyout.LeyoutComponentController;
 import leyout.elements.BoardIndex;
-import leyout.groups.test.LeyoutGroupController;
 import leyout.wievs.BoardIndexWiev;
 import model.Order;
 
-public class BoardIndexController extends LeyoutElementController{
+public class BoardIndexController extends LeyoutComponentController {
 
-    public BoardIndexController(LeyoutGroupController parent, int proc){
+    public BoardIndexController(LeyoutComponentController parent, int proc){
         super(parent);
         element = new BoardIndex(this);
         ((BoardIndex)element).setProc(proc);

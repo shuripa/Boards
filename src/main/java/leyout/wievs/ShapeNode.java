@@ -1,14 +1,16 @@
 package leyout.wievs;
 
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Circle;
 import leyout.Infoable;
+import leyout.LeyoutComponentWiev;
 import leyout.Point;
 
 import java.util.ArrayList;
 
 
-public class ShapeNode extends LeyoutElementWiev {
+public class ShapeNode extends LeyoutComponentWiev {
 
     Infoable owner;
 
@@ -32,6 +34,21 @@ public class ShapeNode extends LeyoutElementWiev {
         arNodes = new ArrayList<>();
         setClicked();
 //        paint();
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     protected void paint() {
@@ -90,4 +107,8 @@ public class ShapeNode extends LeyoutElementWiev {
         return this.localToScene(this.getBoundsInLocal()).getMinY() + 3;
     }
 
+    @Override
+    public void showInfo() {
+
+    }
 }

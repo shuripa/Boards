@@ -1,8 +1,9 @@
 package leyout.elements;
 
+import leyout.LeyoutComponent;
 import leyout.controllers.HumanController;
 
-public class Human extends LeyoutElement {
+public class Human extends LeyoutComponent {
     private int empId;
 
     public Human(HumanController controller){

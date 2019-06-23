@@ -1,9 +1,10 @@
 package leyout.groups;
 
-import leyout.wievs.LeyoutElementWiev;
+import javafx.scene.input.MouseButton;
+import leyout.LeyoutComponentWiev;
 import javafx.scene.shape.Shape;
 
-public class GroupLine extends LeyoutElementWiev {
+public class GroupLine extends LeyoutComponentWiev {
 
     private static GroupLine instance;
 
@@ -15,6 +16,21 @@ public class GroupLine extends LeyoutElementWiev {
     }
 
     private GroupLine(){
+
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
 
     }
 
@@ -45,6 +61,11 @@ public class GroupLine extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

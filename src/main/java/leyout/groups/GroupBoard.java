@@ -6,7 +6,7 @@ import leyout.controllers.CanbanController;
 import leyout.controllers.GridController;
 import leyout.controllers.HumanController;
 import leyout.elements.Board;
-import leyout.groups.test.GroupBoardController;
+import leyout.groups.test.CompositBoardController;
 import leyout.Infoable;
 import leyout.wievs.ShapeBoardInd;
 import leyout.wievs.ShapeConnection;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 
 public class GroupBoard extends Group implements Infoable {
-    GroupBoardController controller;
+    CompositBoardController controller;
     Rectangle selRect;
     //TODO: Сделать полноценное условие
     String condition;     //Условие

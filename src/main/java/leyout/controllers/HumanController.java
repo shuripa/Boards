@@ -1,9 +1,10 @@
 package leyout.controllers;
 
+import leyout.LeyoutComponentController;
 import leyout.wievs.ShapeHuman;
 import leyout.elements.Human;
 
-public class HumanController extends LeyoutElementController {
+public class HumanController extends LeyoutComponentController {
 
     public HumanController(){
 //        initialize(this, new Human(), new ShapeHuman());

@@ -2,7 +2,8 @@ package leyout;
 
 import leyout.controllers.CanbanController;
 import leyout.groups.*;
-import leyout.groups.test.GroupBoardController;
+import leyout.groups.test.CompositBoardController;
+import sets.BoardsController;
 import sets.SetBoards;
 import leyout.wievs.ShapeConvier;
 import inout.GridMaterialLoader;
@@ -110,11 +111,11 @@ public class Layout extends Region {
         arrBoards.add(x);
         getChildren().add(x);
 
-        ArrayList<GroupBoardController> groups = new ArrayList<>();
+        ArrayList<CompositBoardController> groups = new ArrayList<>();
 
 //        Перероблені дошки v2
-        GroupBoardController gbc1 = new GroupBoardController(1900, "KM-xxx", 60, 600, 200, 0.0);
-        this.getChildren().add(gbc1.getWieve());
+        CompositBoardController gbc1 = new CompositBoardController(1900, "KM-xxx", 60, 600, 200, 0.0);
+        this.getChildren().add(gbc1.getView());
 //        Властивості
         gbc1.setID(1990);
         gbc1.setTitle("KM 082");

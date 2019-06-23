@@ -1,15 +1,32 @@
 package leyout.wievs;
 
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Rectangle;
+import leyout.LeyoutComponentWiev;
 
-public class ShapeWorkTable extends LeyoutElementWiev {
+public class ShapeWorkTable extends LeyoutComponentWiev {
 //    private String style;
 
     public ShapeWorkTable(){
         super();
 //        this.style = "-fx-fill: RGBA(82,79,161,0.6)";
         paint();
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     protected void paint() {
@@ -31,6 +48,11 @@ public class ShapeWorkTable extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

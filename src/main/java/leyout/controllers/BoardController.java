@@ -1,13 +1,14 @@
 package leyout.controllers;
 
-import leyout.wievs.BoardWiev;
+import leyout.LeyoutComponentController;
+import leyout.wievs.BoardView;
 import leyout.elements.Board;
 
-public class BoardController extends LeyoutElementController {
+public class BoardController extends LeyoutComponentController {
 
     public BoardController(int id, String title, int size) {
         element = new Board(this, id, title);
-        wiev = new BoardWiev(this, size);
+        wiev = new BoardView(this, size);
     }
 
     public int getId() {
@@ -29,7 +30,7 @@ public class BoardController extends LeyoutElementController {
 
     public void setTitle(String title) {
         ((Board)element()).setTitle(title);
-//        ((BoardWiev)wiev).setTt(title);
+//        ((BoardView)wiev).setTt(title);
         wiev.reset();
     }
 

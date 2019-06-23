@@ -1,57 +1,58 @@
 package leyout.groups.test;
 
 import javafx.scene.Node;
+import leyout.LeyoutComponentController;
 import leyout.controllers.*;
-import leyout.wievs.LeyoutElementWiev;
+import leyout.LeyoutComponentWiev;
 import model.Order;
 
 import java.util.ArrayList;
 
-public class GroupBoardController extends LeyoutGroupController{
+public class CompositBoardController extends LeyoutComponentController {
     //Components
-    GroupBoardWiev gbw;
-    GroupBoard gbm;
+    CompositBoardWiev gbw;
+    CompositBoard gbm;
     //Leaf
     HumanController hc;
     BoardController bc;
     BoardIndexController bic;
     GridController gc;
 
-    public GroupBoardController(int id, String dsc, int size, int x, int y, double a){
+    public CompositBoardController(int id, String dsc, int size, int x, int y, double a){
         hc = new HumanController();
         bc = new BoardController(id, dsc, size);
         gc = new GridController(size);
         bic = new BoardIndexController(this, 70);
 
-        gbw = new GroupBoardWiev(this, size, x, y, a);
-        gbm = new GroupBoard(this);
+        gbw = new CompositBoardWiev(this, size, x, y, a);
+        gbm = new CompositBoard(this);
     }
 
-    public LeyoutElementWiev getHumanShape() {
+    public LeyoutComponentWiev getHumanShape() {
         return hc.getWievAsSuper();
     }
 
-    public LeyoutElementWiev getBoardShape() {
+    public LeyoutComponentWiev getBoardShape() {
         return bc.getWievAsSuper();
     }
 
-    public LeyoutElementWiev getBoardIndex(){
+    public LeyoutComponentWiev getBoardIndex(){
         return bic.getWievAsSuper();
     }
 
-    public LeyoutElementWiev getGridShape() {
+    public LeyoutComponentWiev getGridShape() {
         return gc.getWievAsSuper();
     }
 
-    public LeyoutElementController getGridController(){
+    public leyout.LeyoutComponentController getGridController(){
         return gc;
     }
 
-    public LeyoutElementController getHumanController() {
+    public leyout.LeyoutComponentController getHumanController() {
         return hc;
     }
 
-    public Node getWieve() {
+    public Node getView() {
         return gbw;
     }
 

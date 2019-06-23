@@ -1,11 +1,12 @@
 package leyout.controllers;
 
+import leyout.LeyoutComponentController;
 import leyout.elements.Grid;
 import leyout.wievs.ShapeGrid;
 
 import java.util.ArrayList;
 
-public class GridController extends LeyoutElementController {
+public class GridController extends LeyoutComponentController {
 
     public GridController(int size) {
         element = new Grid(this);

@@ -1,13 +1,30 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Rectangle;
+import leyout.LeyoutComponentWiev;
 import leyout.controllers.BoardIndexController;
-import leyout.controllers.LeyoutElementController;
+import leyout.LeyoutComponentController;
 
 
-public class BoardIndexWiev extends LeyoutElementWiev {
-    public BoardIndexWiev(LeyoutElementController controller) {
+public class BoardIndexWiev extends LeyoutComponentWiev {
+    public BoardIndexWiev(LeyoutComponentController controller) {
         super(controller);
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     @Override
@@ -31,6 +48,11 @@ public class BoardIndexWiev extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

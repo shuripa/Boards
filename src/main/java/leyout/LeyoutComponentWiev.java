@@ -1,15 +1,21 @@
-package leyout.wievs;
+package leyout;
 
 
-import leyout.controllers.LeyoutElementController;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import leyout.wievs.ShapeInfo;
+import leyout.wievs.ShapeNode;
 
 import java.util.ArrayList;
 
-public abstract class LeyoutElementWiev extends Region {
+public abstract class LeyoutComponentWiev extends Region implements Infoable{
+
+//    TODO: разделить методы относящиеся к Leaf и Composit и сделать для них реализацию по умолчанию
+//    Предположительно методы paint() setSize() и reset() относятся только к Leaf
+//    Методы getElements() и emplacement() относятся только к Composit
 
     private Boolean onActive;
     private ArrayList <Text> texts;        //Текстовые метки
@@ -17,11 +23,19 @@ public abstract class LeyoutElementWiev extends Region {
     private ArrayList <Shape> bounderys;    //Елементы выделения границы
     private ArrayList <Shape> pasiveElements;     //Неактивные элементы
     private ArrayList <Node> nodes;         //Элементы управления
-    protected LeyoutElementController controller;
+    // TODO: переместить класс в папку с контроллерами и сделать контроллер protected
+    public LeyoutComponentController controller;
+
+    int size;
+    int x;
+    int y;
+    double a;
+    public ShapeNode nEnt;                     //Точка старта (входа)
+    public ShapeNode nExt;                     //Точка выхода
 
 
     //TODO: Дублируется. Удалить после рефакторинга
-    public LeyoutElementWiev(){
+    public LeyoutComponentWiev(){
         disactivate();
         texts = new ArrayList<>();
         activeElements = new ArrayList<>();
@@ -33,7 +47,7 @@ public abstract class LeyoutElementWiev extends Region {
         paint();
     }
 
-    public LeyoutElementWiev(int size){
+    public LeyoutComponentWiev(int size){
         disactivate();
         texts = new ArrayList<>();
         activeElements = new ArrayList<>();
@@ -48,7 +62,7 @@ public abstract class LeyoutElementWiev extends Region {
 
 
     //Основной
-    public LeyoutElementWiev(LeyoutElementController controller){
+    public LeyoutComponentWiev(LeyoutComponentController controller){
         this.controller = controller;
 
         disactivate();
@@ -63,7 +77,7 @@ public abstract class LeyoutElementWiev extends Region {
     }
 
     //Основной
-    public LeyoutElementWiev(LeyoutElementController controller, int size){
+    public LeyoutComponentWiev(LeyoutComponentController controller, int size){
         this.controller = controller;
         this.setSize(size);
         disactivate();
@@ -77,7 +91,63 @@ public abstract class LeyoutElementWiev extends Region {
         paint();
     }
 
-    public LeyoutElementController getController() {
+    //Основной для паттерна Composit
+    public LeyoutComponentWiev(LeyoutComponentController controller, int size, int x, int y, double a){
+        this.controller = controller;
+        this.setSize(size);
+        this.x = x;
+        this.y = y;
+        this.a = a;
+        disactivate();
+        getElements();
+        emplacement(size);
+        createNodes();
+        texts = new ArrayList<>();
+        activeElements = new ArrayList<>();
+        bounderys = new ArrayList<>();
+        pasiveElements = new ArrayList<>();
+        nodes = new ArrayList<>();
+        this.getStylesheets().add("style.css");
+        setsEvents();
+        relocate();
+        paint();
+    }
+
+
+    /**General - общие методы для композит и Leaf*/
+
+
+    /**Composit - методы относящиеся только к Composit*/
+
+    private void createNodes() {
+        //node start
+        nEnt = new ShapeNode(this);
+        nEnt.relocate(0, 16);
+        nEnt.setOnMouseClicked(mouseEvent -> {
+            MouseButton button = mouseEvent.getButton();
+                setEventTonExt(button);
+        });
+
+        //node end
+        nExt = new ShapeNode(this);
+        nExt.relocate(size - 5, 16);
+        this.getChildren().addAll(nEnt, nExt);
+
+    }
+
+    protected abstract void setEventTonExt(MouseButton button);
+
+    public void relocate(){                             //Перемещение группы
+        this.relocate(x, y);
+        this.setRotate(a);
+    }
+
+    protected abstract void getElements();              //Добавление элементов
+
+    protected abstract void emplacement(int size);      //Расположение элементов
+
+    /**Leaf - методы относящиеся только к Leaf*/
+    public LeyoutComponentController getController() {
         return controller;
     }
 
@@ -216,9 +286,11 @@ public abstract class LeyoutElementWiev extends Region {
 
     protected abstract void paint();
 
-    public abstract void setSize(int size);
+    public void setSize(int size){
+        this.size = size;
+    }
 
-    public void setController(LeyoutElementController controller){
+    public void setController(LeyoutComponentController controller){
         this.controller = controller;
     };
 

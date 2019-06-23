@@ -1,10 +1,12 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
+import leyout.LeyoutComponentWiev;
 import leyout.controllers.TestTableController;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-public class ShapeTestTable extends LeyoutElementWiev {
+public class ShapeTestTable extends LeyoutComponentWiev {
     private int size;
 
     public ShapeTestTable(TestTableController controller) {
@@ -16,6 +18,21 @@ public class ShapeTestTable extends LeyoutElementWiev {
         super(controller, size);
         this.size = size;
 //        paint();
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
     }
 
     public void paint() {
@@ -50,6 +67,11 @@ public class ShapeTestTable extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

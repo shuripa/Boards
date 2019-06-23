@@ -1,20 +1,20 @@
 package leyout.elements;
 
-import leyout.controllers.LeyoutElementController;
-import leyout.groups.test.GroupBoardController;
-import leyout.groups.test.LeyoutGroupController;
+import leyout.LeyoutComponent;
+import leyout.LeyoutComponentController;
+import leyout.groups.test.CompositBoardController;
 import model.Employer;
 import model.Order;
 import sets.SetEmployers;
 
 import java.util.ArrayList;
 
-public class BoardIndex extends LeyoutElement{
+public class BoardIndex extends LeyoutComponent {
 
     int proc;
     ArrayList<Order> orders;
 
-    public BoardIndex(LeyoutElementController controller) {
+    public BoardIndex(leyout.LeyoutComponentController controller) {
         super(controller);
         orders = new ArrayList<>();
     }
@@ -37,8 +37,8 @@ public class BoardIndex extends LeyoutElement{
         Double sumProductivity = 0.0;
         Double sumCapacity = 0.0;
 //        Получение скилов рабочего
-        LeyoutGroupController lgc = controller.getParentController();
-        LeyoutElementController hc = ((GroupBoardController)lgc).getHumanController();
+        LeyoutComponentController lgc = controller.getParentController();
+        leyout.LeyoutComponentController hc = ((CompositBoardController)lgc).getHumanController();
         Human h = (Human)hc.element();
         SetEmployers setEmployers = SetEmployers.getInstance();
         Employer e = setEmployers.getEmployer(h.getLogined());

@@ -1,8 +1,9 @@
 package leyout.elements;
 
+        import leyout.LeyoutComponent;
         import leyout.controllers.BoardController;
 
-public class Board extends LeyoutElement {
+public class Board extends LeyoutComponent {
 
     int id;
     String title;

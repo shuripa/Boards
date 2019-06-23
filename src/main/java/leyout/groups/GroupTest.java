@@ -1,7 +1,7 @@
 package leyout.groups;
 
 import leyout.controllers.HumanController;
-import leyout.controllers.LeyoutElementController;
+import leyout.LeyoutComponentController;
 import leyout.controllers.TestTableController;
 import leyout.wievs.ShapeCanban;
 import leyout.wievs.ShapePalete;
@@ -19,7 +19,7 @@ public class GroupTest extends BlankGroup {
 
         //тестовочный стол
 //        ShapeTestTable tt = new ShapeTestTable(id, dsc, size);
-        LeyoutElementController controller = new TestTableController(Integer.parseInt(id), dsc, size);
+        LeyoutComponentController controller = new TestTableController(Integer.parseInt(id), dsc, size);
         ShapeTestTable tt = (ShapeTestTable) controller.getWievAsNode();
 //        tt.relocate(200, 200);
         controller.relocate(32, 22);

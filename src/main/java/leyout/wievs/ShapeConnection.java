@@ -1,10 +1,12 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Line;
+import leyout.LeyoutComponentWiev;
 import leyout.groups.GroupLine;
 
-public class ShapeConnection extends LeyoutElementWiev {
+public class ShapeConnection extends LeyoutComponentWiev {
     double x1;
     double y1;
     double x2;
@@ -42,6 +44,21 @@ public class ShapeConnection extends LeyoutElementWiev {
         paint();
     }
 
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
+    }
+
     protected void paint() {
         CubicCurve c = new CubicCurve(
                 x1,
@@ -69,6 +86,11 @@ public class ShapeConnection extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

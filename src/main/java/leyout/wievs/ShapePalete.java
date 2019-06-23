@@ -1,9 +1,11 @@
 package leyout.wievs;
 
+import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import leyout.LeyoutComponentWiev;
 
-public class ShapePalete extends LeyoutElementWiev {
+public class ShapePalete extends LeyoutComponentWiev {
     private String style;
 
     public ShapePalete(){
@@ -13,6 +15,22 @@ public class ShapePalete extends LeyoutElementWiev {
 //        this.setId("style.css:");
         paint();
     }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    protected void getElements() {
+
+    }
+
+    @Override
+    protected void emplacement(int size) {
+
+    }
+
     public void paint(){
         //Палета
         //rt1
@@ -46,6 +64,11 @@ public class ShapePalete extends LeyoutElementWiev {
 
     @Override
     public void reset() {
+
+    }
+
+    @Override
+    public void showInfo() {
 
     }
 }

@@ -1,7 +1,7 @@
 package examples;
 
-import leyout.groups.GroupBoard;
-import leyout.wievs.ShapeNode;
+import leyout.component.GroupBoard;
+import leyout.views.ShapeNode;
 
 public class NodeMemory {
     public static void main(String[] args) {

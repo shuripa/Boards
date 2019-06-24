@@ -1,7 +1,7 @@
 package inout;
 
 import leyout.controllers.MaterialController;
-import leyout.groups.GroupBoard;
+import leyout.component.GroupBoard;
 import sets.SetBoards;
 import model.Material;
 

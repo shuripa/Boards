@@ -1,8 +1,7 @@
 package leyout.controllers;
 
-import leyout.LeyoutComponentController;
-import leyout.wievs.BoardView;
-import leyout.elements.Board;
+import leyout.views.BoardView;
+import leyout.component.Board;
 
 public class BoardController extends LeyoutComponentController {
 

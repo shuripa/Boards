@@ -1,6 +1,6 @@
 package sets;
 
-import leyout.groups.GroupBoard;
+import leyout.component.GroupBoard;
 
 import java.util.ArrayList;
 import java.util.HashMap;

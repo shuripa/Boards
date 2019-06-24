@@ -1,8 +1,7 @@
 package leyout.controllers;
 
-import leyout.LeyoutComponentController;
-import leyout.elements.BoardIndex;
-import leyout.wievs.BoardIndexWiev;
+import leyout.component.BoardIndex;
+import leyout.views.BoardIndexView;
 import model.Order;
 
 public class BoardIndexController extends LeyoutComponentController {
@@ -11,7 +10,7 @@ public class BoardIndexController extends LeyoutComponentController {
         super(parent);
         element = new BoardIndex(this);
         ((BoardIndex)element).setProc(proc);
-        wiev = new BoardIndexWiev(this);
+        wiev = new BoardIndexView(this);
     }
 
     public int getProc() {

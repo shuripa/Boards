@@ -1,6 +1,6 @@
 package model;
 
-import leyout.wievs.ShapeNode;
+import leyout.views.ShapeNode;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package sets;
 
-import leyout.groups.test.CompositBoardController;
+import leyout.controllers.CompositBoardController;
 
 import java.util.ArrayList;
 import java.util.HashMap;

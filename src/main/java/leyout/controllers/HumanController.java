@@ -1,8 +1,7 @@
 package leyout.controllers;
 
-import leyout.LeyoutComponentController;
-import leyout.wievs.ShapeHuman;
-import leyout.elements.Human;
+import leyout.views.ShapeHuman;
+import leyout.component.Human;
 
 public class HumanController extends LeyoutComponentController {
 

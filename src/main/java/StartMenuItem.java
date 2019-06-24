@@ -11,15 +11,15 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import leyout.groups.GroupEmployeCard;
+import leyout.component.GroupEmployeCard;
 import leyout.Layout;
-import leyout.LeyoutComponentWiev;
+import leyout.views.LeyoutComponentView;
 import panes.TablePlan;
 
 import java.io.IOException;
 
 
-public class StartMenuItem extends LeyoutComponentWiev {
+public class StartMenuItem extends LeyoutComponentView {
     public StartMenuItem(Stage stage, int w, int h, int x, int y, String text){
 
 
@@ -144,16 +144,6 @@ public class StartMenuItem extends LeyoutComponentWiev {
 
     @Override
     protected void setEventTonExt(MouseButton button) {
-
-    }
-
-    @Override
-    protected void getElements() {
-
-    }
-
-    @Override
-    protected void emplacement(int size) {
 
     }
 

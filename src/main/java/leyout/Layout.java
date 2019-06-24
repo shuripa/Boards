@@ -1,11 +1,11 @@
 package leyout;
 
 import leyout.controllers.CanbanController;
-import leyout.groups.*;
-import leyout.groups.test.CompositBoardController;
+import leyout.component.*;
+import leyout.controllers.CompositBoardController;
 import sets.BoardsController;
 import sets.SetBoards;
-import leyout.wievs.ShapeConvier;
+import leyout.views.ShapeConvier;
 import inout.GridMaterialLoader;
 import javafx.scene.layout.Region;
 import model.Order;
@@ -111,24 +111,26 @@ public class Layout extends Region {
         arrBoards.add(x);
         getChildren().add(x);
 
-        ArrayList<CompositBoardController> groups = new ArrayList<>();
 
 //        Перероблені дошки v2
         CompositBoardController gbc1 = new CompositBoardController(1900, "KM-xxx", 60, 600, 200, 0.0);
+//        TODO: можно ли добалять к лейауту не тут а в наборе?
+//         - Можно создав в наборе процедуру добавления всех элементов и передав ей лейаут параметром
         this.getChildren().add(gbc1.getView());
 //        Властивості
+//        TODO: переделать в свойства
         gbc1.setID(1990);
         gbc1.setTitle("KM 082");
         gbc1.setCondition("MFC1841082***");
-//        Заказы
+//        Замовлення
+//        TODO: Заказы добавляются - не к CompositBoard, - не к Индексу а к МАО
         gbc1.addOrder(new Order(21116, "MFC184108200A", 8, 148.57));
         gbc1.addOrder(new Order(21117, "MFC1841082A0A", 4, 178.24));
         gbc1.addOrder(new Order(21118, "MFC1841082L0A", 47, 188.13));
 //        Логування
         gbc1.setLogining(14417);
 //        Додавання дошки в набор
-        SetBoards sbs = SetBoards.getInstance();
-        sbs.addGroupBoardController(gbc1);
+        SetBoards.getInstance().addGroupBoardController(gbc1);
 
 //        Завантаження матеріалу на сітку
         try {

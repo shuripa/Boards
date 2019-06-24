@@ -1,7 +1,7 @@
 package leyout;
 
-import leyout.wievs.ShapeConnection;
-import leyout.wievs.ShapeNode;
+import leyout.views.ShapeConnection;
+import leyout.views.ShapeNode;
 import javafx.scene.Group;
 
 public class BlankGroup extends Group implements Infoable{

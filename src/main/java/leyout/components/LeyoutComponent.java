@@ -1,41 +1,82 @@
 package leyout.components;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import leyout.controllers.LeyoutComponentController;
 
 import java.util.ArrayList;
 
 public abstract class LeyoutComponent {
-    private LeyoutComponentController controller;
 
-    public LeyoutComponent(LeyoutComponentController controller){
-        this.controller = controller;
-    }
+//    TODO: оставлен для совместимости - удалить
+    private ArrayList<LeyoutComponentController> observers;
+
+    private ArrayList<LeyoutComponent> leafs;
+    private int posCount;
+
+//    private ArrayList <Node> nodes;         //Элементы управления
+//    public ShapeNode nEnt;                     //Точка входа
+//    public ShapeNode nExt;                     //Точка выхода
+
+
 
     public LeyoutComponent() {
+        observers = new ArrayList<>();
+        leafs = new ArrayList<>();
+//        nodes = new ArrayList<>();
     }
 
-    public LeyoutComponentController controller(){
-        return controller;
+
+//    private void createNodes() {
+//        //node start
+//        nEnt = new ShapeNode(this);
+//        nEnt.relocate(0, 16);
+//        nEnt.setOnMouseClicked(mouseEvent -> {
+//            MouseButton button = mouseEvent.getButton();
+//            setEventTonExt(button);
+//        });
+//
+//        //node end
+//        nExt = new ShapeNode(this);
+//        nExt.relocate(controller.getS() - 5, 16);
+//        this.getChildren().addAll(nEnt, nExt);
+//
+//    }
+
+//    public void addNode (Node node){
+//        this.nodes.add(node);
+//        this.getChildren().add(node);
+//    }
+
+    public void addObserver(LeyoutComponentController observer){
+        this.observers.add(observer);
     }
 
-    public void setStrProperties(StringProperty stringProperty) {
-        getStrProperties().add(stringProperty);
+    public void delObsetver (LeyoutComponent observer){
+        this.observers.remove(observer);
     }
+
+    public void update(){
+        for (LeyoutComponentController lcc: observers) {
+            lcc.update();
+        }
+    }
+
 
     @Override
     public abstract String toString();
 
-    public void setController(LeyoutComponentController controller) {
-        this.controller = controller;
+
+    /** Leafs */
+
+    public int leafsLenght() {
+        return leafs.size();
     }
 
-    public ArrayList<IntegerProperty> getIntProperties() {
-        return controller().getIntProperties();
+    public void addLeaf(LeyoutComponent leaf) {
+        leafs.add(leaf);
     }
 
-    public ArrayList<StringProperty> getStrProperties() {
-        return controller().getStrProperties();
+    public LeyoutComponent getLeaf (int i){
+        return leafs.get(i);
     }
+
 }

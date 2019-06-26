@@ -1,17 +1,9 @@
 package leyout.components;
 
-import leyout.controllers.HumanController;
-
 public class Human extends LeyoutComponent {
     private int empId;
 
-    public Human(HumanController controller){
-        super(controller);
-        free();
-    }
-
     public Human(){
-        super();
         free();
     }
 
@@ -21,7 +13,7 @@ public class Human extends LeyoutComponent {
 
     public void setLogining(int empId) {
         this.empId = empId;
-        controller().activate();
+        update();
     }
 
     public boolean isLogined() {

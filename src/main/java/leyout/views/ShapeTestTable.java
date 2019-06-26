@@ -1,28 +1,11 @@
 package leyout.views;
 
-import javafx.scene.input.MouseButton;
-import leyout.controllers.TestTableController;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import leyout.controllers.TestTableController;
 
 public class ShapeTestTable extends LeyoutComponentView {
     private int size;
-
-    public ShapeTestTable(TestTableController controller) {
-        super(controller);
-//        paint();
-    }
-
-    public ShapeTestTable(TestTableController controller, int size) {
-        super(controller, size);
-        this.size = size;
-//        paint();
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     public void paint() {
         //Тестувальний стіл
@@ -44,23 +27,9 @@ public class ShapeTestTable extends LeyoutComponentView {
         addPassiveElements(pc1, pc2, prnt);
 
         //Тексты
-        Text td = new Text(4, 9, "" + (((TestTableController) getController()).getTitle()));   //description
-        Text ti = new Text(size - 29, 18, "" + ((TestTableController) getController()).getId());    //ID
+        Text td = new Text(4, 9, "" + (((TestTableController) controller()).getTitle()));   //description
+        Text ti = new Text(size - 29, 18, "" + ((TestTableController) controller()).getId());    //ID
         addTexts(td, ti);
     }
 
-    @Override
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

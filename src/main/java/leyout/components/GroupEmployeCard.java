@@ -59,10 +59,7 @@ public class GroupEmployeCard extends Group implements Infoable {
 //        scrollPane.setContent(vBox);
     }
 
-    @Override
-    public void showInfo() {
 
-    }
     public ScrollPane getBox() {
         return scrollPane;
     }

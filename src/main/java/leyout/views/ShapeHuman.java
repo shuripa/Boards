@@ -1,24 +1,19 @@
 package leyout.views;
 
-import javafx.scene.input.MouseButton;
-import leyout.controllers.HumanController;
-import leyout.components.Human;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
+import leyout.components.Human;
+import leyout.controllers.HumanController;
 
 public class ShapeHuman extends LeyoutComponentView {
     Text t;
 
     public ShapeHuman(HumanController controller){
-        super(controller);
         t = new Text();
+        setController(controller);
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     @Override
     public void paint() {
@@ -29,20 +24,10 @@ public class ShapeHuman extends LeyoutComponentView {
         Ellipse rh = new Ellipse(17, 10, 1.85, 5);  //right hand
         Ellipse rw = new Ellipse(16.5, 15, 2, 2);   //right wrist
         addActiveElements(lh, lw, rh, rw, b, h);
-        t = new Text(""+ ((Human)controller.component()).getLogined());
+        t = new Text(""+ ((Human)controller().component()).getLogined());
         t.relocate(20, -5 );
         addText(t);
     }
 
-    @Override
-    public void setSize(int size) { }
 
-    public void reset(){
-        t.setText("" + ((Human)controller.component()).getLogined());
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

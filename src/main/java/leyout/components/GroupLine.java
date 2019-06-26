@@ -1,8 +1,7 @@
 package leyout.components;
 
-import javafx.scene.input.MouseButton;
-import leyout.views.LeyoutComponentView;
 import javafx.scene.shape.Shape;
+import leyout.views.LeyoutComponentView;
 
 public class GroupLine extends LeyoutComponentView {
 
@@ -19,10 +18,6 @@ public class GroupLine extends LeyoutComponentView {
 
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     public void add (Shape shapeConnection){
         getChildren().add(shapeConnection);
@@ -43,18 +38,4 @@ public class GroupLine extends LeyoutComponentView {
 
     }
 
-    @Override
-    public void setSize(int size) {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

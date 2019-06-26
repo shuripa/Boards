@@ -1,162 +1,163 @@
 package leyout.controllers;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import leyout.components.LeyoutComponent;
 import leyout.views.LeyoutComponentView;
+import leyout.views.ShapeInfo;
+import panes.PropertyPane;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class LeyoutComponentController {
-    public LeyoutComponent component;
-    public LeyoutComponentView view;
-    public LeyoutComponentController controller;
-    public LeyoutComponentController parent;
-    LeyoutComponentController[] leafs;
+public abstract class LeyoutComponentController {
+    private LeyoutComponentController parent;
+    private LeyoutComponentController controller;
+    private LeyoutComponent component;
+    private LeyoutComponentView view;
+
     private ArrayList<StringProperty> strProperties; // Строковые свойства
     private ArrayList<IntegerProperty> intProperties; // Строковые свойства
 
-    int posCount;
-
-    public LeyoutComponentController(){
-        strProperties = new ArrayList<>();
-        intProperties = new ArrayList<>();
-    }
-
-    public void updateProperty() {
-        view().updateProperties();
-        leafs = new LeyoutComponentController[4];
-    }
-
-    public LeyoutComponentController(LeyoutComponentController parent){
-        this.parent = parent;
-        strProperties = new ArrayList<>();
-        intProperties = new ArrayList<>();
-        leafs = new LeyoutComponentController[4];
-    }
-
-    public LeyoutComponentController(LeyoutComponent component, LeyoutComponentView view){
-        this.component = component;
-        this.view = view;
-        this.controller = this;
-//        System.out.println("Controller " + this.toString());
-        leafs = new LeyoutComponentController[4];
-        strProperties = new ArrayList<>();
-        intProperties = new ArrayList<>();
-//        TODO проверить!!!
-//        component.setController(this);
-//        view.setController(this);
-    }
-
-
+    private final static String TITLE_PROP_X = "X";
+    private final static String TITLE_PROP_Y = "Y";
+    private final static String TITLE_PROP_A = "A";
+    private final static String TITLE_PROP_S = "S";
+    private final IntegerProperty X;
+    private final IntegerProperty Y;
+    private final IntegerProperty A;
+    private final IntegerProperty S;
     /**    General */
 
-    public void initialize(LeyoutComponentController controller, LeyoutComponent element, LeyoutComponentView wiev){
-    this.component = element;
-    this.view = wiev;
-    setController(controller);
-}
+    public LeyoutComponentController(){
+        this.parent = null;
+        this.controller = this;
+        strProperties = new ArrayList<>();
+        intProperties = new ArrayList<>();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
+        updateControllerProperties();
 
-    public void activate() {
-        view.activate();
+    }
+
+    /** Getters and Setters */
+
+    public void setParent(LeyoutComponentController parent) {
+        this.parent = parent;
     }
 
     public void setController(LeyoutComponentController controller) {
         this.controller = controller;
-        component.setController(controller);
-        view.setController(controller);
     }
 
-    public Node getWievAsNode() {
-        return view;
+    public void setComponent(LeyoutComponent component) {
+        this.component = component;
+        setComponentProperties();
     }
 
-    public LeyoutComponentView view(){
-        return view;
+    protected abstract void setComponentProperties();
+
+    public void setView(LeyoutComponentView view) {
+        this.view = view;
+        viewSets();
+        viewEvents();
     }
 
-    public LeyoutComponentView getWievAsSuper(){
-        return view;
-    }
-
-    public LeyoutComponent component(){
-        return component;
+    public LeyoutComponentController parent () {
+        return parent;
     }
 
     public LeyoutComponentController controller() {
         return controller;
     }
 
-    public LeyoutComponentController getParentController() {
-        return parent;
+    public LeyoutComponent component(){
+        return component;
     }
 
-
-
-    /**    Composit */
-
-
-
-    /**    Leaf */
-
-    public void addLeafByIndex(LeyoutComponentController controller, int index) {
-        if (index <= posCount) leafs[index] = controller;
+    public LeyoutComponentView view(){
+        return view;
     }
 
-    public void addLeaf(LeyoutComponentController leaf) {
-        int i = 0;
-        while (leafs[i] != null){
-            i++;
-        }
-        if (i == leafs.length) addLeafByIndex(leaf, leafsLenght()+1);
-        else leafs[i] = leaf;
-    }
-
-    public int leafsLenght() {
-        return leafs.length;
-    }
-
-    public void setPosCount(int posCount){
-        this.posCount = posCount;
-        LeyoutComponentController[] temp = leafs;
-        leafs = new LeyoutComponentController[posCount];
-        for (int i = 0; i < posCount; i++) {
-            leafs[i] = temp[i];
-        }
-    }
-
-    public LeyoutComponentController getLeaf(int i) {
-        return leafs[i];
-    }
-
-
-    /** View*/
-
-    public void setPosition(int x, int y, int angle, int size) {
-        view().relocate(x, y);
-        view().setRotate(angle);
-    }
-
-    public void relocate(int x, int y) {
-        view.relocate(x, y);
-    }
-
-    public void setPositionArgs(int x, int y, int angle, int size) {
-        view().relocate(x, y, angle);
-        view().setSize(size);
-    }
 
     /** Properties */
 
-    public ArrayList<StringProperty> getStrProperties(){
-        return strProperties;
+    public int getX() {
+        return X.get();
     }
 
-    public ArrayList<IntegerProperty> getIntProperties(){
-        return intProperties;
+    public IntegerProperty xProperty() {
+        return X;
     }
 
+    public int getY() {
+        return Y.get();
+    }
+
+    public IntegerProperty yProperty() {
+        return Y;
+    }
+
+    public int getA() {
+        return A.get();
+    }
+
+    public IntegerProperty aProperty() {
+        return A;
+    }
+
+    public int getS() {
+        return S.get();
+    }
+
+    public IntegerProperty sProperty() {
+        return S;
+    }
+
+    public void setX(int x) {
+        this.X.set(x);
+        view().transform();
+    }
+
+    public void setY(int y) {
+        this.Y.set(y);
+        view().transform();
+    }
+
+    public void setA(int a) {
+        this.A.set(a);
+        view().transform();
+    }
+
+    public void setS(int s) {
+        this.S.set(s);
+        view().transform();
+    }
+
+    public void setStrProperty (StringProperty strProperty){
+        strProperties.add(strProperty);
+    }
+
+    public void setIntProperty (IntegerProperty intProperty) {
+        intProperties.add(intProperty);
+    }
+
+    /** Sizes */
+
+    public void setXYAS(int x, int y, int angle, int size){                             //Перемещение группы
+        setX(x);
+        setY(y);
+        setA(angle);
+        setS(size);
+    }
+
+    public void setXY(int x, int y) {
+        view.relocate(x, y);
+    }
 
     /** Get String */
 
@@ -169,7 +170,44 @@ public class LeyoutComponentController {
         return "0";
     }
 
-    public void refresh() {
-        view().refresh();
+    /** Behavior */
+
+    public void activate() {
+        view.activate();
     }
+
+    private void viewSets(){
+        view().getStylesheets().add("style.css");
+    }
+
+    private void viewEvents(){
+        view().setOnMouseEntered(mouseEvent -> {
+            view.entered();
+        });
+
+        view().setOnMouseExited(mouseEvent -> {
+            view.exited();
+        });
+
+        view().setOnMouseClicked(mouseEvent -> {
+            PropertyPane pp = PropertyPane.getInstance();
+            pp.addProperties(controller(), strProperties, intProperties);
+            new ShapeInfo(controller());
+        });
+    }
+
+    protected abstract void setEventTonExt(MouseButton button);
+
+    /** Component property */
+
+    public abstract void update();
+
+
+    /** InSide procedures */
+
+    private void updateControllerProperties(){
+        intProperties.addAll(Arrays.asList(new IntegerProperty[]{X, Y, A, S}));
+    }
+
+
 }

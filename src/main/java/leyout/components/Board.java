@@ -1,10 +1,9 @@
 package leyout.components;
 
         import javafx.beans.property.IntegerProperty;
-        import javafx.beans.property.SimpleIntegerProperty;
-        import javafx.beans.property.SimpleStringProperty;
-        import javafx.beans.property.StringProperty;
-        import leyout.controllers.BoardController;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Board extends LeyoutComponent {
 
@@ -15,19 +14,12 @@ public class Board extends LeyoutComponent {
     private final StringProperty title;
     private final StringProperty condition;
 
-//    int id;
-//    String title;
-//    String condition;
 
-    public Board(BoardController controller, int id, String title) {
-        super(controller);
-        this.id = new SimpleIntegerProperty(this, TITLE_PROP_ID, id);
-        this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE, title);
+    public Board(){
+        super();
+        this.id = new SimpleIntegerProperty(this, TITLE_PROP_ID, 0);
+        this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE, "");
         this.condition = new SimpleStringProperty(this, TITLE_PROP_CONDITION, "");
-        getIntProperties().add(this.id);
-        getStrProperties().add(this.title);
-        getStrProperties().add(this.condition);
-
     }
 
     public void setID(int id) {

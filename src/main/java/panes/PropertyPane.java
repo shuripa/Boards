@@ -29,44 +29,6 @@ public class PropertyPane extends TitledPane {
         return instance;
     }
 
-    private void refresh() {
-        VBox content = new VBox();
-
-        if (stringProperties.size()>0) {
-            for (StringProperty sp : stringProperties) {
-                TextField tp = new TextField(sp.getValue());
-
-                tp.setOnKeyReleased(keyEvent -> {
-                    sp.setValue(tp.getText());
-                    sender.refresh();
-                });
-
-                HBox str = new HBox();
-                str.getChildren().addAll(new Label(sp.getName()), tp);
-                str.setSpacing(5);
-                content.getChildren().add(str);
-            }
-        }
-
-        if (intProperties.size() >0) {
-            for (IntegerProperty ip : intProperties) {
-                TextField tp = new TextField("" + ip.getValue());
-
-                tp.setOnKeyReleased(keyEvent -> {
-                    ip.setValue(Integer.parseInt(tp.getText()));
-                    sender.refresh();
-                });
-
-                HBox str = new HBox();
-                str.getChildren().addAll(new Label(ip.getName()), tp);
-                str.setSpacing(5);
-                content.getChildren().add(str);
-            }
-        }
-
-        this.setContent(content);
-    }
-
     public void addProperties (LeyoutComponentController sender, ArrayList<StringProperty> stringProperties, ArrayList<IntegerProperty> intProperties){
         clear();
         if (stringProperties != null && stringProperties.size()>0) {
@@ -81,6 +43,46 @@ public class PropertyPane extends TitledPane {
         }
         this.sender = sender;
         refresh();
+    }
+
+    private void refresh() {
+        VBox content = new VBox();
+
+        if (stringProperties.size()>0) {
+            for (StringProperty sp : stringProperties) {
+                TextField tp = new TextField(sp.getValue());
+
+                tp.setOnKeyReleased(keyEvent -> {
+                    sp.setValue(tp.getText());
+                    sender.update();
+                });
+
+                HBox str = new HBox();
+                str.getChildren().addAll(new Label(sp.getName()), tp);
+                str.setSpacing(5);
+                content.getChildren().add(str);
+            }
+        }
+
+        if (intProperties.size() >0) {
+            for (IntegerProperty ip : intProperties) {
+                TextField tp = new TextField("" + ip.getValue());
+
+                tp.setOnKeyReleased(keyEvent -> {
+                    if (!(tp.equals("")) && (tp != null)) {
+                        ip.setValue(Integer.parseInt(tp.getText()));
+                        sender.update();
+                    }
+                });
+
+                HBox str = new HBox();
+                str.getChildren().addAll(new Label(ip.getName()), tp);
+                str.setSpacing(5);
+                content.getChildren().add(str);
+            }
+        }
+
+        this.setContent(content);
     }
 
     public void clear(){

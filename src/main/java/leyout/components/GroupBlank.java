@@ -19,9 +19,10 @@ public class GroupBlank extends Group implements Infoable {
         //id - номер доски
         //dsc - описание
 //        Робітник
-        h1 = new HumanController();
-//        h1.relocate(size/2-10, 7);
-        h1.relocate(size/2-10, 0);
+        h1 = new HumanController(new Human());
+//        h1.setXY(size/2-10, 7);
+        h1.setX(size/2-10);
+        h1.setY(0);
 //        Робоче місце
         bs1 = new ShapeBlank(id, dsc, size);
         bs1.relocate(5, 17);
@@ -29,8 +30,7 @@ public class GroupBlank extends Group implements Infoable {
         bis1 = new ShapeBoardInd(ind);
         bis1.relocate(0, -1);
 //        Сітка
-        sg = new ShapeGrid(size);
-        sg.relocate(0, 38);
+        sg.controller().setXYAS(0, 38, 0, size);
 //        Узли
 //        node start
         nEnt = new ShapeNode(this);
@@ -47,14 +47,10 @@ public class GroupBlank extends Group implements Infoable {
         nExt.relocate(size-7, 8);
 
 //
-        this.getChildren().addAll(bis1, bs1, h1.getWievAsSuper(), sg, nEnt, nExt);
+        this.getChildren().addAll(bis1, bs1, h1.view(), sg, nEnt, nExt);
         this.relocate(x, y);
         this.setRotate(a);
 
     }
 
-    @Override
-    public void showInfo() {
-
-    }
 }

@@ -1,13 +1,12 @@
 package leyout.views;
 
 
-import javafx.scene.input.MouseButton;
-import leyout.controllers.EmployerController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import leyout.controllers.EmployerController;
 
 public class ShapeEmployeCard extends LeyoutComponentView {
     private int size;
@@ -20,7 +19,7 @@ public class ShapeEmployeCard extends LeyoutComponentView {
         this.id = id;
         this.description = description;
         this.size = size;
-        paint ();
+
         this.setOnMouseClicked(e -> {
 
         });
@@ -34,10 +33,7 @@ public class ShapeEmployeCard extends LeyoutComponentView {
         });
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
 
-    }
 
     public void paint() {
         //Rectangle card
@@ -62,7 +58,6 @@ public class ShapeEmployeCard extends LeyoutComponentView {
         Image im;
         ImageView imv = new ImageView();
         try {
-
             String url = new StringBuilder().append("Employers/images").append(id).append(".jpg").toString();
             im = new Image(url, 30, 40, true, true);
             imv = new ImageView(im);
@@ -72,26 +67,14 @@ public class ShapeEmployeCard extends LeyoutComponentView {
 
         addActiveElement(rc);
         addTexts(td, ti);
-        addNode(imv);
-//        this.getChildren().addAll(rc, td, ti, imv);
+//        addNode(imv);
+        this.getChildren().addAll(rc, td, ti, imv);
     }
 
-    @Override
-    public void setSize(int size) {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
 
     public void setEmployerController(EmployerController employerController) {
         this.employerController = employerController;
     }
 
-    @Override
-    public void showInfo() {
 
-    }
 }

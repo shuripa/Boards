@@ -1,16 +1,11 @@
 package leyout.components;
 
-import leyout.controllers.LeyoutComponentController;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Grid extends LeyoutComponent {
     private ArrayList<String> materials;
 
-    public Grid(LeyoutComponentController controller) {
-        super(controller);
-    }
 
     public ArrayList<String> getMaterials() {
         return materials;

@@ -1,6 +1,5 @@
 package leyout.views;
 
-import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 
@@ -11,10 +10,6 @@ public class ShapePushcart extends LeyoutComponentView {
         paint();
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     public void paint() {
         Polyline p = new Polyline(new double[]{
@@ -53,18 +48,4 @@ public class ShapePushcart extends LeyoutComponentView {
         this.getChildren().addAll(p, l0, l1, l2, l3, l4, l5, l6);
     }
 
-    @Override
-    public void setSize(int size) {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

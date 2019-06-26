@@ -1,7 +1,6 @@
 package leyout.views;
 
 
-import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Circle;
 import leyout.Infoable;
 import leyout.Point;
@@ -35,10 +34,6 @@ public class ShapeNode extends LeyoutComponentView {
 //        paint();
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     public void paint() {
         Circle point = new Circle(3, 3, 3);
@@ -47,15 +42,6 @@ public class ShapeNode extends LeyoutComponentView {
 //        getChildren().add(point);
     }
 
-    @Override
-    public void setSize(int size) {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
 
     public void setClicked(){
 //        this.setOnMouseClicked(mouseEvent -> {
@@ -84,20 +70,16 @@ public class ShapeNode extends LeyoutComponentView {
         arNodes.add(sNode);
     }
 
-    public double getX(){
+    public int getX(){
 //        Bounds b = this.getBoundsInLocal();
 //        return localToScene(b).getCenterX();
 //        return 100;
-        return this.localToScene(this.getBoundsInLocal()).getMinX() + 3 ;
+        return (int) (this.localToScene(this.getBoundsInLocal()).getMinX() + 3);
     }
 
-    public double getY(){
+    public int getY(){
 //        return 100;
-        return this.localToScene(this.getBoundsInLocal()).getMinY() + 3;
+        return (int) (this.localToScene(this.getBoundsInLocal()).getMinY() + 3);
     }
 
-    @Override
-    public void showInfo() {
-
-    }
 }

@@ -43,12 +43,12 @@ public class GroupBoard extends Group implements Infoable {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.a = new SimpleDoubleProperty(a);       //a - угол
-        hc = new HumanController();
-        bc = new BoardController(id, dsc, size);
+//        hc = new HumanController();
+//        bc = new BoardController(id, dsc, size);
         sbi = new ShapeBoardInd(ind);              //ind - индикатор
-        gc = new GridController(size);
-        hc.getWievAsSuper().relocate(size/2-10, 7);
-        bc.getWievAsSuper().relocate(0, 25);
+//        gc = new GridController(size);
+        hc.view().relocate(size/2-10, 7);
+        bc.view().relocate(0, 25);
         sbi.relocate(size-5, 7);
 
 
@@ -87,7 +87,7 @@ public class GroupBoard extends Group implements Infoable {
                 for (String s : gc.getMaterial()) {
                     for (ShapeNode ext : cc.getExt(s)) {
                         new ShapeConnection(nEnt.getX(), nEnt.getY(), ext.getX(), ext.getY());
-                        ext.getOwner().showInfo();
+//                        ext.getOwner().showInfo();
                     }
 
                 }
@@ -101,7 +101,7 @@ public class GroupBoard extends Group implements Infoable {
         nExt = new ShapeNode(this);
         nExt.relocate(size - 5, 16);
 
-        this.getChildren().addAll(sbi, bc.getWievAsSuper(), hc.getWievAsSuper(), gc.getWievAsSuper(), nEnt, nExt);
+        this.getChildren().addAll(sbi, bc.view(), hc.view(), gc.view(), nEnt, nExt);
         this.relocate(x, y);
         this.setRotate(a);
 
@@ -123,9 +123,9 @@ public class GroupBoard extends Group implements Infoable {
         return nExt;
     }
 
-    public void setLoginning(int EmployerId){
-        hc.setLogining(EmployerId);
-    }
+//    public void setLoginning(int EmployerId){
+//        hc.setLogining(EmployerId);
+//    }
 
     public ArrayList<Order> getOrd() {
         return sbi.getOrd();
@@ -165,8 +165,5 @@ public class GroupBoard extends Group implements Infoable {
     }
 
 
-    @Override
-    public void showInfo() {
 
-    }
 }

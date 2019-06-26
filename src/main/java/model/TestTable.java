@@ -1,6 +1,5 @@
 package model;
 
-import leyout.controllers.TestTableController;
 import leyout.components.LeyoutComponent;
 
 public class TestTable extends LeyoutComponent {
@@ -23,9 +22,7 @@ public class TestTable extends LeyoutComponent {
         this.title = title;
     }
 
-    public TestTable(TestTableController controller){
-        super(controller);
-    }
+
 
 //    public TestTable(TestTableController controller, int id, String title){
 //        super(controller);

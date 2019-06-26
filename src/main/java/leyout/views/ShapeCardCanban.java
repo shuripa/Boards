@@ -1,14 +1,12 @@
 package leyout.views;
 
-import leyout.controllers.CanbanController;
-import leyout.controllers.StockController;
-import leyout.components.GroupLeafCanban;
-import leyout.Infoable;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
+import leyout.Infoable;
+import leyout.components.GroupLeafCanban;
+import leyout.controllers.CanbanController;
+import leyout.controllers.StockController;
 import stock.Stock;
 import stock.Store;
 
@@ -66,7 +64,7 @@ public class ShapeCardCanban extends Group implements Infoable {
 
         }
         this.setOnMouseClicked(mouseEvent -> {
-            showInfo();
+//            showInfo();
         });
 
 //        paint();
@@ -103,7 +101,7 @@ public class ShapeCardCanban extends Group implements Infoable {
         }
         //Текст
 //        Text n = new Text(title);
-//        n.relocate(10+cntAllOrd*4, -5);
+//        n.setXY(10+cntAllOrd*4, -5);
 //        n.setFont(new Font(8));
 //        n.setStroke(Color.GREY);
 //        this.getChildren().add(n);
@@ -132,25 +130,25 @@ public class ShapeCardCanban extends Group implements Infoable {
         this.stockTitle = stockTitle;
     }
 
-    @Override
-    public void showInfo(){
-        stock = stockController.getStock(stockTitle);
-        store = stock.getStore(title);
-        System.out.println(title);
-        material = store.getMaterial();
-        count = store.getCount();
-        Bounds bounds = this.localToScreen (this.getBoundsInLocal());
-//        Bounds bounds1 = this.localToScene(this.getBoundsInParent());
-//        Bounds bounds2 = this.localToScene(this.getLayoutBounds());
-        //Границы текущего элемента
-//            Text text = new Text("LocalCentr – X: " + bounds.getCenterX() + "; Y: " + bounds.getCenterY() + "\n" +
-//                "Parent – X: " + bounds1.getCenterX() + "; Y: " + bounds1.getCenterY() + "\n" +
-//                "Leyout – X: " + bounds2.getCenterX() + "; Y: " + bounds2.getCenterY() + "\n" +
-//                "LocalMax – X: " + bounds.getMaxX() + "; Y: " + bounds.getMinY() + "\n"
-//                    );
-
-        Text text = new Text(title + "\n" + material + " = " + count);
-        ShapeInfo info = new ShapeInfo(text, 40);
-        info.show(this, bounds.getMaxX(), bounds.getMinY() -15);
-    }
+//    @Override
+//    public void showInfo(){
+//        stock = stockController.getStock(stockTitle);
+//        store = stock.getStore(title);
+//        System.out.println(title);
+//        material = store.getMaterial();
+//        count = store.getCount();
+//        Bounds bounds = this.localToScreen (this.getBoundsInLocal());
+////        Bounds bounds1 = this.localToScene(this.getBoundsInParent());
+////        Bounds bounds2 = this.localToScene(this.getLayoutBounds());
+//        //Границы текущего элемента
+////            Text text = new Text("LocalCentr – X: " + bounds.getCenterX() + "; Y: " + bounds.getCenterY() + "\n" +
+////                "Parent – X: " + bounds1.getCenterX() + "; Y: " + bounds1.getCenterY() + "\n" +
+////                "Leyout – X: " + bounds2.getCenterX() + "; Y: " + bounds2.getCenterY() + "\n" +
+////                "LocalMax – X: " + bounds.getMaxX() + "; Y: " + bounds.getMinY() + "\n"
+////                    );
+//
+//        Text text = new Text(title + "\n" + material + " = " + count);
+//        ShapeInfo info = new ShapeInfo(text, 40);
+//        info.show(this, bounds.getMaxX(), bounds.getMinY() -15);
+//    }
 }

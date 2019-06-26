@@ -1,6 +1,5 @@
 package leyout.views;
 
-import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -15,10 +14,7 @@ public class ShapePalete extends LeyoutComponentView {
         paint();
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
 
-    }
 
     public void paint(){
         //Палета
@@ -46,18 +42,5 @@ public class ShapePalete extends LeyoutComponentView {
 
     }
 
-    @Override
-    public void setSize(int size) {
 
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

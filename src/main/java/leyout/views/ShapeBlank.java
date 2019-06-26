@@ -1,7 +1,6 @@
 package leyout.views;
 
 import javafx.geometry.Bounds;
-import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -33,10 +32,6 @@ public class ShapeBlank extends LeyoutComponentView {
 
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     public void paint() {
 //        rb
@@ -85,18 +80,4 @@ public class ShapeBlank extends LeyoutComponentView {
 
     }
 
-    @Override
-    public void setSize(int size) {
-
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

@@ -23,8 +23,4 @@ public class BlankGroup extends Group implements Infoable{
         getChildren().addAll(nEnt, nExt);
     }
 
-    @Override
-    public void showInfo() {
-
-    }
 }

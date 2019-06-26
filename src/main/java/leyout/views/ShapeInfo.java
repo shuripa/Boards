@@ -45,7 +45,7 @@ public class ShapeInfo extends Popup{
 
 //        ScrollPane scrollPane = new ScrollPane(textMsg);
 //        scrollPane.setOpacity(0.5);
-//        scrollPane.relocate(18, -20);
+//        scrollPane.setXY(18, -20);
 
 
 //        Text descr = new Text("Вікно інформації");
@@ -68,7 +68,7 @@ public class ShapeInfo extends Popup{
 
 //    public ShapeInfo(Node node, int hight){
 //        paint(hight);
-//        node.relocate(23, hight-50);
+//        node.setXY(23, hight-50);
 //        this.getContent().addAll(msgBubble, node);
 //    }
 
@@ -116,8 +116,8 @@ public class ShapeInfo extends Popup{
 
 
             this.getContent().addAll(msgBubble, textMsg, text);
-            Bounds bounds = controller.getWievAsNode().localToScreen(controller.getWievAsNode().getBoundsInLocal());           //Границы текущего элемента
-            super.show(controller.getWievAsNode(), bounds.getMaxX(), bounds.getMinY() - 10);    //
+            Bounds bounds = controller.view().localToScreen(controller.view().getBoundsInLocal());           //Границы текущего элемента
+            super.show(controller.view(), bounds.getMaxX(), bounds.getMinY() - 10);    //
         }
     }
 

@@ -1,12 +1,11 @@
 package leyout.controllers;
 
 import javafx.scene.Node;
-import leyout.views.LeyoutComponentView;
+import javafx.scene.input.MouseButton;
 import leyout.components.CompositBoard;
+import leyout.components.LeyoutComponent;
 import leyout.views.CompositBoardView;
-import model.Order;
-
-import java.util.ArrayList;
+import leyout.views.LeyoutComponentView;
 
 public class CompositBoardController extends LeyoutComponentController {
     //Leaf
@@ -15,30 +14,30 @@ public class CompositBoardController extends LeyoutComponentController {
     BoardIndexController bic;
     GridController gc;
 
-    public CompositBoardController(int id, String dsc, int size, int x, int y, int a){
-        hc = new HumanController();
-        bc = new BoardController(id, dsc, size);
-        gc = new GridController(size);
-        bic = new BoardIndexController(this, 70);
+    public CompositBoardController(CompositBoard cBoard){
+        hc = new HumanController(cBoard.getHuman());
+        bc = new BoardController(cBoard.getBoard());
+        gc = new GridController(cBoard.getGrid());
+        bic = new BoardIndexController(cBoard.getBoardIndex());
 
-        component = new CompositBoard(this);
-        view = new CompositBoardView(this, size, x, y, a);
+        setComponent(cBoard);
+        setView(new CompositBoardView());
     }
 
     public LeyoutComponentView getHumanShape() {
-        return hc.getWievAsSuper();
+        return hc.view();
     }
 
     public LeyoutComponentView getBoardShape() {
-        return bc.getWievAsSuper();
+        return bc.view();
     }
 
     public LeyoutComponentView getBoardIndex(){
-        return bic.getWievAsSuper();
+        return bic.view();
     }
 
     public LeyoutComponentView getGridShape() {
-        return gc.getWievAsSuper();
+        return gc.view();
     }
 
     public LeyoutComponentController getGridController(){
@@ -52,27 +51,7 @@ public class CompositBoardController extends LeyoutComponentController {
     public LeyoutComponentController getBoardController() { return bc; }
 
     public Node getView() {
-        return view;
-    }
-
-    public void setCondition(String condition) {
-        bc.setCondition(condition);
-    }
-
-    public void setID(int id) {
-        bc.setID(id);
-    }
-
-    public void setTitle(String title) {
-        bc.setTitle(title);
-    }
-
-    public void addOrder(Order order) {
-        bic.addOrder(order);
-    }
-
-    public void setLogining(int empID) {
-        hc.setLogining(empID);
+        return view();
     }
 
     public Integer getID() {
@@ -83,15 +62,26 @@ public class CompositBoardController extends LeyoutComponentController {
         return bc.getTitle();
     }
 
-    public void addMateril(String material) {
-        gc.addMaterial(material);
-    }
-
-    public void setMaterials(ArrayList<String> materials) {
-        gc.setMaterials(materials);
-    }
-
     public String getCondition(){
         return ((BoardController)getBoardController()).getCondition();
+    }
+
+    public LeyoutComponent getCompositBoard() {
+        return component();
+    }
+
+    @Override
+    protected void setComponentProperties() {
+
+    }
+
+    @Override
+    protected void setEventTonExt(MouseButton button) {
+
+    }
+
+    @Override
+    public void update() {
+
     }
 }

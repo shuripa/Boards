@@ -1,9 +1,9 @@
 package examples.ExampleCode;
 
 public class UpdateNodePaint {
-    // TODO: приклад процедури update()
+    // TODO: приклад процедури setXYAS()
 //
-//    private void update(){
+//    private void setXYAS(){
 //        for (Node n:this.getChildren()) {
 //            if (isLogined) {
 //                n.setStyle("-fx-fill: RGBA(82,79,161,0.4); -fx-stroke: white; -fx-stroke-width: 0.5");

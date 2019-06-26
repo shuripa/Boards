@@ -1,7 +1,6 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -87,28 +86,12 @@ public class StartMenuItem extends LeyoutComponentView {
         this.propertyPane = propertyPane;
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
 
-    }
 
     @Override
     public void paint() {
 
     }
 
-    @Override
-    public void setSize(int size) {
 
-    }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void showInfo() {
-
-    }
 }

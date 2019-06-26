@@ -1,4 +1,4 @@
-package leyout.component;
+package leyout.components;
 
 import leyout.controllers.CanbanController;
 import javafx.scene.Group;

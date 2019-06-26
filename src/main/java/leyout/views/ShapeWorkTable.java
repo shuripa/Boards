@@ -18,7 +18,7 @@ public class ShapeWorkTable extends LeyoutComponentView {
 
     }
 
-    protected void paint() {
+    public void paint() {
         //rc1
         Rectangle wt = new Rectangle(15, 20);
 //        wt.setStroke(javafx.scene.paint.Color.WHITE);

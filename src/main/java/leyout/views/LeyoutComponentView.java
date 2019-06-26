@@ -1,6 +1,9 @@
 package leyout.views;
 
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Region;
@@ -8,10 +11,12 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import leyout.Infoable;
 import leyout.controllers.LeyoutComponentController;
+import panes.PropertyPane;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public abstract class LeyoutComponentView extends Region implements Infoable {
+public abstract class LeyoutComponentView extends Region implements Infoable{
 
 //    TODO: разделить методы относящиеся к Leaf и Composit и сделать для них реализацию по умолчанию
 //    Предположительно методы paint() setSize() и reset() относятся только к Leaf
@@ -23,16 +28,26 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
     private ArrayList <Shape> bounderys;    //Елементы выделения границы
     private ArrayList <Shape> pasiveElements;     //Неактивные элементы
     private ArrayList <Node> nodes;         //Элементы управления
-    // TODO: переместить класс в папку с контроллерами и сделать контроллер protected
-    public LeyoutComponentController controller;
 
+//    private ArrayList <IntegerProperty> intProperties;
+
+    private final static String TITLE_PROP_X = "X";
+    private final static String TITLE_PROP_Y = "Y";
+    private final static String TITLE_PROP_A = "A";
+    private final static String TITLE_PROP_S = "S";
+    private final IntegerProperty X;
+    private final IntegerProperty Y;
+    private final IntegerProperty A;
+    private final IntegerProperty S;
+    // TODO: переместить класс в папку с контроллерами и сделать контроллер protected
+
+    public LeyoutComponentController controller;
     public int size;
     int x;
     int y;
     double a;
     public ShapeNode nEnt;                     //Точка старта (входа)
     public ShapeNode nExt;                     //Точка выхода
-
 
     //TODO: Дублируется. Удалить после рефакторинга
     public LeyoutComponentView(){
@@ -42,9 +57,14 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
         bounderys = new ArrayList<>();
         pasiveElements = new ArrayList<>();
         nodes = new ArrayList<>();
+//        intProperties = new ArrayList<>();
         this.getStylesheets().add("style.css");
         setsEvents();
         paint();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
     }
 
     public LeyoutComponentView(int size){
@@ -54,12 +74,16 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
         bounderys = new ArrayList<>();
         pasiveElements = new ArrayList<>();
         nodes = new ArrayList<>();
+//        intProperties = new ArrayList<>();
         this.getStylesheets().add("style.css");
         setsEvents();
         this.setSize(size);
         paint();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
     }
-
 
     //Основной
     public LeyoutComponentView(LeyoutComponentController controller){
@@ -71,10 +95,16 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
         bounderys = new ArrayList<>();
         pasiveElements = new ArrayList<>();
         nodes = new ArrayList<>();
+//        intProperties = new ArrayList<>();
         this.getStylesheets().add("style.css");
         setsEvents();
         paint();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
     }
+
 
     //Основной
     public LeyoutComponentView(LeyoutComponentController controller, int size){
@@ -86,13 +116,19 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
         bounderys = new ArrayList<>();
         pasiveElements = new ArrayList<>();
         nodes = new ArrayList<>();
+//        intProperties = new ArrayList<>();
         this.getStylesheets().add("style.css");
         setsEvents();
         paint();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
+
     }
 
     //Основной для паттерна Composit
-    public LeyoutComponentView(LeyoutComponentController controller, int size, int x, int y, double a){
+    public LeyoutComponentView(LeyoutComponentController controller, int size, int x, int y, int a){
         this.controller = controller;
         this.setSize(size);
         this.x = x;
@@ -107,14 +143,29 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
         nodes = new ArrayList<>();
         this.getStylesheets().add("style.css");
         setsEvents();
-        relocate();
         paint();
+
+//        intProperties = new ArrayList<>();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, x);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, y);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, a);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, size);
+
+        relocate(x, y, a);
+    }
+
+    public ArrayList<IntegerProperty> getIntProperties() {
+        return controller.getIntProperties();
+    }
+
+    public ArrayList<StringProperty> getStrProperties() {
+        return controller.getStrProperties();
     }
 
 
     /**General - общие методы для композит и Leaf*/
 
-    protected abstract void paint();        //Рисование у Leaf. Добавление и расположение элементов у Composit
+    public abstract void paint();        //Рисование у Leaf. Добавление и расположение элементов у Composit
 
     public abstract void reset();
 
@@ -136,11 +187,6 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
 
     }
 
-    public void relocate(){                             //Перемещение группы
-        this.relocate(x, y);
-        this.setRotate(a);
-    }
-
     protected abstract void setEventTonExt(MouseButton button);
 
     /**Leaf - методы относящиеся только к Leaf*/
@@ -160,6 +206,10 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
 
         this.setOnMouseClicked(mouseEvent -> {
 //            ShapeInfo shapInfo = new ShapeInfo(new Text("so far nothing"), 60);
+            if (!(controller == null)) {
+                PropertyPane pp = PropertyPane.getInstance();
+                pp.addProperties(controller, getStrProperties(), getIntProperties());
+            }
             new ShapeInfo(controller);
         });
 
@@ -282,13 +332,28 @@ public abstract class LeyoutComponentView extends Region implements Infoable {
         }
     }
 
-    public void setSize(int size){
-        this.size = size;
-    }
-
     public void setController(LeyoutComponentController controller){
         this.controller = controller;
 
     }
 
+    public void setSize(int size){
+        this.size = size;
+    }
+
+    public void relocate(int x, int y, double a){                             //Перемещение группы
+        X.set(x);
+        Y.setValue(y);
+        A.setValue(a);
+        this.relocate(X.getValue(), Y.getValue());
+        this.setRotate(A.getValue());
+    }
+
+    public void refresh(){
+        this.relocate(X.getValue(), Y.getValue(), A.getValue());
+    };
+
+    public void updateProperties(){
+        getIntProperties().addAll(Arrays.asList(new IntegerProperty[]{X, Y, A, S}));
+    }
 }

@@ -2,30 +2,27 @@ package leyout.controllers;
 
 import javafx.scene.Node;
 import leyout.views.LeyoutComponentView;
-import leyout.component.CompositBoard;
+import leyout.components.CompositBoard;
 import leyout.views.CompositBoardView;
 import model.Order;
 
 import java.util.ArrayList;
 
 public class CompositBoardController extends LeyoutComponentController {
-    //Components
-    CompositBoardView gbw;
-    CompositBoard gbm;
     //Leaf
     HumanController hc;
     BoardController bc;
     BoardIndexController bic;
     GridController gc;
 
-    public CompositBoardController(int id, String dsc, int size, int x, int y, double a){
+    public CompositBoardController(int id, String dsc, int size, int x, int y, int a){
         hc = new HumanController();
         bc = new BoardController(id, dsc, size);
         gc = new GridController(size);
         bic = new BoardIndexController(this, 70);
 
-        gbw = new CompositBoardView(this, size, x, y, a);
-        gbm = new CompositBoard(this);
+        component = new CompositBoard(this);
+        view = new CompositBoardView(this, size, x, y, a);
     }
 
     public LeyoutComponentView getHumanShape() {
@@ -52,8 +49,10 @@ public class CompositBoardController extends LeyoutComponentController {
         return hc;
     }
 
+    public LeyoutComponentController getBoardController() { return bc; }
+
     public Node getView() {
-        return gbw;
+        return view;
     }
 
     public void setCondition(String condition) {
@@ -90,5 +89,9 @@ public class CompositBoardController extends LeyoutComponentController {
 
     public void setMaterials(ArrayList<String> materials) {
         gc.setMaterials(materials);
+    }
+
+    public String getCondition(){
+        return ((BoardController)getBoardController()).getCondition();
     }
 }

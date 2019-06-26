@@ -1,14 +1,15 @@
 package leyout;
 
-import leyout.controllers.CanbanController;
-import leyout.component.*;
-import leyout.controllers.CompositBoardController;
-import sets.BoardsController;
-import sets.SetBoards;
-import leyout.views.ShapeConvier;
 import inout.GridMaterialLoader;
 import javafx.scene.layout.Region;
+import leyout.components.*;
+import leyout.controllers.CanbanController;
+import leyout.controllers.CompositBoardController;
+import leyout.controllers.CompositMaoController;
+import leyout.views.ShapeConvier;
 import model.Order;
+import sets.BoardsController;
+import sets.SetBoards;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ public class Layout extends Region {
 
 
 //        Перероблені дошки v2
-        CompositBoardController gbc1 = new CompositBoardController(1900, "KM-xxx", 60, 600, 200, 0.0);
+        CompositBoardController gbc1 = new CompositBoardController(1900, "KM-xxx", 60, 600, 200, 0);
 //        TODO: можно ли добалять к лейауту не тут а в наборе?
 //         - Можно создав в наборе процедуру добавления всех элементов и передав ей лейаут параметром
         this.getChildren().add(gbc1.getView());
@@ -133,12 +134,22 @@ public class Layout extends Region {
         SetBoards.getInstance().addGroupBoardController(gbc1);
 
 //        Завантаження матеріалу на сітку
+
         try {
             GridMaterialLoader gml = new GridMaterialLoader(arrBoards);     //Стара дошка
             gbc1.setMaterials(gml.getMaterials(gbc1.getTitle()));           //Нова дошка
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        MAO
+
+        CompositMaoController mao1 = new CompositMaoController();
+        mao1.setPositionArgs(620, 247, 0, 0);
+        mao1.addLeaf(gbc1);
+        mao1.setTitle("MAO - 01");
+        mao1.addCondition("MFC1841082***");
+        this.getChildren().add(mao1.view());
 
 //        Канбани
 //        cc = new CanbanController();
@@ -184,6 +195,4 @@ public class Layout extends Region {
         this.getChildren().addAll(gp);
 
     }
-
-
 }

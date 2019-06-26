@@ -1,6 +1,6 @@
 package leyout.controllers;
 
-import leyout.component.GroupBoardCanban;
+import leyout.components.GroupBoardCanban;
 import leyout.views.ShapeNode;
 import java.util.ArrayList;
 import java.util.HashMap;

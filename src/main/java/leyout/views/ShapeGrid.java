@@ -44,7 +44,7 @@ public class ShapeGrid extends LeyoutComponentView {
 //    }
 
     @Override
-    protected void paint(){
+    public void paint(){
         Rectangle rb = new Rectangle(size,5);       //rectangle centr
         rb.relocate(.5,1.5);
         Rectangle rl = new Rectangle(5,7);      //rectangle left

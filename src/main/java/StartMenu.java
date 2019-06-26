@@ -3,6 +3,7 @@ import javafx.stage.Stage;
 
 public class StartMenu extends TilePane {
     public StartMenu(Stage primaryStage){
+        this.getStylesheets().add("style.css");
         StartMenuItem lb9 = new StartMenuItem(primaryStage, 190, 75 , 5, 5, "CHO B9");
         lb9.setId("blank");
         //TODO: lc8 отображает тот же лейаут что и lb9

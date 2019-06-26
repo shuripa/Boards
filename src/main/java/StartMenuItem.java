@@ -1,25 +1,19 @@
-import inout.PlanCsvLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import leyout.component.GroupEmployeCard;
 import leyout.Layout;
 import leyout.views.LeyoutComponentView;
-import panes.TablePlan;
-
-import java.io.IOException;
+import panes.RightPanel;
 
 
 public class StartMenuItem extends LeyoutComponentView {
+    TitledPane propertyPane;
+
     public StartMenuItem(Stage stage, int w, int h, int x, int y, String text){
 
 
@@ -45,70 +39,17 @@ public class StartMenuItem extends LeyoutComponentView {
             rb.setId("ent");
             updateBounds();
 
-//            Корневая панель
-            BorderPane bp = new BorderPane();
 
 //            Лейаут
             Layout layout = Layout.getInstace();
 
-//            Робочі
-            TilePane tpemp = new TilePane();
-            for (int i = 0; i < 20; i++) {
-                Circle c = new Circle(20, 20, 20);
-                c.setFill(Color.LIGHTBLUE);
-                c.setStroke(Color.DARKGRAY);
-                tpemp.getChildren().add(c);
-            }
+////            Правая панель лейаута
+            Accordion rightPanel = RightPanel.getInstance();
 
-//            Загрузка плана + создание таблицы плана
-            TablePlan plan = null;
-            try {
-                plan = new TablePlan(new PlanCsvLoader());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            FlowPane tabpane = new FlowPane();
-            tabpane.getChildren().add(plan.getTable());
-            tabpane.setPrefWidth(210);
-            TitledPane tablePane = new TitledPane("Plan", tabpane);
-
-//            Загрузка работников
-//            Загрузка скилов
-//            Карточка работника
-            GroupEmployeCard gec = new GroupEmployeCard();
-            TitledPane gecPane = new TitledPane("Employes", gec.getBox());
-//            Редактор лейаута. Иконки объектов лейаута
-            VBox editorBox = new VBox();
-            TitledPane editPane = new TitledPane("Editor", editorBox);
-//
-//            Набор свойств
-            Label l1 = new Label("X");
-            Label l2 = new Label("Y");
-            Label l3 = new Label("A");
-            TextField t1 = new TextField("600");
-            TextField t2 = new TextField("0");
-            TextField t3 = new TextField("180");
-            HBox h1 =new HBox(l1, t1);
-            HBox h2 =new HBox(l2, t2);
-            HBox h3 =new HBox(l3, t3);
-            VBox propertyBox = new VBox();
-            propertyBox.getChildren().addAll(h1, h2, h3);
-            TitledPane propertyPane = new TitledPane("Property", propertyBox);
-//            Материалы на сетке
-            VBox materialBox = new VBox();
-            TitledPane materialPane = new TitledPane("Material", materialBox);
-//            Правая панель лейаута
-            Accordion accordion = new Accordion();
-            accordion.getPanes().addAll(tablePane, gecPane, materialPane, editPane, propertyPane);
-//            HBox hb = new HBox(tabpane, gec.getBox());
-//            bp.setRight(hb);
-            bp.setRight(accordion);
-
-//            HBox hb2 = new HBox(tabpane, tpemp);
-//            hb2.setSpacing(1);
-//            bp.setRight(hb2);
-
-            bp.setCenter(layout);
+//            Корневая панель
+            BorderPane rootPane = new BorderPane();
+            rootPane.setRight(rightPanel);
+            rootPane.setCenter(layout);
 
 //            Полноекранный режим
 //            stage.setFullScreen(true);
@@ -118,7 +59,7 @@ public class StartMenuItem extends LeyoutComponentView {
 //                tabpane.setPrefHeight(stage.getHeight());
 //            });
 
-            Scene scene = new Scene(bp, stage.getMaxWidth(), stage.getMaxHeight());
+            Scene scene = new Scene(rootPane, stage.getMaxWidth(), stage.getMaxHeight());
             stage.setScene(scene);
 //            stage.setFullScreen(true);  // Полноекранный режим
             stage.setMaximized(true);
@@ -142,13 +83,17 @@ public class StartMenuItem extends LeyoutComponentView {
 //        this.getChildren().addAll(rb, td);
     }
 
+    public void setPropertyPane(TitledPane propertyPane) {
+        this.propertyPane = propertyPane;
+    }
+
     @Override
     protected void setEventTonExt(MouseButton button) {
 
     }
 
     @Override
-    protected void paint() {
+    public void paint() {
 
     }
 

@@ -1,4 +1,4 @@
-package leyout.component;
+package leyout.components;
 
 import leyout.controllers.CompositBoardController;
 
@@ -10,6 +10,6 @@ public class CompositBoard extends LeyoutComponent {
 
     @Override
     public String toString() {
-        return "Composit Board";
+        return "";
     }
 }

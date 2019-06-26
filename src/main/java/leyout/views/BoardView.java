@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import leyout.controllers.BoardController;
 import leyout.controllers.LeyoutComponentController;
-import leyout.component.Board;
+import leyout.components.Board;
 
 public class BoardView extends LeyoutComponentView {
 
@@ -32,8 +32,8 @@ public class BoardView extends LeyoutComponentView {
 
     @Override
     public void reset() {
-        tt.setText("" + ((Board)getController().element()).getTitle());
-        ti.setText("" + ((Board)getController().element()).getId());
+        tt.setText("" + ((Board)getController().component()).getTitle());
+        ti.setText("" + ((Board)getController().component()).getId());
     }
 
     public void paint(){
@@ -42,12 +42,12 @@ public class BoardView extends LeyoutComponentView {
             rb.relocate(.5,.5);
         Line l = new Line(1, 9.5, size-6, 9.5);                         //Split line in board
 
-        tt = new Text("" + ((Board)getController().element()).getTitle());     //Text title
+        tt = new Text("" + ((Board)getController().component()).getTitle());     //Text title
 //            td.relocate(4,18);
         tt.setX(4);
         tt.setY(18);
 
-        ti = new Text("" + ((Board)getController().element()).getId());        //Text ID
+        ti = new Text("" + ((Board)getController().component()).getId());        //Text ID
 //            ti.relocate(2, 8);
         ti.setX(2);
         ti.setY(8);

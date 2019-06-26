@@ -2,7 +2,7 @@ package leyout.views;
 
 import leyout.controllers.CanbanController;
 import leyout.controllers.StockController;
-import leyout.component.GroupLeafCanban;
+import leyout.components.GroupLeafCanban;
 import leyout.Infoable;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;

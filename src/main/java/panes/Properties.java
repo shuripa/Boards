@@ -6,15 +6,15 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
-public class Propertyes {
+public class Properties {
 
     private TableView table;
-    private static Propertyes instance;
+    private static Properties instance;
     private ArrayList<String> arrTitle;
     private ArrayList<String> arrValue;
     private VBox vBox;
 
-    private Propertyes(){
+    private Properties(){
         arrTitle = new ArrayList<>();
         arrValue = new ArrayList<>();
         table = new TableView();
@@ -26,8 +26,8 @@ public class Propertyes {
         vBox = new VBox();
     }
 
-    public static Propertyes getInstance() {
-        if (instance == null) instance = new Propertyes();
+    public static Properties getInstance() {
+        if (instance == null) instance = new Properties();
         return instance;
     }
 

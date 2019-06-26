@@ -3,7 +3,7 @@ package leyout.views;
 import javafx.scene.input.MouseButton;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Line;
-import leyout.component.GroupLine;
+import leyout.components.GroupLine;
 
 public class ShapeConnection extends LeyoutComponentView {
     double x1;
@@ -48,7 +48,7 @@ public class ShapeConnection extends LeyoutComponentView {
 
     }
 
-    protected void paint() {
+    public void paint() {
         CubicCurve c = new CubicCurve(
                 x1,
                 y1,

@@ -2,7 +2,7 @@ package leyout.views;
 
 import javafx.scene.input.MouseButton;
 import leyout.controllers.HumanController;
-import leyout.component.Human;
+import leyout.components.Human;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
@@ -29,7 +29,7 @@ public class ShapeHuman extends LeyoutComponentView {
         Ellipse rh = new Ellipse(17, 10, 1.85, 5);  //right hand
         Ellipse rw = new Ellipse(16.5, 15, 2, 2);   //right wrist
         addActiveElements(lh, lw, rh, rw, b, h);
-        t = new Text(""+ ((Human)controller.element()).getLogined());
+        t = new Text(""+ ((Human)controller.component()).getLogined());
         t.relocate(20, -5 );
         addText(t);
     }
@@ -38,7 +38,7 @@ public class ShapeHuman extends LeyoutComponentView {
     public void setSize(int size) { }
 
     public void reset(){
-        t.setText("" + ((Human)controller.element()).getLogined());
+        t.setText("" + ((Human)controller.component()).getLogined());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package examples;
 
-import leyout.component.GroupBoard;
+import leyout.components.GroupBoard;
 import leyout.views.ShapeNode;
 
 public class NodeMemory {

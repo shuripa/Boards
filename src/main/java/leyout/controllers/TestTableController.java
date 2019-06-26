@@ -7,36 +7,36 @@ public class TestTableController extends LeyoutComponentController {
 
     public TestTableController (){
         super();
-        wiev = new ShapeTestTable(this);
-        element = new TestTable(this);
-        ((TestTable)element).setId(0);
-        ((TestTable)element).setTitle("Untitled");
-        wiev.setSize(60);
+        view = new ShapeTestTable(this);
+        component = new TestTable(this);
+        ((TestTable) component).setId(0);
+        ((TestTable) component).setTitle("Untitled");
+        view.setSize(60);
     }
 
     public TestTableController (Integer id, String title, int size){
         super();
-        element = new TestTable(this);
-        ((TestTable)element).setId(id);
-        ((TestTable)element).setTitle(title);
-        wiev = new ShapeTestTable(this, size);
-//        wiev.setSize(size);
+        component = new TestTable(this);
+        ((TestTable) component).setId(id);
+        ((TestTable) component).setTitle(title);
+        view = new ShapeTestTable(this, size);
+//        view.setSize(size);
     }
 
     public int getId() {
-        return ((TestTable)element).getId();
+        return ((TestTable) component).getId();
     }
 
     public void setId(int id){
-        ((TestTable)element).setId(id);
+        ((TestTable) component).setId(id);
     }
 
     public String getTitle() {
-        return ((TestTable)element).getTitle();
+        return ((TestTable) component).getTitle();
     }
 
     public void setTitle(String title){
-        ((TestTable)element).setTitle(title);
+        ((TestTable) component).setTitle(title);
     }
 
     public void setSize (int size){

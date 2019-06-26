@@ -1,6 +1,6 @@
 package leyout.controllers;
 
-import leyout.component.GroupBoard;
+import leyout.components.GroupBoard;
 import leyout.Layout;
 import leyout.views.ShapeEmployeCard;
 import model.Employer;

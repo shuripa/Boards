@@ -1,33 +1,34 @@
 package leyout.controllers;
 
 import leyout.views.ShapeHuman;
-import leyout.component.Human;
+import leyout.components.Human;
 
 public class HumanController extends LeyoutComponentController {
 
     public HumanController(){
 //        initialize(this, new Human(), new ShapeHuman());
 //        setController(this);
-        element = new Human(this);
-        wiev = new ShapeHuman(this);
+        component = new Human(this);
+        view = new ShapeHuman(this);
+        updateProperty();
     }
 
     public Integer getId() {
-        return ((Human)element).getLogined();
+        return ((Human) component).getLogined();
     }
 
 //    TODO: Не используется
     public boolean isLogined() {
-        return ((Human)element).isLogined();
+        return ((Human) component).isLogined();
     }
 
     public void setLogining(int employerId) {
-        ((Human)element).setLogining(employerId);
-        ((ShapeHuman) wiev).reset();
-        wiev.requestLayout();
+        ((Human) component).setLogining(employerId);
+        ((ShapeHuman) view).reset();
+        view.requestLayout();
     }
 
     public String getText(){
-        return ((Human)element).getText();
+        return ((Human) component).getText();
     }
 }

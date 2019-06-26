@@ -1,6 +1,6 @@
 package leyout.controllers;
 
-import leyout.component.BoardIndex;
+import leyout.components.BoardIndex;
 import leyout.views.BoardIndexView;
 import model.Order;
 
@@ -8,17 +8,17 @@ public class BoardIndexController extends LeyoutComponentController {
 
     public BoardIndexController(LeyoutComponentController parent, int proc){
         super(parent);
-        element = new BoardIndex(this);
-        ((BoardIndex)element).setProc(proc);
-        wiev = new BoardIndexView(this);
+        component = new BoardIndex(this);
+        ((BoardIndex) component).setProc(proc);
+        view = new BoardIndexView(this);
     }
 
     public int getProc() {
-        return ((BoardIndex)element).getProc();
+        return ((BoardIndex) component).getProc();
     }
 
     public void addOrder(Order order) {
-        ((BoardIndex)element).addOrder(order);
+        ((BoardIndex) component).addOrder(order);
     }
 
 

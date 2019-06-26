@@ -1,4 +1,4 @@
-package leyout.component;
+package leyout.components;
 
 
 import leyout.controllers.BoardController;
@@ -147,7 +147,7 @@ public class GroupBoard extends Group implements Infoable {
 
     public String getDescription(){
 //        return bs1.getDescription();
-        return ((Board)bc.element()).getTitle();
+        return ((Board)bc.component()).getTitle();
 
     }
 

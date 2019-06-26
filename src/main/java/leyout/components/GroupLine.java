@@ -1,4 +1,4 @@
-package leyout.component;
+package leyout.components;
 
 import javafx.scene.input.MouseButton;
 import leyout.views.LeyoutComponentView;
@@ -34,13 +34,12 @@ public class GroupLine extends LeyoutComponentView {
     }
 
     public void rem(){
-
         for (int j = getChildren().size(); j > 0; j--) {
             getChildren().remove(j-1);
         }
     }
 
-    protected void paint(){
+    public void paint(){
 
     }
 

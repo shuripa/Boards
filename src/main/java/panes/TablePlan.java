@@ -56,7 +56,7 @@ public class TablePlan {
         timeCol.setCellValueFactory(new PropertyValueFactory<PlanElement, Double>("ettime"));
         table.getColumns().add(timeCol);
 
-//        for (PlanElement e: component) {
+//        for (PlanElement e: components) {
 //            System.out.println(e);
 //        }
 

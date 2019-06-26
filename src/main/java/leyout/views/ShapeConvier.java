@@ -4,7 +4,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import leyout.component.GroupBoard;
+import leyout.components.GroupBoard;
 
 public class ShapeConvier extends Region {
     private int size;

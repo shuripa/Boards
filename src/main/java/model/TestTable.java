@@ -1,7 +1,7 @@
 package model;
 
 import leyout.controllers.TestTableController;
-import leyout.component.LeyoutComponent;
+import leyout.components.LeyoutComponent;
 
 public class TestTable extends LeyoutComponent {
     private String title;

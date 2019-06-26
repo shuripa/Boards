@@ -16,7 +16,7 @@ public class ShapePushcart extends LeyoutComponentView {
 
     }
 
-    protected void paint() {
+    public void paint() {
         Polyline p = new Polyline(new double[]{
                 3,  0,
                 3, -4,

@@ -17,7 +17,7 @@ public class BoardIndexView extends LeyoutComponentView {
     }
 
     @Override
-    protected void paint() {
+    public void paint() {
         int limit = ((BoardIndexController)controller).getProc();
         Rectangle r1 = new Rectangle(5, 20*limit/100);
         r1.setStyle("-fx-fill: LIME");

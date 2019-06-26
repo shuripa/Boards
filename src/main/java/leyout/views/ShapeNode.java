@@ -40,7 +40,7 @@ public class ShapeNode extends LeyoutComponentView {
 
     }
 
-    protected void paint() {
+    public void paint() {
         Circle point = new Circle(3, 3, 3);
         point.setId("blank");
         addActiveElement(point);

@@ -1,4 +1,4 @@
-package leyout.component;
+package leyout.components;
 
 import leyout.views.ShapeCanban;
 import javafx.scene.Group;

@@ -5,11 +5,11 @@ import javafx.scene.input.MouseButton;
 import leyout.controllers.CanbanController;
 import leyout.controllers.CompositBoardController;
 import leyout.controllers.GridController;
-import leyout.component.GroupLine;
+import leyout.components.GroupLine;
 
 public class CompositBoardView extends LeyoutComponentView {
 
-    public CompositBoardView(CompositBoardController controller, int size, int x, int y, double a){
+    public CompositBoardView(CompositBoardController controller, int size, int x, int y, int a){
         super(controller, size, x ,y, a);
     }
 
@@ -31,7 +31,7 @@ public class CompositBoardView extends LeyoutComponentView {
     }
 
     @Override
-    protected void paint() {
+    public void paint() {
         //Размещение компонентов
         ((CompositBoardController)controller).getHumanShape().relocate(size/2-10, 7);
         ((CompositBoardController)controller).getBoardShape().relocate(0, 25);

@@ -78,38 +78,47 @@ public class ShapeInfo extends Popup{
     public ShapeInfo(LeyoutComponentController controller) {
         this.setAutoHide(true);
         this.setHideOnEscape(true);
-        String s = controller.toString();
 
-        Arc pointer = new Arc(0, 0, 20, 20, -20, 40);
-        pointer.setType(ArcType.ROUND);
-        Rectangle msgRect = new Rectangle( 18, -20, 280, s.lines().count()*15.5+20);
-        msgBubble = Shape.union(pointer, msgRect);
-        msgBubble.setStyle("-fx-fill: RGBA(47,79,79,1.0); -fx-stroke: SlateGray; -fx-stroke-width: 0.5");;
-        //Text
-        textMsg = new TextFlow();
-        textMsg.setPrefWidth(msgRect.getWidth() -1);
-        textMsg.setPrefHeight(msgRect.getHeight() -1);
-        textMsg.setLayoutX(pointer.getBoundsInLocal().getWidth()+1);
-        textMsg.setLayoutY(msgRect.getLayoutY()-20);
+        String s = "";
+        if (!(controller==null)) {
+            s =controller.toString();
+        }
 
-        Text descr = new Text(s);
+        if (!s.equals("")) {
 
-        descr.setFill(Color.rgb(255,255,255,1.0));
-        textMsg.getChildren().add(descr);
+            Arc pointer = new Arc(0, 0, 20, 20, -20, 40);
+            pointer.setType(ArcType.ROUND);
+            Rectangle msgRect = new Rectangle(18, -20, 280, s.lines().count() * 15.5 + 20);
+            msgBubble = Shape.union(pointer, msgRect);
+            msgBubble.setStyle("-fx-fill: RGBA(47,79,79,1.0); -fx-stroke: SlateGray; -fx-stroke-width: 0.5");
+            ;
+            //Text
+            textMsg = new TextFlow();
+            textMsg.setPrefWidth(msgRect.getWidth() - 1);
+            textMsg.setPrefHeight(msgRect.getHeight() - 1);
+            textMsg.setLayoutX(pointer.getBoundsInLocal().getWidth() + 1);
+            textMsg.setLayoutY(msgRect.getLayoutY() - 20);
 
-        Text text = new Text("Примітка:");
-        text.relocate(23, s.lines().count()*20);
-        text.setStyle("-fx-font-style: italic; -fx-font-size: 9");
+            Text descr = new Text(s);
 
-        ArrayList<String> col = new ArrayList<>();
-        col.add("id");
-        col.add("name");
-        col.add("cnt");
-        col.add("time");
+            descr.setFill(Color.rgb(255, 255, 255, 1.0));
+            textMsg.getChildren().add(descr);
 
-        this.getContent().addAll(msgBubble, textMsg, text);
-        Bounds bounds = controller.getWievAsNode().localToScreen (controller.getWievAsNode().getBoundsInLocal());           //Границы текущего элемента
-        super.show(controller.getWievAsNode(), bounds.getMaxX(), bounds.getMinY() -10);    //
+            Text text = new Text("Примітка:");
+            text.relocate(23, s.lines().count() * 20);
+            text.setStyle("-fx-font-style: italic; -fx-font-size: 9");
+
+            ArrayList<String> col = new ArrayList<>();
+            col.add("id");
+            col.add("name");
+            col.add("cnt");
+            col.add("time");
+
+
+            this.getContent().addAll(msgBubble, textMsg, text);
+            Bounds bounds = controller.getWievAsNode().localToScreen(controller.getWievAsNode().getBoundsInLocal());           //Границы текущего элемента
+            super.show(controller.getWievAsNode(), bounds.getMaxX(), bounds.getMinY() - 10);    //
+        }
     }
 
 }

@@ -39,7 +39,7 @@ public class ShapeEmployeCard extends LeyoutComponentView {
 
     }
 
-    protected void paint() {
+    public void paint() {
         //Rectangle card
         Rectangle rc = new Rectangle(size, 50);
         rc.setId("blank");

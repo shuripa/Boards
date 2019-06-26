@@ -1,4 +1,4 @@
-package leyout.component;
+package leyout.components;
 
 import leyout.controllers.LeyoutComponentController;
 import leyout.controllers.CompositBoardController;
@@ -36,9 +36,9 @@ public class BoardIndex extends LeyoutComponent {
         Double sumProductivity = 0.0;
         Double sumCapacity = 0.0;
 //        Получение скилов рабочего
-        LeyoutComponentController lgc = controller.getParentController();
+        LeyoutComponentController lgc = controller().getParentController();
         LeyoutComponentController hc = ((CompositBoardController)lgc).getHumanController();
-        Human h = (Human)hc.element();
+        Human h = (Human)hc.component();
         SetEmployers setEmployers = SetEmployers.getInstance();
         Employer e = setEmployers.getEmployer(h.getLogined());
 

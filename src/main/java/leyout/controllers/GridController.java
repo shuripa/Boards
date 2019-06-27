@@ -2,33 +2,21 @@ package leyout.controllers;
 
 import javafx.scene.input.MouseButton;
 import leyout.components.Grid;
-import leyout.views.ShapeGrid;
+import leyout.views.GridView;
 
 import java.util.ArrayList;
 
 public class GridController extends LeyoutComponentController {
 
     public GridController(Grid grid) {
-        setComponent(grid);
-        setView(new ShapeGrid());
+        super(grid);
+        setView(new GridView(this));
     }
 
     public ArrayList<String> getMaterial() {
         return ((Grid) component()).getSingleMaterial();
     }
 
-    //Удалить
-    public void setMaterial(ArrayList<String> material) {
-        ((Grid) component()).setMaterials(material);
-    }
-
-    public void addMaterial(String material) {
-        ((Grid) component()).addMaterial(material);
-    }
-
-    public void setMaterials(ArrayList<String> materials) {
-        ((Grid) component()).setMaterials(materials);
-    }
 
     @Override
     protected void setComponentProperties() {
@@ -41,7 +29,7 @@ public class GridController extends LeyoutComponentController {
     }
 
     @Override
-    public void update() {
+    public void updateData() {
 
     }
 }

@@ -2,12 +2,13 @@ package leyout.views;
 
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import leyout.controllers.LeyoutComponentController;
 
 public class ShapePalete extends LeyoutComponentView {
     private String style;
 
-    public ShapePalete(){
-        super();
+    public ShapePalete(LeyoutComponentController controller){
+        super(controller);
 //        this.style = "-fx-fill: RGBA(82,79,161,0.6)";
 //        this.getStyleClass().add("style.css");
 //        this.setId("style.css:");
@@ -39,6 +40,11 @@ public class ShapePalete extends LeyoutComponentView {
         l2.setId("blankbound");
 
         this.getChildren().addAll(rt1, l1, l2);
+
+    }
+
+    @Override
+    public void repaint() {
 
     }
 

@@ -4,6 +4,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import leyout.controllers.LeyoutComponentController;
 
 //Заготовка
 public class ShapeBlank extends LeyoutComponentView {
@@ -16,8 +17,8 @@ public class ShapeBlank extends LeyoutComponentView {
     private String description;
     private String style;
 
-    public ShapeBlank(String id, String description, int size){
-        super();
+    public ShapeBlank(LeyoutComponentController controller, String id, String description, int size){
+        super(controller);
         this.id = id;
         this.description = description;
         this.size = size;
@@ -77,6 +78,11 @@ public class ShapeBlank extends LeyoutComponentView {
 
 //        this.getChildren().addAll(rb, td, ti);
 //        this.getChildren().addAll(td, ti);
+
+    }
+
+    @Override
+    public void repaint() {
 
     }
 

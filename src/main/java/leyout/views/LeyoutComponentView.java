@@ -18,8 +18,8 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
     private ArrayList <Shape> pasiveElements;       //Неактивные элементы
     private Boolean onActive;
 
-    public LeyoutComponentView(){
-
+    public LeyoutComponentView(LeyoutComponentController controller){
+        this.controller = controller;
         disactivate();
         texts = new ArrayList<>();
         bounderys = new ArrayList<>();
@@ -29,9 +29,9 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
 
     /**General - общие методы для композит и Leaf*/
 
-    public void setController(LeyoutComponentController controller){
-        this.controller = controller;
-    }
+//    public void setController(LeyoutComponentController controller){
+//        this.controller = controller;
+//    }
 
     public LeyoutComponentController controller() {
         return controller;
@@ -131,11 +131,16 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
 
     /** Sizes */
 
-    public void transform(){
+    public void updateView(){
         this.relocate(controller.getX(), controller.getY());
         this.setRotate(controller.getA());
-        paint();
+        repaint();
     }
 
     public abstract void paint();        //Рисование у Leaf. Добавление и расположение элементов у Composit
+
+    public abstract void repaint();
+
+
+
 }

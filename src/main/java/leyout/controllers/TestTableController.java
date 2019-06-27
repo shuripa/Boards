@@ -6,9 +6,9 @@ import model.TestTable;
 
 public class TestTableController extends LeyoutComponentController {
 
-    public TestTableController (TestTable table){
-        setComponent(table);
-        setView(new ShapeTestTable());
+    public TestTableController (LeyoutComponentController controller, TestTable table){
+        super(table);
+        setView(new ShapeTestTable(this));
         ((TestTable) component()).setId(0);
         ((TestTable) component()).setTitle("Untitled");
 //        ((ShapeTestTable)view()).setSize(60);
@@ -25,7 +25,7 @@ public class TestTableController extends LeyoutComponentController {
     }
 
     @Override
-    public void update() {
+    public void updateData() {
 
     }
 

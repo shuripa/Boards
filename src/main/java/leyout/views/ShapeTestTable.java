@@ -2,9 +2,15 @@ package leyout.views;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import leyout.controllers.LeyoutComponentController;
 import leyout.controllers.TestTableController;
 
 public class ShapeTestTable extends LeyoutComponentView {
+
+    public ShapeTestTable(LeyoutComponentController controller){
+        super(controller);
+    }
+
     private int size;
 
     public void paint() {
@@ -30,6 +36,11 @@ public class ShapeTestTable extends LeyoutComponentView {
         Text td = new Text(4, 9, "" + (((TestTableController) controller()).getTitle()));   //description
         Text ti = new Text(size - 29, 18, "" + ((TestTableController) controller()).getId());    //ID
         addTexts(td, ti);
+    }
+
+    @Override
+    public void repaint() {
+
     }
 
 }

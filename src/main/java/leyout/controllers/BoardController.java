@@ -7,11 +7,9 @@ import leyout.components.Board;
 public class BoardController extends LeyoutComponentController {
 
     public BoardController (Board board){
-        setComponent(board);
-        setView(new BoardView());
-        view().setController(this);
+        super(board);
+        setView(new BoardView(this));
     }
-
 
     public int getId() {
         return ((Board)component()).getId();
@@ -27,7 +25,9 @@ public class BoardController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
-
+        setStrProperty(((Board)component()).titleProperty());
+        setStrProperty(((Board)component()).conditionProperty());
+        setIntProperty(((Board)component()).idProperty());
     }
 
     @Override
@@ -36,13 +36,11 @@ public class BoardController extends LeyoutComponentController {
     }
 
     @Override
-    public void update() {
-
+    public void updateData() {
+        ((BoardView)view()).setTt(getTitle());
+        ((BoardView)view()).setTi("" + getId());
     }
 
+//В контроллерах нет необходимости дублировать toString. Функциональность реализована на уровне суперклассов.
 
-//TODO: В контроллерах нет необходимости дублировать toString. Функциональность реализована на уровне суперклассов.
-//    public String toString(){
-//        return ((Board)component).toString();
-//    }
 }

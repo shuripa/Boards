@@ -3,6 +3,7 @@ package leyout.views;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Line;
 import leyout.components.GroupLine;
+import leyout.controllers.CompositBoardController;
 
 public class ShapeConnection extends LeyoutComponentView {
     double x1;
@@ -15,8 +16,8 @@ public class ShapeConnection extends LeyoutComponentView {
     double by2;
 
 
-    public ShapeConnection(double x1, double y1, double x2, double y2){
-        super();
+    public ShapeConnection(CompositBoardController controller, double x1, double y1, double x2, double y2){
+        super(controller);
 
         this.x1 = x1;
         this.y1 = y1;
@@ -39,11 +40,10 @@ public class ShapeConnection extends LeyoutComponentView {
             by2 = y2 + 35;
         }
 
-        paint();
     }
 
 
-
+    @Override
     public void paint() {
         CubicCurve c = new CubicCurve(
                 x1,
@@ -59,10 +59,11 @@ public class ShapeConnection extends LeyoutComponentView {
         GroupLine.getInstance().add(c);
 
         Line l = new Line(x1, y1, x2, y2);
-//        setBounderys(c);
-//        getChildren().add(c);
-
     }
 
+    @Override
+    public void repaint() {
+
+    }
 
 }

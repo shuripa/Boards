@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CompositMao extends LeyoutComponent{
 
-    private final static String TITLE_PROP_NAME = "Title";
+    private final static String TITLE_PROP_NAME = "MAO title";
     private final StringProperty title;
     ArrayList<String> conditions;
     ArrayList<Order> orders;

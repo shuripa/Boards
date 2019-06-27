@@ -7,10 +7,8 @@ import leyout.views.CompositMaoView;
 public class CompositMaoController extends LeyoutComponentController {
 
     public CompositMaoController(CompositMao cm){
-        setComponent(cm);
-        setView(new CompositMaoView());
-        view().setController(this);
-        cm.addObserver(this);
+        super(cm);
+        setView(new CompositMaoView(this));
     }
 
     public void setTitle(String s) {
@@ -23,12 +21,13 @@ public class CompositMaoController extends LeyoutComponentController {
     }
 
     @Override
+    public void updateData() {
+
+    }
+
+    @Override
     protected void setEventTonExt(MouseButton button) {
         
     }
 
-    @Override
-    public void update() {
-        view().transform();
-    }
 }

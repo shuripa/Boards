@@ -83,12 +83,12 @@ public class ShapeCardCanban extends Group implements Infoable {
 
         //индикаторы
         //точка входа
-        pEnt = new ShapeNode(this);
-        pEnt.relocate(0,2);
-        CanbanController.getInstance().addEntNode(material, pEnt);
+//        pEnt = new ShapeNode(this);
+//        pEnt.relocate(0,2);
+//        CanbanController.getInstance().addEntNode(material, pEnt);
 
 
-        this.getChildren().add(pEnt);
+//        this.getChildren().add(pEnt);
 
 
         for (int i = 0; i < cntAllOrd; i++) {
@@ -112,10 +112,10 @@ public class ShapeCardCanban extends Group implements Infoable {
 //        pointOut.setStroke(Color.GREY);
 //        this.getChildren().add(pointOut);
 
-        pExt = new ShapeNode(this);
-        pExt.relocate(9+cntAllOrd*4,2);
+//        pExt = new ShapeNode(this);
+//        pExt.relocate(9+cntAllOrd*4,2);
 
-        this.getChildren().add(pExt);
+//        this.getChildren().add(pExt);
     }
 
     public void setCntAllOrd(int cntAllOrd) {

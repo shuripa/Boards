@@ -2,12 +2,13 @@ package leyout.views;
 
 
 import javafx.scene.shape.Rectangle;
+import leyout.controllers.CompositBoardController;
 
 public class ShapeWorkTable extends LeyoutComponentView {
 //    private String style;
 
-    public ShapeWorkTable(){
-        super();
+    public ShapeWorkTable(CompositBoardController controller){
+        super(controller);
 //        this.style = "-fx-fill: RGBA(82,79,161,0.6)";
         paint();
     }
@@ -23,6 +24,11 @@ public class ShapeWorkTable extends LeyoutComponentView {
         wt.setId("blank");
 
         this.getChildren().addAll(wt);
+    }
+
+    @Override
+    public void repaint() {
+
     }
 
 

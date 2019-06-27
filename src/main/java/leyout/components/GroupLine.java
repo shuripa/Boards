@@ -1,6 +1,7 @@
 package leyout.components;
 
 import javafx.scene.shape.Shape;
+import leyout.controllers.LeyoutComponentController;
 import leyout.views.LeyoutComponentView;
 
 public class GroupLine extends LeyoutComponentView {
@@ -9,13 +10,13 @@ public class GroupLine extends LeyoutComponentView {
 
     public static GroupLine getInstance(){
         if (instance == null) {
-            instance = new GroupLine();
+//            instance = new GroupLine();
         }
         return instance;
     }
 
-    private GroupLine(){
-
+    private GroupLine(LeyoutComponentController controller){
+        super(controller);
     }
 
 
@@ -35,6 +36,11 @@ public class GroupLine extends LeyoutComponentView {
     }
 
     public void paint(){
+
+    }
+
+    @Override
+    public void repaint() {
 
     }
 

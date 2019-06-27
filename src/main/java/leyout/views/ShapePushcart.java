@@ -2,12 +2,12 @@ package leyout.views;
 
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
+import leyout.controllers.LeyoutComponentController;
 
 //Pushcart тележка, ручная тележка, детский стул на колесах
 public class ShapePushcart extends LeyoutComponentView {
-    public ShapePushcart(){
-        super();
-        paint();
+    public ShapePushcart(LeyoutComponentController controller){
+        super(controller);
     }
 
 
@@ -46,6 +46,11 @@ public class ShapePushcart extends LeyoutComponentView {
         l5.setStrokeWidth(1.2);
         l6.setStrokeWidth(1.2);
         this.getChildren().addAll(p, l0, l1, l2, l3, l4, l5, l6);
+    }
+
+    @Override
+    public void repaint() {
+
     }
 
 }

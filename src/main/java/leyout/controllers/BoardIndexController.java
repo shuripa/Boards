@@ -8,8 +8,8 @@ import model.Order;
 public class BoardIndexController extends LeyoutComponentController {
 
     public BoardIndexController(BoardIndex index){
-        setComponent(index);
-        setView(new BoardIndexView());
+        super(index);
+        setView(new BoardIndexView(this));
     }
 
     public int getProc() {
@@ -32,7 +32,7 @@ public class BoardIndexController extends LeyoutComponentController {
     }
 
     @Override
-    public void update() {
+    public void updateData() {
 
     }
 }

@@ -9,7 +9,7 @@ public class GroupBlank extends Group implements Infoable {
     HumanController h1;
     ShapeBlank bs1;
     ShapeBoardInd bis1;
-    ShapeGrid sg;
+    GridView sg;
     ShapeNode nEnt;
     ShapeNode nExt;
 
@@ -24,8 +24,8 @@ public class GroupBlank extends Group implements Infoable {
         h1.setX(size/2-10);
         h1.setY(0);
 //        Робоче місце
-        bs1 = new ShapeBlank(id, dsc, size);
-        bs1.relocate(5, 17);
+//        bs1 = new ShapeBlank(id, dsc, size);
+//        bs1.relocate(5, 17);
 //        Індикатор
         bis1 = new ShapeBoardInd(ind);
         bis1.relocate(0, -1);
@@ -33,18 +33,18 @@ public class GroupBlank extends Group implements Infoable {
         sg.controller().setXYAS(0, 38, 0, size);
 //        Узли
 //        node start
-        nEnt = new ShapeNode(this);
+//        nEnt = new ShapeNode(this);
         nEnt.relocate(2, 8);
         nEnt.setOnMouseClicked(mouseEvent -> {
             for (ShapeNode sn :nEnt.getArNodes()) {
-                ShapeConnection sc = new ShapeConnection(nEnt.getX(), nEnt.getY(), sn.getX(), sn.getY());
-                getChildren().add(sc);
+//                ShapeConnection sc = new ShapeConnection(nEnt.getX(), nEnt.getY(), sn.getX(), sn.getY());
+//                getChildren().add(sc);
             }
         });
 
 //        node end
-        nExt = new ShapeNode(this);
-        nExt.relocate(size-7, 8);
+//        nExt = new ShapeNode(this);
+//        nExt.relocate(size-7, 8);
 
 //
         this.getChildren().addAll(bis1, bs1, h1.view(), sg, nEnt, nExt);

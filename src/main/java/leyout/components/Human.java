@@ -1,18 +1,35 @@
 package leyout.components;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Human extends LeyoutComponent {
-    private int empId;
+    private final static String TITLE_PROP_ID = "Employe Id";
+
+    private final IntegerProperty id;
+
+    public int getId() {
+        return id.get();
+    }
+
+    public IntegerProperty idProperty() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
 
     public Human(){
-        free();
+        id = new SimpleIntegerProperty(this, TITLE_PROP_ID, 0);
     }
 
     public int getLogined(){
-        return empId;
+        return id.get();
     }
 
-    public void setLogining(int empId) {
-        this.empId = empId;
+    public void setLogining(int id) {
+        this.id.setValue(id);
         update();
     }
 
@@ -21,7 +38,7 @@ public class Human extends LeyoutComponent {
     }
 
     public void free(){
-        empId = 0;
+        id.setValue(0);
     }
 
     @Override

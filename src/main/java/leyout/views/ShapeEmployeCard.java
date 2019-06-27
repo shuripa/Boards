@@ -7,6 +7,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import leyout.controllers.EmployerController;
+import leyout.controllers.LeyoutComponentController;
 
 public class ShapeEmployeCard extends LeyoutComponentView {
     private int size;
@@ -14,8 +15,8 @@ public class ShapeEmployeCard extends LeyoutComponentView {
     private String description;
     private EmployerController employerController;
 
-    public ShapeEmployeCard(String id, String description, int size){
-        super ();
+    public ShapeEmployeCard(LeyoutComponentController controller, String id, String description, int size){
+        super (controller);
         this.id = id;
         this.description = description;
         this.size = size;
@@ -69,6 +70,11 @@ public class ShapeEmployeCard extends LeyoutComponentView {
         addTexts(td, ti);
 //        addNode(imv);
         this.getChildren().addAll(rc, td, ti, imv);
+    }
+
+    @Override
+    public void repaint() {
+
     }
 
 

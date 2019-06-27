@@ -2,8 +2,13 @@ package leyout.views;
 
 
 import leyout.controllers.CompositBoardController;
+import leyout.controllers.LeyoutComponentController;
 
 public class CompositBoardView extends LeyoutComponentView {
+
+    public CompositBoardView(LeyoutComponentController controller) {
+        super(controller);
+    }
 
     @Override
     public void paint() {
@@ -16,6 +21,11 @@ public class CompositBoardView extends LeyoutComponentView {
         this.getChildren().add(((CompositBoardController)controller()).getGridShape());
         this.getChildren().add(((CompositBoardController)controller()).getBoardShape());
         this.getChildren().add(((CompositBoardController)controller()).getBoardIndex());
+    }
+
+    @Override
+    public void repaint() {
+
     }
 
 }

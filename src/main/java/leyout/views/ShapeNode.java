@@ -4,6 +4,7 @@ package leyout.views;
 import javafx.scene.shape.Circle;
 import leyout.Infoable;
 import leyout.Point;
+import leyout.controllers.LeyoutComponentController;
 
 import java.util.ArrayList;
 
@@ -26,14 +27,19 @@ public class ShapeNode extends LeyoutComponentView {
         return arNodes;
     }
 
-    public ShapeNode(Infoable owner){
-        super();
+    public ShapeNode(Infoable owner, LeyoutComponentController controller){
+        super(controller);
         this.owner = owner;
         arNodes = new ArrayList<>();
         setClicked();
 //        paint();
     }
 
+
+    @Override
+    public void repaint() {
+
+    }
 
     public void paint() {
         Circle point = new Circle(3, 3, 3);

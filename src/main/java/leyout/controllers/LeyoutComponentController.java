@@ -31,17 +31,19 @@ public abstract class LeyoutComponentController {
     private final IntegerProperty S;
     /**    General */
 
-    public LeyoutComponentController(){
-        this.parent = null;
+
+    public LeyoutComponentController(LeyoutComponent component) {
         this.controller = this;
+        this.component = component;
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
+        setComponentProperties();
         X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
         Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
         A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
         S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
-        updateControllerProperties();
-
+        setViewProperties();
+        component().addObserver(this);
     }
 
     /** Getters and Setters */
@@ -56,15 +58,14 @@ public abstract class LeyoutComponentController {
 
     public void setComponent(LeyoutComponent component) {
         this.component = component;
-        setComponentProperties();
     }
-
-    protected abstract void setComponentProperties();
 
     public void setView(LeyoutComponentView view) {
         this.view = view;
         viewSets();
         viewEvents();
+        updateData();
+        view().paint();
     }
 
     public LeyoutComponentController parent () {
@@ -120,23 +121,24 @@ public abstract class LeyoutComponentController {
 
     public void setX(int x) {
         this.X.set(x);
-        view().transform();
+        view().updateView();
     }
 
     public void setY(int y) {
         this.Y.set(y);
-        view().transform();
+        view().updateView();
     }
 
     public void setA(int a) {
         this.A.set(a);
-        view().transform();
+        view().updateView();
     }
 
     public void setS(int s) {
         this.S.set(s);
-        view().transform();
+        view().updateView();
     }
+
 
     public void setStrProperty (StringProperty strProperty){
         strProperties.add(strProperty);
@@ -144,6 +146,23 @@ public abstract class LeyoutComponentController {
 
     public void setIntProperty (IntegerProperty intProperty) {
         intProperties.add(intProperty);
+    }
+
+    private void setViewProperties(){
+        intProperties.addAll(Arrays.asList(new IntegerProperty[]{X, Y, A, S}));
+    }
+
+    protected abstract void setComponentProperties();
+
+    public abstract void updateData();
+
+    public void updateView(){
+        view().updateView();
+    }
+
+    public void update(){
+        updateData();
+        updateView();
     }
 
     /** Sizes */
@@ -156,7 +175,8 @@ public abstract class LeyoutComponentController {
     }
 
     public void setXY(int x, int y) {
-        view.relocate(x, y);
+        setX(x);
+        setY(y);
     }
 
     /** Get String */
@@ -198,16 +218,6 @@ public abstract class LeyoutComponentController {
 
     protected abstract void setEventTonExt(MouseButton button);
 
-    /** Component property */
-
-    public abstract void update();
-
-
-    /** InSide procedures */
-
-    private void updateControllerProperties(){
-        intProperties.addAll(Arrays.asList(new IntegerProperty[]{X, Y, A, S}));
-    }
 
 
 }

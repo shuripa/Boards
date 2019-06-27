@@ -15,13 +15,13 @@ public class CompositBoardController extends LeyoutComponentController {
     GridController gc;
 
     public CompositBoardController(CompositBoard cBoard){
+        super(cBoard);
         hc = new HumanController(cBoard.getHuman());
         bc = new BoardController(cBoard.getBoard());
         gc = new GridController(cBoard.getGrid());
         bic = new BoardIndexController(cBoard.getBoardIndex());
 
-        setComponent(cBoard);
-        setView(new CompositBoardView());
+        setView(new CompositBoardView(this));
     }
 
     public LeyoutComponentView getHumanShape() {
@@ -81,7 +81,7 @@ public class CompositBoardController extends LeyoutComponentController {
     }
 
     @Override
-    public void update() {
+    public void updateData() {
 
     }
 }

@@ -1,27 +1,27 @@
 package leyout.controllers;
 
 import javafx.scene.input.MouseButton;
-import leyout.views.ShapeHuman;
 import leyout.components.Human;
+import leyout.views.HumanView;
 
 public class HumanController extends LeyoutComponentController {
 
     public HumanController(Human human){
-        setComponent(human);
-        setView(new ShapeHuman(this));
+        super(human);
+        setView(new HumanView(this));
     }
 
-    public Integer getId() {
+    public Integer getLogined() {
         return ((Human) component()).getLogined();
-    }
-
-    @Override
-    protected void setComponentProperties() {
-
     }
 
     public String getText(){
         return ((Human) component()).getText();
+    }
+
+    @Override
+    protected void setComponentProperties() {
+        setIntProperty(((Human)component()).idProperty());
     }
 
     @Override
@@ -30,7 +30,8 @@ public class HumanController extends LeyoutComponentController {
     }
 
     @Override
-    public void update() {
-
+    public void updateData() {
+        ((HumanView)view()).setText("" + getLogined());
     }
+
 }

@@ -1,13 +1,8 @@
 package leyout;
 
 import javafx.scene.layout.Region;
-import leyout.components.Board;
-import leyout.components.CompositMao;
-import leyout.components.GroupBoard;
-import leyout.controllers.BoardController;
-import leyout.controllers.CanbanController;
-import leyout.controllers.CompositBoardController;
-import leyout.controllers.CompositMaoController;
+import leyout.components.*;
+import leyout.controllers.*;
 import sets.BoardsController;
 
 import java.util.ArrayList;
@@ -48,11 +43,25 @@ public class Layout extends Region {
 //Переробка дошки v3
         Board b = new Board();
         b.setTitle("KM 082");
-        b.setID(1901);
+        b.setId(1901);
         b.setCondition("MFC1841082***");
 
         BoardController bc = new BoardController(b);
         bc.setXYAS(600, 200 , 0, 60);
+        this.getChildren().add(bc.view());
+
+        Human h = new Human();
+        h.setLogining(12713);
+
+        HumanController hc = new HumanController(h);
+        hc.setXY(620, 180);
+        this.getChildren().add(hc.view());
+
+        Grid g = new Grid();
+        GridController gc = new GridController(g);
+        gc.setXYAS(600, 173, 0, 60);
+        this.getChildren().add(gc.view());
+
 //        CompositBoard cb = new CompositBoard();
 
 //        MAO
@@ -61,7 +70,7 @@ public class Layout extends Region {
         cm.addCondition("MFC1841082***");
 //        cm.addLeaf(gbc1.getCompositBoard());
         CompositMaoController cmc = new CompositMaoController(cm);
-        cmc.setXYAS(620, 247, 0, 0);
+        cmc.setXYAS(630, 218, -45, 0);
         this.getChildren().add(cmc.view());
 
 //        canbans();
@@ -144,7 +153,7 @@ public class Layout extends Region {
 //        this.getChildren().add(gbc1.getView());
 ////        Властивості
 ////        TODO: переделать в свойства
-//        gbc1.setID(1990);
+//        gbc1.setId(1990);
 //        gbc1.setTitle("KM 082");
 //        gbc1.setCondition("MFC1841082***");
 ////        Замовлення

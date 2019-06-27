@@ -19,6 +19,10 @@ public class Grid extends LeyoutComponent {
         return new ArrayList<>(sm.values());
     }
 
+    public void addMaterial(String material) {
+        this.materials.add(material);
+    }
+
     public void setMaterials(ArrayList<String> materials) {
         this.materials = materials;
     }
@@ -30,9 +34,5 @@ public class Grid extends LeyoutComponent {
             s = s + "\n" + m;
         }
         return s;
-    }
-
-    public void addMaterial(String material) {
-        this.materials.add(material);
     }
 }

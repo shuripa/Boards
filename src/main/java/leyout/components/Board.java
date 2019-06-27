@@ -7,22 +7,21 @@ import javafx.beans.property.StringProperty;
 
 public class Board extends LeyoutComponent {
 
-    private final static String TITLE_PROP_ID = "ID";
-    private final static String TITLE_PROP_TITLE = "TITLE";
-    private final static String TITLE_PROP_CONDITION = "CONDITION";
+    private final static String TITLE_PROP_ID = "Board Id";
+    private final static String TITLE_PROP_TITLE = "Board title";
+    private final static String TITLE_PROP_CONDITION = "Condition";
     private final IntegerProperty id;
     private final StringProperty title;
     private final StringProperty condition;
 
 
     public Board(){
-        super();
         this.id = new SimpleIntegerProperty(this, TITLE_PROP_ID, 0);
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE, "");
         this.condition = new SimpleStringProperty(this, TITLE_PROP_CONDITION, "");
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id.set(id);
     }
 
@@ -44,6 +43,18 @@ public class Board extends LeyoutComponent {
 
     public String getCondition() {
         return condition.get();
+    }
+
+    public IntegerProperty idProperty() {
+        return id;
+    }
+
+    public StringProperty titleProperty() {
+        return title;
+    }
+
+    public StringProperty conditionProperty() {
+        return condition;
     }
 
     public String toString(){

@@ -12,9 +12,9 @@ public class GroupPushcart extends Group implements Infoable {
     ShapeNode nExt;
     public GroupPushcart(int x, int y, double a){
         human = new Human();
-        pushcart = new ShapePushcart();
-        nEnt = new ShapeNode(this);
-        nExt = new ShapeNode(this);
+//        pushcart = new ShapePushcart();
+//        nEnt = new ShapeNode(this);
+//        nExt = new ShapeNode(this);
 
         paint();
 //        getChildren().addAll(human.view(), pushcart, nEnt, nExt);

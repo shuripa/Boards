@@ -1,9 +1,6 @@
 package leyout.components;
 
 import leyout.BlankGroup;
-import leyout.views.ShapeCanban;
-import leyout.views.ShapePalete;
-import leyout.views.ShapeWorkTable;
 
 public class GroupTest extends BlankGroup {
     int s;
@@ -23,21 +20,21 @@ public class GroupTest extends BlankGroup {
 //        this.getChildren().add(tt);
 
         //палета
-        ShapePalete tp = new ShapePalete();
+//        ShapePalete tp = new ShapePalete();
 //        tp.setXY(252, 190);
-        tp.relocate(34 + size, 12);
+//        tp.relocate(34 + size, 12);
 //        this.getChildren().add(tp);
 
         //тестовочный канбан
-        ShapeCanban tc = new ShapeCanban();
+//        ShapeCanban tc = new ShapeCanban();
 //        tc.setXY(168, 200);
-        tc.relocate(0, 22);
+//        tc.relocate(0, 22);
 //        this.getChildren().add(tc);
 
         //рабочий стол
-        ShapeWorkTable wt = new ShapeWorkTable();
+//        ShapeWorkTable wt = new ShapeWorkTable();
 //        wt.setXY(190, 179);
-        wt.relocate(20, 1);
+//        wt.relocate(20, 1);
 //        this.getChildren().add(wt);
 
         //рабочий
@@ -49,7 +46,7 @@ public class GroupTest extends BlankGroup {
 
 
 //        this.getChildren().addAll(tt, tp, tc, wt, h.view());
-        this.relocate(x, y);
-        super.setRotate(a);
+//        this.relocate(x, y);
+//        super.setRotate(a);
     }
 }

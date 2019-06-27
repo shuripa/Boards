@@ -1,21 +1,18 @@
 package leyout.components;
 
 
-import leyout.controllers.BoardController;
-import leyout.controllers.CanbanController;
-import leyout.controllers.GridController;
-import leyout.controllers.HumanController;
-import leyout.controllers.CompositBoardController;
-import leyout.Infoable;
-import leyout.views.ShapeBoardInd;
-import leyout.views.ShapeConnection;
-import leyout.views.ShapeNode;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Rectangle;
+import leyout.Infoable;
+import leyout.controllers.BoardController;
+import leyout.controllers.CompositBoardController;
+import leyout.controllers.GridController;
+import leyout.controllers.HumanController;
+import leyout.views.ShapeBoardInd;
+import leyout.views.ShapeNode;
 import model.Order;
 
 import java.util.ArrayList;
@@ -74,36 +71,36 @@ public class GroupBoard extends Group implements Infoable {
 
         System.out.println("" + id + " " + dsc + " " + this.x.get() + " " + this.y.get());
 
-//        sg = new ShapeGrid(size);
+//        sg = new GridView(size);
 
 
         //node start
-        nEnt = new ShapeNode(this);
-        nEnt.relocate(0, 16);
-        nEnt.setOnMouseClicked(mouseEvent -> {
-            MouseButton button = mouseEvent.getButton();
-            if (button == MouseButton.PRIMARY) {
-                CanbanController cc = CanbanController.getInstance();
-                for (String s : gc.getMaterial()) {
-                    for (ShapeNode ext : cc.getExt(s)) {
-                        new ShapeConnection(nEnt.getX(), nEnt.getY(), ext.getX(), ext.getY());
+//        nEnt = new ShapeNode(this);
+//        nEnt.relocate(0, 16);
+//        nEnt.setOnMouseClicked(mouseEvent -> {
+//            MouseButton button = mouseEvent.getButton();
+//            if (button == MouseButton.PRIMARY) {
+//                CanbanController cc = CanbanController.getInstance();
+//                for (String s : gc.getMaterial()) {
+//                    for (ShapeNode ext : cc.getExt(s)) {
+//                        new ShapeConnection(nEnt.getX(), nEnt.getY(), ext.getX(), ext.getY());
 //                        ext.getOwner().showInfo();
-                    }
+//                    }
+//
+//                }
+//            } else{
+//                GroupLine.getInstance().rem();
+//                System.out.println("MouseLeft");
+//            }
+//        });
+//
+//        node end
+//        nExt = new ShapeNode(this);
+//        nExt.relocate(size - 5, 16);
 
-                }
-            } else{
-                GroupLine.getInstance().rem();
-                System.out.println("MouseLeft");
-            }
-        });
-
-        //node end
-        nExt = new ShapeNode(this);
-        nExt.relocate(size - 5, 16);
-
-        this.getChildren().addAll(sbi, bc.view(), hc.view(), gc.view(), nEnt, nExt);
-        this.relocate(x, y);
-        this.setRotate(a);
+//        this.getChildren().addAll(sbi, bc.view(), hc.view(), gc.view(), nEnt, nExt);
+//        this.relocate(x, y);
+//        this.setRotate(a);
 
     }
 
@@ -156,12 +153,12 @@ public class GroupBoard extends Group implements Infoable {
     }
 
     public void setMaterial(ArrayList<String> material) {
-//        sg.setMaterials(material);
-        gc.setMaterial(material);
-//        TODO: создаются узлы которые переполняют память
-//        for (String m: material) {
-//            nEnt.addNode(new ShapeNode(this));
-//        }
+////        sg.setMaterials(material);
+//        gc.setMaterial(material);
+////        TODO: создаются узлы которые переполняют память
+////        for (String m: material) {
+////            nEnt.addNode(new ShapeNode(this));
+////        }
     }
 
 

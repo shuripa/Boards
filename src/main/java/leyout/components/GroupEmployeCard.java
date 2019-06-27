@@ -1,13 +1,12 @@
 package leyout.components;
 
-import leyout.controllers.EmployerController;
-import leyout.views.ShapeEmployeCard;
 import inout.EmployesCsvLoader;
 import inout.SkillCsvLoader;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import leyout.Infoable;
+import leyout.views.ShapeEmployeCard;
 import model.Employer;
 
 import java.io.IOException;
@@ -48,9 +47,9 @@ public class GroupEmployeCard extends Group implements Infoable {
         for (HashMap.Entry<Integer, Employer> entry : hm.entrySet()) {
 //                TODO: Так и не понятно - ID Должен быть String или Integer
             em = entry.getValue();
-            emc = new ShapeEmployeCard("" + entry.getKey(), ""+ entry.getValue().getName(), 200);
-            vBox.getChildren().add(emc);
-            new EmployerController(em, emc);
+//            emc = new ShapeEmployeCard("" + entry.getKey(), ""+ entry.getValue().getName(), 200);
+//            vBox.getChildren().add(emc);
+//            new EmployerController(em, emc);
         }
 
 

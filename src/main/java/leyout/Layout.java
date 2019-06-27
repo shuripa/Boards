@@ -40,27 +40,44 @@ public class Layout extends Region {
 //        LoadMaterialToGrid(gbc1);
 
 
-//Переробка дошки v3
+//Переробка елементів дошки
         Board b = new Board();
         b.setTitle("KM 082");
         b.setId(1901);
         b.setCondition("MFC1841082***");
 
         BoardController bc = new BoardController(b);
-        bc.setXYAS(600, 200 , 0, 60);
+        bc.setXYAS(0, 27 , 0, 60);
         this.getChildren().add(bc.view());
 
         Human h = new Human();
         h.setLogining(12713);
 
         HumanController hc = new HumanController(h);
-        hc.setXY(620, 180);
+        hc.setXY(20, 7);
         this.getChildren().add(hc.view());
 
         Grid g = new Grid();
         GridController gc = new GridController(g);
-        gc.setXYAS(600, 173, 0, 60);
+        gc.setXYAS(0, 0, 0, 60);
         this.getChildren().add(gc.view());
+
+        BoardIndex i = new BoardIndex();
+        i.setProc(70);
+        BoardIndexController ic= new BoardIndexController(i);
+        ic.setXY(55, 27);
+        this.getChildren().add(ic.view());
+
+//        Переробка дошки v.3
+        CompositBoard cb = new CompositBoard();
+        cb.setTitle("KM 034");
+        cb.setId(1902);
+        cb.setCondition("MFC1841034***");
+        cb.setLogining(12715);
+        cb.setProc(50);
+        CompositBoardController cbc = new CompositBoardController(cb);
+        cbc.setXYAS(100, 100, 0, 90);
+        this.getChildren().add(cbc.view());
 
 //        CompositBoard cb = new CompositBoard();
 

@@ -25,9 +25,9 @@ public class BoardController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
+        setIntProperty(((Board)component()).idProperty());
         setStrProperty(((Board)component()).titleProperty());
         setStrProperty(((Board)component()).conditionProperty());
-        setIntProperty(((Board)component()).idProperty());
     }
 
     @Override

@@ -69,7 +69,7 @@ public class PropertyPane extends TitledPane {
                 TextField tp = new TextField("" + ip.getValue());
 
                 tp.setOnKeyReleased(keyEvent -> {
-                    if (!(tp.equals("")) && (tp != null)) {
+                    if ((tp != null) && !(tp.equals(""))) {
                         ip.setValue(Integer.parseInt(tp.getText()));
                         sender.update();
                     }

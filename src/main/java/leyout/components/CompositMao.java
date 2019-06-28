@@ -16,7 +16,6 @@ public class CompositMao extends LeyoutComponent{
     /** General */
 
     public CompositMao() {
-        super();
         this.title = new SimpleStringProperty(this, TITLE_PROP_NAME, "MAO");
         conditions = new ArrayList<>();
         orders = new ArrayList<>();

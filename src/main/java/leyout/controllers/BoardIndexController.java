@@ -16,6 +16,10 @@ public class BoardIndexController extends LeyoutComponentController {
         return ((BoardIndex) component()).getProc();
     }
 
+    public void setProc() {
+        ((BoardIndexView)view()).setLimit(getProc());
+    }
+
     public void addOrder(Order order) {
         ((BoardIndex) component()).addOrder(order);
     }
@@ -23,7 +27,7 @@ public class BoardIndexController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
-
+        setIntProperty(((BoardIndex)component()).procProperty());
     }
 
     @Override
@@ -33,6 +37,6 @@ public class BoardIndexController extends LeyoutComponentController {
 
     @Override
     public void updateData() {
-
+        setProc();
     }
 }

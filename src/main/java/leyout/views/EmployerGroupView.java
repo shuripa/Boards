@@ -1,26 +1,23 @@
-package leyout.components;
+package leyout.views;
 
 import inout.EmployesCsvLoader;
 import inout.SkillCsvLoader;
-import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import leyout.Infoable;
-import leyout.views.ShapeEmployeCard;
-import model.Employer;
+import leyout.components.Employer;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-public class GroupEmployeCard extends Group implements Infoable {
+public class EmployerGroupView extends PaneComponentView {
 
+    private ScrollPane scrollPane;
     private VBox vBox;
     private ShapeEmployeCard emc;
     private Employer em;
-    private ScrollPane scrollPane;
 
 
-    public GroupEmployeCard(){
+    public EmployerGroupView(){
         //            Загрузка работников
         //            Загрузка скилов
 
@@ -49,7 +46,7 @@ public class GroupEmployeCard extends Group implements Infoable {
             em = entry.getValue();
 //            emc = new ShapeEmployeCard("" + entry.getKey(), ""+ entry.getValue().getName(), 200);
 //            vBox.getChildren().add(emc);
-//            new EmployerController(em, emc);
+//            new EmployerCardController(em, emc);
         }
 
 

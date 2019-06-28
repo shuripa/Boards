@@ -19,8 +19,8 @@ public abstract class LeyoutComponentController {
     private LeyoutComponentView view;
 
     private ArrayList<StringProperty> strProperties; // Строковые свойства
-    private ArrayList<IntegerProperty> intProperties; // Строковые свойства
 
+    private ArrayList<IntegerProperty> intProperties; // Строковые свойства
     private final static String TITLE_PROP_X = "X";
     private final static String TITLE_PROP_Y = "Y";
     private final static String TITLE_PROP_A = "A";
@@ -45,7 +45,6 @@ public abstract class LeyoutComponentController {
         setViewProperties();
         component().addObserver(this);
     }
-
     /** Getters and Setters */
 
     public void setParent(LeyoutComponentController parent) {
@@ -148,21 +147,29 @@ public abstract class LeyoutComponentController {
         intProperties.add(intProperty);
     }
 
+    public ArrayList<StringProperty> getStrProperties() {
+        return strProperties;
+    }
+
+    public ArrayList<IntegerProperty> getIntProperties() {
+        return intProperties;
+    }
+
     private void setViewProperties(){
         intProperties.addAll(Arrays.asList(new IntegerProperty[]{X, Y, A, S}));
     }
 
     protected abstract void setComponentProperties();
 
+    public void update(){
+        updateData();
+        updateView();
+    }
+
     public abstract void updateData();
 
     public void updateView(){
         view().updateView();
-    }
-
-    public void update(){
-        updateData();
-        updateView();
     }
 
     /** Sizes */
@@ -183,7 +190,7 @@ public abstract class LeyoutComponentController {
 
     @Override
     public String toString(){
-        return component.toString();
+        return component().toString();
     }
 
     public String getText(){

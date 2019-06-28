@@ -1,6 +1,7 @@
 package leyout.components;
 
-import model.Employer;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import model.Order;
 import sets.SetEmployers;
 
@@ -8,20 +9,32 @@ import java.util.ArrayList;
 
 public class BoardIndex extends LeyoutComponent {
 
-    int proc;
-    LeyoutComponent parent;
+    private final static String TITLE_PROP_PROC = "Procent";
+    private final IntegerProperty proc;
     ArrayList<Order> orders;
 
     public BoardIndex() {
+        this.proc = new SimpleIntegerProperty(this, TITLE_PROP_PROC, 0);
+        setParent(null);
+        orders = new ArrayList<>();
+    }
+
+    public BoardIndex(LeyoutComponent parent) {
+        this.proc = new SimpleIntegerProperty(this, TITLE_PROP_PROC, 0);
+        setParent(parent);
         orders = new ArrayList<>();
     }
 
     public int getProc() {
-        return proc;
+        return proc.get();
     }
 
     public void setProc(int proc){
-        this.proc = proc;
+        this.proc.setValue(proc);
+    }
+
+    public IntegerProperty procProperty() {
+        return proc;
     }
 
     public void addOrder(Order order) {
@@ -34,8 +47,8 @@ public class BoardIndex extends LeyoutComponent {
         Double sumProductivity = 0.0;
         Double sumCapacity = 0.0;
 //        Получение скилов рабочего
-        LeyoutComponent lgc = parent;
-        Human h = ((CompositBoard)parent).getHuman();
+        LeyoutComponent lgc = getParent();
+        Human h = ((CompositBoard)getParent()).getHuman();
         SetEmployers setEmployers = SetEmployers.getInstance();
         Employer e = setEmployers.getEmployer(h.getLogined());
 

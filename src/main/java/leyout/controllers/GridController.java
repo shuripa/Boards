@@ -20,7 +20,7 @@ public class GridController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
-
+        System.out.println("No property");
     }
 
     @Override

@@ -7,40 +7,42 @@ import leyout.components.LeyoutComponent;
 import leyout.views.CompositBoardView;
 import leyout.views.LeyoutComponentView;
 
+import java.util.ArrayList;
+
 public class CompositBoardController extends LeyoutComponentController {
     //Leaf
     HumanController hc;
     BoardController bc;
-    BoardIndexController bic;
+    BoardIndexController ic;
     GridController gc;
 
-    public CompositBoardController(CompositBoard cBoard){
+    public CompositBoardController(CompositBoard cBoard) {
         super(cBoard);
-        hc = new HumanController(cBoard.getHuman());
         bc = new BoardController(cBoard.getBoard());
+        hc = new HumanController(cBoard.getHuman());
         gc = new GridController(cBoard.getGrid());
-        bic = new BoardIndexController(cBoard.getBoardIndex());
+        ic = new BoardIndexController(cBoard.getBoardIndex());
 
         setView(new CompositBoardView(this));
     }
 
-    public LeyoutComponentView getHumanShape() {
+    public LeyoutComponentView getHumanView() {
         return hc.view();
     }
 
-    public LeyoutComponentView getBoardShape() {
+    public LeyoutComponentView getBoardView() {
         return bc.view();
     }
 
-    public LeyoutComponentView getBoardIndex(){
-        return bic.view();
+    public LeyoutComponentView getBoardIndexView() {
+        return ic.view();
     }
 
-    public LeyoutComponentView getGridShape() {
+    public LeyoutComponentView getGridShapeView() {
         return gc.view();
     }
 
-    public LeyoutComponentController getGridController(){
+    public LeyoutComponentController getGridController() {
         return gc;
     }
 
@@ -48,7 +50,30 @@ public class CompositBoardController extends LeyoutComponentController {
         return hc;
     }
 
-    public LeyoutComponentController getBoardController() { return bc; }
+    public LeyoutComponentController getBoardController() {
+        return bc;
+    }
+
+    public LeyoutComponentController getBoardIndexController() {
+        return ic;
+    }
+
+    public LeyoutComponent getLeaf(int ind) {
+        return component().getLeaf(ind);
+    }
+
+    public ArrayList<LeyoutComponentView> getViews(int leafInd) {
+        ArrayList<LeyoutComponentView> lcv = new ArrayList<>();
+//        Слушатели компонента пока ограничиваются слушателеями лейаута. Если появятся другие слушатели, нужно будет
+//        сделать общий интерфейс, заменить в LeyoutCompontnt клас массива observers и тут тип переменной lcc на тип
+//        сoзданного общего интерфейса.
+        for (LeyoutComponentController lcc : getLeaf(leafInd).getObservers()) {
+            if (lcc.getClass().getName().equals(LeyoutComponentController.class.getName())) {
+                lcv.add(lcc.view());
+            }
+        }
+        return lcv;
+    }
 
     public Node getView() {
         return view();
@@ -62,8 +87,8 @@ public class CompositBoardController extends LeyoutComponentController {
         return bc.getTitle();
     }
 
-    public String getCondition(){
-        return ((BoardController)getBoardController()).getCondition();
+    public String getCondition() {
+        return ((BoardController) getBoardController()).getCondition();
     }
 
     public LeyoutComponent getCompositBoard() {
@@ -73,6 +98,20 @@ public class CompositBoardController extends LeyoutComponentController {
     @Override
     protected void setComponentProperties() {
 
+//        for (IntegerProperty prop: bc.getIntProperties()) { setIntProperty(prop); }
+//        for (StringProperty prop: bc.getStrProperties()) { setStrProperty(prop); }
+//        for (IntegerProperty prop: hc.getIntProperties()) { setIntProperty(prop); }
+//        for (StringProperty prop: hc.getStrProperties()) { setStrProperty(prop); }
+//        for (IntegerProperty prop: gc.getIntProperties()) { setIntProperty(prop); }
+//        for (StringProperty prop: gc.getStrProperties()) { setStrProperty(prop); }
+//        for (IntegerProperty prop: ic.getIntProperties()) { setIntProperty(prop); }
+//        for (StringProperty prop: ic.getStrProperties()) { setStrProperty(prop); }
+
+        setIntProperty((((CompositBoard)component()).getBoard()).idProperty());
+        setStrProperty((((CompositBoard)component()).getBoard()).titleProperty());
+        setStrProperty((((CompositBoard)component()).getBoard()).conditionProperty());
+        setIntProperty((((CompositBoard)component()).getHuman()).idProperty());
+        setIntProperty((((CompositBoard)component()).getBoardIndex()).procProperty());
     }
 
     @Override
@@ -82,6 +121,10 @@ public class CompositBoardController extends LeyoutComponentController {
 
     @Override
     public void updateData() {
-
+        bc.update();
+        hc.update();
+        ic.update();
+        gc.update();
     }
+
 }

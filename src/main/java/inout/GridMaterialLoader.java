@@ -2,7 +2,7 @@ package inout;
 
 import leyout.controllers.MaterialController;
 import leyout.components.GroupBoard;
-import sets.SetBoards;
+import sets.BoardsController;
 import model.Material;
 
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class GridMaterialLoader {
             }
         }
 
-        SetBoards sbs = SetBoards.getInstance();
+        BoardsController sbs = BoardsController.getInstance();
         for (String l: lines){                                      //??? непонятній цикл
             tokens = l.split(";");
             for (GroupBoard gb: arrBoards) {                        //Перебор CompositBoard. ???-CompositBoard передается по параметру в конструкторе.

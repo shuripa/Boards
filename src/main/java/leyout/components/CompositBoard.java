@@ -1,40 +1,65 @@
 package leyout.components;
 
 public class CompositBoard extends LeyoutComponent {
-    Board board;
-    Human human;
-    BoardIndex boardIndex;
-    Grid grid;
+    Board b;
+    Human h;
+    BoardIndex i;
+    Grid g;
+
+    public CompositBoard (){
+        b = new Board();
+        h = new Human();
+        g = new Grid();
+        i = new BoardIndex(this);
+        addLeafs(b, h, g, i);
+    }
+
+    public Board getBoard() {
+        return b;
+    }
+
+    public Human getHuman() {
+        return h;
+    }
+
+    public BoardIndex getBoardIndex(){
+        return i;
+    }
+
+    public Grid getGrid(){
+        return g;
+    }
+
+    public void setTitle(String title) {
+        b.setTitle(title);
+    }
+
+    public String getTitle (){
+        return b.getTitle();
+    }
+
+    public void setId(int boardId) {
+        b.setId(boardId);
+    }
+
+    public void setCondition(String condition) {
+        b.setCondition(condition);
+    }
+
+    public String getCondition (){
+        return b.getCondition();
+    }
+
+    public void setLogining(int employeId) {
+        h.setLogining(employeId);
+    }
+
+    public void setProc(int proc) {
+        i.setProc(proc);
+    }
 
     @Override
     public String toString() {
         return "";
-    }
-
-    public String getTitle() {
-        return "";
-    }
-
-    public String getCondition() {
-        return "";
-    }
-
-    public void setTitle() {
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public Human getHuman() {
-        return human;
-    }
-
-    public BoardIndex getBoardIndex(){
-        return boardIndex;
-    }
-
-    public Grid getGrid(){
-        return grid;
     }
 }

@@ -2,34 +2,39 @@ package leyout.controllers;
 
 import leyout.components.GroupBoard;
 import leyout.Layout;
+import leyout.views.EmployerCardView;
 import leyout.views.ShapeEmployeCard;
-import model.Employer;
+import leyout.components.Employer;
 import model.Skill;
 
 import java.util.ArrayList;
 
-public class EmployerController {
+public class EmployerCardController extends PaneComponentController{
     Employer employer;
     ShapeEmployeCard shapeEmployeCard;
     ArrayList<GroupBoard> arrBd;
     char[] bdchar;
     char[] skchar;
 
-    public EmployerController(Employer employer, ShapeEmployeCard shapeEmployeCard){
+    public EmployerCardController(Employer emp){
+        super(emp);
+        setView(new EmployerCardView(this));
+    }
+
+    public EmployerCardController(Employer employer, ShapeEmployeCard shapeEmployeCard){
         this.employer = employer;
         this.shapeEmployeCard = shapeEmployeCard;
-        employer.setEmployerController(this);
-        shapeEmployeCard.setEmployerController(this);
+        shapeEmployeCard.setEmployerCardController(this);
         bdchar = null;
         skchar = null;
     }
 
-    public EmployerController(String ID, String name){
+    public EmployerCardController(String ID, String name){
 
     }
 
     public void boardSelect() {
-        ArrayList<Skill> arrSk = employer.getSkill();
+        ArrayList<Skill> arrSk = employer.getSkills();
         arrBd = Layout.getInstace().getArrBoards();
         for (Skill sk: arrSk) {
             for (GroupBoard bd: arrBd) {
@@ -58,5 +63,20 @@ public class EmployerController {
         for (GroupBoard bd: arrBd) {
             bd.unselect();
         }
+    }
+
+    @Override
+    public void updateData() {
+
+    }
+
+    @Override
+    public void paint() {
+
+    }
+
+    @Override
+    public void repaint() {
+
     }
 }

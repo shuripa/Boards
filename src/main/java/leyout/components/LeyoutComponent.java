@@ -11,6 +11,7 @@ public abstract class LeyoutComponent {
 
     private ArrayList<LeyoutComponent> leafs;
     private int posCount;
+    private LeyoutComponent parent;
 
 //    private ArrayList <Node> nodes;         //Элементы управления
 //    public ShapeNode nEnt;                     //Точка входа
@@ -19,9 +20,18 @@ public abstract class LeyoutComponent {
 
 
     public LeyoutComponent() {
+        parent = null;
         observers = new ArrayList<>();
         leafs = new ArrayList<>();
 //        nodes = new ArrayList<>();
+    }
+
+    public void setParent(LeyoutComponent parent){
+        this.parent = parent;
+    }
+
+    public LeyoutComponent getParent(){
+        return this.parent;
     }
 
 
@@ -54,6 +64,10 @@ public abstract class LeyoutComponent {
         this.observers.remove(observer);
     }
 
+    public ArrayList<LeyoutComponentController> getObservers () {
+        return observers;
+    }
+
     public void update(){
         for (LeyoutComponentController lcc: observers) {
             lcc.updateData();
@@ -73,6 +87,12 @@ public abstract class LeyoutComponent {
 
     public void addLeaf(LeyoutComponent leaf) {
         leafs.add(leaf);
+    }
+
+    public void addLeafs(LeyoutComponent ... leafs){
+        for (LeyoutComponent l: leafs) {
+            addLeaf(l);
+        }
     }
 
     public LeyoutComponent getLeaf (int i){

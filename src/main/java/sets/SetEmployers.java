@@ -1,6 +1,6 @@
 package sets;
 
-import model.Employer;
+import leyout.components.Employer;
 
 import java.util.HashMap;
 

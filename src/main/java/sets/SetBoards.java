@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class SetBoards {
 
-    private static SetBoards instance;
+    private static BoardsController instance;
     private HashMap<Integer, CompositBoardController> mapBoardControllers;
 
     private SetBoards(){
@@ -15,9 +15,9 @@ public class SetBoards {
         instance = this;
     }
 
-    public static SetBoards getInstance(){
+    public static BoardsController getInstance(){
         if (instance == null) {
-            instance = new SetBoards();
+            instance = new BoardsController();
         }
         return instance;
     }

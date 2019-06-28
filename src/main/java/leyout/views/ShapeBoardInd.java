@@ -8,7 +8,7 @@ import model.Order;
 
 import java.util.ArrayList;
 
-
+//TODO класс на удаление. Уже есть BoardIndexView
 public class ShapeBoardInd extends Region {
 
     short proc;

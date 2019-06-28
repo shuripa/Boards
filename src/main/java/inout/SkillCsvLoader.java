@@ -1,6 +1,6 @@
 package inout;
 
-import model.Employer;
+import leyout.components.Employer;
 import model.Skill;
 import sets.SetEmployers;
 
@@ -27,7 +27,7 @@ public class SkillCsvLoader {
             setE.addEmployer(e);
             System.out.println(" " + e.getName() + " " + tokens[1] + " " + tokens [2]);
             Skill s = new Skill(tokens[1], Double.parseDouble(tokens[2]));
-            e.setSkills(s);
+            e.setSkill(s);
         }
     }
 }

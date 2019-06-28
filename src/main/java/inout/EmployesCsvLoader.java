@@ -1,6 +1,6 @@
 package inout;
 
-import model.Employer;
+import leyout.components.Employer;
 import model.Skill;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class EmployesCsvLoader {
     }
 
     public void addSkill(Integer id, Skill skill){
-        arrEmp.get(id).setSkills(skill);
+        arrEmp.get(id).setSkill(skill);
     }
 
 }

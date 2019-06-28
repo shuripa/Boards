@@ -3,7 +3,7 @@ package panes;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
-import leyout.components.GroupEmployeCard;
+import leyout.views.EmployerGroupView;
 
 public class RightPanel extends Accordion {
     private static RightPanel instance;
@@ -25,7 +25,7 @@ public class RightPanel extends Accordion {
 
 //         !!! Карточки клиентов !!! Класс возвращает VBox.
         // TODO: переделать по образцу плана
-        GroupEmployeCard gec = new GroupEmployeCard();
+        EmployerGroupView gec = new EmployerGroupView();
         TitledPane gecPane = new TitledPane("Employes", gec.getBox());
 
         this.getPanes().addAll(editPane, gecPane);

@@ -181,7 +181,7 @@ public class Layout extends Region {
 ////        Логування
 //        gbc1.setLogining(14417);
 ////        Додавання дошки в набор
-//        SetBoards.getInstance().addGroupBoardController(gbc1);
+//        BoardsController.getInstance().addGroupBoardController(gbc1);
 //        return gbc1;
         return null;
     }

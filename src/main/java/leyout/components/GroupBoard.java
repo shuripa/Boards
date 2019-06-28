@@ -17,6 +17,14 @@ import model.Order;
 
 import java.util.ArrayList;
 
+// Класс на удаление использовать CompositBoard
+// Зависимости
+// - BoardsController
+// - EmployerCardController
+// - GridMaterialLoader
+// - Leyout
+// - NodeMemory
+// - ShapeConvier
 
 public class GroupBoard extends Group implements Infoable {
     CompositBoardController controller;

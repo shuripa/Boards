@@ -6,14 +6,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import leyout.controllers.EmployerController;
+import leyout.controllers.EmployerCardController;
 import leyout.controllers.LeyoutComponentController;
 
 public class ShapeEmployeCard extends LeyoutComponentView {
     private int size;
     private String id;
     private String description;
-    private EmployerController employerController;
+    private EmployerCardController employerCardController;
 
     public ShapeEmployeCard(LeyoutComponentController controller, String id, String description, int size){
         super (controller);
@@ -26,11 +26,11 @@ public class ShapeEmployeCard extends LeyoutComponentView {
         });
         this.setOnMouseEntered(mouseEvent -> {
             super.entered();
-            employerController.boardSelect();
+            employerCardController.boardSelect();
         });
         this.setOnMouseExited(mouseEvent -> {
             super.exited();
-            employerController.boardUnselect();
+            employerCardController.boardUnselect();
         });
     }
 
@@ -78,8 +78,8 @@ public class ShapeEmployeCard extends LeyoutComponentView {
     }
 
 
-    public void setEmployerController(EmployerController employerController) {
-        this.employerController = employerController;
+    public void setEmployerCardController(EmployerCardController employerCardController) {
+        this.employerCardController = employerCardController;
     }
 
 

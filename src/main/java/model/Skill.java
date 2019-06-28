@@ -1,16 +1,16 @@
 package model;
 
 public class Skill {
-    public String getMaterialBlank() {
-        return materialBlank;
-    }
-
     String materialBlank;
-    Double productivity;
 
+    Double productivity;
     public Skill(String materialBlank, double productivity) {
         this.materialBlank = materialBlank;
         this.productivity = productivity;
+    }
+
+    public String getMaterialBlank() {
+        return materialBlank;
     }
 
     public Double getProductivity() {

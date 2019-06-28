@@ -27,12 +27,20 @@ public class Grid extends LeyoutComponent {
         this.materials = materials;
     }
 
+//    @Override
+//    public String toString() {
+//        String s = "Матеріал:";
+//        for (String m: getSingleMaterial()) {
+//            s = s + "\n" + m;
+//        }
+//        return s;
+//    }
+
+
     @Override
     public String toString() {
-        String s = "Матеріал:";
-        for (String m: getSingleMaterial()) {
-            s = s + "\n" + m;
-        }
-        return s;
+        return "Grid{" +
+//                "materials=" + materials +
+                + '}';
     }
 }

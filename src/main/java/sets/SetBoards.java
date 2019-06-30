@@ -1,13 +1,13 @@
 package sets;
 
-import leyout.controllers.CompositBoardController;
+import graphics.controllers.CompositBoardController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SetBoards {
 
-    private static BoardsController instance;
+    private static SetBoards instance;
     private HashMap<Integer, CompositBoardController> mapBoardControllers;
 
     private SetBoards(){
@@ -15,9 +15,9 @@ public class SetBoards {
         instance = this;
     }
 
-    public static BoardsController getInstance(){
+    public static SetBoards getInstance(){
         if (instance == null) {
-            instance = new BoardsController();
+            instance = new SetBoards();
         }
         return instance;
     }

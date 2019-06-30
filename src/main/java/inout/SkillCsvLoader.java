@@ -1,6 +1,6 @@
 package inout;
 
-import leyout.components.Employer;
+import graphics.components.Employer;
 import model.Skill;
 import sets.SetEmployers;
 

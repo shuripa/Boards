@@ -7,8 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import leyout.Layout;
+import graphics.Layout;
 import panes.RightPanel;
+
+import java.io.IOException;
 
 
 public class StartMenuItem extends Region {
@@ -40,7 +42,12 @@ public class StartMenuItem extends Region {
 
 
 //            Лейаут
-            Layout layout = Layout.getInstace();
+            Layout layout = null;
+            try {
+                layout = Layout.getInstace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 ////            Правая панель лейаута
             Accordion rightPanel = RightPanel.getInstance();
@@ -85,9 +92,6 @@ public class StartMenuItem extends Region {
     public void setPropertyPane(TitledPane propertyPane) {
         this.propertyPane = propertyPane;
     }
-
-
-
 
 
 }

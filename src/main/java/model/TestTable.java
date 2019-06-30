@@ -1,6 +1,6 @@
 package model;
 
-import leyout.components.LeyoutComponent;
+import graphics.components.LeyoutComponent;
 
 public class TestTable extends LeyoutComponent {
     private String title;

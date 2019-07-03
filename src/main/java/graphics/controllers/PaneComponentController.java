@@ -1,12 +1,17 @@
 package graphics.controllers;
 
 
+import graphics.Layout;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import graphics.components.LeyoutComponent;
 import graphics.views.PaneComponentView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class PaneComponentController {
@@ -28,6 +33,15 @@ public abstract class PaneComponentController {
 //    private ArrayList<StringProperty> strProperties; // Строковые свойства
 //    private ArrayList<IntegerProperty> intProperties; // Строковые свойства
 
+
+    public PaneComponentController() {
+        this.controller = this;
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
+
+    }
 
     public PaneComponentController(LeyoutComponent component) {
         this.component = component;
@@ -75,12 +89,33 @@ public abstract class PaneComponentController {
         });
 
         view().setOnMouseClicked(mouseEvent -> {
-//            PropertyPane pp = PropertyPane.getInstance();
-//            pp.addProperties(this, strProperties, intProperties);
-//            new ShapeInfo(this);
+//            try {
+//                createLeyoutComponent(mouseEvent.getSceneX(), mouseEvent.getSceneY());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+        });
+
+        view().setOnDragDetected(mouseEvent -> {
+            try {
+                LeyoutComponentController controller = createLeyoutComponent(mouseEvent.getSceneX(), mouseEvent.getSceneY());
+                Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), controller);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Dragboard db = view().startDragAndDrop(TransferMode.ANY);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(this.toString());
+            db.setContent(content);
+
+            mouseEvent.consume();
+
         });
 
     }
+
+    protected abstract LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException;
 
     public int getX() {
         return X.get();

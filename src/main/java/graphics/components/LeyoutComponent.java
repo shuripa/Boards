@@ -70,7 +70,7 @@ public abstract class LeyoutComponent {
 
     public void update(){
         for (LeyoutComponentController lcc: observers) {
-            lcc.updateData();
+            lcc.updateViewData();
         }
     }
 

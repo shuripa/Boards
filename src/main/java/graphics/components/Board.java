@@ -58,6 +58,6 @@ public class Board extends LeyoutComponent {
     }
 
     public String toString(){
-        return "Дошка:\nID = " + id.get() +";\nTitle = " + title.get() + ";\nCondition = " + condition.get();
+        return "Board:\nID = " + id.get() +";\nTitle = " + title.get() + ";\nCondition = " + condition.get();
     }
 }

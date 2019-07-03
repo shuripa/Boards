@@ -1,14 +1,19 @@
 package graphics.controllers;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
-import javafx.scene.input.MouseButton;
+import graphics.Layout;
 import graphics.components.LeyoutComponent;
 import graphics.views.LeyoutComponentView;
 import graphics.views.ShapeInfo;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.TransferMode;
 import panes.PropertyPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,6 +22,7 @@ public abstract class LeyoutComponentController {
     private LeyoutComponentController controller;
     private LeyoutComponent component;
     private LeyoutComponentView view;
+
 
     private ArrayList<StringProperty> strProperties; // Строковые свойства
     private ArrayList<IntegerProperty> intProperties; // Строковые свойства
@@ -31,6 +37,18 @@ public abstract class LeyoutComponentController {
     /**    General */
 
 
+    public LeyoutComponentController() {
+        this.controller = this;
+        strProperties = new ArrayList<>();
+        intProperties = new ArrayList<>();
+
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 60);
+        setViewProperties();
+    }
+
     public LeyoutComponentController(LeyoutComponent component) {
         this.controller = this;
         this.component = component;
@@ -40,9 +58,10 @@ public abstract class LeyoutComponentController {
         X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
         Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
         A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
-        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 60);
         setViewProperties();
         component().addObserver(this);
+
     }
     /** Getters and Setters */
 
@@ -56,13 +75,15 @@ public abstract class LeyoutComponentController {
 
     public void setComponent(LeyoutComponent component) {
         this.component = component;
+        setComponentProperties();
+        component.addObserver(this);
     }
 
-    public void setView(LeyoutComponentView view) {
+    public void setView(LeyoutComponentView view) throws IOException {
         this.view = view;
         viewSets();
         viewEvents();
-        updateData();
+        if (component != null) updateViewData();
         view().paint();
     }
 
@@ -162,11 +183,11 @@ public abstract class LeyoutComponentController {
     protected abstract void setComponentProperties();
 
     public void update(){
-        updateData();
+        updateViewData();
         updateView();
     }
 
-    public abstract void updateData();
+    public abstract void updateViewData();
 
     public void updateView(){
         view().updateView();
@@ -207,21 +228,46 @@ public abstract class LeyoutComponentController {
         view().getStylesheets().add("style.css");
     }
 
-    private void viewEvents(){
+    private void viewEvents() throws IOException {
+
         view().setOnMouseEntered(mouseEvent -> {
+            view().setScaleX(1.02);
+            view().setScaleY(1.02);
             view.entered();
         });
 
         view().setOnMouseExited(mouseEvent -> {
+            view().setScaleX(1.0);
+            view().setScaleY(1.0);
             view.exited();
         });
 
         view().setOnMouseClicked(mouseEvent -> {
             PropertyPane pp = PropertyPane.getInstance();
             pp.addProperties(controller(), strProperties, intProperties);
-            new ShapeInfo(controller());
+            if (component()!= null) new ShapeInfo(controller());
+        });
+
+        view().setOnDragDetected(mouseEvent -> {
+            System.out.println("On drag detected.");
+            try {
+                Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Dragboard db = view().startDragAndDrop(TransferMode.ANY);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(this.toString());
+            db.setContent(content);
+
+            mouseEvent.consume();
+
+
         });
     }
+
+    protected abstract void setDragEvent();
 
     protected abstract void setEventTonExt(MouseButton button);
 

@@ -5,6 +5,8 @@ import graphics.views.*;
 import javafx.scene.Group;
 import graphics.Infoable;
 
+import java.io.IOException;
+
 public class GroupBlank extends Group implements Infoable {
     HumanController h1;
     ShapeBlank bs1;
@@ -13,7 +15,7 @@ public class GroupBlank extends Group implements Infoable {
     ShapeNode nEnt;
     ShapeNode nExt;
 
-    public GroupBlank(String id, String dsc, int size, int x, int y, double a, int ind) {
+    public GroupBlank(String id, String dsc, int size, int x, int y, double a, int ind) throws IOException {
         //a - угол
         //ind - индикатор
         //id - номер доски

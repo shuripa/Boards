@@ -1,12 +1,14 @@
 package graphics.controllers;
 
-import javafx.scene.input.MouseButton;
 import graphics.components.CompositMao;
 import graphics.views.CompositMaoView;
+import javafx.scene.input.MouseButton;
+
+import java.io.IOException;
 
 public class CompositMaoController extends LeyoutComponentController {
 
-    public CompositMaoController(CompositMao cm){
+    public CompositMaoController(CompositMao cm) throws IOException {
         super(cm);
         setView(new CompositMaoView(this));
     }
@@ -21,7 +23,12 @@ public class CompositMaoController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
+
+    }
+
+    @Override
+    protected void setDragEvent() {
 
     }
 

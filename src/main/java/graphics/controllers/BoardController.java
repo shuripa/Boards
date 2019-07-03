@@ -4,9 +4,15 @@ import javafx.scene.input.MouseButton;
 import graphics.views.BoardView;
 import graphics.components.Board;
 
+import java.io.IOException;
+
 public class BoardController extends LeyoutComponentController {
 
-    public BoardController (Board board){
+    public BoardController () throws IOException {
+        setView(new BoardView(this));
+    }
+
+    public BoardController (Board board) throws IOException {
         super(board);
         setView(new BoardView(this));
     }
@@ -36,9 +42,14 @@ public class BoardController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
         ((BoardView)view()).setTt(getTitle());
         ((BoardView)view()).setTi("" + getId());
+    }
+
+    @Override
+    protected void setDragEvent() {
+
     }
 
 //В контроллерах нет необходимости дублировать toString. Функциональность реализована на уровне суперклассов.

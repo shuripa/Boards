@@ -1,12 +1,13 @@
 package graphics.controllers;
 
-import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
 import graphics.components.CompositBoard;
 import graphics.components.LeyoutComponent;
 import graphics.views.CompositBoardView;
 import graphics.views.LeyoutComponentView;
+import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CompositBoardController extends LeyoutComponentController {
@@ -16,7 +17,17 @@ public class CompositBoardController extends LeyoutComponentController {
     BoardIndexController ic;
     GridController gc;
 
-    public CompositBoardController(CompositBoard cBoard) {
+    public CompositBoardController() throws IOException {
+        super();
+        bc = new BoardController();
+        hc = new HumanController();
+        gc = new GridController();
+        ic = new BoardIndexController();
+
+        setView(new CompositBoardView(this));
+    }
+
+    public CompositBoardController(CompositBoard cBoard) throws IOException {
         super(cBoard);
         bc = new BoardController(cBoard.getBoard());
         hc = new HumanController(cBoard.getHuman());
@@ -24,6 +35,10 @@ public class CompositBoardController extends LeyoutComponentController {
         ic = new BoardIndexController(cBoard.getBoardIndex());
 
         setView(new CompositBoardView(this));
+    }
+
+    public void SetComponent (CompositBoard cBoard) {
+        super.setComponent(cBoard);
     }
 
     public LeyoutComponentView getHumanView() {
@@ -122,11 +137,17 @@ public class CompositBoardController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
         bc.update();
         hc.update();
         ic.update();
         gc.update();
     }
+
+    @Override
+    protected void setDragEvent() {
+
+    }
+
 
 }

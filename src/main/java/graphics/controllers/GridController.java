@@ -4,11 +4,16 @@ import javafx.scene.input.MouseButton;
 import graphics.components.Grid;
 import graphics.views.GridView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GridController extends LeyoutComponentController {
 
-    public GridController(Grid grid) {
+    public GridController() throws IOException {
+        setView(new GridView(this));
+    }
+
+    public GridController(Grid grid) throws IOException {
         super(grid);
         setView(new GridView(this));
     }
@@ -29,7 +34,12 @@ public class GridController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
+
+    }
+
+    @Override
+    protected void setDragEvent() {
 
     }
 }

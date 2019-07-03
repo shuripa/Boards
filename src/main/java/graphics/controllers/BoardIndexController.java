@@ -5,9 +5,15 @@ import graphics.components.BoardIndex;
 import graphics.views.BoardIndexView;
 import model.Order;
 
+import java.io.IOException;
+
 public class BoardIndexController extends LeyoutComponentController {
 
-    public BoardIndexController(BoardIndex index){
+    public BoardIndexController() throws IOException {
+        setView(new BoardIndexView(this));
+    }
+
+    public BoardIndexController(BoardIndex index) throws IOException {
         super(index);
         setView(new BoardIndexView(this));
     }
@@ -36,7 +42,12 @@ public class BoardIndexController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
         setProc();
+    }
+
+    @Override
+    protected void setDragEvent() {
+
     }
 }

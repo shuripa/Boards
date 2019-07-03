@@ -99,10 +99,10 @@ public class Human extends LeyoutComponent {
     @Override
     public String toString(){
         return isLogined() ?
-                "Працівник: " + getLogined()
+                "Employer: " + getLogined()
                 + "\n" + name.get()
                 + "\n" + phone.get() :
-                "Працівник не залогований.";
+                "Emloyer isn't logined.";
     }
 
     public String getText(){

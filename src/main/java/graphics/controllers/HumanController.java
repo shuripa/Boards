@@ -4,9 +4,16 @@ import javafx.scene.input.MouseButton;
 import graphics.components.Human;
 import graphics.views.HumanView;
 
+import java.io.IOException;
+
 public class HumanController extends LeyoutComponentController {
 
-    public HumanController(Human human){
+    public HumanController() throws IOException {
+        setView(new HumanView(this));
+    }
+
+
+    public HumanController(Human human) throws IOException {
         super(human);
         setView(new HumanView(this));
     }
@@ -17,6 +24,11 @@ public class HumanController extends LeyoutComponentController {
 
     public String getText(){
         return ((Human) component()).getText();
+    }
+
+    @Override
+    protected void setDragEvent() {
+
     }
 
     @Override
@@ -32,7 +44,7 @@ public class HumanController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
         ((HumanView)view()).setText("" + getLogined());
     }
 

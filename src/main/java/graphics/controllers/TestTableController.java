@@ -4,9 +4,11 @@ import javafx.scene.input.MouseButton;
 import graphics.views.ShapeTestTable;
 import model.TestTable;
 
+import java.io.IOException;
+
 public class TestTableController extends LeyoutComponentController {
 
-    public TestTableController (LeyoutComponentController controller, TestTable table){
+    public TestTableController (LeyoutComponentController controller, TestTable table) throws IOException {
         super(table);
         setView(new ShapeTestTable(this));
         ((TestTable) component()).setId(0);
@@ -25,7 +27,12 @@ public class TestTableController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateData() {
+    public void updateViewData() {
+
+    }
+
+    @Override
+    protected void setDragEvent() {
 
     }
 

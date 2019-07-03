@@ -1,5 +1,6 @@
 package panes;
 
+import graphics.views.EditorGroupPane;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
@@ -20,9 +21,7 @@ public class RightPanel extends Accordion {
         this.getPanes().add(new TitledPane("Material", materialBox));
 
 //         !!! Редактор !!! Заглушка для редактор лейаута. (Иконки объектов лейаута)
-        VBox editorBox = new VBox();
-        TitledPane editPane = new TitledPane("Editor", editorBox);
-        this.getPanes().add(editPane);
+        this.getPanes().add(new EditorGroupPane());
 
 
 //         !!! Карточки клиентов !!! Класс возвращает VBox.

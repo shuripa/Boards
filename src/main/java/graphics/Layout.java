@@ -1,9 +1,11 @@
 package graphics;
 
 import inout.EmployesCsvLoader;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
 import graphics.components.*;
 import graphics.controllers.*;
+import panes.PropertyPane;
 import sets.BoardsController;
 
 import java.io.IOException;
@@ -15,6 +17,10 @@ public class Layout extends Region {
     private ArrayList<GroupBoard> arrBoards;
     private CanbanController cc;
     private BoardsController bc;
+    private int cx, cy, dx, dy, ndx, ndy;                       //dragget coordinate
+    private LeyoutComponentController dComponentController;       //dragget controller
+    private CompositBoard cb;
+    CompositBoardController cbc;
 
     public ArrayList<GroupBoard> getArrBoards() {
         return arrBoards;
@@ -71,15 +77,18 @@ public class Layout extends Region {
         this.getChildren().add(ic.view());
 
 //        Переробка дошки v.3
-        CompositBoard cb = new CompositBoard();
+        cb = new CompositBoard();
         cb.setTitle("KM 034");
         cb.setId(1902);
         cb.setCondition("MFC1841034***");
         cb.setLogining(EmployesCsvLoader.getInstance().getEmployerByID(12630));
         cb.setProc(50);
-        CompositBoardController cbc = new CompositBoardController(cb);
+        cbc = new CompositBoardController(cb);
         cbc.setXYAS(100, 100, 0, 90);
         this.getChildren().add(cbc.view());
+
+        setEvents();
+
 
 //        CompositBoard cb = new CompositBoard();
 
@@ -98,6 +107,47 @@ public class Layout extends Region {
 //        Blanks();
 //        pushChart();
 
+    }
+
+    private void setEvents() {
+
+
+        this.setOnDragEntered(dragEvent -> {
+            System.out.println("On drag entered");
+            System.out.println("Old: " + dx + "; " + dy);
+            dx = (int)dragEvent.getSceneX();
+            dy = (int)dragEvent.getSceneY();
+            System.out.println("Scene: " + dragEvent.getSceneX() + "; " +dragEvent.getSceneY());
+            dragEvent.consume();
+        });
+
+        this.setOnDragOver(dragEvent -> {
+            dragEvent.acceptTransferModes(TransferMode.MOVE);
+            ndx = (int)(dragEvent.getSceneX()-dx);
+            ndy = (int)(dragEvent.getSceneY()-dy);
+            dComponentController.setXY(cx+ndx, cy+ndy);
+            System.out.println("On drag over " + ndx + "; " + ndy);
+            dragEvent.consume();
+        });
+
+        this.setOnDragExited(dragEvent -> {
+            System.out.println("On drag exited " + ndx + "; " + ndy);
+            dComponentController.setXY(cx+ndx, cy+ndy);
+            dragEvent.consume();
+        });
+
+        this.setOnDragDropped(dragEvent -> {
+//            System.out.println("On drag dropped");
+            PropertyPane pp = PropertyPane.getInstance();
+            pp.addProperties(dComponentController, dComponentController.getStrProperties(), dComponentController.getIntProperties());
+            dragEvent.setDropCompleted(true);
+            dragEvent.consume();
+        });
+
+        this.setOnDragDone(dragEvent -> {
+//            System.out.println("On drag done");
+            dragEvent.consume();
+        });
     }
 
     private void pushChart() {
@@ -290,5 +340,25 @@ public class Layout extends Region {
 //        //        Слой для соединений  // LineLayer to Connections
 //        GroupLine gLine = GroupLine.getInstance();
 //        getChildren().add(gLine);
+    }
+
+    public void setdx(int sceneX) {
+        dx = sceneX;
+    }
+
+    public void setdy(int sceneY) {
+        dy = sceneY;
+    }
+
+    public void drugComponent (int x, int y, LeyoutComponentController component){
+        dx = x;
+        dy = y;
+        dComponentController = component;
+        cx = dComponentController.getX();
+        cy = dComponentController.getY();
+    }
+
+    public void addComponent(CompositBoardController compositBoardController) {
+        this.getChildren().add(compositBoardController.view());
     }
 }

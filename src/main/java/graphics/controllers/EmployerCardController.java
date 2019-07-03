@@ -103,4 +103,10 @@ public class EmployerCardController extends PaneComponentController
         });
 
     }
+
+    @Override
+    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+        return null;
+    }
+
 }

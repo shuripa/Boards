@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
-import graphics.Infoable;
+import cards.Infoable;
 import graphics.controllers.BoardController;
 import graphics.controllers.CompositBoardController;
 import graphics.controllers.GridController;

@@ -1,4 +1,4 @@
-package graphics;
+package cards;
 
 public interface Infoable {
 

@@ -1,12 +1,13 @@
-package graphics.controllers;
+package cards.controllers;
 
 
 import graphics.Layout;
+import graphics.controllers.LeyoutComponentController;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import graphics.components.LeyoutComponent;
-import graphics.views.PaneComponentView;
+import cards.views.PaneComponentView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -28,6 +29,7 @@ public abstract class PaneComponentController {
     private final IntegerProperty S;
 
     private LeyoutComponent component;
+    private LeyoutComponent sender;
     private PaneComponentView view;
     private PaneComponentController controller;
 //    private ArrayList<StringProperty> strProperties; // Строковые свойства
@@ -51,7 +53,17 @@ public abstract class PaneComponentController {
         Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
         A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
         S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
+    }
 
+    public PaneComponentController(LeyoutComponent component, LeyoutComponent sender) {
+        this.component = component;
+        this.controller = this;
+        this.sender = sender;
+//        view.setComponentProperties();
+        X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
+        Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
+        A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);
+        S = new SimpleIntegerProperty(this, TITLE_PROP_S, 0);
     }
 
     public void setView(PaneComponentView view) {
@@ -71,6 +83,10 @@ public abstract class PaneComponentController {
         return component;
     }
 
+    public LeyoutComponent sender(){
+        return sender;
+    }
+
     public PaneComponentController controller(){
         return controller;
     }
@@ -79,7 +95,7 @@ public abstract class PaneComponentController {
         view().getStylesheets().add("style.css");
     }
 
-    private void viewEvents() {
+    public void viewEvents() {
         view().setOnMouseEntered(mouseEvent -> {
             view.entered();
         });

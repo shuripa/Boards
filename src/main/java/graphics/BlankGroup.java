@@ -1,9 +1,10 @@
 package graphics;
 
+import cards.Infoable;
 import javafx.scene.Group;
 import graphics.views.ShapeNode;
 
-public class BlankGroup extends Group implements Infoable{
+public class BlankGroup extends Group implements Infoable {
     protected ShapeNode nEnt;
     protected ShapeNode nExt;
 

@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import model.Condition;
 
 public class Board extends LeyoutComponent {
 
@@ -38,7 +39,10 @@ public class Board extends LeyoutComponent {
     }
 
     public void setCondition(String condition) {
+        //TODO: оставлено для совместимости. Удалить.
         this.condition.set(condition);
+
+        addCondition(new Condition(condition));
     }
 
     public String getCondition() {

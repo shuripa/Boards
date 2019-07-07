@@ -3,7 +3,7 @@ package graphics.components;
 import graphics.controllers.HumanController;
 import graphics.views.*;
 import javafx.scene.Group;
-import graphics.Infoable;
+import cards.Infoable;
 
 import java.io.IOException;
 

@@ -1,8 +1,8 @@
 package graphics.controllers;
 
-import javafx.scene.input.MouseButton;
 import graphics.components.Grid;
 import graphics.views.GridView;
+import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 import java.util.ArrayList;

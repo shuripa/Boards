@@ -3,8 +3,10 @@ package graphics.controllers;
 import graphics.components.CompositMao;
 import graphics.views.CompositMaoView;
 import javafx.scene.input.MouseButton;
+import model.Condition;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CompositMaoController extends LeyoutComponentController {
 
@@ -35,6 +37,11 @@ public class CompositMaoController extends LeyoutComponentController {
     @Override
     protected void setEventTonExt(MouseButton button) {
         
+    }
+
+    @Override
+    public ArrayList<Condition> getConditions() {
+        return null;
     }
 
 }

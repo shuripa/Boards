@@ -6,6 +6,7 @@ import graphics.views.CompositBoardView;
 import graphics.views.LeyoutComponentView;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
+import model.Condition;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class CompositBoardController extends LeyoutComponentController {
 
     public CompositBoardController() throws IOException {
         super();
+
         bc = new BoardController();
         hc = new HumanController();
         gc = new GridController();
@@ -137,6 +139,11 @@ public class CompositBoardController extends LeyoutComponentController {
     }
 
     @Override
+    public ArrayList<Condition> getConditions() {
+        return component().getConditions();
+    }
+
+    @Override
     public void updateViewData() {
         bc.update();
         hc.update();
@@ -149,5 +156,19 @@ public class CompositBoardController extends LeyoutComponentController {
 
     }
 
+    @Override
+    public void select() {
+        hc.select();
+        bc.select();
+        gc.select();
+        ic.select();
+    }
 
+    @Override
+    public void unselect(){
+        hc.unselect();
+        bc.unselect();
+        gc.unselect();
+        ic.unselect();
+    }
 }

@@ -4,7 +4,7 @@ package graphics.views;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-import graphics.Infoable;
+import cards.Infoable;
 import graphics.controllers.LeyoutComponentController;
 
 import java.util.ArrayList;

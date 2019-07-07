@@ -1,12 +1,17 @@
 package graphics;
 
 import inout.EmployesCsvLoader;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
 import graphics.components.*;
 import graphics.controllers.*;
 import panes.PropertyPane;
+import panes.RightPanel;
 import sets.BoardsController;
+import sets.SetComponentControllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,10 +22,13 @@ public class Layout extends Region {
     private ArrayList<GroupBoard> arrBoards;
     private CanbanController cc;
     private BoardsController bc;
-    private int cx, cy, dx, dy, ndx, ndy;                       //dragget coordinate
-    private LeyoutComponentController dComponentController;       //dragget controller
+    private int cx, cy, dx, dy, ndx, ndy;                           //dragget coordinate
+    private LeyoutComponentController dComponentController;         //dragget controller
+    private ArrayList<LeyoutComponentController> targetComponentControllers; // target components;
+    private LeyoutComponentController enteredComponentController;         // target components;
     private CompositBoard cb;
     CompositBoardController cbc;
+    private TextInputControl t;                                 //Текстове поле для введення значень властивостей компонентів на лейауті
 
     public ArrayList<GroupBoard> getArrBoards() {
         return arrBoards;
@@ -85,6 +93,7 @@ public class Layout extends Region {
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
         cbc.setXYAS(100, 100, 0, 90);
+        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
 
         setEvents();
@@ -99,6 +108,7 @@ public class Layout extends Region {
 //        cm.addLeaf(gbc1.getCompositBoard());
         CompositMaoController cmc = new CompositMaoController(cm);
         cmc.setXYAS(150, 145, -45, 0);
+//        SetComponentControllers.getInstance().addComponentController(cmc);
         this.getChildren().add(cmc.view());
 
 //        canbans();
@@ -113,6 +123,7 @@ public class Layout extends Region {
 
 
         this.setOnDragEntered(dragEvent -> {
+            RightPanel.getInstance().getPanes().get(4).setExpanded(true);
             System.out.println("On drag entered");
             System.out.println("Old: " + dx + "; " + dy);
             dx = (int)dragEvent.getSceneX();
@@ -147,6 +158,13 @@ public class Layout extends Region {
         this.setOnDragDone(dragEvent -> {
 //            System.out.println("On drag done");
             dragEvent.consume();
+        });
+
+        this.setOnMouseClicked(mouseEvent -> {
+            // Поле не появляется вообще. Проверка на null не помогает, кроме того она есть уже в самом deleteTextField()
+//            if (t != null) {
+//                deleteTextField();
+//            }
         });
     }
 
@@ -350,15 +368,40 @@ public class Layout extends Region {
         dy = sceneY;
     }
 
-    public void drugComponent (int x, int y, LeyoutComponentController component){
+    public void drugComponent (int x, int y, LeyoutComponentController controller){
         dx = x;
         dy = y;
-        dComponentController = component;
+        dComponentController = controller;
         cx = dComponentController.getX();
         cy = dComponentController.getY();
     }
 
-    public void addComponent(CompositBoardController compositBoardController) {
-        this.getChildren().add(compositBoardController.view());
+    public void addComponentController(LeyoutComponentController componentController) {
+        this.getChildren().add(componentController.view());
     }
+
+    public void createTextField(LeyoutComponentController controller, double X, double Y) {
+        deleteTextField();
+        t = new TextField();
+//        TODO только строчные свойства можно присоединить. ??? Переделать все свойства в строчные
+//        Эта процедура для свойств типа been. Так что просто присоединить свойство не получится.
+//        t.accessibleTextProperty(controller.getIntProperties());
+//        t.accessibleTextProperty(controller.getTextProperty());
+        t.relocate(X, Y);
+        t.setOnKeyPressed(keyEvent -> {
+            KeyCode keyCode = keyEvent.getCode();
+            if (KeyCode.ENTER == keyCode || KeyCode.TAB == keyCode || KeyCode.ESCAPE == keyCode)  {
+                deleteTextField();
+            }
+        });
+        this.getChildren().add(t);
+    }
+
+    public void deleteTextField(){
+        if (t != null){
+            this.getChildren().remove(t);
+            t = null;
+        }
+    }
+
 }

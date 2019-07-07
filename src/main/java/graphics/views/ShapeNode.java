@@ -2,7 +2,7 @@ package graphics.views;
 
 
 import javafx.scene.shape.Circle;
-import graphics.Infoable;
+import cards.Infoable;
 import graphics.Point;
 import graphics.controllers.LeyoutComponentController;
 
@@ -62,8 +62,8 @@ public class ShapeNode extends LeyoutComponentView {
 //                    "Leyout – X: " + bounds2.getCenterX() + "; Y: " + bounds2.getCenterY() + "\n" +
 //                    "LocalMax – X: " + bounds.getMaxX() + "; Y: " + bounds.getMinY() + "\n"
 //            );
-//            ShapeInfo info = new ShapeInfo(text);
-//            info.show(this, bounds.getMaxX(), bounds.getMinY() -10);
+//            ShapeInfo cards = new ShapeInfo(text);
+//            cards.setRight(this, bounds.getMaxX(), bounds.getMinY() -10);
 
 //        });
     }

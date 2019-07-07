@@ -1,7 +1,7 @@
-package graphics.views;
+package cards.views;
 
 import graphics.components.LeyoutComponent;
-import graphics.controllers.PaneComponentController;
+import cards.controllers.PaneComponentController;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Circle;

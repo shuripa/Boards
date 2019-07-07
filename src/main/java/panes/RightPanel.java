@@ -1,6 +1,5 @@
 package panes;
 
-import graphics.views.EditorGroupPane;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;

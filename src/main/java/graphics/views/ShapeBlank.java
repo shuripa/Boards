@@ -1,5 +1,6 @@
 package graphics.views;
 
+import cards.ShapeInfo;
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;

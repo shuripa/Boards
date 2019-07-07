@@ -1,4 +1,4 @@
-package graphics.views;
+package cards;
 
 import graphics.controllers.LeyoutComponentController;
 import javafx.geometry.Bounds;
@@ -18,7 +18,7 @@ public class ShapeInfo extends Popup{
     Shape msgBubble;
 
     public ShapeInfo(Text descr, Integer hight){
-//        Popup info = new Popup();
+//        Popup cards = new Popup();
         this.setAutoHide(true);
         this.setHideOnEscape(true);
 //        paint(hight);
@@ -27,7 +27,7 @@ public class ShapeInfo extends Popup{
         pointer.setType(ArcType.ROUND);
         Rectangle msgRect = new Rectangle( 18, -20, 200, hight);
         msgBubble = Shape.union(pointer, msgRect);
-        msgBubble.setStyle("-fx-fill: RGBA(47,79,79,1.0); -fx-stroke: SlateGray; -fx-stroke-width: 0.5");;
+        msgBubble.setStyle("-fx-fill: RGBA(47,79,79,1.0); -fx-stroke: SlateGray; -fx-stroke-width: 0.5");
         //Text
         textMsg = new TextFlow();
         textMsg.setPrefWidth(msgRect.getWidth() -1);
@@ -69,7 +69,7 @@ public class ShapeInfo extends Popup{
 //    public ShapeInfo(Node node, int hight){
 //        paint(hight);
 //        node.setXY(23, hight-50);
-//        this.getContent().addAll(msgBubble, node);
+//        this.getContent().addAll(msgBoard, node);
 //    }
 
 //    private void paint(int hight) {
@@ -91,7 +91,7 @@ public class ShapeInfo extends Popup{
             Rectangle msgRect = new Rectangle(18, -20, 280, s.lines().count() * 15.5 + 20);
             msgBubble = Shape.union(pointer, msgRect);
             msgBubble.setStyle("-fx-fill: RGBA(47,79,79,1.0); -fx-stroke: SlateGray; -fx-stroke-width: 0.5");
-            ;
+
             //Text
             textMsg = new TextFlow();
             textMsg.setPrefWidth(msgRect.getWidth() - 1);
@@ -113,6 +113,7 @@ public class ShapeInfo extends Popup{
             col.add("name");
             col.add("cnt");
             col.add("time");
+
 
 
             this.getContent().addAll(msgBubble, textMsg, text);

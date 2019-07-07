@@ -3,7 +3,7 @@ package graphics.views;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import graphics.Infoable;
+import cards.Infoable;
 import graphics.components.GroupLeafCanban;
 import graphics.controllers.CanbanController;
 import graphics.controllers.StockController;
@@ -148,7 +148,7 @@ public class ShapeCardCanban extends Group implements Infoable {
 ////                    );
 //
 //        Text text = new Text(title + "\n" + material + " = " + count);
-//        ShapeInfo info = new ShapeInfo(text, 40);
-//        info.show(this, bounds.getMaxX(), bounds.getMinY() -15);
+//        ShapeInfo cards = new ShapeInfo(text, 40);
+//        cards.setRight(this, bounds.getMaxX(), bounds.getMinY() -15);
 //    }
 }

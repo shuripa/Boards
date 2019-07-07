@@ -1,5 +1,6 @@
 package graphics.controllers;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.scene.input.MouseButton;
 import graphics.components.Human;
 import graphics.views.HumanView;
@@ -12,7 +13,6 @@ public class HumanController extends LeyoutComponentController {
         setView(new HumanView(this));
     }
 
-
     public HumanController(Human human) throws IOException {
         super(human);
         setView(new HumanView(this));
@@ -24,6 +24,10 @@ public class HumanController extends LeyoutComponentController {
 
     public String getText(){
         return ((Human) component()).getText();
+    }
+
+    public IntegerProperty property() {
+        return  ((Human)component()).idProperty();
     }
 
     @Override

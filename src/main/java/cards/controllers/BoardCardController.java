@@ -1,14 +1,16 @@
-package graphics.controllers;
+package cards.controllers;
 
 import graphics.Layout;
 import graphics.components.CompositBoard;
-import graphics.views.BoardCardView;
+import graphics.controllers.CompositBoardController;
+import graphics.controllers.LeyoutComponentController;
+import cards.views.BoardCardView;
 
 import java.io.IOException;
 
 import static graphics.Layout.getInstace;
 
-public class BoardCardController extends PaneComponentController{
+public class BoardCardController extends PaneComponentController {
 
     public BoardCardController(String board){
         super();
@@ -22,7 +24,7 @@ public class BoardCardController extends PaneComponentController{
         CompositBoard cb = new CompositBoard();
         CompositBoardController cbc = new CompositBoardController(cb);
         cbc.setXYAS((int)x, (int)y, 0, 60);
-        layout.addComponent(cbc);
+        layout.addComponentController(cbc);
         return cbc;
     }
 

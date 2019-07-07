@@ -76,7 +76,7 @@ public class HelloDrugAndDrop extends Application {
             public void handle(DragEvent event) {
                 /* the drag-and-drop gesture entered the target */
                 System.out.println("onDragEntered");
-                /* show to the user that it is an actual gesture target */
+                /* setRight to the user that it is an actual gesture target */
                 if (event.getGestureSource() != target &&
                         event.getDragboard().hasString()) {
                     target.setFill(Color.GREEN);

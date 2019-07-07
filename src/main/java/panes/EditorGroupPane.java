@@ -1,6 +1,6 @@
-package graphics.views;
+package panes;
 
-import graphics.controllers.BoardCardController;
+import cards.controllers.BoardCardController;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;

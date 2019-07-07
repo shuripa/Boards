@@ -1,17 +1,15 @@
-package graphics.views;
+package cards.views;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import graphics.components.LeyoutComponent;
-import graphics.controllers.PaneComponentController;
+import cards.controllers.PaneComponentController;
 
 import java.util.ArrayList;
 
 public abstract class PaneComponentView extends Group {
-
-
 
     private PaneComponentController controller;
     private ArrayList <Shape> activeElements;       //Активные елементы
@@ -26,7 +24,7 @@ public abstract class PaneComponentView extends Group {
         texts = new ArrayList<>();
         nodes = new ArrayList<>();
         setComponentProperties();
-//        component().addObserver(this);
+//        components().addObserver(this);
     }
 
     public void activate(){
@@ -122,7 +120,9 @@ public abstract class PaneComponentView extends Group {
 
     public abstract void setComponentProperties();
 
-    protected abstract LeyoutComponent component();
+    protected LeyoutComponent component(){
+        return controller.component();
+    }
 
     public abstract void setViewProperties();
 }

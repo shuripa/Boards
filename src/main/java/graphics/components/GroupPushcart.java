@@ -1,7 +1,7 @@
 package graphics.components;
 
 import javafx.scene.Group;
-import graphics.Infoable;
+import cards.Infoable;
 import graphics.views.ShapeNode;
 import graphics.views.ShapePushcart;
 

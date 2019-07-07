@@ -1,9 +1,10 @@
 package graphics.controllers;
 
 import graphics.Layout;
+import graphics.components.Human;
 import graphics.components.LeyoutComponent;
 import graphics.views.LeyoutComponentView;
-import graphics.views.ShapeInfo;
+import cards.ShapeInfo;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
@@ -11,6 +12,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.TransferMode;
+import model.Condition;
 import panes.PropertyPane;
 
 import java.io.IOException;
@@ -228,24 +230,32 @@ public abstract class LeyoutComponentController {
         view().getStylesheets().add("style.css");
     }
 
-    private void viewEvents() throws IOException {
+    public void viewEvents() throws IOException {
 
         view().setOnMouseEntered(mouseEvent -> {
-            view().setScaleX(1.02);
-            view().setScaleY(1.02);
-            view.entered();
+            select();
         });
 
         view().setOnMouseExited(mouseEvent -> {
-            view().setScaleX(1.0);
-            view().setScaleY(1.0);
-            view.exited();
+            unselect();
         });
 
         view().setOnMouseClicked(mouseEvent -> {
             PropertyPane pp = PropertyPane.getInstance();
             pp.addProperties(controller(), strProperties, intProperties);
-            if (component()!= null) new ShapeInfo(controller());
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                if (component() != null) new ShapeInfo(controller());
+            }
+
+            if (mouseEvent.getClickCount() == 2){
+                Layout l = null;
+                try {
+                    l = Layout.getInstace();
+                    l.createTextField (controller(), mouseEvent.getSceneX(), mouseEvent.getSceneY());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
         view().setOnDragDetected(mouseEvent -> {
@@ -262,15 +272,38 @@ public abstract class LeyoutComponentController {
             db.setContent(content);
 
             mouseEvent.consume();
-
-
         });
+
     }
 
     protected abstract void setDragEvent();
 
     protected abstract void setEventTonExt(MouseButton button);
 
+    //TODO: test. переделать
+    public IntegerProperty property() {
+        return  ((Human)component()).idProperty();
+    }
 
+    public ArrayList<Condition> getConditions(){
+        return component().getConditions();
+    }
 
+    public void select() {
+        view().setScaleX(1.02);
+        view().setScaleY(1.02);
+        view().entered();
+    }
+
+    public void unselect() {
+        view().setScaleX(1.0);
+        view().setScaleY(1.0);
+        view().exited();
+    }
+
+    public void selectHuman() {
+    }
+
+    public void unselectHuman(){
+    }
 }

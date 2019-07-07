@@ -6,8 +6,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import graphics.components.Employer;
-import graphics.controllers.EmployerCardController;
-import graphics.controllers.PaneComponentController;
+import cards.controllers.EmployerCardController;
+import cards.controllers.PaneComponentController;
 
 import java.io.IOException;
 import java.util.HashMap;

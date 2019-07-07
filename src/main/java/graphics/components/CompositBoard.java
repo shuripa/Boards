@@ -1,5 +1,9 @@
 package graphics.components;
 
+import model.Condition;
+
+import java.util.ArrayList;
+
 public class CompositBoard extends LeyoutComponent {
     Board b;
     Human h;
@@ -48,6 +52,11 @@ public class CompositBoard extends LeyoutComponent {
 
     public String getCondition (){
         return b.getCondition();
+    }
+
+    @Override
+    public ArrayList<Condition> getConditions() {
+        return b.getConditions();
     }
 
     public void setLogining(Employer employer) {

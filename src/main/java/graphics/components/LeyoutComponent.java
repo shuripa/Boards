@@ -1,6 +1,7 @@
 package graphics.components;
 
 import graphics.controllers.LeyoutComponentController;
+import model.Condition;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,9 @@ public abstract class LeyoutComponent {
     private ArrayList<LeyoutComponentController> observers;
 
     private ArrayList<LeyoutComponent> leafs;
-    private int posCount;
     private LeyoutComponent parent;
+    private ArrayList<Condition> conditions;
+    private int posCount;
 
 //    private ArrayList <Node> nodes;         //Элементы управления
 //    public ShapeNode nEnt;                     //Точка входа
@@ -23,6 +25,7 @@ public abstract class LeyoutComponent {
         parent = null;
         observers = new ArrayList<>();
         leafs = new ArrayList<>();
+        conditions = new ArrayList<>();
 //        nodes = new ArrayList<>();
     }
 
@@ -74,10 +77,8 @@ public abstract class LeyoutComponent {
         }
     }
 
-
     @Override
     public abstract String toString();
-
 
     /** Leafs */
 
@@ -97,6 +98,14 @@ public abstract class LeyoutComponent {
 
     public LeyoutComponent getLeaf (int i){
         return leafs.get(i);
+    }
+
+    public void addCondition (Condition condition){
+        conditions.add(condition);
+    }
+
+    public ArrayList<Condition> getConditions (){
+        return conditions;
     }
 
 }

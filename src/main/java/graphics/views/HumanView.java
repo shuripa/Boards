@@ -26,7 +26,7 @@ public class HumanView extends LeyoutComponentView {
         Ellipse rh = new Ellipse(17, 10, 1.85, 5);  //right hand
         Ellipse rw = new Ellipse(16.5, 15, 2, 2);   //right wrist
         addActiveElements(lh, lw, rh, rw, b, h);
-//        t = new Text(""+ ((Human)controller().component()).getLogined());
+//        t = new Text(""+ ((Human)controller().components()).getLogined());
         t.relocate(20, -5 );
         addText(t);
     }

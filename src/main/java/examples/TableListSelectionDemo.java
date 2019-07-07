@@ -101,7 +101,7 @@ public class TableListSelectionDemo extends JPanel {
     }
 
     /**
-     * Create the GUI and show it.  For thread safety,
+     * Create the GUI and setRight it.  For thread safety,
      * this method should be invoked from the
      * event-dispatching thread.
      */

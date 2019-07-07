@@ -1,14 +1,14 @@
-package graphics.views;
+package cards.views;
 
 
+import cards.controllers.EmployerCardController;
+import cards.controllers.PaneComponentController;
+import graphics.components.LeyoutComponent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import graphics.components.LeyoutComponent;
-import graphics.controllers.EmployerCardController;
-import graphics.controllers.PaneComponentController;
 
 public class EmployerCardView extends PaneComponentView {
 

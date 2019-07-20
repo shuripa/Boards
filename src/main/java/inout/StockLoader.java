@@ -1,9 +1,9 @@
 package inout;
 
-import graphics.controllers.MaterialController;
+import graphics.leyout.controllers.MaterialController;
 import model.Material;
 import stock.Stock;
-import graphics.controllers.StockController;
+import graphics.leyout.controllers.StockController;
 import stock.Store;
 
 import java.io.BufferedReader;

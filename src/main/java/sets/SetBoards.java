@@ -1,6 +1,6 @@
 package sets;
 
-import graphics.controllers.CompositBoardController;
+import graphics.leyout.controllers.CompositBoardController;
 
 import java.util.ArrayList;
 import java.util.HashMap;

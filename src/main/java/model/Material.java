@@ -3,10 +3,26 @@ package model;
 import java.util.ArrayList;
 
 public class Material {
-    String name;
+    String title;
     Integer id;
     ArrayList <String> knotsEnt;
     ArrayList <String> knotsExt;
+
+    public Material(String title){
+        knotsEnt = new ArrayList();
+        knotsExt = new ArrayList();
+        this.title = title;
+        id = 0;
+    }
+
+    public Material(String title, int id){
+        this.title = title;
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 
     public ArrayList<String> getKnotsEnt() {
         return knotsEnt;
@@ -24,20 +40,8 @@ public class Material {
         this.knotsExt.add(knotExt);
     }
 
-    public Material(String name){
-        knotsEnt = new ArrayList();
-        knotsExt = new ArrayList();
-        this.name = name;
-        id = 0;
-    }
-
-    public Material(String name, int id){
-        this.name = name;
-        this.id = id;
-    }
-
     @Override
     public String toString() {
-        return name;
+        return title;
     }
 }

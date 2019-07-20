@@ -1,6 +1,6 @@
 package sets;
 
-import graphics.components.GroupBoard;
+import graphics.leyout.components.GroupBoard;
 
 import java.util.ArrayList;
 import java.util.HashMap;

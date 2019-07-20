@@ -1,7 +1,7 @@
 package inout;
 
-import graphics.controllers.MaterialController;
-import graphics.components.GroupBoard;
+import graphics.leyout.controllers.MaterialController;
+import graphics.leyout.components.GroupBoard;
 import sets.BoardsController;
 import model.Material;
 
@@ -49,7 +49,7 @@ public class GridMaterialLoader {
             if (arrWkPcGrMat.containsKey(tokens[0])){               //Если рабочее место существует - получить его и добавить материал
                 arrWkPcGrMat.get(tokens[0]).add(tokens[1]);
             } else {
-                if (tokens.length > 1) {                            //Иначе
+                if (tokens.length > 1) {
 //                    mc.getMaterials(tokens[1]).setKnotsEnt(tokens[0]);         //Переход из String-material на Material-material
                     ArrayList<String> x = new ArrayList<>();        //Создать набор материалов для рабочего места
                     x.add(tokens[1]);                               //Добавить материал в набор

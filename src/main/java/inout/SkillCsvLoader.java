@@ -1,6 +1,6 @@
 package inout;
 
-import graphics.components.Employer;
+import graphics.leyout.components.Employer;
 import model.Skill;
 import sets.SetEmployers;
 
@@ -18,6 +18,7 @@ import java.util.List;
 
 public class SkillCsvLoader {
     ArrayList<Skill>skills;
+
 
     public SkillCsvLoader(HashMap<Integer, Employer> arrEmp) throws IOException {
         String fileName = "src\\main\\resources\\skill.csv";

@@ -1,8 +1,8 @@
 package graphics;
 
-import cards.Infoable;
+import graphics.cards.Infoable;
 import javafx.scene.Group;
-import graphics.views.ShapeNode;
+import graphics.leyout.views.ShapeNode;
 
 public class BlankGroup extends Group implements Infoable {
     protected ShapeNode nEnt;

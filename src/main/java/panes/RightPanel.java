@@ -3,7 +3,7 @@ package panes;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
-import graphics.views.EmployerGroupPane;
+import graphics.leyout.views.EmployerGroupPane;
 
 public class RightPanel extends Accordion {
     private static RightPanel instance;
@@ -19,7 +19,7 @@ public class RightPanel extends Accordion {
         // но не очевидно что здесь происходит.
         this.getPanes().add(new TitledPane("Material", materialBox));
 
-//         !!! Редактор !!! Заглушка для редактор лейаута. (Иконки объектов лейаута)
+//         !!! Редактор !!! Заглушка.
         this.getPanes().add(new EditorGroupPane());
 
 

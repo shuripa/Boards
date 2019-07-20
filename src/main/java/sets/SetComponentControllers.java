@@ -1,7 +1,7 @@
 package sets;
 
-import graphics.components.LeyoutComponent;
-import graphics.controllers.LeyoutComponentController;
+import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.controllers.LeyoutComponentController;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,7 +1,8 @@
 package inout;
 
-import graphics.components.Employer;
+import graphics.leyout.components.Employer;
 import model.Skill;
+import sets.SetEmployers;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -13,18 +14,22 @@ import java.util.List;
 public class EmployesCsvLoader {
 
     private static EmployesCsvLoader instance;
+//    TODO Массив хранения перенесен в класс SetEmployers
+    @Deprecated
     HashMap<Integer, Employer> arrEmp;
     String fileName = "src\\main\\resources\\employes.csv";
     List<String> lines;
     String[] tokens;
 
     private EmployesCsvLoader() throws IOException {
+        SetEmployers set = SetEmployers.getInstance();
         arrEmp = new HashMap<Integer, Employer>();
         lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
         for (String l: lines) {
             tokens = l.split(";");
             Employer employer = new Employer(Integer.parseInt(tokens[0]), tokens[1], tokens[2], "");
             arrEmp.put(Integer.parseInt(tokens[0]), employer);
+            set.addEmployer(employer);
         }
     }
 

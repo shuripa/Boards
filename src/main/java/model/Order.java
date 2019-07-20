@@ -2,27 +2,23 @@ package model;
 
 public class Order {
     private int id;
-    private String title;
+    private Material material;
     private double etalonTime;
     private int count;
 
-    @Override
-    public String toString() {
-        return  "" + id +
-                ", " + title +
-                ", " + count +
-                ", " + etalonTime;
-    }
-
-    public Order(int id, String name, int count, double etalonTime) {
+    public Order(int id, Material material, int count, double etalonTime) {
         this.id = id;
-        this.title = name;
+        this.material = material;
         this.etalonTime = etalonTime;
         this.count = count;
     }
 
+    public Material getMaterial() {
+        return material;
+    }
+
     public String getTitle() {
-        return title;
+        return material.getTitle();
     }
 
     public Integer getCount() {
@@ -31,5 +27,13 @@ public class Order {
 
     public Double getEtalonTime() {
         return etalonTime;
+    }
+
+    @Override
+    public String toString() {
+        return  "" + id +
+                ", " + material.title +
+                ", " + count +
+                ", " + etalonTime;
     }
 }

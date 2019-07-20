@@ -1,16 +1,18 @@
 package graphics;
 
+import graphics.leyout.components.*;
+import graphics.leyout.controllers.*;
 import inout.EmployesCsvLoader;
+import inout.SkillCsvLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
-import graphics.components.*;
-import graphics.controllers.*;
 import panes.PropertyPane;
 import panes.RightPanel;
 import sets.BoardsController;
+import sets.MAOSystem;
 import sets.SetComponentControllers;
 
 import java.io.IOException;
@@ -57,59 +59,93 @@ public class Layout extends Region {
 
 
 //Переробка елементів дошки
-        Board b = new Board();
-        b.setTitle("KM 082");
-        b.setId(1901);
-        b.setCondition("MFC1841082***");
+        EmployesCsvLoader employes = EmployesCsvLoader.getInstance();                   // Загрузка работников
+        SkillCsvLoader scl = null;                                                      // Загрузка скилов
+        try {
+            scl = new SkillCsvLoader(employes.getArrEmp());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        BoardController bc = new BoardController(b);
-        bc.setXYAS(0, 27 , 0, 60);
-        this.getChildren().add(bc.view());
+//        Board b = new Board();
+//        b.setTitle("KM 082");
+//        b.setId(1901);
+//        b.setCondition("MFC1841082***");
+//
+//        BoardController bc = new BoardController(b);
+//        bc.setXYAS(0, 27 , 0, 60);
+//        this.getChildren().add(bc.view());
+//
+//        WorkPlace h = new WorkPlace();
+//        h.setEmployer(EmployesCsvLoader.getInstance().getEmployerByID(12700));
+//
+//        WorkPlaceController hc = new WorkPlaceController(h);
+//        hc.setXY(20, 7);
+//        this.getChildren().add(hc.view());
+//
+//        Grid g = new Grid();
+//        GridController gc = new GridController(g);
+//        gc.setXYAS(0, 0, 0, 60);
+//        this.getChildren().add(gc.view());
+//
+//        BoardIndex i = new BoardIndex();
+//        i.setProc(70);
+//        BoardIndexController ic= new BoardIndexController(i);
+//        ic.setXY(55, 27);
+//        this.getChildren().add(ic.view());
 
-        Human h = new Human();
-        h.setLogining(EmployesCsvLoader.getInstance().getEmployerByID(12700));
+//        MAO_begin
+        CompositMao cm = new CompositMao();
+        cm.setTitle("UO_MB23");
+        cm.addCondition("MFC1847087***");
+        cm.addCondition("MFC1847034***");
+        MAOSystem maoSystem = MAOSystem.getInstance();
+        maoSystem.addCompositMao(cm);
+        CompositMaoController cmc = new CompositMaoController(cm);
+        cmc.setXYAS(135, 145, -45, 0);
 
-        HumanController hc = new HumanController(h);
-        hc.setXY(20, 7);
-        this.getChildren().add(hc.view());
+//        cm.addLeaf(gbc1.getCompositBoard());
 
-        Grid g = new Grid();
-        GridController gc = new GridController(g);
-        gc.setXYAS(0, 0, 0, 60);
-        this.getChildren().add(gc.view());
-
-        BoardIndex i = new BoardIndex();
-        i.setProc(70);
-        BoardIndexController ic= new BoardIndexController(i);
-        ic.setXY(55, 27);
-        this.getChildren().add(ic.view());
 
 //        Переробка дошки v.3
+//        TODO: перевести всі властивості в String
+//        TODO: всі маніпуляції з властивостями по типу отримання робочого по ID або додавання контролеру в масив заховати в середину відповідних класів
         cb = new CompositBoard();
-        cb.setTitle("KM 034");
+        cb.setTitle("KM 034Cb");
         cb.setId(1902);
-        cb.setCondition("MFC1841034***");
-        cb.setLogining(EmployesCsvLoader.getInstance().getEmployerByID(12630));
+        cb.setCondition("MFC1847034***");
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
+        cb.setLogining(employes.getEmployerByID(12630));
         cbc.setXYAS(100, 100, 0, 90);
         SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
+        cm.addBoard(cb);
+        cb.getBoardIndex().updateData();
+
+
+//        Переробка дошки v.3
+        cb = new CompositBoard();
+        cb.setTitle("KM 087Cb");
+        cb.setId(1903);
+        cb.setCondition("MFC1847087***");
+        cb.setProc(50);
+        cbc = new CompositBoardController(cb);
+        cb.setLogining(employes.getEmployerByID(12700));
+        cbc.setXYAS(100, 150, -180, 90);
+        SetComponentControllers.getInstance().addComponentController(cbc);
+        this.getChildren().add(cbc.view());
+        cm.addBoard(cb);
+        cb.getBoardIndex().updateData();
 
         setEvents();
 
-
-//        CompositBoard cb = new CompositBoard();
-
-//        MAO
-        CompositMao cm = new CompositMao();
-        cm.setTitle("MAO-01");
-        cm.addCondition("MFC1841082***");
-//        cm.addLeaf(gbc1.getCompositBoard());
-        CompositMaoController cmc = new CompositMaoController(cm);
-        cmc.setXYAS(150, 145, -45, 0);
+//        MAO_end
 //        SetComponentControllers.getInstance().addComponentController(cmc);
         this.getChildren().add(cmc.view());
+
+
+//        CompositBoard cb = new CompositBoard();
 
 //        canbans();
 //        testTables(bg1, bg2, bg3);
@@ -226,7 +262,7 @@ public class Layout extends Region {
 //
 //        try {
 //            GridMaterialLoader gml = new GridMaterialLoader(arrBoards);     //Стара дошка
-//            gbc1.setMaterials(gml.getMaterials(gbc1.getTitle()));           //Нова дошка
+//            gbc1.setMaterials(gml.getMaterials(gbc1.getMaterial()));           //Нова дошка
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
@@ -244,7 +280,7 @@ public class Layout extends Region {
 //        gbc1.setTitle("KM 082");
 //        gbc1.setCondition("MFC1841082***");
 ////        Замовлення
-////        TODO: Заказы добавляются - не к CompositBoard, - не к Индексу а к МАО
+////        TODO: Order assigned to - not in CompositBoard, - not in index MAO
 //        gbc1.addOrder(new Order(21116, "MFC184108200A", 8, 148.57));
 //        gbc1.addOrder(new Order(21117, "MFC1841082A0A", 4, 178.24));
 //        gbc1.addOrder(new Order(21118, "MFC1841082L0A", 47, 188.13));
@@ -372,8 +408,8 @@ public class Layout extends Region {
         dx = x;
         dy = y;
         dComponentController = controller;
-        cx = dComponentController.getX();
-        cy = dComponentController.getY();
+        cx = dComponentController.X();
+        cy = dComponentController.Y();
     }
 
     public void addComponentController(LeyoutComponentController componentController) {

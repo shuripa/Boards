@@ -1,7 +1,7 @@
 package stock;
 
 public class Order {
-    private String material;        //TODO: Материал, – пока просто unit. Изправить позже
+    private String material;        //TODO: Material is easy string. Fix later.
     private Double count;       //Количество
 
     public Order(String material, Double count) {

@@ -35,7 +35,7 @@ public class ButtonDemo implements ActionListener {
 
     //Обработка событий ActionEvent, связанных с кнопками.
     public void actionPerformed(ActionEvent e) {
-        //Использование команды действия для идентификации кнопки
+        //Use comad action to the button identifier.
         if (e.getActionCommand().equals("First"))
             jlab.setText("FirstButton was pressed.");
         else

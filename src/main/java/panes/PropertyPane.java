@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import graphics.controllers.LeyoutComponentController;
+import graphics.leyout.controllers.LeyoutComponentController;
 
 import java.util.ArrayList;
 

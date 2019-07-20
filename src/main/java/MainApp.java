@@ -27,7 +27,5 @@ MainApp extends Application {
     }
 
 //    TODO: MVC для Employera
-//    TODO: Из Leyout-а сделан синглтон. Когда лейаутов будет много такой номер не пройдет.
-//          Нужно будет делать тдельный класс, например APP из которого делать синглтон и который
-//          будет содержать все лейауты
+//    TODO: Leyout created as singlton. When leyouts been many this method don't aproach.
 }

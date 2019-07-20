@@ -1,6 +1,6 @@
 package examples;
 
-import graphics.components.GroupBoard;
+import graphics.leyout.components.GroupBoard;
 
 public class NodeMemory {
     public static void main(String[] args) {

@@ -34,7 +34,6 @@ public class CompositBoardView extends LeyoutComponentView {
         ((CompositBoardController) controller()).getBoardController().view().updateView();
         ((CompositBoardController) controller()).getBoardIndexController().setXY(controller().S()-30, 12);
         ((CompositBoardController) controller()).getBoardIndexController().view().updateView();
-
     }
 
 }

@@ -9,14 +9,14 @@ public class GroupCanban extends Group {
         //id - номер доски
         //dsc - описание
 
-//        ShapeCanban c1 = new ShapeCanban();
-//        ShapeCanban c2 = new ShapeCanban();
+//        TestCanbanView c1 = new TestCanbanView();
+//        TestCanbanView c2 = new TestCanbanView();
 //        c2.relocate(30, 0);
-//        ShapeCanban c3 = new ShapeCanban();
+//        TestCanbanView c3 = new TestCanbanView();
 //        c3.relocate(60, 0);
-//        ShapeCanban c4 = new ShapeCanban();
+//        TestCanbanView c4 = new TestCanbanView();
 //        c4.relocate(90, 0);
-//        ShapeCanban c5 = new ShapeCanban();
+//        TestCanbanView c5 = new TestCanbanView();
 //        c5.relocate(120, 0);
 //        this.getChildren().addAll(c1, c2, c3, c4, c5);
 //        this.relocate(x, y);

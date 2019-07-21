@@ -11,31 +11,31 @@ public class GroupTest extends BlankGroup {
 //        168, 178
 
         //тестовочный стол
-//        ShapeTestTable tt = new ShapeTestTable(id, dsc, size);
+//        TestTableView tt = new TestTableView(id, dsc, size);
 //        LeyoutComponentController controller = new TestTableController(id, dsc, size);
-//        ShapeTestTable tt = (ShapeTestTable) controller.view();
+//        TestTableView tt = (TestTableView) controller.view();
 //        tt.setXY(200, 200);
 //        controller.setXY(32, 22);
 //        tt.setXY(32, 22);
 //        this.getChildren().add(tt);
 
         //палета
-//        ShapePalete tp = new ShapePalete();
+//        PaletteView tp = new PaletteView();
 //        tp.setXY(252, 190);
 //        tp.relocate(34 + size, 12);
 //        this.getChildren().add(tp);
 
         //тестовочный канбан
-//        ShapeCanban tc = new ShapeCanban();
-//        tc.setXY(168, 200);
-//        tc.relocate(0, 22);
-//        this.getChildren().add(tc);
+//        TestCanbanView canban = new TestCanbanView();
+//        canban.setXY(168, 200);
+//        canban.relocate(0, 22);
+//        this.getChildren().add(canban);
 
         //рабочий стол
-//        ShapeWorkTable wt = new ShapeWorkTable();
-//        wt.setXY(190, 179);
-//        wt.relocate(20, 1);
-//        this.getChildren().add(wt);
+//        TestWorkTableView workTable = new TestWorkTableView();
+//        workTable.setXY(190, 179);
+//        workTable.relocate(20, 1);
+//        this.getChildren().add(workTable);
 
         //рабочий
 //        WorkPlaceController wp = new WorkPlaceController();
@@ -45,7 +45,7 @@ public class GroupTest extends BlankGroup {
 //        this.getChildren().add(wp);
 
 
-//        this.getChildren().addAll(tt, tp, tc, wt, wp.view());
+//        this.getChildren().addAll(tt, tp, canban, workTable, wp.view());
 //        this.relocate(x, y);
 //        super.setRotate(a);
     }

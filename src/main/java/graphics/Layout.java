@@ -67,42 +67,28 @@ public class Layout extends Region {
             e.printStackTrace();
         }
 
-//        Board b = new Board();
-//        b.setTitle("KM 082");
-//        b.setId(1901);
-//        b.setCondition("MFC1841082***");
-//
-//        BoardController bc = new BoardController(b);
-//        bc.setXYAS(0, 27 , 0, 60);
-//        this.getChildren().add(bc.view());
-//
-//        WorkPlace h = new WorkPlace();
-//        h.setEmployer(EmployesCsvLoader.getInstance().getEmployerByID(12700));
-//
-//        WorkPlaceController hc = new WorkPlaceController(h);
-//        hc.setXY(20, 7);
-//        this.getChildren().add(hc.view());
-//
-//        Grid g = new Grid();
-//        GridController gc = new GridController(g);
-//        gc.setXYAS(0, 0, 0, 60);
-//        this.getChildren().add(gc.view());
-//
-//        BoardIndex i = new BoardIndex();
-//        i.setProc(70);
-//        BoardIndexController ic= new BoardIndexController(i);
-//        ic.setXY(55, 27);
-//        this.getChildren().add(ic.view());
-
 //        MAO_begin
+//        TODO: Умови для МАО можуть складатись з умов дошок які входять в МАО
+        MAOSystem maoSystem = MAOSystem.getInstance();
+
         CompositMao cm = new CompositMao();
         cm.setTitle("UO_MB23");
         cm.addCondition("MFC1847087***");
         cm.addCondition("MFC1847034***");
-        MAOSystem maoSystem = MAOSystem.getInstance();
         maoSystem.addCompositMao(cm);
         CompositMaoController cmc = new CompositMaoController(cm);
         cmc.setXYAS(135, 145, -45, 0);
+
+        CompositMao cm1 = new CompositMao();
+//        TODO При неправильній назві завантажуються замовлення відповідно до назви
+//        TODO При відсутності замовлень система падає
+        cm1.setTitle("UO_MB12");
+        cm1.addCondition("MFC1802012***");
+        cm1.addCondition("MFC1802317***");
+        cm1.addCondition("MFC1847164***");
+        maoSystem.addCompositMao(cm1);
+        CompositMaoController cmc1 = new CompositMaoController(cm1);
+        cmc1.setXYAS(230, 145, -45, 0);
 
 //        cm.addLeaf(gbc1.getCompositBoard());
 
@@ -123,19 +109,44 @@ public class Layout extends Region {
         cm.addBoard(cb);
         cb.getBoardIndex().updateData();
 
-
 //        Переробка дошки v.3
-        cb = new CompositBoard();
-        cb.setTitle("KM 087Cb");
-        cb.setId(1903);
-        cb.setCondition("MFC1847087***");
-        cb.setProc(50);
-        cbc = new CompositBoardController(cb);
-        cb.setLogining(employes.getEmployerByID(12700));
-        cbc.setXYAS(100, 150, -180, 90);
+        cb = new CompositBoard();                                           //Не грузится из файла
+        cb.setTitle("KM 087Cb");                                            //Файл данных
+        cb.setId(1903);                                                     //Файл данных
+        cb.setCondition("MFC1847087***");                                   //Файл условий
+        cb.setProc(50);                                                     //Не грузится из файла
+        cbc = new CompositBoardController(cb);                              //Не грузится из файла
+        cb.setLogining(employes.getEmployerByID(12700));                    //Не грузится из файла
+        cbc.setXYAS(100, 150, -180, 90);                   //Файл размеров
         SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
-        cm.addBoard(cb);
+        cm.addBoard(cb);                                                    //Файл связей
+        cb.getBoardIndex().updateData();
+
+        cb = new CompositBoard();
+        cb.setTitle("KM 317Cp");
+        cb.setId(1904);
+        cb.setCondition("MFC1802317***");
+        cb.setProc(50);
+        cbc = new CompositBoardController(cb);
+        cb.setLogining(employes.getEmployerByID(13710));
+        cbc.setXYAS(195, 100, 0, 90);
+        SetComponentControllers.getInstance().addComponentController(cbc);
+        this.getChildren().add(cbc.view());
+        cm1.addBoard(cb);
+        cb.getBoardIndex().updateData();
+
+        cb = new CompositBoard();
+        cb.setTitle("KM 164Cb");
+        cb.setId(1905);
+        cb.setCondition("MFC1847164***");
+        cb.setProc(50);
+        cbc = new CompositBoardController(cb);
+        cb.setLogining(employes.getEmployerByID(13003));
+        cbc.setXYAS(195, 150, -180, 90);
+        SetComponentControllers.getInstance().addComponentController(cbc);
+        this.getChildren().add(cbc.view());
+        cm1.addBoard(cb);
         cb.getBoardIndex().updateData();
 
         setEvents();
@@ -143,9 +154,60 @@ public class Layout extends Region {
 //        MAO_end
 //        SetComponentControllers.getInstance().addComponentController(cmc);
         this.getChildren().add(cmc.view());
+        this.getChildren().add(cmc1.view());
 
 
-//        CompositBoard cb = new CompositBoard();
+        CompositTestTable comptest = new CompositTestTable();
+        comptest.setId("1525");
+        comptest.setTitle("KM-25");
+        CompositTestTableController compTestController = new CompositTestTableController(comptest);
+        compTestController.setXYAS(400, 400, 0, 60);
+        this.getChildren().add(compTestController.view());
+
+
+//        //Test table
+//
+//        TestTable test = new TestTable();
+//        test.setId("1521");
+//        test.setTitle("KM-21");
+//        TestTableController testController = new TestTableController(test);
+//        testController.setXYAS(240, 245, 0, 60);
+//        this.getChildren().add(testController.view());
+//
+//        WorkPlace wp1 = new WorkPlace();
+//        WorkPlaceController wpc1 = new WorkPlaceController(wp1);
+//        wpc1.setXYAS(275, 225, 0, 0);
+//        this.getChildren().add(wpc1.view());
+//
+//        Palette p = new Palette();
+//        PaletteController pc = new PaletteController(p);
+//        pc.setXYAS(207, 235, 0, 0);
+//        this.getChildren().add(pc.view());
+//
+//        TestCanban c = new TestCanban();
+//        TestCanbanController cc = new TestCanbanController(c);
+//        cc.setXYAS(300, 300 , 0 , 0);
+//        this.getChildren().add(cc.view());
+//
+//        TestWorkTable wt = new TestWorkTable();
+//        TestWorkTableController wtc = new TestWorkTableController(wt);
+//        wtc.setXYAS(350, 300, 0, 0);
+//        this.getChildren().add(wtc.view());
+
+//        test table 2
+
+//        TestTable test2 = new TestTable();
+//        test2.setId("1522");
+//        test2.setTitle("KM-22");
+//        TestTableController testController2 = new TestTableController(test2);
+//        testController2.setXYAS(315, 190, 90, 60);
+//        this.getChildren().add(testController2.view());
+//
+//        WorkPlace wp2 = new WorkPlace();
+//        WorkPlaceController wpc2 = new WorkPlaceController(wp2);
+//        wpc2.setXYAS(305, 195, 0, -90);
+//        this.getChildren().add(wpc2.view());
+
 
 //        canbans();
 //        testTables(bg1, bg2, bg3);
@@ -156,8 +218,6 @@ public class Layout extends Region {
     }
 
     private void setEvents() {
-
-
         this.setOnDragEntered(dragEvent -> {
             RightPanel.getInstance().getPanes().get(4).setExpanded(true);
             System.out.println("On drag entered");

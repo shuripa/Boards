@@ -1,19 +1,26 @@
 package graphics.leyout.controllers;
 
+import graphics.leyout.views.TestTableView;
 import javafx.scene.input.MouseButton;
-import graphics.leyout.views.ShapeTestTable;
-import model.TestTable;
+import graphics.leyout.components.TestTable;
 
 import java.io.IOException;
 
 public class TestTableController extends LeyoutComponentController {
 
+    public TestTableController (TestTable table) throws IOException {
+        super(table);
+        setView(new TestTableView(this));
+        ((TestTableView)view()).setIdText("" + table.getId());
+        ((TestTableView)view()).setTitleText(table.getTitle());
+    }
+
     public TestTableController (LeyoutComponentController controller, TestTable table) throws IOException {
         super(table);
-        setView(new ShapeTestTable(this));
-        ((TestTable) component()).setId(0);
-        ((TestTable) component()).setTitle("Untitled");
-//        ((ShapeTestTable)view()).setSize(60);
+        setView(new TestTableView(this));
+        setParent(controller);
+        ((TestTableView)view()).setIdText("" + table.getId());
+        ((TestTableView)view()).setTitleText(table.getTitle());
     }
 
     @Override
@@ -36,7 +43,7 @@ public class TestTableController extends LeyoutComponentController {
 
     }
 
-    public int getId() {
+    public String getId() {
         return ((TestTable) component()).getId();
     }
 

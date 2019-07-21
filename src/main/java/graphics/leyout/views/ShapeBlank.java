@@ -62,10 +62,10 @@ public class ShapeBlank extends LeyoutComponentView {
 //        l.setStroke(Color.WHITE);
 //        l.setStrokeWidth(.5);
 
-        //td
+        //tt
         Text td = new Text("" + description);
         td.setFont(new Font(11));
-//        td.setStyle("-fx-fill: white; -fx-font-family: monospace;");
+//        tt.setStyle("-fx-fill: white; -fx-font-family: monospace;");
         td.setX(4);
         td.setY(18);
 
@@ -77,8 +77,8 @@ public class ShapeBlank extends LeyoutComponentView {
         ti.setY(8);
         addTexts(td, ti);
 
-//        this.getChildren().addAll(rb, td, ti);
-//        this.getChildren().addAll(td, ti);
+//        this.getChildren().addAll(rb, tt, ti);
+//        this.getChildren().addAll(tt, ti);
 
     }
 

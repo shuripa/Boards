@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Queue;
 /**
  * Карточка канбана или лыжа
- * это новый канбан отличный от ShapeCanban, который используется на тестовках
+ * это новый канбан отличный от TestCanbanView, который используется на тестовках
 */
 
 public class ShapeCardCanban extends Group implements Infoable {

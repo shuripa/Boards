@@ -34,6 +34,7 @@ public class CompositBoard extends LeyoutComponent {
         return g;
     }
 
+
     public void setTitle(String title) {
         b.setTitle(title);
     }

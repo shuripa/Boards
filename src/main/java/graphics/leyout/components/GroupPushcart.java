@@ -3,16 +3,20 @@ package graphics.leyout.components;
 import javafx.scene.Group;
 import graphics.cards.Infoable;
 import graphics.leyout.views.ShapeNode;
-import graphics.leyout.views.ShapePushcart;
+import graphics.leyout.views.PushcartView;
 
+
+
+@Deprecated
 public class GroupPushcart extends Group implements Infoable {
     WorkPlace workPlace;
-    ShapePushcart pushcart;
+    PushcartView pushcart;
     ShapeNode nEnt;
     ShapeNode nExt;
+
     public GroupPushcart(int x, int y, double a){
         workPlace = new WorkPlace();
-//        pushcart = new ShapePushcart();
+//        pushcart = new PushcartView();
 //        nEnt = new ShapeNode(this);
 //        nExt = new ShapeNode(this);
 

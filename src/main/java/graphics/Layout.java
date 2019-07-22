@@ -156,6 +156,7 @@ public class Layout extends Region {
         this.getChildren().add(cmc.view());
         this.getChildren().add(cmc1.view());
 
+//        Test table
 
         CompositTestTable comptest = new CompositTestTable();
         comptest.setId("1525");
@@ -164,49 +165,12 @@ public class Layout extends Region {
         compTestController.setXYAS(400, 400, 0, 60);
         this.getChildren().add(compTestController.view());
 
+//        Pushcart
 
-//        //Test table
-//
-//        TestTable test = new TestTable();
-//        test.setId("1521");
-//        test.setTitle("KM-21");
-//        TestTableController testController = new TestTableController(test);
-//        testController.setXYAS(240, 245, 0, 60);
-//        this.getChildren().add(testController.view());
-//
-//        WorkPlace wp1 = new WorkPlace();
-//        WorkPlaceController wpc1 = new WorkPlaceController(wp1);
-//        wpc1.setXYAS(275, 225, 0, 0);
-//        this.getChildren().add(wpc1.view());
-//
-//        Palette p = new Palette();
-//        PaletteController pc = new PaletteController(p);
-//        pc.setXYAS(207, 235, 0, 0);
-//        this.getChildren().add(pc.view());
-//
-//        TestCanban c = new TestCanban();
-//        TestCanbanController cc = new TestCanbanController(c);
-//        cc.setXYAS(300, 300 , 0 , 0);
-//        this.getChildren().add(cc.view());
-//
-//        TestWorkTable wt = new TestWorkTable();
-//        TestWorkTableController wtc = new TestWorkTableController(wt);
-//        wtc.setXYAS(350, 300, 0, 0);
-//        this.getChildren().add(wtc.view());
-
-//        test table 2
-
-//        TestTable test2 = new TestTable();
-//        test2.setId("1522");
-//        test2.setTitle("KM-22");
-//        TestTableController testController2 = new TestTableController(test2);
-//        testController2.setXYAS(315, 190, 90, 60);
-//        this.getChildren().add(testController2.view());
-//
-//        WorkPlace wp2 = new WorkPlace();
-//        WorkPlaceController wpc2 = new WorkPlaceController(wp2);
-//        wpc2.setXYAS(305, 195, 0, -90);
-//        this.getChildren().add(wpc2.view());
+        CompositPushcart compositPushcart = new CompositPushcart();
+        CompositPushcartController compositPushcartController = new CompositPushcartController(compositPushcart);
+        compositPushcartController.setXYAS(600, 300, 0, 0);
+        this.getChildren().add(compositPushcartController.view());
 
 
 //        canbans();
@@ -244,7 +208,7 @@ public class Layout extends Region {
         });
 
         this.setOnDragDropped(dragEvent -> {
-//            System.out.println("On drag dropped");
+            System.out.println("On drag dropped");
             PropertyPane pp = PropertyPane.getInstance();
             pp.addProperties(dComponentController, dComponentController.getStrProperties(), dComponentController.getIntProperties());
             dragEvent.setDropCompleted(true);
@@ -252,7 +216,7 @@ public class Layout extends Region {
         });
 
         this.setOnDragDone(dragEvent -> {
-//            System.out.println("On drag done");
+            System.out.println("On drag done");
             dragEvent.consume();
         });
 
@@ -470,6 +434,7 @@ public class Layout extends Region {
         dComponentController = controller;
         cx = dComponentController.X();
         cy = dComponentController.Y();
+        System.out.println(cx + " " + cy + " " + dx + " " + dy);
     }
 
     public void addComponentController(LeyoutComponentController componentController) {

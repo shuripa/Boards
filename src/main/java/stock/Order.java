@@ -1,5 +1,6 @@
 package stock;
 
+@Deprecated
 public class Order {
     private String material;        //TODO: Material is easy string. Fix later.
     private Double count;       //Количество

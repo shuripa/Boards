@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * <b>Склад - Набір позиций<b/>
+ * Матеріал може бути позиційним безпозиційним, або з позицією на робочому місці)
  * <p>{@code Stock}     - Склад - складається з набору всіх можливих позицій
  * <p>{@code Store}     - Позиція - поняття яке включає матеріал-фізичне розміщення(канбан)- кількість
  * <p>{@code String descript1}
@@ -16,13 +17,13 @@ import java.util.HashMap;
  * <p>{@code void setUnitAction(String unit, Integer date, Integer time, Double amt, Double rst, String kod, String user)}
  */
 
-//количество чего либо имеющее местопроисхождения
+
 public class Stock {
     //TODO: Пока не понятно когда это должно заполняться.
     private Store store;
     private String descript1;
     private String descript2;
-    //TODO: String зменить на CompositUnit
+    //TODO: String заменить на CompositUnit
     Transactions actions;
     private HashMap<String, Store> stores = new HashMap<>();
     private HashMap<String, Transactions> transactions = new HashMap<>();

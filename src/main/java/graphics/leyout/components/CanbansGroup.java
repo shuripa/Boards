@@ -1,6 +1,5 @@
-package graphics.leyout.controllers;
+package graphics.leyout.components;
 
-import graphics.leyout.components.GroupBoardCanban;
 import graphics.leyout.views.ShapeNode;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,21 +18,22 @@ import java.util.HashMap;
 //  -hc         - количество заказов в карточке (по сути индивидуально
 //              для каждой карточки, но может быть и значение по умолчанию)
 
-public class CanbanController {
-    private static CanbanController instance;
+@Deprecated
+public class CanbansGroup {
+    private static CanbansGroup instance;
     private ArrayList<GroupBoardCanban> arrCanbans;                     //Массив канбанов
     private HashMap<String, ShapeNode> materialToEntNode;               //Материал - ВходУзел
     private HashMap<String, ArrayList<ShapeNode>> materialToExtNode;    //Материал - ВыходУзел
 
-    private CanbanController (){
+    private CanbansGroup(){
         materialToEntNode = new HashMap<>();
         materialToExtNode = new HashMap<>();
         arrCanbans = new ArrayList<>();
     }
 
-    public static CanbanController getInstance(){
+    public static CanbansGroup getInstance(){
         if (instance == null){
-            instance = new CanbanController();
+            instance = new CanbansGroup();
         }
         return instance;
     }

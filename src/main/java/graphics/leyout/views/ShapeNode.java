@@ -8,7 +8,7 @@ import graphics.leyout.controllers.LeyoutComponentController;
 
 import java.util.ArrayList;
 
-
+@Deprecated
 public class ShapeNode extends LeyoutComponentView {
 
     Infoable owner;

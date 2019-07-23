@@ -7,6 +7,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+@Deprecated
 public class GroupLeafCanban extends Group {
     String title;
     ShapeCardCanban[] scc;
@@ -56,6 +57,7 @@ public class GroupLeafCanban extends Group {
     public GroupBoardCanban getControl(){
         return parent;
     }
+
     public ShapeCardCanban getCardCanban(int n){
         return scc[n];
 //        TODO: разобраться в чем проблема

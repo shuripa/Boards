@@ -1,24 +1,24 @@
 package graphics.leyout.components;
 
-import graphics.leyout.controllers.CanbanController;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-
+@Deprecated
 public class GroupBoardCanban extends Group {
 
-    public CanbanController getControl() {
-        return parent;
-    }
+    CanbansGroup parent;
 
-    CanbanController parent;
     String title;
     GroupLeafCanban[] glc;
     int cnt;
 
-    public GroupBoardCanban(CanbanController parent, int x, int y, int blockCnt, int cardCnt, String title){
+    public CanbansGroup getControl() {
+        return parent;
+    }
+
+    public GroupBoardCanban(CanbansGroup parent, int x, int y, int blockCnt, int cardCnt, String title){
         String titleNext ;
         this.parent = parent;
         GroupLeafCanban[] glc = new GroupLeafCanban[blockCnt];

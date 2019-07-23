@@ -21,8 +21,6 @@ import java.util.ArrayList;
 public class Layout extends Region {
 
     private static Layout layout = null;
-    private ArrayList<GroupBoard> arrBoards;
-    private CanbanController cc;
     private BoardsController bc;
     private int cx, cy, dx, dy, ndx, ndy;                           //dragget coordinate
     private LeyoutComponentController dComponentController;         //dragget controller
@@ -32,9 +30,6 @@ public class Layout extends Region {
     CompositBoardController cbc;
     private TextInputControl t;                                 //Текстове поле для введення значень властивостей компонентів на лейауті
 
-    public ArrayList<GroupBoard> getArrBoards() {
-        return arrBoards;
-    }
 
     public static Layout getInstace() throws IOException {
         if (layout == null){
@@ -116,7 +111,7 @@ public class Layout extends Region {
         cb.setCondition("MFC1847087***");                                   //Файл условий
         cb.setProc(50);                                                     //Не грузится из файла
         cbc = new CompositBoardController(cb);                              //Не грузится из файла
-        cb.setLogining(employes.getEmployerByID(12700));                    //Не грузится из файла
+        cb.setLogining(employes.getEmployerByID(12700));                    //Файл логирования
         cbc.setXYAS(100, 150, -180, 90);                   //Файл размеров
         SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
@@ -162,22 +157,43 @@ public class Layout extends Region {
         comptest.setId("1525");
         comptest.setTitle("KM-25");
         CompositTestTableController compTestController = new CompositTestTableController(comptest);
-        compTestController.setXYAS(400, 400, 0, 60);
+        compTestController.setXYAS(100, 15, 0, 60);
         this.getChildren().add(compTestController.view());
 
 //        Pushcart
 
         CompositPushcart compositPushcart = new CompositPushcart();
         CompositPushcartController compositPushcartController = new CompositPushcartController(compositPushcart);
-        compositPushcartController.setXYAS(600, 300, 0, 0);
+        compositPushcartController.setXYAS(360, 130, 0, 0);
         this.getChildren().add(compositPushcartController.view());
+
+//        Conviers()
+
+        CompositConvier compositConvier = new CompositConvier(8);
+        CompositConvierController compositConvierController = new CompositConvierController(compositConvier);
+        compositConvierController.setXYAS(470, 20, 0, 60);
+        this.getChildren().add(compositConvierController.view());
+
+        CompositConvier convier2= new CompositConvier(6);
+        CompositConvierController convierController2 = new CompositConvierController(convier2);
+        convierController2.setXYAS(150, 100, -90, 90);
+        this.getChildren().add(convierController2.view());
 
 
 //        canbans();
+
+        CanbanBoard canbanBoard = new CanbanBoard(25, 6);
+        CanbanBoardController canbanBoardController = new CanbanBoardController(canbanBoard);
+        canbanBoardController.setXYAS(55, 660, 0, 0);
+        this.getChildren().add(canbanBoardController.view());
+
+        CanbanBoard canbanBoard1 = new CanbanBoard(25, 8);
+        CanbanBoardController canbanBoardController1 = new CanbanBoardController(canbanBoard1);
+        canbanBoardController1.setXYAS(55, 745, 0, 0);
+        this.getChildren().add(canbanBoardController1.view());
+
 //        testTables(bg1, bg2, bg3);
-//        Conviers();
 //        Blanks();
-//        pushChart();
 
     }
 
@@ -243,10 +259,10 @@ public class Layout extends Region {
 
     private void Conviers() {
 //        //        Конвеєра
-//        ShapeConvier sc = new ShapeConvier(60,6);
+//        ConvierView sc = new ConvierView(60,6);
 //        sc.setXY(290, 0);
 //        getChildren().add(sc);
-//        ShapeConvier sc2 = new ShapeConvier(80,8);
+//        ConvierView sc2 = new ConvierView(80,8);
 //        sc2.setXY(440, 0);
 //        getChildren().add(sc2);
     }
@@ -267,7 +283,7 @@ public class Layout extends Region {
 
     private void canbans() {
 //        //        Канбани
-////        cc = new CanbanController();
+////        cc = new CanbansGroup();
 //
 //        cc.addCanban(10, 550, 4, 4, "16D");
 //        cc.addCanban(160, 550, 7, 4, "01F");
@@ -411,7 +427,7 @@ public class Layout extends Region {
     private void canbanController() {
 //        //        TODO: канбан контроллер нужно сделать не синглтоном, а зависящим от стока и от лейаута
 ////        Канбан контроллер
-//        cc = CanbanController.getInstance();
+//        cc = CanbansGroup.getInstance();
     }
 
     private void leyerToConnection() {

@@ -7,6 +7,7 @@ import graphics.cards.Infoable;
 
 import java.io.IOException;
 
+@Deprecated
 public class GroupBlank extends Group implements Infoable {
     WorkPlaceController h1;
     ShapeBlank bs1;

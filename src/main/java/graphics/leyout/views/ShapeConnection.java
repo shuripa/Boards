@@ -5,6 +5,7 @@ import javafx.scene.shape.Line;
 import graphics.leyout.components.GroupLine;
 import graphics.leyout.controllers.CompositBoardController;
 
+@Deprecated
 public class ShapeConnection extends LeyoutComponentView {
     double x1;
     double y1;

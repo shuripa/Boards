@@ -3,7 +3,7 @@ package panes;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
-import graphics.leyout.views.EmployerGroupPane;
+import graphics.cards.views.EmployerGroupPane;
 
 public class RightPanel extends Accordion {
     private static RightPanel instance;

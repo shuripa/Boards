@@ -2,6 +2,7 @@ package graphics.leyout.components;
 
 import javafx.scene.Group;
 
+@Deprecated
 public class GroupCanban extends Group {
     public GroupCanban(String id, String dsc, int size, int x, int y, double a, int ind) {
         //a - угол

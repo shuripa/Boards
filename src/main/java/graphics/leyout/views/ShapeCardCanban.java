@@ -1,11 +1,11 @@
 package graphics.leyout.views;
 
+import graphics.leyout.components.CanbansGroup;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import graphics.cards.Infoable;
 import graphics.leyout.components.GroupLeafCanban;
-import graphics.leyout.controllers.CanbanController;
 import graphics.leyout.controllers.StockController;
 import stock.Stock;
 import stock.Store;
@@ -17,6 +17,7 @@ import java.util.Queue;
  * это новый канбан отличный от TestCanbanView, который используется на тестовках
 */
 
+@Deprecated
 public class ShapeCardCanban extends Group implements Infoable {
     StockController stockController;
     Stock stock;
@@ -30,7 +31,7 @@ public class ShapeCardCanban extends Group implements Infoable {
     private Queue<Integer> OrdDef;      //Дефиниция каждого из загруженных заказов
     ShapeNode pEnt;                     //Точка входа
     ShapeNode pExt;                     //Точка выхода
-    CanbanController topParent;
+    CanbansGroup topParent;
     GroupLeafCanban parent;
 
 
@@ -60,7 +61,7 @@ public class ShapeCardCanban extends Group implements Infoable {
 
 //        TODO: убрать TOP
 //        topParent.addExtNode(material, pExt);       //Наполнение хаш-мепа контроллера
-            CanbanController.getInstance().addExtNode(material, pExt);  //Наполнение хаш-мепа контроллера
+            CanbansGroup.getInstance().addExtNode(material, pExt);  //Наполнение хаш-мепа контроллера
 
         }
         this.setOnMouseClicked(mouseEvent -> {
@@ -85,7 +86,7 @@ public class ShapeCardCanban extends Group implements Infoable {
         //точка входа
 //        pEnt = new ShapeNode(this);
 //        pEnt.relocate(0,2);
-//        CanbanController.getInstance().addEntNode(material, pEnt);
+//        CanbansGroup.getInstance().addEntNode(material, pEnt);
 
 
 //        this.getChildren().add(pEnt);

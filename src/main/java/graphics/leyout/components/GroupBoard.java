@@ -24,8 +24,9 @@ import java.util.ArrayList;
 // - GridMaterialLoader
 // - Leyout
 // - NodeMemory
-// - ShapeConvier
+// - ConvierView
 
+@Deprecated
 public class GroupBoard extends Group implements Infoable {
     CompositBoardController controller;
     Rectangle selRect;
@@ -88,7 +89,7 @@ public class GroupBoard extends Group implements Infoable {
 //        nEnt.setOnMouseClicked(mouseEvent -> {
 //            MouseButton button = mouseEvent.getButton();
 //            if (button == MouseButton.PRIMARY) {
-//                CanbanController cc = CanbanController.getInstance();
+//                CanbansGroup cc = CanbansGroup.getInstance();
 //                for (String s : gc.getMaterial()) {
 //                    for (ShapeNode ext : cc.getExt(s)) {
 //                        new ShapeConnection(nEnt.getX(), nEnt.getY(), ext.getX(), ext.getY());

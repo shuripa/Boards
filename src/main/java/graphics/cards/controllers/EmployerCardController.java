@@ -3,7 +3,7 @@ package graphics.cards.controllers;
 import graphics.Layout;
 import graphics.cards.BoardMenu;
 import graphics.cards.views.EmployerCardView;
-import graphics.leyout.components.Employer;
+import model.Employer;
 import graphics.leyout.components.GroupBoard;
 import graphics.leyout.components.WorkPlace;
 import graphics.leyout.controllers.LeyoutComponentController;
@@ -29,8 +29,8 @@ public class EmployerCardController extends PaneComponentController
         setView(new EmployerCardView(this));
     }
 
-    public int getId(){
-        return ((Employer)component()).getID();
+    public String getId(){
+        return ((Employer)component()).getId();
     }
 
     public String getName() {
@@ -62,10 +62,14 @@ public class EmployerCardController extends PaneComponentController
         }
     }
 
-
     @Override
     public void updateData() {
         view().setViewProperties();
+        if (((Employer)component()).isLogined()){
+            view().activate();
+        } else {
+            view().disactivate();
+        }
     }
 
     @Override
@@ -114,4 +118,19 @@ public class EmployerCardController extends PaneComponentController
         return hc;
     }
 
+    @Override
+    public void updateViewData() {
+        view().setViewProperties();
+        if (((Employer)component()).isLogined()){
+            view().activate();
+        } else {
+            view().disactivate();
+            view().exited();
+        }
+    }
+
+    @Override
+    public void select() {
+
+    }
 }

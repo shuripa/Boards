@@ -4,6 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import model.Employer;
 import model.Order;
 import sets.MAOSystem;
 
@@ -120,4 +121,5 @@ public class BoardIndex extends LeyoutComponent {
         result = result + "\n Ефективність використання р/м: " + effectivityShift.get() + "%";
         return result;
     }
+
 }

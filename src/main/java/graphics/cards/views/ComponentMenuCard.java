@@ -1,7 +1,6 @@
 package graphics.cards.views;
 
 import graphics.cards.controllers.PaneComponentController;
-import graphics.leyout.components.CompositBoard;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -15,9 +14,9 @@ public class ComponentMenuCard extends PaneComponentView {
     @Override
     public void paint() {
         Rectangle r = new Rectangle(100, 15);
-        tid = new Text("" + (((CompositBoard)component()).getBoard()).getId());
+        tid = new Text("" + component().getId());
         tid.relocate(5, -2);
-        tdesc = new Text(""+ ((CompositBoard)component()).getTitle());
+        tdesc = new Text(""+ component().getTitle());
         tdesc.relocate(40, -2);
         addActiveElements(r);
         addTexts(tid, tdesc);

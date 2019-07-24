@@ -1,13 +1,20 @@
 package graphics.leyout.components;
 
+import model.Condition;
+import model.Employer;
+
+import java.util.ArrayList;
+
 public class CompositTestTable extends LeyoutComponent{
     TestTable ttable;
     WorkPlace wplace;
     Palette palette;
     TestWorkTable workTable;
     TestCanban canban;
+    int step;
 
     public CompositTestTable(){
+        step = 120;
         ttable = new TestTable();
         wplace = new WorkPlace();
         palette = new Palette();
@@ -53,7 +60,7 @@ public class CompositTestTable extends LeyoutComponent{
         return ttable.getId();
     }
 
-    public void setLogining(Employer employer){
+    public void logining(Employer employer){
         wplace.setEmployer(employer);
     }
 
@@ -64,5 +71,12 @@ public class CompositTestTable extends LeyoutComponent{
     @Override
     public String toString() {
         return "";
+    }
+
+    public void setCondition(Condition condition) {
+        getTestTable().setCondition (condition);
+    }
+    public ArrayList<Condition> getConditions() {
+        return ttable.getConditions();
     }
 }

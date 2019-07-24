@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class SetBoards {
 
     private static SetBoards instance;
-    private HashMap<Integer, CompositBoardController> mapBoardControllers;
+    private HashMap<String, CompositBoardController> mapBoardControllers;
 
     private SetBoards(){
         mapBoardControllers = new HashMap<>();
@@ -23,7 +23,7 @@ public class SetBoards {
     }
 
     public void addGroupBoardController(CompositBoardController gbc){
-        mapBoardControllers.put(gbc.getID(), gbc);
+        mapBoardControllers.put(gbc.getId(), gbc);
     }
 
     public CompositBoardController getGroupBoardController(Integer id){

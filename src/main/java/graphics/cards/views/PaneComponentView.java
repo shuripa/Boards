@@ -14,7 +14,7 @@ public abstract class PaneComponentView extends Group {
     private PaneComponentController controller;
     private ArrayList <Shape> activeElements;       //Активные елементы
     private ArrayList<Text> texts;                 //Текстовые метки
-    private ArrayList <Node> nodes;                 //ImageView
+    private ArrayList<Node> nodes;                 //ImageView
     private Boolean onActive;
 
     PaneComponentView(PaneComponentController controller){
@@ -32,9 +32,8 @@ public abstract class PaneComponentView extends Group {
         for (Shape s : activeElements) {
             s.setId("active");
         }
-        for (Text t: texts){
+        for (Shape t: texts){
             t.setId("blanktxt");
-            t.setText(controller.getText());
         }
     }
 

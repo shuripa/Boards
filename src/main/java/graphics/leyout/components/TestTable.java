@@ -2,6 +2,7 @@ package graphics.leyout.components;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import model.Condition;
 
 public class TestTable extends LeyoutComponent {
     private final static String TITLE_PROP_ID = "Test Id";
@@ -45,4 +46,9 @@ public class TestTable extends LeyoutComponent {
                "Назва:              " + title.get() + "\n" +
                "Номер:              " + id.get() + "\n";
     }
+
+    public void setCondition(Condition condition) {
+        this.addCondition(condition);
+    }
+
 }

@@ -9,11 +9,11 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
+import model.Condition;
 import panes.PropertyPane;
 import panes.RightPanel;
 import sets.BoardsController;
 import sets.MAOSystem;
-import sets.SetComponentControllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -93,13 +93,13 @@ public class Layout extends Region {
 //        TODO: всі маніпуляції з властивостями по типу отримання робочого по ID або додавання контролеру в масив заховати в середину відповідних класів
         cb = new CompositBoard();
         cb.setTitle("KM 034Cb");
-        cb.setId(1902);
-        cb.setCondition("MFC1847034***");
+        cb.setId("1902");
+        cb.setCondition(new Condition("MFC1847034***", 110));
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
-        cb.setLogining(employes.getEmployerByID(12630));
+        cb.logining(employes.getEmployerByID("12630"));
         cbc.setXYAS(100, 100, 0, 90);
-        SetComponentControllers.getInstance().addComponentController(cbc);
+//        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm.addBoard(cb);
         cb.getBoardIndex().updateData();
@@ -107,39 +107,39 @@ public class Layout extends Region {
 //        Переробка дошки v.3
         cb = new CompositBoard();                                           //Не грузится из файла
         cb.setTitle("KM 087Cb");                                            //Файл данных
-        cb.setId(1903);                                                     //Файл данных
-        cb.setCondition("MFC1847087***");                                   //Файл условий
+        cb.setId("1903");                                                     //Файл данных
+        cb.setCondition(new Condition("MFC1847087***", 110));                                   //Файл условий
         cb.setProc(50);                                                     //Не грузится из файла
         cbc = new CompositBoardController(cb);                              //Не грузится из файла
-        cb.setLogining(employes.getEmployerByID(12700));                    //Файл логирования
+        cb.logining(employes.getEmployerByID("12700"));                    //Файл логирования
         cbc.setXYAS(100, 150, -180, 90);                   //Файл размеров
-        SetComponentControllers.getInstance().addComponentController(cbc);
+//        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm.addBoard(cb);                                                    //Файл связей
         cb.getBoardIndex().updateData();
 
         cb = new CompositBoard();
         cb.setTitle("KM 317Cp");
-        cb.setId(1904);
-        cb.setCondition("MFC1802317***");
+        cb.setId("1904");
+        cb.setCondition(new Condition("MFC1802317***", 110));
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
-        cb.setLogining(employes.getEmployerByID(13710));
+        cb.logining(employes.getEmployerByID("13710"));
         cbc.setXYAS(195, 100, 0, 90);
-        SetComponentControllers.getInstance().addComponentController(cbc);
+//        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().updateData();
 
         cb = new CompositBoard();
         cb.setTitle("KM 164Cb");
-        cb.setId(1905);
-        cb.setCondition("MFC1847164***");
+        cb.setId("1905");
+        cb.setCondition(new Condition("MFC1847164***", 110));
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
-        cb.setLogining(employes.getEmployerByID(13003));
+        cb.logining(employes.getEmployerByID("13003"));
         cbc.setXYAS(195, 150, -180, 90);
-        SetComponentControllers.getInstance().addComponentController(cbc);
+//        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().updateData();
@@ -156,6 +156,7 @@ public class Layout extends Region {
         CompositTestTable comptest = new CompositTestTable();
         comptest.setId("1525");
         comptest.setTitle("KM-25");
+        comptest.setCondition(new Condition ("MFC1847164***", 120));
         CompositTestTableController compTestController = new CompositTestTableController(comptest);
         compTestController.setXYAS(100, 15, 0, 60);
         this.getChildren().add(compTestController.view());
@@ -325,7 +326,7 @@ public class Layout extends Region {
 //        gbc1.addOrder(new Order(21117, "MFC1841082A0A", 4, 178.24));
 //        gbc1.addOrder(new Order(21118, "MFC1841082L0A", 47, 188.13));
 ////        Логування
-//        gbc1.setLogining(14417);
+//        gbc1.logining(14417);
 ////        Додавання дошки в набор
 //        BoardsController.getInstance().addGroupBoardController(gbc1);
 //        return gbc1;

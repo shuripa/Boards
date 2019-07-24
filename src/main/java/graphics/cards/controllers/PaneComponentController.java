@@ -20,7 +20,6 @@ public abstract class PaneComponentController extends GraphicsController {
     private ArrayList<StringProperty> strProperties; // Строковые свойства
     private ArrayList<IntegerProperty> intProperties; // Строковые свойства
 
-
     private LeyoutComponent component;
     private LeyoutComponent sender;
     private PaneComponentView view;
@@ -32,12 +31,14 @@ public abstract class PaneComponentController extends GraphicsController {
     public PaneComponentController() {
         super();
         this.controller = this;
+//        component().addObserver(this);
     }
 
     public PaneComponentController(LeyoutComponent component) {
         super();
         this.component = component;
         this.controller = this;
+        component().addObserver(this);
 //        view.setComponentProperties();
     }
 
@@ -46,6 +47,7 @@ public abstract class PaneComponentController extends GraphicsController {
         this.component = component;
         this.controller = this;
         this.sender = sender;
+        component().addObserver(this);
 //        view.setComponentProperties();
     }
 
@@ -127,4 +129,5 @@ public abstract class PaneComponentController extends GraphicsController {
     }
 
     public abstract String getText();
+
 }

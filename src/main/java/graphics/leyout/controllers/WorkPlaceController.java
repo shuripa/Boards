@@ -17,7 +17,7 @@ public class WorkPlaceController extends LeyoutComponentController {
         setView(new WorkPlaceView(this));
     }
 
-    public Integer getLogined() {
+    public String getLogined() {
         return ((WorkPlace) component()).getLogined();
     }
 
@@ -33,7 +33,7 @@ public class WorkPlaceController extends LeyoutComponentController {
     @Override
     protected void setComponentProperties() {
         if (((WorkPlace)component()).getEmployer() !=  null) {
-            setIntProperty(((WorkPlace) component()).getEmployer().idProperty());
+            setStrProperty(((WorkPlace) component()).getEmployer().idProperty());
             setStrProperty(((WorkPlace) component()).getEmployer().nameProperty());
             setStrProperty(((WorkPlace) component()).getEmployer().phoneProperty());
         }
@@ -47,6 +47,12 @@ public class WorkPlaceController extends LeyoutComponentController {
     @Override
     public void updateViewData() {
         ((WorkPlaceView)view()).setText("" + getLogined());
+        if (((WorkPlace)component()).isLogined()) {
+            view().activate();
+        } else {
+            view().disactivate();
+            unselect();
+        }
     }
 
 }

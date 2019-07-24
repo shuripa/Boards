@@ -21,6 +21,7 @@ public class EmployerCardView extends PaneComponentView {
         ti = new Text("");
         td = new Text("");
         tp = new Text("");
+
     }
 
     public void paint() {
@@ -47,9 +48,10 @@ public class EmployerCardView extends PaneComponentView {
 
         //image
         imv = new ImageView();
-        int id = ((EmployerCardController)controller()).getId();
+        String id = ((EmployerCardController)controller()).getId();
         try {
             String url = new StringBuilder().append("Employers/images").append(id).append(".jpg").toString();
+//            String url = "src\\main\\resources\\Employers\\images" + id + ".jpg";
             im = new Image(url, 30, 40, true, true);
             imv = new ImageView(im);
             imv.relocate(5, 5);
@@ -81,9 +83,9 @@ public class EmployerCardView extends PaneComponentView {
 
     @Override
     public void repaint() {
-//        ti = new Text("" + ((EmployerCardController)controller()).getId());
-//        td = new Text("" + ((EmployerCardController)controller()).getName());
-//        tp = new Text("" + ((EmployerCardController)controller()).getPhone());
+//        ti.setText("" + ((EmployerCardController)controller()).getId());
+//        td.setText("" + ((EmployerCardController)controller()).getName());
+//        tp.setText("" + ((EmployerCardController)controller()).getPhone());
     }
 
 }

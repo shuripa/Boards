@@ -1,5 +1,7 @@
 package graphics.leyout.components;
 
+import model.Employer;
+
 public class WorkPlace extends LeyoutComponent {
 
     private Employer employer;
@@ -16,13 +18,20 @@ public class WorkPlace extends LeyoutComponent {
     }
 
     public void setEmployer(Employer employer) {
-        this.employer = employer;
-        employer.setWorkPlace(this);
-        update();
+        if (this.employer != null) {
+            this.employer.free();
+            update();
+        }
+        if (employer != null) {
+            this.employer = employer;
+            if (this.employer.getWorkPlase() != this) employer.setWorkPlace(this);
+//            employer.setWorkPlace(this);
+            update();
+        }
     }
 
-    public int getLogined(){
-        return employer == null ? 0 : employer.getId();
+    public String getLogined(){
+        return employer == null ? "0" : employer.getId();
     }
 
     public boolean isLogined() {
@@ -30,8 +39,12 @@ public class WorkPlace extends LeyoutComponent {
     }
 
     public void free(){
-        employer.free();
-        employer = null;
+        if (employer != null) {
+            Employer e = employer;
+            employer = null;
+            e.free();
+        }
+        update();
     }
 
     @Override

@@ -72,7 +72,7 @@ public class CompositMao extends LeyoutComponent{
         for (Order o: orders) {
 //            TODO: получение списка заказов соответствующих условию. Сделать проверку.
             for (Condition c: conditions) {
-                if (c.Like(o.getMaterial().getTitle())) {
+                if (c.Like(o.getMaterial().getTitle(), 110)) {
                     result.add(o);
                 }
             }

@@ -1,7 +1,7 @@
 package graphics.cards.controllers;
 
+import graphics.GraphicsController;
 import graphics.cards.views.ComponentMenuCard;
-import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.controllers.LeyoutComponentController;
 import model.Skill;
@@ -19,8 +19,7 @@ public class ComponentMenuCardController extends PaneComponentController{
         super.viewEvents();
 
         view().setOnMouseClicked(mouseEvent -> {
-            ((CompositBoard)component()).setLogining(((Skill)sender()).getEmployer());
-            ((CompositBoard)component()).getBoardIndex().updateData();
+            component().logining(((Skill)sender()).getEmployer());
         });
 
         view().setOnMouseEntered(mouseEvent -> {
@@ -30,7 +29,7 @@ public class ComponentMenuCardController extends PaneComponentController{
     }
 
     private void boardSelect() {
-        for (LeyoutComponentController lcc: component().getObservers()) {
+        for (GraphicsController lcc: component().getObservers()) {
             lcc.select();
         }
     }
@@ -48,5 +47,15 @@ public class ComponentMenuCardController extends PaneComponentController{
     @Override
     public String getText() {
         return null;
+    }
+
+    @Override
+    public void updateViewData() {
+
+    }
+
+    @Override
+    public void select() {
+
     }
 }

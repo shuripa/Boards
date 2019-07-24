@@ -5,7 +5,7 @@ import inout.SkillCsvLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
-import graphics.leyout.components.Employer;
+import model.Employer;
 import graphics.cards.controllers.EmployerCardController;
 import graphics.cards.controllers.PaneComponentController;
 
@@ -19,7 +19,7 @@ public class EmployerGroupPane extends TitledPane {                             
         EmployesCsvLoader ecl = null;                                                   // Загрузка работников
         SkillCsvLoader scl = null;                                                      // Загрузка скилов
 
-        HashMap<Integer, Employer> hm = new HashMap<>();
+        HashMap<String, Employer> hm = new HashMap<>();
 
         try {
             ecl = EmployesCsvLoader.getInstance();
@@ -37,7 +37,7 @@ public class EmployerGroupPane extends TitledPane {                             
         VBox vBox = new VBox();
         vBox.setSpacing(2.0);
 
-        for (HashMap.Entry<Integer, Employer> entry : hm.entrySet()) {                      // Создание набора карточек
+        for (HashMap.Entry<String, Employer> entry : hm.entrySet()) {                      // Создание набора карточек
             PaneComponentController emc = new EmployerCardController(entry.getValue());
             vBox.getChildren().add(emc.view());
         }

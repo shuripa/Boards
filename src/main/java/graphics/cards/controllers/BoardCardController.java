@@ -37,4 +37,14 @@ public class BoardCardController extends PaneComponentController {
     public String getText() {
         return null;
     }
+
+    @Override
+    public void updateViewData() {
+
+    }
+
+    @Override
+    public void select() {
+
+    }
 }

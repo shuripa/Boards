@@ -21,7 +21,10 @@ public class Condition {
     private String condition;
     private char[] chCond;
 
-    public Condition(String condition){
+    private int step;
+
+    public Condition(String condition, int step){
+        this.step = step;
         this.condition = condition;
         if (condition != null) {
             this.chCond = condition.toCharArray();
@@ -31,6 +34,7 @@ public class Condition {
 
     public boolean isSuited (Skill skill){
         if (skill == null) return false;
+        if (step != skill.getStep()) return false;
         if (chCond == null) return false;
         if (skill.getMaterialBlank().length() != chCond.length) return false;
 
@@ -47,8 +51,9 @@ public class Condition {
     }
 
     public boolean Like (Condition condition) {
-        if (condition == null) return false;
         if (chCond == null) return false;
+        if (step != condition.getStep()) return false;
+            if (condition == null) return false;
         if (condition.length() != chCond.length) return false;
 
         char[] chCondition = condition.getCharCondition();
@@ -63,7 +68,8 @@ public class Condition {
         return result;
     }
 
-    public boolean Like (String title) {
+    public boolean Like (String title, int step) {
+        if (this.step != step) return false;
         if (title == null) return false;
         if (chCond == null) return false;
         if (title.length() != chCond.length) return false;
@@ -86,6 +92,10 @@ public class Condition {
 
     public char[] getCharCondition(){
         return chCond;
+    }
+
+    public int getStep() {
+        return step;
     }
 
     public String toString(){

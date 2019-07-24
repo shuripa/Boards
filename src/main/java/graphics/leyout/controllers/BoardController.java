@@ -17,7 +17,7 @@ public class BoardController extends LeyoutComponentController {
         setView(new BoardView(this));
     }
 
-    public int getId() {
+    public String getId() {
         return ((Board)component()).getId();
     }
 
@@ -31,7 +31,7 @@ public class BoardController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
-        setIntProperty(((Board)component()).idProperty());
+        setStrProperty(((Board)component()).idProperty());
         setStrProperty(((Board)component()).titleProperty());
         setStrProperty(((Board)component()).conditionProperty());
     }

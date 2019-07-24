@@ -9,8 +9,10 @@ public class CompositBoard extends LeyoutComponent {
     WorkPlace wp;
     BoardIndex i;
     Grid g;
+    int step;
 
     public CompositBoard (){
+        step =110;
         b = new Board();
         wp = new WorkPlace(this);
         g = new Grid();
@@ -22,6 +24,7 @@ public class CompositBoard extends LeyoutComponent {
         return b;
     }
 
+    @Override
     public WorkPlace getWorkPlace() {
         return wp;
     }
@@ -43,11 +46,19 @@ public class CompositBoard extends LeyoutComponent {
         return b.getTitle();
     }
 
-    public void setId(int boardId) {
+    public void setId(String boardId) {
         b.setId(boardId);
     }
 
+    public String getId(){
+        return b.getId();
+    }
+
     public void setCondition(String condition) {
+        b.setCondition(condition);
+    }
+
+    public void setCondition(Condition condition){
         b.setCondition(condition);
     }
 
@@ -60,9 +71,11 @@ public class CompositBoard extends LeyoutComponent {
         return b.getConditions();
     }
 
-    public void setLogining(Employer employer) {
-        wp.setEmployer(employer);
-    }
+//    public void logining(Employer employer) {
+//        getWorkPlace().setEmployer(employer);
+//        update();
+//        getBoardIndex().updateData();
+//    }
 
     public void setProc(int proc) {
         i.setProc(proc);

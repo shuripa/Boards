@@ -6,7 +6,12 @@ import graphics.leyout.controllers.LeyoutComponentController;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Набір контроллерів всіх ЛейаутКомпонентів
+ */
+
 public class SetComponentControllers {
+
     private static SetComponentControllers instance;
     private ArrayList<LeyoutComponentController> arrComponentControllers;
 //    private HashMap <Integer, LeyoutComponent> mapComponents;
@@ -25,8 +30,8 @@ public class SetComponentControllers {
         return instance;
     }
 
-    public void addComponentController(LeyoutComponentController component) throws IOException {
-        arrComponentControllers.add(component);
+    public void addComponentController(LeyoutComponentController controller) throws IOException {
+        arrComponentControllers.add(controller);
     }
 
     public void remComponentController(LeyoutComponent component){

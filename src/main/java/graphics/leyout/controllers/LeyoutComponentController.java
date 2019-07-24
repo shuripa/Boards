@@ -30,16 +30,18 @@ public abstract class LeyoutComponentController extends GraphicsController {
     /**    General */
 
 
-    public LeyoutComponentController() {
+    public LeyoutComponentController() throws IOException {
         super();
         this.controller = this;
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
         setViewProperties();
         component().addObserver(this);
+//        SetComponentControllers scc = SetComponentControllers.getInstance();
+//        scc.addComponentController(this);
     }
 
-    public LeyoutComponentController(LeyoutComponent component) {
+    public LeyoutComponentController(LeyoutComponent component) throws IOException {
         super();
         this.controller = this;
         this.component = component;
@@ -48,6 +50,8 @@ public abstract class LeyoutComponentController extends GraphicsController {
         setComponentProperties();
         setViewProperties();
         component().addObserver(this);
+//        SetComponentControllers scc = SetComponentControllers.getInstance();
+//        scc.addComponentController(this);
     }
 
     /** Getters and Setters */

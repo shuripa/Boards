@@ -1,6 +1,5 @@
 package model;
 
-import graphics.leyout.components.Employer;
 import graphics.leyout.components.LeyoutComponent;
 
 /**
@@ -10,16 +9,15 @@ import graphics.leyout.components.LeyoutComponent;
 
 public class Skill extends LeyoutComponent {
     String materialBlank;
-
-    public void setProductivity(Double productivity) {
-        this.productivity = productivity;
-    }
+    int step;
 
     Double productivity;
+
     Employer employer;
     private char[] chSkill;
 
-    public Skill(Employer sender, String materialBlank, double productivity) {
+    public Skill(Employer sender, String materialBlank, int step, double productivity) {
+        this.step = step;
         this.employer = sender;
         this.materialBlank = materialBlank;
         this.productivity = productivity;
@@ -34,11 +32,20 @@ public class Skill extends LeyoutComponent {
         return productivity;
     }
 
+    public void setProductivity(Double productivity) {
+        this.productivity = productivity;
+    }
+
+    public int getStep(){
+        return step;
+    }
+
     public Employer getEmployer(){
         return employer;
     }
 
-    public boolean Like (String title) {
+    public boolean Like (String title, int step) {
+        if (this.step != step) return false;
         if (title == null) return false;
         if (chSkill == null) return false;
         if (title.length() != chSkill.length) return false;
@@ -52,11 +59,18 @@ public class Skill extends LeyoutComponent {
                 break;
             }
         }
+
+
         return result;
     }
 
     @Override
     public String toString() {
         return null;
+    }
+
+    @Override
+    public void logining(Employer employer) {
+
     }
 }

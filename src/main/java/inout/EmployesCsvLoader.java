@@ -1,6 +1,6 @@
 package inout;
 
-import graphics.leyout.components.Employer;
+import model.Employer;
 import model.Skill;
 import sets.SetEmployers;
 
@@ -14,26 +14,26 @@ import java.util.List;
 public class EmployesCsvLoader {
 
     private static EmployesCsvLoader instance;
-//    TODO Массив хранения перенесен в класс SetEmployers
     @Deprecated
-    HashMap<Integer, Employer> arrEmp;
+    HashMap<String, Employer> arrEmp;
+    //    TODO Массив хранения перенесен в класс SetEmployers
     String fileName = "src\\main\\resources\\employes.csv";
     List<String> lines;
     String[] tokens;
 
     private EmployesCsvLoader() throws IOException {
         SetEmployers set = SetEmployers.getInstance();
-        arrEmp = new HashMap<Integer, Employer>();
+        arrEmp = new HashMap<String, Employer>();
         lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
         for (String l: lines) {
             tokens = l.split(";");
-            Employer employer = new Employer(Integer.parseInt(tokens[0]), tokens[1], tokens[2], "");
-            arrEmp.put(Integer.parseInt(tokens[0]), employer);
+            Employer employer = new Employer(tokens[0], tokens[1], tokens[2], "");
+            arrEmp.put(tokens[0], employer);
             set.addEmployer(employer);
         }
     }
 
-    public Employer getEmployerByID(int id){
+    public Employer getEmployerByID(String id){
         return arrEmp.get(id);
     }
 
@@ -44,12 +44,12 @@ public class EmployesCsvLoader {
         return instance;
     }
 
-    public HashMap<Integer, Employer> getArrEmp() {
+    public HashMap<String, Employer> getArrEmp() {
         return arrEmp;
     }
 
 
-    public void addSkill(Integer id, Skill skill){
+    public void addSkill(String id, Skill skill){
         arrEmp.get(id).setSkill(skill);
     }
 

@@ -58,4 +58,8 @@ public abstract class GraphicsController {
     public void setS(int s) {
         this.S.set(s);
     }
+
+    public abstract void updateViewData();
+
+    public abstract void select();
 }

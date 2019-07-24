@@ -1,18 +1,38 @@
 package graphics.leyout.components;
 
-import graphics.leyout.controllers.LeyoutComponentController;
+import graphics.GraphicsController;
 import model.Condition;
+import model.Employer;
 
 import java.util.ArrayList;
 
 public abstract class LeyoutComponent {
 
 //    TODO: оставлен для совместимости - удалить
-    private ArrayList<LeyoutComponentController> observers;
+    private ArrayList<GraphicsController> observers;
     private ArrayList<LeyoutComponent> leafs;
     private LeyoutComponent parent;
     private ArrayList<Condition> conditions;
     private int posCount;
+
+    private String title;
+    private String id;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 //    private ArrayList <Node> nodes;         //Элементы управления
 //    public ShapeNode nEnt;                     //Точка входа
@@ -58,7 +78,7 @@ public abstract class LeyoutComponent {
 //        this.getChildren().add(node);
 //    }
 
-    public void addObserver(LeyoutComponentController observer){
+    public void addObserver(GraphicsController observer){
         this.observers.add(observer);
     }
 
@@ -66,13 +86,13 @@ public abstract class LeyoutComponent {
         this.observers.remove(observer);
     }
 
-    public ArrayList<LeyoutComponentController> getObservers () {
+    public ArrayList<GraphicsController> getObservers () {
         return observers;
     }
 
     public void update(){
-        for (LeyoutComponentController lcc: observers) {
-            lcc.updateViewData();
+        for (GraphicsController gc: observers) {
+            gc.updateViewData();
         }
     }
 
@@ -106,5 +126,19 @@ public abstract class LeyoutComponent {
     public ArrayList<Condition> getConditions (){
         return conditions;
     }
+
+    public void logining(Employer employer){
+        WorkPlace wp = getWorkPlace();
+        if (wp != null) {
+            wp.setEmployer(employer);
+            update();
+        }
+    }
+
+    public WorkPlace getWorkPlace() {
+        return null;
+    }
+
+    ;
 
 }

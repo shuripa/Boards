@@ -1,13 +1,13 @@
-package graphics.leyout.components;
+package model;
 
+import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.components.WorkPlace;
 import javafx.beans.property.*;
-import model.Material;
-import model.Skill;
 
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Employer extends LeyoutComponent{
+public class Employer extends LeyoutComponent {
 
     private final static String TITLE_PROP_ID = "Emploer Id";
     private final static String TITLE_PROP_NAME = "Name";
@@ -16,16 +16,16 @@ public class Employer extends LeyoutComponent{
     private final static String TITLE_PROP_SHIFT = "Shift";         //Зміна
 
     private final BooleanProperty activated;
-    private final IntegerProperty id;
+    private final StringProperty id;
     private final StringProperty name;
     private final StringProperty phone;
     private final StringProperty shift;
     private final HashMap<String, Skill> skills;
-    private WorkPlace workPlase;
+    private WorkPlace workPlace;
 
     /** Constructors */
     public Employer(){
-        this.id = new SimpleIntegerProperty(this, TITLE_PROP_ID, 0);
+        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + 0);
         this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, "");
         this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, "");
         this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, "");
@@ -33,8 +33,8 @@ public class Employer extends LeyoutComponent{
         skills = new HashMap<>();
     }
 
-    public Employer(Integer id, String name, String phone, String shift){
-        this.id = new SimpleIntegerProperty(this, TITLE_PROP_ID, id);
+    public Employer(String id, String name, String phone, String shift){
+        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + id);
         this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, name);
         this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, phone);
         this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, shift);
@@ -44,15 +44,15 @@ public class Employer extends LeyoutComponent{
 
     /** Properties */
 
-    public int getId() {
+    public String getId() {
         return id.getValue();
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id.set(id);
     }
 
-    public IntegerProperty idProperty() {
+    public StringProperty idProperty() {
         return id;
     }
 
@@ -96,6 +96,10 @@ public class Employer extends LeyoutComponent{
         return activated.get();
     }
 
+    public boolean isLogined(){
+        return (workPlace != null) ? true: false;
+    }
+
     public BooleanProperty activatedProperty() {
         return activated;
     }
@@ -120,23 +124,27 @@ public class Employer extends LeyoutComponent{
     public Double getProductivity(Material module){
         Double result = 25.0;
         for (Skill s: skills.values()) {
-            if (s.Like(module.getTitle())){
+            if (s.Like(module.getTitle(), s.getStep())){
                 return s.getProductivity();
             }
         }
         return result;
     }
 
-    public Integer getID() {
-        return id.get();
-    }
-
     public WorkPlace getWorkPlase() {
-        return workPlase;
+        return workPlace;
     }
 
-    public void setWorkPlace(WorkPlace workPlase) {
-        this.workPlase = workPlase;
+    public void setWorkPlace(WorkPlace workPlace) {
+        if (this.workPlace != null) {
+            this.workPlace.free();
+            update();
+        }
+        if (workPlace != null) {
+            this.workPlace = workPlace;
+            if (this.workPlace.getEmployer() != this) this.workPlace.setEmployer(this);
+            update();
+        }
     }
 
     /** Overrides */
@@ -153,6 +161,11 @@ public class Employer extends LeyoutComponent{
     }
 
     public void free() {
-        setWorkPlace(null);
+        if (workPlace != null) {
+            WorkPlace wp = workPlace;
+            workPlace = null;
+            wp.free();
+        }
+        update();
     }
 }

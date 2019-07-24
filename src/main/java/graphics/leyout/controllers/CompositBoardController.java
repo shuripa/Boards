@@ -1,5 +1,6 @@
 package graphics.leyout.controllers;
 
+import graphics.GraphicsController;
 import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.CompositBoardView;
@@ -7,6 +8,7 @@ import graphics.leyout.views.LeyoutComponentView;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import model.Condition;
+import sets.SetComponentControllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,6 +29,9 @@ public class CompositBoardController extends LeyoutComponentController {
         ic = new BoardIndexController();
 
         setView(new CompositBoardView(this));
+
+        SetComponentControllers scc = SetComponentControllers.getInstance();
+        scc.addComponentController(this);
     }
 
     public CompositBoardController(CompositBoard cBoard) throws IOException {
@@ -37,6 +42,8 @@ public class CompositBoardController extends LeyoutComponentController {
         ic = new BoardIndexController(cBoard.getBoardIndex());
 
         setView(new CompositBoardView(this));
+        SetComponentControllers scc = SetComponentControllers.getInstance();
+        scc.addComponentController(this);
     }
 
     public void SetComponent (CompositBoard cBoard) {
@@ -84,9 +91,9 @@ public class CompositBoardController extends LeyoutComponentController {
 //        Слушатели компонента пока ограничиваются слушателеями лейаута. Если появятся другие слушатели, нужно будет
 //        сделать общий интерфейс, заменить в LeyoutCompontnt клас массива observers и тут тип переменной lcc на тип
 //        сoзданного общего интерфейса.
-        for (LeyoutComponentController lcc : getLeaf(leafInd).getObservers()) {
-            if (lcc.getClass().getName().equals(LeyoutComponentController.class.getName())) {
-                lcv.add(lcc.view());
+        for (GraphicsController lcc : getLeaf(leafInd).getObservers()) {
+            if (lcc.getClass().getName().equals(GraphicsController.class.getName())) {
+                lcv.add(((LeyoutComponentController)lcc).view());
             }
         }
         return lcv;
@@ -96,7 +103,7 @@ public class CompositBoardController extends LeyoutComponentController {
         return view();
     }
 
-    public Integer getID() {
+    public String getId() {
         return bc.getId();
     }
 
@@ -124,7 +131,7 @@ public class CompositBoardController extends LeyoutComponentController {
 //        for (IntegerProperty prop: ic.getIntProperties()) { setIntProperty(prop); }
 //        for (StringProperty prop: ic.getStrProperties()) { setStrProperty(prop); }
 
-        setIntProperty((((CompositBoard)component()).getBoard()).idProperty());
+        setStrProperty((((CompositBoard)component()).getBoard()).idProperty());
         setStrProperty((((CompositBoard)component()).getBoard()).titleProperty());
         setStrProperty((((CompositBoard)component()).getBoard()).conditionProperty());
 //        setIntProperty((((CompositBoard)component()).getWorkPlace()).idProperty());

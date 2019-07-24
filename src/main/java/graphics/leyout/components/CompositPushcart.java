@@ -13,6 +13,7 @@ public class CompositPushcart extends LeyoutComponent {
         return pushcart;
     }
 
+
     public WorkPlace getWorkPlace() {
         return workPlace;
     }
@@ -21,4 +22,5 @@ public class CompositPushcart extends LeyoutComponent {
     public String toString() {
         return "";
     }
+
 }

@@ -1,12 +1,12 @@
 package sets;
 
-import graphics.leyout.components.Employer;
+import model.Employer;
 
 import java.util.HashMap;
 
 public class SetEmployers {
     private static SetEmployers instance;
-    private HashMap<Integer, Employer> employers;
+    private HashMap<String, Employer> employers;
 
     private SetEmployers(){
         instance = this;
@@ -21,10 +21,10 @@ public class SetEmployers {
     }
 
     public void addEmployer(Employer e){
-        employers.put(e.getID(), e);
+        employers.put(e.getId(), e);
     }
 
-    public Employer getEmployer(int id){
+    public Employer getEmployer(String id){
         return employers.get(id);
     }
 }

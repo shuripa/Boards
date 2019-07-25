@@ -27,11 +27,6 @@ public class IndicateButtonController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
-
-    }
-
-    @Override
     protected void setDragEvent() {
 
     }
@@ -51,5 +46,9 @@ public class IndicateButtonController extends LeyoutComponentController {
             unselect();
             pp.hide();
         });
+    }
+
+    public int getMediumEffectivity(){
+        return (int)Math.ceil(((IndicateButton)component()).getSumEffectivity() /((IndicateButton)component()).getCountWorkPlace());
     }
 }

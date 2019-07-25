@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class CompositBoardController extends LeyoutComponentController {
     //Leaf
-    WorkPlaceController hc;
+    WorkPlaceController wc;
     BoardController bc;
     BoardIndexController ic;
     GridController gc;
@@ -24,12 +24,13 @@ public class CompositBoardController extends LeyoutComponentController {
         super();
 
         bc = new BoardController();
-        hc = new WorkPlaceController();
+        wc = new WorkPlaceController();
         gc = new GridController();
         ic = new BoardIndexController();
 
         setView(new CompositBoardView(this));
 
+        //Набор контроллеров композитов
         SetComponentControllers scc = SetComponentControllers.getInstance();
         scc.addComponentController(this);
     }
@@ -37,13 +38,17 @@ public class CompositBoardController extends LeyoutComponentController {
     public CompositBoardController(CompositBoard cBoard) throws IOException {
         super(cBoard);
         bc = new BoardController(cBoard.getBoard());
-        hc = new WorkPlaceController(cBoard.getWorkPlace());
+        wc = new WorkPlaceController(cBoard.getWorkPlace());
         gc = new GridController(cBoard.getGrid());
         ic = new BoardIndexController(cBoard.getBoardIndex());
 
         setView(new CompositBoardView(this));
+
+        //Набор контроллеров композитов
         SetComponentControllers scc = SetComponentControllers.getInstance();
         scc.addComponentController(this);
+
+//        cBoard.getWorkPlace().addControllerObserver(ic);
     }
 
     public void SetComponent (CompositBoard cBoard) {
@@ -51,7 +56,7 @@ public class CompositBoardController extends LeyoutComponentController {
     }
 
     public LeyoutComponentView getHumanView() {
-        return hc.view();
+        return wc.view();
     }
 
     public LeyoutComponentView getBoardView() {
@@ -71,7 +76,7 @@ public class CompositBoardController extends LeyoutComponentController {
     }
 
     public LeyoutComponentController getHumanController() {
-        return hc;
+        return wc;
     }
 
     public LeyoutComponentController getBoardController() {
@@ -124,8 +129,8 @@ public class CompositBoardController extends LeyoutComponentController {
 
 //        for (IntegerProperty prop: bc.getIntProperties()) { setIntProperty(prop); }
 //        for (StringProperty prop: bc.getStrProperties()) { setStrProperty(prop); }
-//        for (IntegerProperty prop: hc.getIntProperties()) { setIntProperty(prop); }
-//        for (StringProperty prop: hc.getStrProperties()) { setStrProperty(prop); }
+//        for (IntegerProperty prop: wc.getIntProperties()) { setIntProperty(prop); }
+//        for (StringProperty prop: wc.getStrProperties()) { setStrProperty(prop); }
 //        for (IntegerProperty prop: gc.getIntProperties()) { setIntProperty(prop); }
 //        for (StringProperty prop: gc.getStrProperties()) { setStrProperty(prop); }
 //        for (IntegerProperty prop: ic.getIntProperties()) { setIntProperty(prop); }
@@ -150,13 +155,13 @@ public class CompositBoardController extends LeyoutComponentController {
         return component().getConditions();
     }
 
-    @Override
-    public void updateViewData() {
-        bc.update();
-        hc.update();
-        ic.update();
-        gc.update();
-    }
+//    @Override
+//    public void update() {
+//        bc.update();
+//        wc.update();
+//        ic.update();
+//        gc.update();
+//    }
 
     @Override
     protected void setDragEvent() {
@@ -165,7 +170,7 @@ public class CompositBoardController extends LeyoutComponentController {
 
     @Override
     public void select() {
-        hc.select();
+        wc.select();
         bc.select();
         gc.select();
         ic.select();
@@ -173,9 +178,19 @@ public class CompositBoardController extends LeyoutComponentController {
 
     @Override
     public void unselect(){
-        hc.unselect();
+        wc.unselect();
         bc.unselect();
         gc.unselect();
         ic.unselect();
+    }
+
+    @Override
+    public int getCountWorkPlase() {
+        return 1;
+    }
+
+    @Override
+    public double getSumEffectivity() {
+        return ((CompositBoard)component()).getBoardIndex().getEffectivityShift();
     }
 }

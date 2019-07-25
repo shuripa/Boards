@@ -47,9 +47,9 @@ public class CanbanBoardController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
+    public void update() {
         for (int i = 0; i < countLeaves(); i++) {
-            canbanLeafControllers[i].updateViewData();
+            canbanLeafControllers[i].update();
         }
     }
 

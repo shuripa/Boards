@@ -9,8 +9,9 @@ import java.util.ArrayList;
 public abstract class LeyoutComponent {
 
 //    TODO: оставлен для совместимости - удалить
-    private ArrayList<GraphicsController> observers;
     private ArrayList<LeyoutComponent> leafs;
+    private ArrayList<GraphicsController> controllerObservers;
+    private ArrayList<LeyoutComponent> componentObservers;
     private LeyoutComponent parent;
     private ArrayList<Condition> conditions;
     private int posCount;
@@ -42,7 +43,8 @@ public abstract class LeyoutComponent {
 
     public LeyoutComponent() {
         parent = null;
-        observers = new ArrayList<>();
+        controllerObservers = new ArrayList<>();
+        componentObservers = new ArrayList<>();
         leafs = new ArrayList<>();
         conditions = new ArrayList<>();
 //        nodes = new ArrayList<>();
@@ -52,7 +54,7 @@ public abstract class LeyoutComponent {
         this.parent = parent;
     }
 
-    public LeyoutComponent getParent(){
+    public LeyoutComponent parent(){
         return this.parent;
     }
 
@@ -78,22 +80,25 @@ public abstract class LeyoutComponent {
 //        this.getChildren().add(node);
 //    }
 
-    public void addObserver(GraphicsController observer){
-        this.observers.add(observer);
+    public void addControllerObserver(GraphicsController observer){
+        this.controllerObservers.add(observer);
     }
 
-    public void delObsetver (LeyoutComponent observer){
-        this.observers.remove(observer);
+    public void delControllerObsetver(GraphicsController observer){
+        this.controllerObservers.remove(observer);
     }
+
+    public void addComponentObserver(LeyoutComponent observer){
+        this.componentObservers.add(observer);
+    }
+
+    public void delComponentObsetver (LeyoutComponent observer){
+        this.componentObservers.remove(observer);
+    }
+
 
     public ArrayList<GraphicsController> getObservers () {
-        return observers;
-    }
-
-    public void update(){
-        for (GraphicsController gc: observers) {
-            gc.updateViewData();
-        }
+        return controllerObservers;
     }
 
     @Override
@@ -131,14 +136,24 @@ public abstract class LeyoutComponent {
         WorkPlace wp = getWorkPlace();
         if (wp != null) {
             wp.setEmployer(employer);
-            update();
+//            update();
+        }
+    }
+
+    public void update(){
+        for (LeyoutComponent lc: leafs){
+            lc.update();
+        }
+        for (LeyoutComponent lc:componentObservers) {
+            lc.update();
+        }
+        for (GraphicsController gc: controllerObservers) {
+            gc.update();
         }
     }
 
     public WorkPlace getWorkPlace() {
         return null;
     }
-
-    ;
 
 }

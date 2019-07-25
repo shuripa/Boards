@@ -27,13 +27,13 @@ public class CompositBoardView extends LeyoutComponentView {
     @Override
     public void repaint() {
         ((CompositBoardController) controller()).getHumanController().setXY(controller().S()/2-10, 7);
-        ((CompositBoardController) controller()).getHumanController().view().updateView();
+        ((CompositBoardController) controller()).getHumanController().view().update();
         ((CompositBoardController) controller()).getGridController().setS(controller().S());
-        ((CompositBoardController) controller()).getGridController().view().updateView();
+        ((CompositBoardController) controller()).getGridController().view().update();
         ((CompositBoardController) controller()).getBoardController().setXYAS(0, 27, 0, controller().S());
-        ((CompositBoardController) controller()).getBoardController().view().updateView();
+        ((CompositBoardController) controller()).getBoardController().view().update();
         ((CompositBoardController) controller()).getBoardIndexController().setXY(controller().S()-30, 12);
-        ((CompositBoardController) controller()).getBoardIndexController().view().updateView();
+        ((CompositBoardController) controller()).getBoardIndexController().view().update();
     }
 
 }

@@ -42,11 +42,11 @@ public class CompositPushcartController extends LeyoutComponentController {
     }
 
 
-    @Override
-    public void updateViewData() {
-        pushcartController.update();
-        workPlaceController.update();
-    }
+//    @Override
+//    public void update() {
+//        pushcartController.update();
+//        workPlaceController.update();
+//    }
 
     @Override
     public void select() {

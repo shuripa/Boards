@@ -38,10 +38,6 @@ public class BoardCardController extends PaneComponentController {
         return null;
     }
 
-    @Override
-    public void updateViewData() {
-
-    }
 
     @Override
     public void select() {

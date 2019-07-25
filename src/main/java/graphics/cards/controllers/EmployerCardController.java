@@ -3,13 +3,11 @@ package graphics.cards.controllers;
 import graphics.Layout;
 import graphics.cards.BoardMenu;
 import graphics.cards.views.EmployerCardView;
-import model.Employer;
+import model.*;
 import graphics.leyout.components.GroupBoard;
 import graphics.leyout.components.WorkPlace;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.WorkPlaceController;
-import model.Condition;
-import model.Skill;
 import sets.SetComponentControllers;
 
 import java.io.IOException;
@@ -62,15 +60,7 @@ public class EmployerCardController extends PaneComponentController
         }
     }
 
-    @Override
-    public void updateData() {
-        view().setViewProperties();
-        if (((Employer)component()).isLogined()){
-            view().activate();
-        } else {
-            view().disactivate();
-        }
-    }
+
 
     @Override
     public String getText() {
@@ -119,7 +109,7 @@ public class EmployerCardController extends PaneComponentController
     }
 
     @Override
-    public void updateViewData() {
+    public void updateData() {
         view().setViewProperties();
         if (((Employer)component()).isLogined()){
             view().activate();
@@ -132,5 +122,26 @@ public class EmployerCardController extends PaneComponentController
     @Override
     public void select() {
 
+    }
+
+    public String getProfessionColor(){
+        Profession p =((Employer)component()).getProfession();
+        return ProfessionColor.valueOf(p.name()).toString();
+    }
+
+    public String getProfession() {
+        Profession p =((Employer)component()).getProfession();
+        return p.toString();
+    }
+
+    public String getWorkPlaceTitle() {
+        String result = "";
+        WorkPlace wp = ((Employer)component()).getWorkPlase();
+        if (wp != null && wp.parent()!=null){
+            result =  wp.parent().getTitle() + "  " + wp.parent().getId();
+        } else {
+            System.out.println("WARNING: WorkPlace or WorkPlace.paren is null");
+        }
+        return result;
     }
 }

@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class EmployerCardView extends PaneComponentView {
 
-    Text ti, td, tp;
+    Text ti, td, tp, tprof, tw;
     Image im;
     ImageView imv;
 
@@ -21,12 +21,13 @@ public class EmployerCardView extends PaneComponentView {
         ti = new Text("");
         td = new Text("");
         tp = new Text("");
-
+        tprof = new Text("");
+        tw = new Text("");
     }
 
     public void paint() {
         //Rectangle card
-        Rectangle rc = new Rectangle(220, 50);
+        Rectangle rc = new Rectangle(220, 45);
         rc.setId("blank");
         rc.setStrokeWidth(0.5);
         rc.relocate(.5, .5);
@@ -46,6 +47,21 @@ public class EmployerCardView extends PaneComponentView {
         tp.setX(45);
         tp.setY(36);
 
+        //Rectangle profession shape
+        Rectangle rs = new Rectangle(30, 20);
+        rs.relocate(185, 5);
+        rs.setStyle("-fx-fill:" + ((EmployerCardController)controller()).getProfessionColor());
+
+        //text profession
+        tprof.setFont(new javafx.scene.text.Font(11));
+        tprof.setX(145);
+        tprof.setY(36);
+
+        //text workplace title
+        tw.setFont(new javafx.scene.text.Font(11));
+        tw.setX(100);
+        tw.setY(12);
+
         //image
         imv = new ImageView();
         String id = ((EmployerCardController)controller()).getId();
@@ -60,8 +76,9 @@ public class EmployerCardView extends PaneComponentView {
         }
 
         addActiveElement(rc);
-        addTexts(td, ti, tp);
+        addTexts(td, ti, tp, tprof, tw);
         addNode(imv);
+        getChildren().add(rs);
     }
 
     @Override
@@ -79,6 +96,8 @@ public class EmployerCardView extends PaneComponentView {
         ti.setText("" + ((EmployerCardController)controller()).getId());
         td.setText("" + ((EmployerCardController)controller()).getName());
         tp.setText("" + ((EmployerCardController)controller()).getPhone());
+        tprof.setText("" + ((EmployerCardController)controller()).getProfession());
+        tw.setText("" + ((EmployerCardController)controller()).getWorkPlaceTitle());
     }
 
     @Override

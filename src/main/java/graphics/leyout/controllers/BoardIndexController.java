@@ -1,7 +1,6 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.BoardIndex;
-import graphics.leyout.components.CompositBoard;
 import graphics.leyout.views.BoardIndexView;
 import javafx.scene.input.MouseButton;
 import model.Order;
@@ -18,7 +17,7 @@ public class BoardIndexController extends LeyoutComponentController {
     public BoardIndexController(BoardIndex index) throws IOException {
         super(index);
         setView(new BoardIndexView(this));
-        ((CompositBoard)index.getParent()).getWorkPlace().addObserver(this);
+//        (index.parent()).getWorkPlace().addControllerObserver(this);
     }
 
     public int getProc() {
@@ -31,8 +30,12 @@ public class BoardIndexController extends LeyoutComponentController {
 
     private void setText() {
         String text;
-        if (((CompositBoard)component().getParent()).getWorkPlace().isLogined()) {
+        System.out.println("parent: " + (component().parent() != null));
+        System.out.println("workplace: " + ((component().parent()).getWorkPlace() != null));
+        System.out.println("logined: " + (component().parent()).getWorkPlace().isLogined());
+        if ((component().parent()).getWorkPlace().isLogined()) {
             text = "" + ((BoardIndex)component()).getEffectivityShift() + "%";
+            System.out.println(text);
         } else {
             text = "0.0%";
         }
@@ -54,8 +57,8 @@ public class BoardIndexController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
-
+    public void update() {
+        System.out.println("Index update");
         setProc();
         setText();
     }

@@ -87,10 +87,6 @@ public class SkillMenuCardController extends PaneComponentController {
         return ((Skill)component()).getProductivity();
     }
 
-    @Override
-    public void updateViewData() {
-
-    }
 
     @Override
     public void select() {

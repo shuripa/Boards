@@ -20,11 +20,6 @@ public class CanbanCardController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
-
-    }
-
-    @Override
     protected void setDragEvent() {
 
     }
@@ -44,8 +39,8 @@ public class CanbanCardController extends LeyoutComponentController {
 
     public int getMaxLeafCountOrder(){
         int maxLeafCntOrd = 2;
-        if (component().getParent()!= null){
-            maxLeafCntOrd = ((CanbanLeaf) component().getParent()).getMaxLeafCountOrder();
+        if (component().parent()!= null){
+            maxLeafCntOrd = ((CanbanLeaf) component().parent()).getMaxLeafCountOrder();
         }
         return maxLeafCntOrd;
     }

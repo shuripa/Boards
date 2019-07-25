@@ -63,14 +63,14 @@ public class CompositTestTableController extends LeyoutComponentController {
 
     }
 
-    @Override
-    public void updateViewData() {
-        ttableController.update();
-        wplaceController.update();
-        paletteController.update();
-        wtableController.update();
-        canbanController.update();
-    }
+//    @Override
+//    public void update() {
+//        ttableController.update();
+//        wplaceController.update();
+//        paletteController.update();
+//        wtableController.update();
+//        canbanController.update();
+//    }
 
     @Override
     public void select() {

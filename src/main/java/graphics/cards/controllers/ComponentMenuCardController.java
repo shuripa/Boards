@@ -9,6 +9,7 @@ import model.Skill;
 import java.io.IOException;
 
 public class ComponentMenuCardController extends PaneComponentController{
+
     public ComponentMenuCardController(LeyoutComponent component, LeyoutComponent sender) {
         super(component, sender);
         setView(new ComponentMenuCard(this));
@@ -49,10 +50,7 @@ public class ComponentMenuCardController extends PaneComponentController{
         return null;
     }
 
-    @Override
-    public void updateViewData() {
 
-    }
 
     @Override
     public void select() {

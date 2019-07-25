@@ -15,6 +15,7 @@ public class CompositMao extends LeyoutComponent{
     private final StringProperty title;
     ArrayList<String> conditions;
     ArrayList<Order> orders;
+    @Deprecated //Использовать массив leafs из суперкласса
     ArrayList<CompositBoard> boards;
 
     /** General */
@@ -84,6 +85,7 @@ public class CompositMao extends LeyoutComponent{
 
     public void addBoard(CompositBoard board) {
         boards.add(board);
+        addLeaf(board);
     }
 
     public boolean isContainBoard (CompositBoard board) {

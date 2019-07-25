@@ -16,7 +16,7 @@ public class CompositTestTable extends LeyoutComponent{
     public CompositTestTable(){
         step = 120;
         ttable = new TestTable();
-        wplace = new WorkPlace();
+        wplace = new WorkPlace(this);
         palette = new Palette();
         workTable = new TestWorkTable();
         canban = new TestCanban();
@@ -76,6 +76,7 @@ public class CompositTestTable extends LeyoutComponent{
     public void setCondition(Condition condition) {
         getTestTable().setCondition (condition);
     }
+
     public ArrayList<Condition> getConditions() {
         return ttable.getConditions();
     }

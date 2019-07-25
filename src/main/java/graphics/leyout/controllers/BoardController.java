@@ -42,7 +42,7 @@ public class BoardController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
+    public void update() {
         ((BoardView)view()).setTt(getTitle());
         ((BoardView)view()).setTi("" + getId());
     }

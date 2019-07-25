@@ -17,6 +17,7 @@ public class CompositBoard extends LeyoutComponent {
         wp = new WorkPlace(this);
         g = new Grid();
         i = new BoardIndex(this);
+        wp.addComponentObserver(i);
         addLeafs(b, wp, g, i);
     }
 
@@ -75,6 +76,15 @@ public class CompositBoard extends LeyoutComponent {
 //        getWorkPlace().setEmployer(employer);
 //        update();
 //        getBoardIndex().updateData();
+//    }
+
+//    @Override
+//    public void update(){
+//        b.update();
+//        wp.update();
+//        i.update();
+//        g.update();
+//        super.update();
 //    }
 
     public void setProc(int proc) {

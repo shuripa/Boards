@@ -28,14 +28,14 @@ public class BoardIndex extends LeyoutComponent {
 
     public BoardIndex() {
         this.completeShift = new SimpleIntegerProperty(this, TITLE_PROP_COMPLETESHIFT, 0);
-        this.effectivityShift = new SimpleDoubleProperty(this, TITLE_PROP_EFFECTIVITYSHIFT, 0);
+        this.effectivityShift = new SimpleDoubleProperty(this, TITLE_PROP_EFFECTIVITYSHIFT, 25);
         setParent(null);
         orders = new ArrayList<>();
     }
 
     public BoardIndex(LeyoutComponent parent) {
         this.completeShift = new SimpleIntegerProperty(this, TITLE_PROP_COMPLETESHIFT, 0);
-        this.effectivityShift = new SimpleDoubleProperty(this, TITLE_PROP_EFFECTIVITYSHIFT, 0);
+        this.effectivityShift = new SimpleDoubleProperty(this, TITLE_PROP_EFFECTIVITYSHIFT, 25);
         setParent(parent);
         orders = new ArrayList<>();
     }
@@ -52,9 +52,10 @@ public class BoardIndex extends LeyoutComponent {
         return completeShift;
     }
 
-    public double getEffectivityShift() {
-//        updateData();
-        return effectivityShift.get();
+    public int getEffectivityShift() {
+//        update();
+        int result = (int)Math.round(effectivityShift.get());
+        return result;
     }
 
     public DoubleProperty effectivityShiftProperty() {
@@ -67,10 +68,11 @@ public class BoardIndex extends LeyoutComponent {
 
     public void addOrder(Order order) {
         orders.add(order);
-        updateData();
+        update();
     }
 
-    public void updateData(){
+    @Override
+    public void update(){
         sumProductivity = 0.0;
         sumCapacity = 0.0;
         orderStr = "";
@@ -78,33 +80,38 @@ public class BoardIndex extends LeyoutComponent {
 
         Employer e = employer();
 
-        for (Order o: orders) {
-            Double t = (o.getCount() * o.getEtalonTime() / (e.getProductivity(o.getMaterial())/100));  //Время в минутах
-            Double time = Math.ceil(t/0.6)/100;                                                                 //Время в часы
-            sumProductivity = sumProductivity + time;
-            sumCapacity = sumCapacity + o.getCount() * o.getEtalonTime();
-            orderStr = orderStr + "\n" + o.getMaterial() + " - " + o.getCount() + " : "
-                    + o.getEtalonTime() + " * " + employer().getProductivity(o.getMaterial()) + "% = "
-                    + time + " год";
+        if (e  != null) {
+            for (Order o : orders) {
+                Double t = (o.getCount() * o.getEtalonTime() / (e.getProductivity(o.getMaterial()) / 100));  //Время в минутах
+                Double time = Math.ceil(t / 0.6) / 100;                                                                 //Время в часы
+                sumProductivity = sumProductivity + time;
+                sumCapacity = sumCapacity + o.getCount() * o.getEtalonTime();
+                orderStr = orderStr + "\n" + o.getMaterial() + " - " + o.getCount() + " : "
+                        + o.getEtalonTime() + " * " + employer().getProductivity(o.getMaterial()) + "% = "
+                        + time + " год";
+            }
+
+            sumCapacityShift = Math.ceil(sumCapacity / 6 / 8) / 10;
+            sumProductivityShift = Math.ceil(sumProductivity * 10 / 8) / 10;
+            effectivityShift.setValue(Math.ceil(sumCapacityShift / sumProductivityShift * 100*10)/10);
+        } else {
+            effectivityShift.setValue(0);
         }
-
-        sumCapacityShift = Math.ceil(sumCapacity/6/8)/10;
-        sumProductivityShift = Math.ceil(sumProductivity*10/8)/10;
-        effectivityShift.setValue(Math.ceil(sumCapacityShift/sumProductivityShift*100*10)/10);
-
-        update();
+        super.update();
     }
 
     public void updateOrders() {
         //        Orders
         MAOSystem maosys = MAOSystem.getInstance();
-        CompositMao mao = maosys.getMaoWithBoard((CompositBoard)getParent());
-        this.orders = mao.getOrders(((CompositBoard)getParent()).getBoard().getConditions());
+        CompositMao mao = maosys.getMaoWithBoard((CompositBoard) parent());
+        if (mao != null) {
+            this.orders = mao.getOrders(((CompositBoard) parent()).getBoard().getConditions());
+        }
     }
 
     private Employer employer() {
         //        Получение скилов рабочего
-        WorkPlace wp = ((CompositBoard)getParent()).getWorkPlace();
+        WorkPlace wp = ((CompositBoard) parent()).getWorkPlace();
 //        SetEmployers setEmployers = SetEmployers.getInstance();
 //        return setEmployers.getEmployer(h.getLogined());
         return wp.getEmployer();
@@ -113,7 +120,7 @@ public class BoardIndex extends LeyoutComponent {
 
     @Override
     public String toString(){
-        updateData();
+        update();
         String result = "Замовлення:";
         result = result + orderStr;
         result = result + "\n Сумарний час потужності: " + sumCapacityShift + " змін" ;

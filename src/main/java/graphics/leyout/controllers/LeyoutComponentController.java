@@ -36,7 +36,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
         setViewProperties();
-        component().addObserver(this);
+        component().addControllerObserver(this);
 //        SetComponentControllers scc = SetComponentControllers.getInstance();
 //        scc.addComponentController(this);
     }
@@ -49,7 +49,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         intProperties = new ArrayList<>();
         setComponentProperties();
         setViewProperties();
-        component().addObserver(this);
+        component().addControllerObserver(this);
 //        SetComponentControllers scc = SetComponentControllers.getInstance();
 //        scc.addComponentController(this);
     }
@@ -67,17 +67,16 @@ public abstract class LeyoutComponentController extends GraphicsController {
     public void setComponent(LeyoutComponent component) {
         this.component = component;
         setComponentProperties();
-        component.addObserver(this);
+        component.addControllerObserver(this);
     }
 
     public void setView(LeyoutComponentView view) throws IOException {
         this.view = view;
         viewSets();
         viewEvents();
-        if (component != null) updateViewData();
         view().paint();
+        if (component != null) update();
     }
-
 
     public LeyoutComponentController parent () {
         return parent;
@@ -97,7 +96,6 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
 
     /** Properties */
-
 
     public void setStrProperty (StringProperty strProperty){
         strProperties.add(strProperty);
@@ -121,16 +119,20 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
     protected abstract void setComponentProperties();
 
+
+
+    // 1) при обновлении координат родительского объекта (композита) иногда нужно обновить координаты дочерних объектов (leaves).
+    // Процедура update() из LeyoutComponentView
+    //        this.relocate(controller.X(), controller.Y());
+    //        this.setRotate(controller.A());
+    //        repaint();
+    //
+
+
     public void update(){
-        updateViewData();
-        updateView();
+        view().update();
     }
 
-    public abstract void updateViewData();
-
-    public void updateView(){
-        view().updateView();
-    }
 
     /** Sizes */
 
@@ -139,13 +141,13 @@ public abstract class LeyoutComponentController extends GraphicsController {
         setY(y);
         setA(angle);
         setS(size);
-        view().updateView();
+        view().update();
     }
 
     public void setXY(int x, int y) {
         setX(x);
         setY(y);
-        view().updateView();
+        view().update();
     }
 
     /** Get String */
@@ -239,5 +241,13 @@ public abstract class LeyoutComponentController extends GraphicsController {
     }
 
     public void unselectHuman(){
+    }
+
+    public int getCountWorkPlase() {
+        return 0;
+    }
+
+    public double getSumEffectivity() {
+        return 0;
     }
 }

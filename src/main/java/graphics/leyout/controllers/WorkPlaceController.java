@@ -45,7 +45,8 @@ public class WorkPlaceController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
+    public void update() {
+        System.out.println("WorkPlace update");
         ((WorkPlaceView)view()).setText("" + getLogined());
         if (((WorkPlace)component()).isLogined()) {
             view().activate();

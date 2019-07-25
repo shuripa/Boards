@@ -59,7 +59,7 @@ public abstract class GraphicsController {
         this.S.set(s);
     }
 
-    public abstract void updateViewData();
+    public abstract void update();
 
     public abstract void select();
 }

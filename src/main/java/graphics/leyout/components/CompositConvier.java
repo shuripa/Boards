@@ -6,11 +6,13 @@ public class CompositConvier extends LeyoutComponent{
 
     public CompositConvier (int countPos){
         convier = new Convier(countPos);
+        addLeaf(convier);
         boards = new CompositBoard[countPos];
         for (int i = 0; i < countPos; i++) {
             CompositBoard b = new CompositBoard();
             b.setTitle("Pos " + (i + 1));
             boards[i] = b;
+            addLeaf(b);
         }
     }
 

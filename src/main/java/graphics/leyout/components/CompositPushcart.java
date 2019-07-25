@@ -7,6 +7,7 @@ public class CompositPushcart extends LeyoutComponent {
     public CompositPushcart(){
         pushcart = new Pushcart();
         workPlace = new WorkPlace();
+        addLeafs(pushcart, workPlace);
     }
 
     public Pushcart getPushcart() {

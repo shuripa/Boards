@@ -34,11 +34,6 @@ public class GridController extends LeyoutComponentController {
     }
 
     @Override
-    public void updateViewData() {
-
-    }
-
-    @Override
     protected void setDragEvent() {
 
     }

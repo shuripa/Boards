@@ -8,15 +8,22 @@ import javafx.scene.text.Text;
 
 public class IndicateButtonView extends LeyoutComponentView {
 
+
+    Text text1, text2;
+
     public IndicateButtonView(LeyoutComponentController controller) {
         super(controller);
+        text1 = new Text();
+        text2 = new Text();
     }
+
+
 
     @Override
     public void paint() {
         Circle indEffectivs = new Circle(25, 50, 23);
         indEffectivs.setStyle("-fx-fill: RGBA(47,79,79,1.0); -fx-stroke: DarkGray; -fx-stroke-width: 0.7");
-        Text text1 = new Text("100%");
+
         text1.setStyle("-fx-font-style: italic; -fx-font-size: 9; -fx-stroke: LightGray");
         text1.relocate(9, 31);
         Text text2 = new Text ("105 %");
@@ -32,5 +39,7 @@ public class IndicateButtonView extends LeyoutComponentView {
     @Override
     public void repaint() {
 
+        text1.setText("" + ((IndicateButtonController)controller()).getMediumEffectivity() + "%");
+        text2.setText("100%");
     }
 }

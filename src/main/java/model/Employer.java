@@ -14,6 +14,7 @@ public class Employer extends LeyoutComponent {
     private final static String TITLE_PROP_PHONE = "Phone";
     private final static String TITLE_PROP_ACTIVATED = "Activated";
     private final static String TITLE_PROP_SHIFT = "Shift";         //Зміна
+    private final static String TITLE_PROP_PROFESSION = "Profession";
 
     private final BooleanProperty activated;
     private final StringProperty id;
@@ -21,7 +22,9 @@ public class Employer extends LeyoutComponent {
     private final StringProperty phone;
     private final StringProperty shift;
     private final HashMap<String, Skill> skills;
+
     private WorkPlace workPlace;
+    private Profession profession;
 
     /** Constructors */
     public Employer(){
@@ -33,8 +36,9 @@ public class Employer extends LeyoutComponent {
         skills = new HashMap<>();
     }
 
-    public Employer(String id, String name, String phone, String shift){
-        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + id);
+    public Employer(String id, String name, String phone, String shift, Profession profession, String project){
+        this.profession = profession;
+        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, id);
         this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, name);
         this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, phone);
         this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, shift);
@@ -138,13 +142,23 @@ public class Employer extends LeyoutComponent {
     public void setWorkPlace(WorkPlace workPlace) {
         if (this.workPlace != null) {
             this.workPlace.free();
-            update();
         }
+        this.workPlace = workPlace;
+        if (this.workPlace.getEmployer() != this) this.workPlace.setEmployer(this);
+        update();
+    }
+
+    public void free() {
         if (workPlace != null) {
-            this.workPlace = workPlace;
-            if (this.workPlace.getEmployer() != this) this.workPlace.setEmployer(this);
-            update();
+            WorkPlace wp = workPlace;
+            workPlace = null;
+            if (wp.getEmployer() != null) wp.free();
         }
+        update();
+    }
+
+    public Profession getProfession() {
+        return profession;
     }
 
     /** Overrides */
@@ -158,14 +172,5 @@ public class Employer extends LeyoutComponent {
 //                ", shift=" + shift.get() +
 //                ", skills=" + skills.get() +
                 "}";
-    }
-
-    public void free() {
-        if (workPlace != null) {
-            WorkPlace wp = workPlace;
-            workPlace = null;
-            wp.free();
-        }
-        update();
     }
 }

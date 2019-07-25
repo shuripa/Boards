@@ -19,9 +19,6 @@ public class CompositPushcartView extends LeyoutComponentView {
 
     @Override
     public void repaint() {
-        ((CompositPushcartController)controller()).getPushcartController().setXY(0,20);
-        ((CompositPushcartController)controller()).getPushcartController().updateView();
-        ((CompositPushcartController)controller()).getWorkPlaceController().setXY(5,0);
-        ((CompositPushcartController)controller()).getWorkPlaceController().updateView();
+
     }
 }

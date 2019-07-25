@@ -31,14 +31,14 @@ public abstract class PaneComponentController extends GraphicsController {
     public PaneComponentController() {
         super();
         this.controller = this;
-//        component().addObserver(this);
+//        component().addControllerObserver(this);
     }
 
     public PaneComponentController(LeyoutComponent component) {
         super();
         this.component = component;
         this.controller = this;
-        component().addObserver(this);
+        component().addControllerObserver(this);
 //        view.setComponentProperties();
     }
 
@@ -47,7 +47,7 @@ public abstract class PaneComponentController extends GraphicsController {
         this.component = component;
         this.controller = this;
         this.sender = sender;
-        component().addObserver(this);
+        component().addControllerObserver(this);
 //        view.setComponentProperties();
     }
 

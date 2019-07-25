@@ -102,7 +102,7 @@ public class Layout extends Region {
 //        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm.addBoard(cb);
-        cb.getBoardIndex().updateData();
+        cb.getBoardIndex().update();
 
 //        Переробка дошки v.3
         cb = new CompositBoard();                                           //Не грузится из файла
@@ -116,7 +116,7 @@ public class Layout extends Region {
 //        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm.addBoard(cb);                                                    //Файл связей
-        cb.getBoardIndex().updateData();
+        cb.getBoardIndex().update();
 
         cb = new CompositBoard();
         cb.setTitle("KM 317Cp");
@@ -129,7 +129,7 @@ public class Layout extends Region {
 //        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
-        cb.getBoardIndex().updateData();
+        cb.getBoardIndex().update();
 
         cb = new CompositBoard();
         cb.setTitle("KM 164Cb");
@@ -142,7 +142,7 @@ public class Layout extends Region {
 //        SetComponentControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
-        cb.getBoardIndex().updateData();
+        cb.getBoardIndex().update();
 
         setEvents();
 
@@ -164,6 +164,8 @@ public class Layout extends Region {
 //        Pushcart
 
         CompositPushcart compositPushcart = new CompositPushcart();
+        compositPushcart.setId("0001");
+        compositPushcart.setTitle("PC01");
         CompositPushcartController compositPushcartController = new CompositPushcartController(compositPushcart);
         compositPushcartController.setXYAS(360, 130, 0, 0);
         this.getChildren().add(compositPushcartController.view());

@@ -19,11 +19,6 @@ public class PaletteController extends LeyoutComponentController{
     }
 
     @Override
-    public void updateViewData() {
-
-    }
-
-    @Override
     protected void setDragEvent() {
 
     }

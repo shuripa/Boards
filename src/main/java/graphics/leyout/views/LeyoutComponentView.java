@@ -131,7 +131,7 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
 
     /** Sizes */
 
-    public void updateView(){
+    public void update(){
         this.relocate(controller.X(), controller.Y());
         this.setRotate(controller.A());
         repaint();

@@ -1,6 +1,7 @@
 package inout;
 
 import model.Employer;
+import model.Profession;
 import model.Skill;
 import sets.SetEmployers;
 
@@ -27,7 +28,7 @@ public class EmployesCsvLoader {
         lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
         for (String l: lines) {
             tokens = l.split(";");
-            Employer employer = new Employer(tokens[0], tokens[1], tokens[2], "");
+            Employer employer = new Employer(tokens[0], tokens[1], tokens[2], tokens[3], Profession.valueOf(tokens[4]), tokens[5]);
             arrEmp.put(tokens[0], employer);
             set.addEmployer(employer);
         }

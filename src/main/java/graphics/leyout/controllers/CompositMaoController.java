@@ -24,10 +24,6 @@ public class CompositMaoController extends LeyoutComponentController {
         setStrProperty(((CompositMao)component()).titleProperty());
     }
 
-    @Override
-    public void updateViewData() {
-
-    }
 
     @Override
     protected void setDragEvent() {

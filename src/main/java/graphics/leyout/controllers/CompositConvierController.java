@@ -51,13 +51,13 @@ public class CompositConvierController extends LeyoutComponentController {
 
     }
 
-    @Override
-    public void updateViewData() {
-        convierController.updateViewData();
-        for (int i = 0; i < countPos(); i++) {
-            compositBoardControllers[i].updateViewData();
-        }
-    }
+//    @Override
+//    public void update() {
+//        convierController.update();
+//        for (int i = 0; i < countPos(); i++) {
+//            compositBoardControllers[i].update();
+//        }
+//    }
 
     @Override
     public void select() {

@@ -6,6 +6,7 @@ public class WorkPlace extends LeyoutComponent {
 
     private Employer employer;
 
+    @Deprecated
     public WorkPlace(){
     }
 
@@ -17,32 +18,29 @@ public class WorkPlace extends LeyoutComponent {
         return employer;
     }
 
-    public void setEmployer(Employer employer) {
-        if (this.employer != null) {
-            this.employer.free();
-            update();
-        }
-        if (employer != null) {
-            this.employer = employer;
-            if (this.employer.getWorkPlase() != this) employer.setWorkPlace(this);
-//            employer.setWorkPlace(this);
-            update();
-        }
+    public boolean isLogined() {
+        return employer == null ? false : true;
     }
 
     public String getLogined(){
         return employer == null ? "0" : employer.getId();
     }
 
-    public boolean isLogined() {
-        return employer == null ? false : true;
+    public void setEmployer(Employer employer) {
+        Employer temp = this.employer;
+        if (temp != null) temp.free();
+        this.employer = employer;
+        System.out.println(employer.getId() + " " + parent().getId()+ " " + parent().getTitle());
+        this.employer.setWorkPlace(this);
+        update();
+//        if (this.employer.getWorkPlase() != this) employer.setWorkPlace(this);
     }
 
     public void free(){
         if (employer != null) {
             Employer e = employer;
             employer = null;
-            e.free();
+            if (e.getWorkPlase () != null) e.free();
         }
         update();
     }

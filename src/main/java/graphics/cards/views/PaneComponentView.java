@@ -24,7 +24,7 @@ public abstract class PaneComponentView extends Group {
         texts = new ArrayList<>();
         nodes = new ArrayList<>();
         setComponentProperties();
-//        components().addObserver(this);
+//        components().addControllerObserver(this);
     }
 
     public void activate(){

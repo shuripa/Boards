@@ -36,7 +36,7 @@ public class BoardIndexView extends LeyoutComponentView {
     public void paint() {
 //        limit = ((BoardIndexController)controller()).getProc();
 //        r1.setXY(0.5,18.5);
-        text.relocate(0, 0);
+        text.relocate(3, 10);
         r1.relocate(25,15.5 + 20*(100-limit)/100);
         r2.setStyle("-fx-fill: RED");
 //        r2.setXY(0.5,18.5 + 20*limit/100);

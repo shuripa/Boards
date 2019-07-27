@@ -13,6 +13,8 @@ public abstract class PaneComponentView extends Group {
 
     private PaneComponentController controller;
     private ArrayList <Shape> activeElements;       //Активные елементы
+    private ArrayList <Shape> priorityElements;       //Активные елементы с приоритетами
+
     private ArrayList<Text> texts;                 //Текстовые метки
     private ArrayList<Node> nodes;                 //ImageView
     private Boolean onActive;
@@ -21,6 +23,7 @@ public abstract class PaneComponentView extends Group {
         this.controller = controller;
         disactivate();
         activeElements = new ArrayList<>();
+        priorityElements = new ArrayList<>();
         texts = new ArrayList<>();
         nodes = new ArrayList<>();
         setComponentProperties();
@@ -46,8 +49,12 @@ public abstract class PaneComponentView extends Group {
     }
 
     public void entered (){
+        entered(9);
+    }
+
+    public void entered (int i){
         for (Shape s : activeElements) {
-            s.setId("select");
+            s.setId("select" +i);
         }
         for (Shape t: texts){
             t.setId("seltxt");
@@ -101,6 +108,23 @@ public abstract class PaneComponentView extends Group {
             addActiveElement(e);
         }
     }
+
+    public void addPriorityElement(int priority, Shape element) {
+        if (onActive == false) {
+            element.setId("select" + priority);
+        } else {
+            element.setId("active");
+        }
+        this.priorityElements.add(element);
+        this.getChildren().add(element);
+    }
+
+    public void addPriorityElements(int priority, Shape ... el){
+        for (Shape e: el) {
+            addPriorityElement(priority, e);
+        }
+    }
+
 
     public void addNode(Node element) {
         this.nodes.add(element);

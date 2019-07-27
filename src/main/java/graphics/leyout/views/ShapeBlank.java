@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import graphics.leyout.controllers.LeyoutComponentController;
 
 //Заготовка
+@Deprecated
 public class ShapeBlank extends LeyoutComponentView {
     private int width;
     private int height;

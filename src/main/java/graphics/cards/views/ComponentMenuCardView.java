@@ -1,22 +1,23 @@
 package graphics.cards.views;
 
 import graphics.cards.controllers.PaneComponentController;
+import graphics.leyout.components.LeyoutComposit;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-public class ComponentMenuCard extends PaneComponentView {
+public class ComponentMenuCardView extends PaneComponentView {
     Text tid, tdesc;
 
-    public ComponentMenuCard(PaneComponentController controller) {
+    public ComponentMenuCardView(PaneComponentController controller) {
         super(controller);
     }
 
     @Override
     public void paint() {
         Rectangle r = new Rectangle(100, 15);
-        tid = new Text("" + component().getId());
+        tid = new Text("" + ((LeyoutComposit)component()).getId());
         tid.relocate(5, -2);
-        tdesc = new Text(""+ component().getTitle());
+        tdesc = new Text(""+ ((LeyoutComposit)component()).getTitle());
         tdesc.relocate(40, -2);
         addActiveElements(r);
         addTexts(tid, tdesc);

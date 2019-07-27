@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
 import model.Condition;
+import model.Profession;
+import model.Side;
 import panes.PropertyPane;
 import panes.RightPanel;
 import sets.BoardsController;
@@ -83,7 +85,7 @@ public class Layout extends Region {
         cm1.addCondition("MFC1847164***");
         maoSystem.addCompositMao(cm1);
         CompositMaoController cmc1 = new CompositMaoController(cm1);
-        cmc1.setXYAS(230, 145, -45, 0);
+        cmc1.setXYAS(300, 145, -45, 0);
 
 //        cm.addLeaf(gbc1.getCompositBoard());
 
@@ -99,7 +101,7 @@ public class Layout extends Region {
         cbc = new CompositBoardController(cb);
         cb.logining(employes.getEmployerByID("12630"));
         cbc.setXYAS(100, 100, 0, 90);
-//        SetComponentControllers.getInstance().addComponentController(cbc);
+//        SetCompositControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm.addBoard(cb);
         cb.getBoardIndex().update();
@@ -113,7 +115,7 @@ public class Layout extends Region {
         cbc = new CompositBoardController(cb);                              //Не грузится из файла
         cb.logining(employes.getEmployerByID("12700"));                    //Файл логирования
         cbc.setXYAS(100, 150, -180, 90);                   //Файл размеров
-//        SetComponentControllers.getInstance().addComponentController(cbc);
+//        SetCompositControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm.addBoard(cb);                                                    //Файл связей
         cb.getBoardIndex().update();
@@ -125,8 +127,8 @@ public class Layout extends Region {
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
         cb.logining(employes.getEmployerByID("13710"));
-        cbc.setXYAS(195, 100, 0, 90);
-//        SetComponentControllers.getInstance().addComponentController(cbc);
+        cbc.setXYAS(220, 100, 0, 90);
+//        SetCompositControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().update();
@@ -138,8 +140,34 @@ public class Layout extends Region {
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
         cb.logining(employes.getEmployerByID("13003"));
-        cbc.setXYAS(195, 150, -180, 90);
-//        SetComponentControllers.getInstance().addComponentController(cbc);
+        cbc.setXYAS(220, 150, -180, 90);
+//        SetCompositControllers.getInstance().addComponentController(cbc);
+        this.getChildren().add(cbc.view());
+        cm1.addBoard(cb);
+        cb.getBoardIndex().update();
+
+        cb = new CompositBoard();
+        cb.setTitle("KM 217Cb");
+        cb.setId("1906");
+        cb.setCondition(new Condition("MFC1847217***", 110));
+        cb.setProc(0);
+        cbc = new CompositBoardController(cb);
+//        cb.logining(employes.getEmployerByID("13003"));
+        cbc.setXYAS(315, 100, 0, 60);
+//        SetCompositControllers.getInstance().addComponentController(cbc);
+        this.getChildren().add(cbc.view());
+        cm1.addBoard(cb);
+        cb.getBoardIndex().update();
+
+        cb = new CompositBoard();
+        cb.setTitle("KM 012CpR");
+        cb.setId("1907");
+        cb.setCondition(new Condition("MFC1802012***", 110));
+        cb.setProc(50);
+        cbc = new CompositBoardController(cb);
+//        cb.logining(employes.getEmployerByID("13003"));
+        cbc.setXYAS(305, 150, -180, 60);
+//        SetCompositControllers.getInstance().addComponentController(cbc);
         this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().update();
@@ -147,7 +175,7 @@ public class Layout extends Region {
         setEvents();
 
 //        MAO_end
-//        SetComponentControllers.getInstance().addComponentController(cmc);
+//        SetCompositControllers.getInstance().addComponentController(cmc);
         this.getChildren().add(cmc.view());
         this.getChildren().add(cmc1.view());
 
@@ -163,18 +191,29 @@ public class Layout extends Region {
 
 //        Pushcart
 
-        CompositPushcart compositPushcart = new CompositPushcart();
-        compositPushcart.setId("0001");
-        compositPushcart.setTitle("PC01");
+        CompositPushcart compositPushcart = new CompositPushcart("4101");
+        compositPushcart.setTitle("PCart-4101");
         CompositPushcartController compositPushcartController = new CompositPushcartController(compositPushcart);
-        compositPushcartController.setXYAS(360, 130, 0, 0);
+        compositPushcartController.setXYAS(250, 30, 0, 0);
         this.getChildren().add(compositPushcartController.view());
+
+        CompositPushcart compositPushcart1 = new CompositPushcart("4102");
+        compositPushcart1.setTitle("PCart-4102");
+        CompositPushcartController compositPushcartController1 = new CompositPushcartController(compositPushcart1);
+        compositPushcartController1.setXYAS(370, 30, 0, 0);
+        this.getChildren().add(compositPushcartController1.view());
+
+        CompositPushcart compositPushcart3 = new CompositPushcart("4103");
+        compositPushcart3.setTitle("PCart-4103");
+        CompositPushcartController compositPushcartController3 = new CompositPushcartController(compositPushcart3);
+        compositPushcartController3.setXYAS(75, 170, 0, 0);
+        this.getChildren().add(compositPushcartController3.view());
 
 //        Conviers()
 
         CompositConvier compositConvier = new CompositConvier(8);
         CompositConvierController compositConvierController = new CompositConvierController(compositConvier);
-        compositConvierController.setXYAS(470, 20, 0, 60);
+        compositConvierController.setXYAS(430, 10, 0, 60);
         this.getChildren().add(compositConvierController.view());
 
         CompositConvier convier2= new CompositConvier(6);
@@ -197,6 +236,27 @@ public class Layout extends Region {
 
 //        testTables(bg1, bg2, bg3);
 //        Blanks();
+
+//        ManagerTable
+        CompositManagerTable cmt1 = new CompositManagerTable("4001", Side.UP_RIGHT, Profession.MASTER);
+        CompositManagerTableController cmtc1 = new CompositManagerTableController(cmt1);
+        cmtc1.setXYAS(602, 60, 0, 0);
+        this.getChildren().add(cmtc1.view());
+
+        CompositManagerTable cmt2 = new CompositManagerTable("4002", Side.UP_LEFT, Profession.LEADER);
+        CompositManagerTableController cmtc2 = new CompositManagerTableController(cmt2);
+        cmtc2.setXYAS(692, 60, 0, 0);
+        this.getChildren().add(cmtc2.view());
+
+        CompositManagerTable cmt3 = new CompositManagerTable("4003", Side.UP_LEFT, Profession.DEPARTMENT_MANAGER);
+        CompositManagerTableController cmtc3 = new CompositManagerTableController(cmt3);
+        cmtc3.setXYAS(600, 10, -180, 0);
+        this.getChildren().add(cmtc3.view());
+
+        CompositManagerTable cmt4 = new CompositManagerTable("4004", Side.UP_RIGHT, Profession.LOCATION_MANAGER);
+        CompositManagerTableController cmtc4 = new CompositManagerTableController(cmt4);
+        cmtc4.setXYAS(690, 16, -180, 0);
+        this.getChildren().add(cmtc4.view());
 
     }
 

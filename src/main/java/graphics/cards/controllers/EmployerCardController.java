@@ -1,29 +1,21 @@
 package graphics.cards.controllers;
 
-import graphics.Layout;
-import graphics.cards.BoardMenu;
 import graphics.cards.views.EmployerCardView;
-import model.*;
-import graphics.leyout.components.GroupBoard;
+import graphics.leyout.components.LeyoutComposit;
 import graphics.leyout.components.WorkPlace;
 import graphics.leyout.controllers.LeyoutComponentController;
-import graphics.leyout.controllers.WorkPlaceController;
-import sets.SetComponentControllers;
+import model.Employer;
+import model.Profession;
+import model.ProfessionColor;
+import sets.SetCompositControllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import static graphics.Layout.getInstace;
 
 public class EmployerCardController extends PaneComponentController
 {
-    EmployerCardView employerCardView;
-    ArrayList<GroupBoard> arrBd;
 
-
-    public EmployerCardController(Employer emp){
-        super(emp);
+    public EmployerCardController(Employer component){
+        super(component);
         setView(new EmployerCardView(this));
     }
 
@@ -40,26 +32,16 @@ public class EmployerCardController extends PaneComponentController
     }
 
 
-    public void boardSelect() throws IOException {
-        Collection<Skill> arrSk = ((Employer)component()).getSkills();
-        for (Skill skill: arrSk){
-            SetComponentControllers set = SetComponentControllers.getInstance();
-            for (LeyoutComponentController controller: set.getComponentControllers()) {
-                for (Condition condition: controller.getConditions()) {
-                    if (condition.isSuited(skill)){
-                        controller.select();
-                    }
-                }
-            }
-        }
+    public void boardSelect() {
+        SetCompositControllers set = SetCompositControllers.getInstance();
+        set.selectControllersToEmployer((Employer)component());
     }
 
     public void boardUnselect() {
-        for (LeyoutComponentController componentController: SetComponentControllers.getInstance().getComponentControllers()) {
+        for (LeyoutComponentController componentController: SetCompositControllers.getInstance().getComponentControllers()) {
             componentController.unselect();
         }
     }
-
 
 
     @Override
@@ -73,11 +55,7 @@ public class EmployerCardController extends PaneComponentController
 
         view().setOnMouseEntered(mouseEvent -> {
             view().entered();
-            try {
-                boardSelect();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            boardSelect();
         });
 
         view().setOnMouseExited(mouseEvent -> {
@@ -86,26 +64,33 @@ public class EmployerCardController extends PaneComponentController
         });
 
         view().setOnMouseClicked(mouseEvent -> {
-            BoardMenu boardMenu = new BoardMenu(this);
+            //Контроллер карточки рабочего создает карточки меню скилов рабочего и само меню скилов
+            //Меню контейнер это вид. нужно создать контроллер, который контролирует этот вид.
+//            MenuConteiner menu = new MenuConteiner(this);
+//
+//            for (Skill sk: ((Employer)component()).getSkills()) {
+//                if (sk != null) {
+//                    menu.addCard(new SkillMenuCardController(sk));
+//                }
+//            }
+//            menu.showConteiner(140);
 
-            for (Skill sk: ((Employer)component()).getSkills()) {
-                if (sk != null) {
-                    boardMenu.addCard(new SkillMenuCardController(sk));
-                }
-            }
-            boardMenu.showBoard(140);
+            LoginMenuController loginMenu = new LoginMenuController(this, (Employer)component());
+
         });
     }
 
+    //TODO: Створення WorkPlace, в цьому класі не потрібно
     @Override
     protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
-        Layout layout = getInstace();
-        WorkPlace h = new WorkPlace();
-        h.setEmployer((Employer)component());
-        WorkPlaceController hc = new WorkPlaceController(h);
-        hc.setXYAS((int)x, (int)y, 0, 0);
-        layout.addComponentController(hc);
-        return hc;
+//        Layout layout = getInstace();
+//        WorkPlace h = new WorkPlace();
+//        h.setEmployer((Employer)component());
+//        WorkPlaceController hc = new WorkPlaceController(h);
+//        hc.setXYAS((int)x, (int)y, 0, 0);
+//        layout.addComponentController(hc);
+//        return hc;
+        return null;
     }
 
     @Override
@@ -138,7 +123,7 @@ public class EmployerCardController extends PaneComponentController
         String result = "";
         WorkPlace wp = ((Employer)component()).getWorkPlase();
         if (wp != null && wp.parent()!=null){
-            result =  wp.parent().getTitle() + "  " + wp.parent().getId();
+            result =  ((LeyoutComposit)wp.parent()).getTitle() + "  " + ((LeyoutComposit)wp.parent()).getId();
         } else {
             System.out.println("WARNING: WorkPlace or WorkPlace.paren is null");
         }

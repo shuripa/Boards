@@ -2,7 +2,8 @@ package graphics.leftPanel;
 
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.controllers.LeyoutComponentController;
-import sets.SetComponentControllers;
+import graphics.leyout.controllers.LeyoutCompositController;
+import sets.SetCompositControllers;
 
 import java.util.ArrayList;
 
@@ -10,10 +11,10 @@ public class IndicateButton extends LeyoutComponent {
 
     int countWorkPlace;
     double sumEffectivity;
-    ArrayList<LeyoutComponentController> setControllers;
+    ArrayList<LeyoutCompositController> setControllers;
 
     public IndicateButton(){
-        SetComponentControllers instance = SetComponentControllers.getInstance();
+        SetCompositControllers instance = SetCompositControllers.getInstance();
         setControllers = instance.getComponentControllers();
 
         for (LeyoutComponentController lcc: setControllers) {

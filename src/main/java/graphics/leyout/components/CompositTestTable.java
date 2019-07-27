@@ -2,10 +2,11 @@ package graphics.leyout.components;
 
 import model.Condition;
 import model.Employer;
+import model.Profession;
 
 import java.util.ArrayList;
 
-public class CompositTestTable extends LeyoutComponent{
+public class CompositTestTable extends LeyoutComposit{
     TestTable ttable;
     WorkPlace wplace;
     Palette palette;
@@ -13,10 +14,11 @@ public class CompositTestTable extends LeyoutComponent{
     TestCanban canban;
     int step;
 
+
     public CompositTestTable(){
         step = 120;
         ttable = new TestTable();
-        wplace = new WorkPlace(this);
+        wplace = new WorkPlace(this, Profession.TESTER);
         palette = new Palette();
         workTable = new TestWorkTable();
         canban = new TestCanban();
@@ -80,4 +82,5 @@ public class CompositTestTable extends LeyoutComponent{
     public ArrayList<Condition> getConditions() {
         return ttable.getConditions();
     }
+
 }

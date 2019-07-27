@@ -1,17 +1,29 @@
 package graphics.leyout.components;
 
 import model.Employer;
+import model.Profession;
+import model.Side;
 
 public class WorkPlace extends LeyoutComponent {
 
     private Employer employer;
+    Side side;
+    Profession profession;
 
     @Deprecated
     public WorkPlace(){
     }
 
-    public WorkPlace(LeyoutComponent parent){
+    public WorkPlace(LeyoutComposit parent, Profession profession){
         setParent(parent);
+        side = Side.DOWN;
+        this.profession = profession;
+    }
+
+    public WorkPlace(LeyoutComponent parent, Profession profession, Side side){
+        setParent(parent);
+        this.profession = profession;
+        this.side = side;
     }
 
     public Employer getEmployer() {
@@ -26,11 +38,18 @@ public class WorkPlace extends LeyoutComponent {
         return employer == null ? "0" : employer.getId();
     }
 
+    public Side getSide(){
+        return side;
+    }
+
+    public Profession getProfession() {
+        return profession;
+    }
+
     public void setEmployer(Employer employer) {
         Employer temp = this.employer;
         if (temp != null) temp.free();
         this.employer = employer;
-        System.out.println(employer.getId() + " " + parent().getId()+ " " + parent().getTitle());
         this.employer.setWorkPlace(this);
         update();
 //        if (this.employer.getWorkPlase() != this) employer.setWorkPlace(this);

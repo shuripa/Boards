@@ -62,6 +62,19 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
         for (Shape b: bounderys) {
             b.setId("selbound");
         }
+        entered(9);
+    }
+
+    public void entered(int i){
+        for (Shape s : activeElements) {
+            s.setId("select" + i);
+        }
+        for (Shape t: texts){
+            t.setId("seltxt");
+        }
+        for (Shape b: bounderys) {
+            b.setId("selbound" );
+        }
     }
 
     public void exited() {
@@ -136,6 +149,7 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
         this.setRotate(controller.A());
         repaint();
     }
+
 
     public abstract void paint();        //Рисование у Leaf. Добавление и расположение элементов у Composit
 

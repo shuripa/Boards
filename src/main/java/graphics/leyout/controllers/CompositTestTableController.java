@@ -3,11 +3,10 @@ package graphics.leyout.controllers;
 import graphics.leyout.components.CompositTestTable;
 import graphics.leyout.views.CompositTestView;
 import javafx.scene.input.MouseButton;
-import sets.SetComponentControllers;
 
 import java.io.IOException;
 
-public class CompositTestTableController extends LeyoutComponentController {
+public class CompositTestTableController extends LeyoutCompositController {
     TestTableController ttableController;
     WorkPlaceController wplaceController;
     PaletteController paletteController;
@@ -22,8 +21,9 @@ public class CompositTestTableController extends LeyoutComponentController {
         wtableController = new TestWorkTableController(component.getWorkTable());
         canbanController = new TestCanbanController(component.getTestCanban());
         setView(new CompositTestView(this));
-        SetComponentControllers scc = SetComponentControllers.getInstance();
-        scc.addComponentController(this);
+        setLeaves(ttableController, wplaceController, paletteController, wtableController, canbanController);
+//        SetCompositControllers scc = SetCompositControllers.getInstance();
+//        scc.addComponentController(this);
 
     }
 
@@ -49,12 +49,6 @@ public class CompositTestTableController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
-
-    }
-
-
-    @Override
-    protected void setDragEvent() {
 
     }
 
@@ -90,6 +84,17 @@ public class CompositTestTableController extends LeyoutComponentController {
         canbanController.unselect();
     }
 
+
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
+    @Override
+    protected void setDragEvent() {
+
+    }
 
 
 }

@@ -10,22 +10,68 @@
     -fx-fill: LightGray;
 }
 
-
 #blank {
     -fx-fill: rgba(255, 255, 255, 0.0);
     -fx-stroke: rgba(85, 95, 100, 0.8);
     -fx-stroke-width: .5;
 }
 
-#active
-{
+#active{
     -fx-fill: rgba(220, 220, 220, 0.8);
     -fx-stroke: rgba(109, 118, 127, 0.8);
     -fx-stroke-width: .5;
 }
 
-#select {
-    -fx-fill: LightGray;
+#select1 {
+    -fx-fill: rgba(100, 255, 100, 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select2 {
+    -fx-fill: rgba(165, 218, 165 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select3 {
+    -fx-fill: rgba(165, 218, 218 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select4 {
+    -fx-fill: rgba(182, 182, 218 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select5 {
+    -fx-fill: rgba(218, 218, 165, 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select6 {
+    -fx-fill: rgba(218, 218, 165, 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select7 {
+    -fx-fill: rgba(0, 0, 180, 1.0);
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select8 {
+    -fx-fill: red;
+    -fx-stroke: rgba(0, 0, 0, 0.8);
+    -fx-stroke-width: 0.8;
+}
+
+#select9 {
+    -fx-fill: rgba(191, 191, 191, 1.0);
     -fx-stroke: rgba(0, 0, 0, 0.8);
     -fx-stroke-width: 0.8;
 }

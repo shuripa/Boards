@@ -4,6 +4,7 @@ import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.WorkPlace;
 import javafx.beans.property.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -24,6 +25,9 @@ public class Employer extends LeyoutComponent {
     private final HashMap<String, Skill> skills;
 
     private WorkPlace workPlace;
+
+    private ArrayList<String> bindWorkPlace;
+
     private Profession profession;
 
     /** Constructors */
@@ -36,7 +40,7 @@ public class Employer extends LeyoutComponent {
         skills = new HashMap<>();
     }
 
-    public Employer(String id, String name, String phone, String shift, Profession profession, String project){
+    public Employer(String id, String name, String phone, String shift, Profession profession, String project, String ... bindWorkPlace){
         this.profession = profession;
         this.id = new SimpleStringProperty(this, TITLE_PROP_ID, id);
         this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, name);
@@ -44,6 +48,10 @@ public class Employer extends LeyoutComponent {
         this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, shift);
         this.activated = new SimpleBooleanProperty(this, TITLE_PROP_ACTIVATED, false);
         skills = new HashMap<>();
+        this.bindWorkPlace = new ArrayList<>();
+        for (String s: bindWorkPlace) {
+            this.bindWorkPlace.add(s);
+        }
     }
 
     /** Properties */
@@ -94,6 +102,10 @@ public class Employer extends LeyoutComponent {
 
     public StringProperty shiftProperty() {
         return shift;
+    }
+
+    public ArrayList<String> getBindWorkPlaces() {
+        return bindWorkPlace;
     }
 
     public boolean isActivated() {

@@ -9,7 +9,8 @@ public enum Profession {
     ENGINEER,               //Інженер
     LEADER,                 //Керівник проекту
     GROUP_MANAGER,          //Керівник групи
-    DEPARTMENT_MANAGER;      //Керівник відділу
+    DEPARTMENT_MANAGER,     //Керівник відділу
+    LOCATION_MANAGER;       //Керівник локації
     @Override
     public String toString() {
         switch (this) {
@@ -22,7 +23,7 @@ public enum Profession {
             case LEADER: return "Кер.проекту";
             case GROUP_MANAGER: return "Кер.групи";
             case DEPARTMENT_MANAGER: return "Кер.відділу";
-
+            case LOCATION_MANAGER: return "Кер.локації";
         }
         return super.toString();
     }

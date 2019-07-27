@@ -6,15 +6,16 @@ import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
-public class CompositPushcartController extends LeyoutComponentController {
+public class CompositPushcartController extends LeyoutCompositController {
 
     PushcartController pushcartController;
     WorkPlaceController workPlaceController;
 
     public CompositPushcartController(CompositPushcart component) throws IOException {
         super(component);
-        pushcartController = new PushcartController(((CompositPushcart)component()).getPushcart());
-        workPlaceController = new WorkPlaceController(((CompositPushcart)component()).getWorkPlace());
+        pushcartController = new PushcartController(component.getPushcart());
+        workPlaceController = new WorkPlaceController(component.getWorkPlace());
+        setLeaves(pushcartController, workPlaceController);
         setView(new CompositPushcartView(this));
     }
 
@@ -48,15 +49,15 @@ public class CompositPushcartController extends LeyoutComponentController {
 //        workPlaceController.update();
 //    }
 
-    @Override
-    public void select() {
-        pushcartController.select();
-        workPlaceController.select();
-    }
-
-    @Override
-    public void unselect() {
-        pushcartController.unselect();
-        workPlaceController.unselect();
-    }
+//    @Override
+//    public void select() {
+//        pushcartController.select();
+//        workPlaceController.select();
+//    }
+//
+//    @Override
+//    public void unselect() {
+//        pushcartController.unselect();
+//        workPlaceController.unselect();
+//    }
 }

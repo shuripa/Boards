@@ -1,12 +1,15 @@
 package graphics.leyout.components;
 
-public class CompositPushcart extends LeyoutComponent {
+import model.Profession;
+
+public class CompositPushcart extends LeyoutComposit {
     Pushcart pushcart;
     WorkPlace workPlace;
 
-    public CompositPushcart(){
+    public CompositPushcart(String id){
+        setId(id);
         pushcart = new Pushcart();
-        workPlace = new WorkPlace();
+        workPlace = new WorkPlace(this, Profession.DELIVER);
         addLeafs(pushcart, workPlace);
     }
 

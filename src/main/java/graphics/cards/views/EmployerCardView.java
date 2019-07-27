@@ -48,8 +48,8 @@ public class EmployerCardView extends PaneComponentView {
         tp.setY(36);
 
         //Rectangle profession shape
-        Rectangle rs = new Rectangle(30, 20);
-        rs.relocate(185, 5);
+        Rectangle rs = new Rectangle(7, 45);
+        rs.relocate(213, 0);
         rs.setStyle("-fx-fill:" + ((EmployerCardController)controller()).getProfessionColor());
 
         //text profession

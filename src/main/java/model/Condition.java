@@ -43,7 +43,7 @@ public class Condition {
         if (condition != null) {
             this.chCond = condition.toCharArray();
         }
-//        SetComponentControllers.getInstance();
+//        SetCompositControllers.getInstance();
     }
 
     // TODO: Переименовать в Like

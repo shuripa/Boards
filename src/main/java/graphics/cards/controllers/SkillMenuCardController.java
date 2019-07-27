@@ -1,20 +1,19 @@
 package graphics.cards.controllers;
 
-import graphics.cards.BoardMenu;
-import graphics.cards.views.SkillMenuCard;
+import graphics.cards.MenuConteiner;
+import graphics.cards.views.SkillMenuCardView;
 import graphics.leyout.controllers.LeyoutComponentController;
 import model.Condition;
 import model.Skill;
-import sets.SetComponentControllers;
+import sets.SetCompositControllers;
 
 import java.io.IOException;
 
 public class SkillMenuCardController extends PaneComponentController {
 
-
     public SkillMenuCardController(Skill skill){
         super(skill);
-        setView(new SkillMenuCard(this));
+        setView(new SkillMenuCardView(this));
     }
 
     @Override
@@ -36,22 +35,22 @@ public class SkillMenuCardController extends PaneComponentController {
         });
 
         view().setOnMouseClicked(mouseEvent -> {
-            BoardMenu boardMenu = new BoardMenu(this);
-            SetComponentControllers set = SetComponentControllers.getInstance();
+            MenuConteiner boardMenu = new MenuConteiner(this);
+            SetCompositControllers set = SetCompositControllers.getInstance();
             for (LeyoutComponentController cont: set.getComponentControllers()) {
                 for (Condition condition: cont.getConditions()) {
                     if (condition.isSuited((Skill)component())){
-                        boardMenu.addCard(new ComponentMenuCardController(cont.component(), component()));
+                        boardMenu.addCard(new CompositMenuCardController(cont.component(), component()));
                     }
                 }
             }
-            boardMenu.showBoard(120);
+            boardMenu.showConteiner(120);
         });
     }
 
     public void boardSelect() throws IOException {
 
-            SetComponentControllers set = SetComponentControllers.getInstance();
+            SetCompositControllers set = SetCompositControllers.getInstance();
             for (LeyoutComponentController controller: set.getComponentControllers()) {
                 for (Condition condition: controller.getConditions()) {
                     if (condition.isSuited((Skill)component())){
@@ -63,7 +62,7 @@ public class SkillMenuCardController extends PaneComponentController {
     }
 
     public void boardUnselect() {
-        for (LeyoutComponentController componentController: SetComponentControllers.getInstance().getComponentControllers()) {
+        for (LeyoutComponentController componentController: SetCompositControllers.getInstance().getComponentControllers()) {
             componentController.unselect();
         }
     }
@@ -86,7 +85,6 @@ public class SkillMenuCardController extends PaneComponentController {
     public Double getSkillProd(){
         return ((Skill)component()).getProductivity();
     }
-
 
     @Override
     public void select() {

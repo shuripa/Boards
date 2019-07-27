@@ -19,10 +19,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class LeyoutComponentController extends GraphicsController {
-    private LeyoutComponentController parent;
+    private LeyoutCompositController parent;
     private LeyoutComponentController controller;
     private LeyoutComponent component;
     private LeyoutComponentView view;
+
 
 
     private ArrayList<StringProperty> strProperties; // Строковые свойства
@@ -35,9 +36,10 @@ public abstract class LeyoutComponentController extends GraphicsController {
         this.controller = this;
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
+
         setViewProperties();
         component().addControllerObserver(this);
-//        SetComponentControllers scc = SetComponentControllers.getInstance();
+//        SetCompositControllers scc = SetCompositControllers.getInstance();
 //        scc.addComponentController(this);
     }
 
@@ -50,13 +52,13 @@ public abstract class LeyoutComponentController extends GraphicsController {
         setComponentProperties();
         setViewProperties();
         component().addControllerObserver(this);
-//        SetComponentControllers scc = SetComponentControllers.getInstance();
+//        SetCompositControllers scc = SetCompositControllers.getInstance();
 //        scc.addComponentController(this);
     }
 
     /** Getters and Setters */
 
-    public void setParent(LeyoutComponentController parent) {
+    public void setParent(LeyoutCompositController parent) {
         this.parent = parent;
     }
 
@@ -226,9 +228,15 @@ public abstract class LeyoutComponentController extends GraphicsController {
     }
 
     public void select() {
-        view().setScaleX(1.02);
-        view().setScaleY(1.02);
-        view().entered();
+        select(9);
+    }
+
+    public void select(int i){
+        if (i > 0){                     //0 - не выделять, 9 серый цвет
+            view().setScaleX(1.02);
+            view().setScaleY(1.02);
+            view().entered(i);
+        }
     }
 
     public void unselect() {
@@ -250,4 +258,5 @@ public abstract class LeyoutComponentController extends GraphicsController {
     public double getSumEffectivity() {
         return 0;
     }
+
 }

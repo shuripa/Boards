@@ -15,7 +15,7 @@ public class TestTableController extends LeyoutComponentController {
         ((TestTableView)view()).setTitleText(table.getTitle());
     }
 
-    public TestTableController (LeyoutComponentController controller, TestTable table) throws IOException {
+    public TestTableController (LeyoutCompositController controller, TestTable table) throws IOException {
         super(table);
         setView(new TestTableView(this));
         setParent(controller);

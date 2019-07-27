@@ -3,37 +3,23 @@ package graphics.leyout.controllers;
 import graphics.GraphicsController;
 import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.components.LeyoutComposit;
 import graphics.leyout.views.CompositBoardView;
 import graphics.leyout.views.LeyoutComponentView;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import model.Condition;
-import sets.SetComponentControllers;
+import model.Employer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CompositBoardController extends LeyoutComponentController {
+public class CompositBoardController extends LeyoutCompositController {
     //Leaf
     WorkPlaceController wc;
     BoardController bc;
     BoardIndexController ic;
     GridController gc;
-
-    public CompositBoardController() throws IOException {
-        super();
-
-        bc = new BoardController();
-        wc = new WorkPlaceController();
-        gc = new GridController();
-        ic = new BoardIndexController();
-
-        setView(new CompositBoardView(this));
-
-        //Набор контроллеров композитов
-        SetComponentControllers scc = SetComponentControllers.getInstance();
-        scc.addComponentController(this);
-    }
 
     public CompositBoardController(CompositBoard cBoard) throws IOException {
         super(cBoard);
@@ -43,10 +29,10 @@ public class CompositBoardController extends LeyoutComponentController {
         ic = new BoardIndexController(cBoard.getBoardIndex());
 
         setView(new CompositBoardView(this));
-
+        setLeaves(bc, wc, gc, ic);
         //Набор контроллеров композитов
-        SetComponentControllers scc = SetComponentControllers.getInstance();
-        scc.addComponentController(this);
+//        SetCompositControllers scc = SetCompositControllers.getInstance();
+//        scc.addComponentController(this);
 
 //        cBoard.getWorkPlace().addControllerObserver(ic);
     }
@@ -75,7 +61,7 @@ public class CompositBoardController extends LeyoutComponentController {
         return gc;
     }
 
-    public LeyoutComponentController getHumanController() {
+    public LeyoutComponentController getWorkPlaceController() {
         return wc;
     }
 
@@ -87,7 +73,7 @@ public class CompositBoardController extends LeyoutComponentController {
         return ic;
     }
 
-    public LeyoutComponent getLeaf(int ind) {
+    public LeyoutComponent getComponentLeafs(int ind) {
         return component().getLeaf(ind);
     }
 
@@ -96,7 +82,7 @@ public class CompositBoardController extends LeyoutComponentController {
 //        Слушатели компонента пока ограничиваются слушателеями лейаута. Если появятся другие слушатели, нужно будет
 //        сделать общий интерфейс, заменить в LeyoutCompontnt клас массива observers и тут тип переменной lcc на тип
 //        сoзданного общего интерфейса.
-        for (GraphicsController lcc : getLeaf(leafInd).getObservers()) {
+        for (GraphicsController lcc : getComponentLeafs(leafInd).getObservers()) {
             if (lcc.getClass().getName().equals(GraphicsController.class.getName())) {
                 lcv.add(((LeyoutComponentController)lcc).view());
             }
@@ -154,13 +140,13 @@ public class CompositBoardController extends LeyoutComponentController {
     public ArrayList<Condition> getConditions() {
         return component().getConditions();
     }
-
 //    @Override
 //    public void update() {
 //        bc.update();
 //        wc.update();
 //        ic.update();
 //        gc.update();
+
 //    }
 
     @Override
@@ -192,5 +178,10 @@ public class CompositBoardController extends LeyoutComponentController {
     @Override
     public double getSumEffectivity() {
         return ((CompositBoard)component()).getBoardIndex().getEffectivityShift();
+    }
+
+    @Override
+    public void selectWhithPriority(Employer empoloyer) {
+        select(((LeyoutComposit)component()).getPriorityToEmployer(empoloyer));
     }
 }

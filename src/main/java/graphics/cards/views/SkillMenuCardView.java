@@ -6,11 +6,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import model.Skill;
 
-public class SkillMenuCard extends PaneComponentView{
+public class SkillMenuCardView extends PaneComponentView{
 
     Text tmod, tprod;
 
-    public SkillMenuCard(PaneComponentController controller){
+    public SkillMenuCardView(PaneComponentController controller){
         super(controller);
     }
 

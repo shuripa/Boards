@@ -1,10 +1,11 @@
 package graphics.leyout.components;
 
 import model.Condition;
+import model.Profession;
 
 import java.util.ArrayList;
 
-public class CompositBoard extends LeyoutComponent {
+public class CompositBoard extends LeyoutComposit {
     Board b;
     WorkPlace wp;
     BoardIndex i;
@@ -14,7 +15,7 @@ public class CompositBoard extends LeyoutComponent {
     public CompositBoard (){
         step =110;
         b = new Board();
-        wp = new WorkPlace(this);
+        wp = new WorkPlace(this, Profession.BINDER);
         g = new Grid();
         i = new BoardIndex(this);
         wp.addComponentObserver(i);
@@ -95,4 +96,6 @@ public class CompositBoard extends LeyoutComponent {
     public String toString() {
         return "";
     }
+
 }
+

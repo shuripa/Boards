@@ -1,18 +1,19 @@
 package graphics.cards.controllers;
 
 import graphics.GraphicsController;
-import graphics.cards.views.ComponentMenuCard;
+import graphics.cards.views.ComponentMenuCardView;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.controllers.LeyoutComponentController;
 import model.Skill;
+import sets.SetCompositControllers;
 
 import java.io.IOException;
 
-public class ComponentMenuCardController extends PaneComponentController{
+public class CompositMenuCardController extends PaneComponentController{
 
-    public ComponentMenuCardController(LeyoutComponent component, LeyoutComponent sender) {
+    public CompositMenuCardController(LeyoutComponent component, LeyoutComponent sender) {
         super(component, sender);
-        setView(new ComponentMenuCard(this));
+        setView(new ComponentMenuCardView(this));
     }
 
     @Override
@@ -21,6 +22,11 @@ public class ComponentMenuCardController extends PaneComponentController{
 
         view().setOnMouseClicked(mouseEvent -> {
             component().logining(((Skill)sender()).getEmployer());
+        });
+
+        view().setOnMouseExited(mouseEvent -> {
+            view().exited();
+//            boardUnselect();      Не ясно чи потрібно
         });
 
         view().setOnMouseEntered(mouseEvent -> {
@@ -32,6 +38,12 @@ public class ComponentMenuCardController extends PaneComponentController{
     private void boardSelect() {
         for (GraphicsController lcc: component().getObservers()) {
             lcc.select();
+        }
+    }
+
+    public void boardUnselect() {
+        for (LeyoutComponentController componentController: SetCompositControllers.getInstance().getComponentControllers()) {
+            componentController.unselect();
         }
     }
 

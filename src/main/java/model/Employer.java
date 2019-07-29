@@ -1,8 +1,12 @@
 package model;
 
 import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.components.LeyoutComposit;
 import graphics.leyout.components.WorkPlace;
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +26,7 @@ public class Employer extends LeyoutComponent {
     private final StringProperty name;
     private final StringProperty phone;
     private final StringProperty shift;
+    //TODO создать отдельный класс для набора скилов
     private final HashMap<String, Skill> skills;
 
     private WorkPlace workPlace;
@@ -137,6 +142,34 @@ public class Employer extends LeyoutComponent {
         return this.skills.values();
     }
 
+    public ArrayList<Skill> getSortedSkills(){
+        Skill[] result = new Skill[skills.keySet().size()];
+        for (Skill s: skills.values()) {
+            for (int i = 0; i<result.length; i++) {
+                if (result[i] == null){
+                    result [i] = s; break;
+                }else{
+                    if (s.getProductivity() < result[i].getProductivity()){
+                        int j = i+1;
+                        Skill temp = result[i];
+                        while (result[j] != null){
+                            temp = result[j];
+                            result[j] = result[j-1];
+                            j++;
+                        }
+                        result[j] = temp;
+                        result[i] = s; break;
+                    }
+                }
+            }
+        }
+        ArrayList<Skill> listResult = new ArrayList<>();
+        for (int i = result.length; i > 0; i--) {
+            listResult.add(result[i-1]);
+        }
+        return listResult;
+    }
+
     public Double getProductivity(Material module){
         Double result = 25.0;
         for (Skill s: skills.values()) {
@@ -144,6 +177,25 @@ public class Employer extends LeyoutComponent {
                 return s.getProductivity();
             }
         }
+        return result;
+    }
+
+    public int getProductivity (LeyoutComposit component){
+        int count = 0;
+        int result = 0;
+        double prod = 0;
+        for (Condition condition: component.getConditions()) {
+            count = 0;
+            prod = 0;
+            for (Skill sk: this.getSkills()) {
+                if (condition.isSuited(sk)) {
+                    count = count + 1;
+                    prod = prod + sk.getProductivity();
+                }
+            }
+        }
+        if (count != 0) result = (int) Math.ceil(prod / count);
+
         return result;
     }
 

@@ -259,4 +259,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         return 0;
     }
 
+    public int getPriority(){
+        return component().getPriority();
+    };
 }

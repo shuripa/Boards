@@ -15,6 +15,7 @@ public class EmployerCardView extends PaneComponentView {
     Text ti, td, tp, tprof, tw;
     Image im;
     ImageView imv;
+    Rectangle rw;
 
     public EmployerCardView(PaneComponentController controller){
         super (controller);
@@ -23,6 +24,7 @@ public class EmployerCardView extends PaneComponentView {
         tp = new Text("");
         tprof = new Text("");
         tw = new Text("");
+        rw = new Rectangle(0, 0, 100, 12);
     }
 
     public void paint() {
@@ -62,6 +64,11 @@ public class EmployerCardView extends PaneComponentView {
         tw.setX(100);
         tw.setY(12);
 
+        //Rectangle work place priority shape
+        rw.relocate(100, 2);
+        rw.setId("select" + ((EmployerCardController)controller()).getPriority());
+        rw.setStrokeWidth(0.1);
+
         //image
         imv = new ImageView();
         String id = ((EmployerCardController)controller()).getId();
@@ -76,9 +83,10 @@ public class EmployerCardView extends PaneComponentView {
         }
 
         addActiveElement(rc);
-        addTexts(td, ti, tp, tprof, tw);
+        addTexts(td, ti, tp, tprof);
         addNode(imv);
-        getChildren().add(rs);
+        getChildren().addAll(rs, rw);
+        addText(tw);
     }
 
     @Override
@@ -98,6 +106,9 @@ public class EmployerCardView extends PaneComponentView {
         tp.setText("" + ((EmployerCardController)controller()).getPhone());
         tprof.setText("" + ((EmployerCardController)controller()).getProfession());
         tw.setText("" + ((EmployerCardController)controller()).getWorkPlaceTitle());
+        rw.setId("select" + ((EmployerCardController)controller()).getPriority());
+        rw.setStrokeWidth(0.1);
+
     }
 
     @Override

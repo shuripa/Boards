@@ -1,10 +1,9 @@
 package graphics.cards.controllers;
 
+import graphics.leyout.components.LeyoutComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutCompositController;
-import model.Condition;
 import model.Employer;
-import model.Skill;
 import sets.SetCompositControllers;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class LoginMenuController extends PaneComponentController {
         this.employer = employer;
         setComposit = SetCompositControllers.getInstance();
         menu = new MenuConteinerController(parent);
-        controllers = new HashMap<>();
+//        controllers = new HashMap<>();
         controllers = setComposit.getControllersToEmployer(employer);
 
         String productivity;
@@ -34,21 +33,27 @@ public class LoginMenuController extends PaneComponentController {
             if (controllers.containsKey(priority)){
                 for (LeyoutCompositController controller: controllers.get(priority)) {
                     String sProd = "-";
-                    int count=0;
-                    double prod=0;
-                    for (Condition condition: controller.component().getConditions()) {
-                        count = 0;
-                        prod = 0;
-                        for (Skill sk: employer.getSkills()) {
-                            if (condition.isSuited(sk)) {
-                                count = count + 1;
-                                prod = prod + sk.getProductivity();
-                            }
-                        }
-                    }
-                    if (prod != 0) {
-                        productivity = "" + (int)Math.ceil(prod/count) + "%";
-                    } else productivity = "-";
+
+
+
+//                    int count=0;
+//                    double prod=0;
+//                    for (Condition condition: controller.component().getConditions()) {
+//                        count = 0;
+//                        prod = 0;
+//                        for (Skill sk: employer.getSkills()) {
+//                            if (condition.isSuited(sk)) {
+//                                count = count + 1;
+//                                prod = prod + sk.getProductivity();
+//                            }
+//                        }
+//                    }
+//                    if (prod != 0) {
+//                        productivity = "" + (int)Math.ceil(prod/count) + "%";
+//                    } else productivity = "-";
+
+                    productivity = "" + employer.getProductivity((LeyoutComposit) controller.component()) + "%";
+
                     card = new LoginCardController(controller, employer, priority, productivity);
                     menu.addCard(card);
                 }

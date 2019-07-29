@@ -119,6 +119,12 @@ public class EmployerCardController extends PaneComponentController
         return p.toString();
     }
 
+    public int getPriority(){
+        if (((Employer)component()).getWorkPlase() != null)
+        return  ((Employer)component()).getWorkPlase().getPriority();
+        else return 9;
+    }
+
     public String getWorkPlaceTitle() {
         String result = "";
         WorkPlace wp = ((Employer)component()).getWorkPlase();

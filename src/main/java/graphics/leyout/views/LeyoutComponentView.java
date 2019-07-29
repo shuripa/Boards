@@ -37,15 +37,20 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
         return controller;
     }
 
-    public void activate(){
+
+    public void activate(int priority){
         onActive = true;
         for (Shape s : activeElements) {
-            s.setId("active");
+            s.setId("select" + priority);
         }
         for (Text t: texts){
             t.setId("blanktxt");
             t.setText(controller.getText());
         }
+    }
+
+    public void activate(){
+        activate(9);
     }
 
     public void disactivate(){
@@ -56,7 +61,7 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
         for (Shape s : activeElements) {
             s.setId("select");
         }
-        for (Shape t: texts){
+        for (Text t: texts){
             t.setId("seltxt");
         }
         for (Shape b: bounderys) {
@@ -69,7 +74,7 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
         for (Shape s : activeElements) {
             s.setId("select" + i);
         }
-        for (Shape t: texts){
+        for (Text t: texts){
             t.setId("seltxt");
         }
         for (Shape b: bounderys) {
@@ -89,15 +94,16 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
                 b.setId("blankbound");
             }
         } else {
-            for (Shape s : activeElements) {
-                s.setId("active");
-            }
-            for (Text t : texts) {
-                t.setId("blanktxt");
-            }
-            for (Shape b : bounderys) {
-                b.setId("blankbound");
-            }
+            activate(controller().getPriority());
+//            for (Shape s : activeElements) {
+//                s.setId("active");
+//            }
+//            for (Text t : texts) {
+//                t.setId("blanktxt");
+//            }
+//            for (Shape b : bounderys) {
+//                b.setId("blankbound");
+//            }
         }
     }
 

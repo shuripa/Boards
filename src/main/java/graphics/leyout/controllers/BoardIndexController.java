@@ -30,12 +30,8 @@ public class BoardIndexController extends LeyoutComponentController {
 
     private void setText() {
         String text;
-        System.out.println("parent: " + (component().parent() != null));
-        System.out.println("workplace: " + ((component().parent()).getWorkPlace() != null));
-        System.out.println("logined: " + (component().parent()).getWorkPlace().isLogined());
         if ((component().parent()).getWorkPlace().isLogined()) {
             text = "" + ((BoardIndex)component()).getEffectivityShift() + "%";
-            System.out.println(text);
         } else {
             text = "0.0%";
         }
@@ -58,7 +54,6 @@ public class BoardIndexController extends LeyoutComponentController {
 
     @Override
     public void update() {
-        System.out.println("Index update");
         setProc();
         setText();
     }

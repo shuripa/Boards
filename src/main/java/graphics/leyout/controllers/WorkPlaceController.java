@@ -26,6 +26,15 @@ public class WorkPlaceController extends LeyoutComponentController {
     }
 
     @Override
+    public void viewEvents() throws IOException{
+        super.viewEvents();
+//        view().setOnMouseEntered(mouseEvent -> {
+//            select(((WorkPlace)component()).getPriority());
+//        });
+    }
+
+
+    @Override
     protected void setDragEvent() {
 
     }
@@ -46,10 +55,9 @@ public class WorkPlaceController extends LeyoutComponentController {
 
     @Override
     public void update() {
-        System.out.println("WorkPlace update");
         ((WorkPlaceView)view()).setText("" + getLogined());
         if (((WorkPlace)component()).isLogined()) {
-            view().activate();
+            view().activate(component().getPriority());
         } else {
             view().disactivate();
             unselect();

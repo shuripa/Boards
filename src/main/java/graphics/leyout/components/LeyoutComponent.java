@@ -16,11 +16,13 @@ public abstract class LeyoutComponent {
     private ArrayList<Condition> conditions;
     private int posCount;
 
+    private boolean active;
+
+
 //    private ArrayList <Node> nodes;         //Элементы управления
+
 //    public ShapeNode nEnt;                     //Точка входа
 //    public ShapeNode nExt;                     //Точка выхода
-
-
 
     public LeyoutComponent() {
         parent = null;
@@ -37,6 +39,14 @@ public abstract class LeyoutComponent {
 
     public LeyoutComponent parent(){
         return this.parent;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 
@@ -114,12 +124,16 @@ public abstract class LeyoutComponent {
     }
 
     public void logining(Employer employer){
+        logining(employer, 9);
+    }
+
+    public void logining(Employer employer, int priority){
         WorkPlace wp = getWorkPlace();
         if (wp != null) {
-            wp.setEmployer(employer);
-//            update();
+            wp.setEmployerWithPriority(employer, priority);
         }
     }
+
 
     public void update(){
         for (LeyoutComponent lc: leafs){
@@ -135,6 +149,10 @@ public abstract class LeyoutComponent {
 
     public WorkPlace getWorkPlace() {
         return null;
+    }
+
+    public int getPriority(){
+        return 9;
     }
 
 }

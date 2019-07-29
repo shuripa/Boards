@@ -52,9 +52,13 @@ public abstract class LeyoutComposit extends LeyoutComponent {
                 }
             }
         }
-        if (this.getWorkPlace().getProfession() == employer.getProfession() && getWorkPlace().isLogined() == false){
-            return 4;
+        if (getWorkPlace().isLogined() == false){
+            if (this.getWorkPlace().getProfession() == employer.getProfession()){
+                return 4;
+            }
+            return 8;
         }
+
         return result;
     }
 }

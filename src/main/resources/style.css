@@ -65,7 +65,7 @@
 }
 
 #select8 {
-    -fx-fill: red;
+    -fx-fill: rgba(255, 125, 125, 1.0);
     -fx-stroke: rgba(0, 0, 0, 0.8);
     -fx-stroke-width: 0.8;
 }

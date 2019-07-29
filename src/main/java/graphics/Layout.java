@@ -194,7 +194,7 @@ public class Layout extends Region {
         CompositPushcart compositPushcart = new CompositPushcart("4101");
         compositPushcart.setTitle("PCart-4101");
         CompositPushcartController compositPushcartController = new CompositPushcartController(compositPushcart);
-        compositPushcartController.setXYAS(250, 30, 0, 0);
+        compositPushcartController.setXYAS(250, 20, -90, 0);
         this.getChildren().add(compositPushcartController.view());
 
         CompositPushcart compositPushcart1 = new CompositPushcart("4102");
@@ -206,7 +206,7 @@ public class Layout extends Region {
         CompositPushcart compositPushcart3 = new CompositPushcart("4103");
         compositPushcart3.setTitle("PCart-4103");
         CompositPushcartController compositPushcartController3 = new CompositPushcartController(compositPushcart3);
-        compositPushcartController3.setXYAS(75, 170, 0, 0);
+        compositPushcartController3.setXYAS(575, 315, 0, 0);
         this.getChildren().add(compositPushcartController3.view());
 
 //        Conviers()
@@ -257,6 +257,20 @@ public class Layout extends Region {
         CompositManagerTableController cmtc4 = new CompositManagerTableController(cmt4);
         cmtc4.setXYAS(690, 16, -180, 0);
         this.getChildren().add(cmtc4.view());
+
+
+        CompositInformTableController itc = new CompositInformTableController(new CompositInformTable("4005", Profession.BRIGADIER));
+        itc.setXY(600, 150);
+        this.getChildren().add(itc.view());
+        itc = new CompositInformTableController(new CompositInformTable("4006", Profession.DELIVER));
+        itc.setXY(642, 150);
+        this.getChildren().add(itc.view());
+        itc = new CompositInformTableController(new CompositInformTable("4007", Profession.ENGINEER));
+        itc.setXY(684, 150);
+        this.getChildren().add(itc.view());
+        itc = new CompositInformTableController(new CompositInformTable("4008", Profession.BINDER));
+        itc.setXY(726, 150);
+        this.getChildren().add(itc.view());
 
     }
 

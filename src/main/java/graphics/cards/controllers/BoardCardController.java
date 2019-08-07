@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import static graphics.Layout.getInstace;
 
+@Deprecated
 public class BoardCardController extends PaneComponentController {
 
     public BoardCardController(String board){

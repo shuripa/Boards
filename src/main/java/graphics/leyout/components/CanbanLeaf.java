@@ -1,8 +1,9 @@
 package graphics.leyout.components;
 
+import stock.Store;
+
 public class CanbanLeaf extends LeyoutComponent {
     CanbanCard[] cards;
-    CanbanBoard parent;
     int cntCard;
 
 //    @Deprecated
@@ -16,7 +17,7 @@ public class CanbanLeaf extends LeyoutComponent {
 //    }
 
     public CanbanLeaf(CanbanBoard parent, int cntCard){
-        this.parent = parent;
+        setParent(parent);
         this.cntCard = cntCard;
         cards = new CanbanCard[cntCard];
         for (int i = 0; i < cntCard; i++) {
@@ -28,8 +29,22 @@ public class CanbanLeaf extends LeyoutComponent {
         return cntCard;
     }
 
+    public int getCardsLength(){
+        return cards.length;
+    }
+
     public CanbanCard getCard(int i) {
         return cards[i];
+    }
+
+    public int getCardInd(CanbanCard card){
+        int result = 0;
+        for (int i = 0; i < getCardsLength(); i++) {
+            //Возвращает индекс позиции на реальном канбане, который начинается с 1, a не как в массиве, где он начинается с 0.
+            // Если result останется равным 0 значит карта не содержится в массиве.
+            if (cards[i] == card) result = i+1;
+        }
+        return result;
     }
 
     @Override
@@ -43,5 +58,10 @@ public class CanbanLeaf extends LeyoutComponent {
             if (cards[i].maxCountOrder > max) max = cards[i].maxCountOrder;
         }
         return max;
+    }
+
+    public Store getStore(CanbanCard card) {
+        String adres = "-" + getCardInd(card);
+        return ((CanbanBoard)parent()).getStore(this, adres);
     }
 }

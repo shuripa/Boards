@@ -3,7 +3,6 @@ package graphics.leyout.controllers;
 import graphics.leyout.components.CanbanCard;
 import graphics.leyout.components.CanbanLeaf;
 import graphics.leyout.views.CanbanLeafView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -39,20 +38,11 @@ public class CanbanLeafController extends LeyoutComponentController {
     }
 
     @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-    @Override
     public void update() {
         for (int i = 0; i < countCards(); i++) {
             canbanCardControllers[i].update();
         }
+        super.update();
     }
 
     @Override

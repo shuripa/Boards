@@ -19,7 +19,7 @@ public abstract class PaneComponentView extends Group {
     private ArrayList<Node> nodes;                 //ImageView
     private Boolean onActive;
 
-    PaneComponentView(PaneComponentController controller){
+    public PaneComponentView(PaneComponentController controller){
         this.controller = controller;
         disactivate();
         activeElements = new ArrayList<>();
@@ -33,10 +33,10 @@ public abstract class PaneComponentView extends Group {
     public void activate(){
         onActive = true;
         for (Shape s : activeElements) {
-            s.setId("active");
+            s.setId("set1");
         }
         for (Shape t: texts){
-            t.setId("blanktxt");
+            t.setId("txt0");
         }
     }
 
@@ -49,32 +49,32 @@ public abstract class PaneComponentView extends Group {
     }
 
     public void entered (){
-        entered(9);
+        entered(1);
     }
 
     public void entered (int i){
         for (Shape s : activeElements) {
-            s.setId("select" +i);
+            s.setId("set" +i);
         }
         for (Shape t: texts){
-            t.setId("seltxt");
+            t.setId("txt1");
         }
     }
 
     public void exited (){
         if (onActive == false) {
             for (Shape s : activeElements) {
-                s.setId("blank");
+                s.setId("set0");
             }
             for (Text t : texts) {
-                t.setId("blanktxt");
+                t.setId("txt0");
             }
         } else {
             for (Shape s : activeElements) {
-                s.setId("active");
+                s.setId("set1");
             }
             for (Text t : texts) {
-                t.setId("blanktxt");
+                t.setId("txt1");
             }
         }
     }
@@ -82,7 +82,7 @@ public abstract class PaneComponentView extends Group {
     /** Elements */
 
     public void addText(Text text) {
-        text.setId("blanktxt");
+        text.setId("txt0");
         texts.add(text);
         this.getChildren().add(text);
     }
@@ -95,9 +95,9 @@ public abstract class PaneComponentView extends Group {
 
     public void addActiveElement(Shape element) {
         if (onActive == false) {
-            element.setId("blank");
+            element.setId("set0");
         } else {
-            element.setId("active");
+            element.setId("set1");
         }
         this.activeElements.add(element);
         this.getChildren().add(element);
@@ -111,9 +111,9 @@ public abstract class PaneComponentView extends Group {
 
     public void addPriorityElement(int priority, Shape element) {
         if (onActive == false) {
-            element.setId("select" + priority);
+            element.setId("set" + priority);
         } else {
-            element.setId("active");
+            element.setId("set1");
         }
         this.priorityElements.add(element);
         this.getChildren().add(element);

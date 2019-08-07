@@ -1,8 +1,7 @@
 package graphics.leyout.controllers;
 
-import graphics.leyout.views.TestTableView;
-import javafx.scene.input.MouseButton;
 import graphics.leyout.components.TestTable;
+import graphics.leyout.views.TestTableView;
 
 import java.io.IOException;
 
@@ -28,15 +27,6 @@ public class TestTableController extends LeyoutComponentController {
 
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-    @Override
-    protected void setDragEvent() {
-
-    }
 
     public String getId() {
         return ((TestTable) component()).getId();

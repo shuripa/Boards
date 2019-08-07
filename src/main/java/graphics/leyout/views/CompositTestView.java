@@ -1,10 +1,10 @@
 package graphics.leyout.views;
 
 import graphics.leyout.controllers.CompositTestTableController;
-import graphics.leyout.controllers.LeyoutComponentController;
+import graphics.leyout.controllers.LeyoutWorkPlacedController;
 
-public class CompositTestView extends LeyoutComponentView {
-    public CompositTestView(LeyoutComponentController controller) {
+public class CompositTestView extends LeyoutWorkPlacedView {
+    public CompositTestView(LeyoutWorkPlacedController controller) {
         super(controller);
     }
 

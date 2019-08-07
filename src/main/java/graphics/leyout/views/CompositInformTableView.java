@@ -1,18 +1,23 @@
 package graphics.leyout.views;
 
 import graphics.leyout.controllers.CompositInformTableController;
-import graphics.leyout.controllers.LeyoutComponentController;
+import graphics.leyout.controllers.LeyoutWorkPlacedController;
+import graphics.leyout.controllers.WorkPlaceController;
 
-public class CompositInformTableView extends LeyoutComponentView {
+public class CompositInformTableView extends LeyoutWorkPlacedView {
     LeyoutComponentView workPlaceView;
     LeyoutComponentView tableView;
+    WorkPlaceController wpController;
 
-    public CompositInformTableView(LeyoutComponentController controller) {
+
+    public CompositInformTableView(LeyoutWorkPlacedController controller) {
         super(controller);
+        wpController = ((CompositInformTableController)controller()).getWorkPlaceController();
     }
 
     @Override
     public void paint() {
+
         workPlaceView = ((CompositInformTableController)controller()).getWorkPlaceController().view();
         workPlaceView.relocate(12, 0);
         tableView = ((CompositInformTableController)controller()).getInformTableController().view();
@@ -22,7 +27,6 @@ public class CompositInformTableView extends LeyoutComponentView {
 
     @Override
     public void repaint() {
-        workPlaceView.relocate(12, 0);
-        tableView.relocate(0,20);
+        wpController.setXY(12, 0);
     }
 }

@@ -2,7 +2,7 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.WorkPlace;
 import graphics.leyout.views.WorkPlaceView;
-import javafx.scene.input.MouseButton;
+import model.Employer;
 
 import java.io.IOException;
 
@@ -17,6 +17,12 @@ public class WorkPlaceController extends LeyoutComponentController {
         setView(new WorkPlaceView(this));
     }
 
+    public WorkPlaceController(WorkPlace workPlace, LeyoutWorkPlacedController parent) throws IOException {
+        super(workPlace);
+        setParent(parent);
+        setView(new WorkPlaceView(this));
+    }
+
     public String getLogined() {
         return ((WorkPlace) component()).getLogined();
     }
@@ -25,19 +31,6 @@ public class WorkPlaceController extends LeyoutComponentController {
         return ((WorkPlace) component()).getText();
     }
 
-    @Override
-    public void viewEvents() throws IOException{
-        super.viewEvents();
-//        view().setOnMouseEntered(mouseEvent -> {
-//            select(((WorkPlace)component()).getPriority());
-//        });
-    }
-
-
-    @Override
-    protected void setDragEvent() {
-
-    }
 
     @Override
     protected void setComponentProperties() {
@@ -49,18 +42,24 @@ public class WorkPlaceController extends LeyoutComponentController {
     }
 
     @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-    @Override
     public void update() {
         ((WorkPlaceView)view()).setText("" + getLogined());
         if (((WorkPlace)component()).isLogined()) {
-            view().activate(component().getPriority());
+            view().activate(((WorkPlace)component()).getPriority());
         } else {
             view().disactivate();
             unselect();
+        }
+        super.update();
+    }
+
+    @Override
+    public void unselect(){
+        Employer emp = ((WorkPlace)component()).getEmployer();
+        if (emp != null){
+            super.select(((WorkPlace) component()).getPriority());
+        } else {
+            super.unselect();
         }
     }
 

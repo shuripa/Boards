@@ -3,7 +3,6 @@ package graphics.leyout.components;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Condition;
-import model.Employer;
 
 public class Board extends LeyoutComponent {
 
@@ -66,10 +65,5 @@ public class Board extends LeyoutComponent {
 
     public String toString(){
         return "Board:\nID = " + id.get() +";\nTitle = " + title.get() + ";\nCondition = " + condition.get();
-    }
-
-    @Override
-    public void logining(Employer employer) {
-
     }
 }

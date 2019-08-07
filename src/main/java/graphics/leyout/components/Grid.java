@@ -1,7 +1,5 @@
 package graphics.leyout.components;
 
-import model.Employer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -46,8 +44,4 @@ public class Grid extends LeyoutComponent {
                 + '}';
     }
 
-    @Override
-    public void logining(Employer employer) {
-
-    }
 }

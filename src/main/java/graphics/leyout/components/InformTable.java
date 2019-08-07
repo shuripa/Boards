@@ -6,7 +6,7 @@ public class InformTable extends LeyoutComponent {
     public InformTable() {
     }
 
-    public InformTable(LeyoutComposit parent) {
+    public InformTable(WorkPlacedComposit parent) {
         setParent(parent);
     }
 

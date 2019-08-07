@@ -1,5 +1,6 @@
 package panes;
 
+import graphics.leyout.controllers.LeyoutComponentController;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
@@ -7,8 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import graphics.leyout.controllers.LeyoutComponentController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PropertyPane extends TitledPane {
@@ -69,9 +70,16 @@ public class PropertyPane extends TitledPane {
                 TextField tp = new TextField("" + ip.getValue());
 
                 tp.setOnKeyReleased(keyEvent -> {
-                    if ((tp != null) && !(tp.equals(""))) {
+                    if ((tp == null) || (tp.equals(""))) {
+
+                    } else{
                         ip.setValue(Integer.parseInt(tp.getText()));
-                        sender.update();
+                        try {
+
+                            sender.update(ip.getName());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 

@@ -1,14 +1,17 @@
 package panes;
 
+import graphics.editor.EditorGroupPane;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import graphics.cards.views.EmployerGroupPane;
 
+import java.io.IOException;
+
 public class RightPanel extends Accordion {
     private static RightPanel instance;
 
-    private RightPanel(){
+    private RightPanel() throws IOException {
 
 //         !!! План !!! Сам класс наследуется от TitledPane
         this.getPanes().add(new PlanPane());
@@ -31,7 +34,7 @@ public class RightPanel extends Accordion {
     }
 
 
-    public static RightPanel getInstance(){
+    public static RightPanel getInstance() throws IOException {
         if (instance == null) {
             instance = new RightPanel();
         }

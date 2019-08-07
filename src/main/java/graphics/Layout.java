@@ -2,6 +2,7 @@ package graphics;
 
 import graphics.leyout.components.*;
 import graphics.leyout.controllers.*;
+import graphics.leyout.views.LeyoutComponentView;
 import inout.EmployesCsvLoader;
 import inout.SkillCsvLoader;
 import javafx.scene.control.TextField;
@@ -41,7 +42,11 @@ public class Layout extends Region {
     }
 
     private Layout() throws IOException {
-//        leyerToConnection();
+
+    }
+
+    public void show() throws IOException {
+        //        leyerToConnection();
 //        canbanController();
 //        createArrBoards();
 //        boards189and059();
@@ -102,7 +107,7 @@ public class Layout extends Region {
         cb.logining(employes.getEmployerByID("12630"));
         cbc.setXYAS(100, 100, 0, 90);
 //        SetCompositControllers.getInstance().addComponentController(cbc);
-        this.getChildren().add(cbc.view());
+//        this.getChildren().add(cbc.view());
         cm.addBoard(cb);
         cb.getBoardIndex().update();
 
@@ -116,7 +121,7 @@ public class Layout extends Region {
         cb.logining(employes.getEmployerByID("12700"));                    //Файл логирования
         cbc.setXYAS(100, 150, -180, 90);                   //Файл размеров
 //        SetCompositControllers.getInstance().addComponentController(cbc);
-        this.getChildren().add(cbc.view());
+//        this.getChildren().add(cbc.view());
         cm.addBoard(cb);                                                    //Файл связей
         cb.getBoardIndex().update();
 
@@ -129,7 +134,7 @@ public class Layout extends Region {
         cb.logining(employes.getEmployerByID("13710"));
         cbc.setXYAS(220, 100, 0, 90);
 //        SetCompositControllers.getInstance().addComponentController(cbc);
-        this.getChildren().add(cbc.view());
+//        this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().update();
 
@@ -142,7 +147,7 @@ public class Layout extends Region {
         cb.logining(employes.getEmployerByID("13003"));
         cbc.setXYAS(220, 150, -180, 90);
 //        SetCompositControllers.getInstance().addComponentController(cbc);
-        this.getChildren().add(cbc.view());
+//        this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().update();
 
@@ -152,10 +157,10 @@ public class Layout extends Region {
         cb.setCondition(new Condition("MFC1847217***", 110));
         cb.setProc(0);
         cbc = new CompositBoardController(cb);
-//        cb.logining(employes.getEmployerByID("13003"));
+//        cb.action(employes.getEmployerByID("13003"));
         cbc.setXYAS(315, 100, 0, 60);
 //        SetCompositControllers.getInstance().addComponentController(cbc);
-        this.getChildren().add(cbc.view());
+//        this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().update();
 
@@ -165,10 +170,10 @@ public class Layout extends Region {
         cb.setCondition(new Condition("MFC1802012***", 110));
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
-//        cb.logining(employes.getEmployerByID("13003"));
+//        cb.action(employes.getEmployerByID("13003"));
         cbc.setXYAS(305, 150, -180, 60);
 //        SetCompositControllers.getInstance().addComponentController(cbc);
-        this.getChildren().add(cbc.view());
+//        this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
         cb.getBoardIndex().update();
 
@@ -176,8 +181,8 @@ public class Layout extends Region {
 
 //        MAO_end
 //        SetCompositControllers.getInstance().addComponentController(cmc);
-        this.getChildren().add(cmc.view());
-        this.getChildren().add(cmc1.view());
+//        this.getChildren().add(cmc.view());
+//        this.getChildren().add(cmc1.view());
 
 //        Test table
 
@@ -187,7 +192,7 @@ public class Layout extends Region {
         comptest.setCondition(new Condition ("MFC1847164***", 120));
         CompositTestTableController compTestController = new CompositTestTableController(comptest);
         compTestController.setXYAS(100, 15, 0, 60);
-        this.getChildren().add(compTestController.view());
+//        this.getChildren().add(compTestController.view());
 
 //        Pushcart
 
@@ -195,31 +200,37 @@ public class Layout extends Region {
         compositPushcart.setTitle("PCart-4101");
         CompositPushcartController compositPushcartController = new CompositPushcartController(compositPushcart);
         compositPushcartController.setXYAS(250, 20, -90, 0);
-        this.getChildren().add(compositPushcartController.view());
+//        this.getChildren().add(compositPushcartController.view());
 
         CompositPushcart compositPushcart1 = new CompositPushcart("4102");
         compositPushcart1.setTitle("PCart-4102");
         CompositPushcartController compositPushcartController1 = new CompositPushcartController(compositPushcart1);
         compositPushcartController1.setXYAS(370, 30, 0, 0);
-        this.getChildren().add(compositPushcartController1.view());
+//        this.getChildren().add(compositPushcartController1.view());
 
         CompositPushcart compositPushcart3 = new CompositPushcart("4103");
         compositPushcart3.setTitle("PCart-4103");
         CompositPushcartController compositPushcartController3 = new CompositPushcartController(compositPushcart3);
         compositPushcartController3.setXYAS(575, 315, 0, 0);
-        this.getChildren().add(compositPushcartController3.view());
+//        this.getChildren().add(compositPushcartController3.view());
 
 //        Conviers()
 
         CompositConvier compositConvier = new CompositConvier(8);
         CompositConvierController compositConvierController = new CompositConvierController(compositConvier);
         compositConvierController.setXYAS(430, 10, 0, 60);
-        this.getChildren().add(compositConvierController.view());
+//        this.getChildren().add(compositConvierController.view());
 
         CompositConvier convier2= new CompositConvier(6);
         CompositConvierController convierController2 = new CompositConvierController(convier2);
         convierController2.setXYAS(150, 100, -90, 90);
-        this.getChildren().add(convierController2.view());
+//        this.getChildren().add(convierController2.view());
+
+
+        CompositConvier convier3= new CompositConvier(20);
+        CompositConvierController convierController3 = new CompositConvierController(convier3);
+        convierController3.setXYAS(600, 200, 90, 60);
+//        this.getChildren().add(convierController3.view());
 
 
 //        canbans();
@@ -227,12 +238,12 @@ public class Layout extends Region {
         CanbanBoard canbanBoard = new CanbanBoard(25, 6);
         CanbanBoardController canbanBoardController = new CanbanBoardController(canbanBoard);
         canbanBoardController.setXYAS(55, 660, 0, 0);
-        this.getChildren().add(canbanBoardController.view());
+//        this.getChildren().add(canbanBoardController.view());
 
         CanbanBoard canbanBoard1 = new CanbanBoard(25, 8);
         CanbanBoardController canbanBoardController1 = new CanbanBoardController(canbanBoard1);
         canbanBoardController1.setXYAS(55, 745, 0, 0);
-        this.getChildren().add(canbanBoardController1.view());
+//        this.getChildren().add(canbanBoardController1.view());
 
 //        testTables(bg1, bg2, bg3);
 //        Blanks();
@@ -241,42 +252,45 @@ public class Layout extends Region {
         CompositManagerTable cmt1 = new CompositManagerTable("4001", Side.UP_RIGHT, Profession.MASTER);
         CompositManagerTableController cmtc1 = new CompositManagerTableController(cmt1);
         cmtc1.setXYAS(602, 60, 0, 0);
-        this.getChildren().add(cmtc1.view());
+//        this.getChildren().add(cmtc1.view());
 
         CompositManagerTable cmt2 = new CompositManagerTable("4002", Side.UP_LEFT, Profession.LEADER);
         CompositManagerTableController cmtc2 = new CompositManagerTableController(cmt2);
         cmtc2.setXYAS(692, 60, 0, 0);
-        this.getChildren().add(cmtc2.view());
+//        this.getChildren().add(cmtc2.view());
 
         CompositManagerTable cmt3 = new CompositManagerTable("4003", Side.UP_LEFT, Profession.DEPARTMENT_MANAGER);
         CompositManagerTableController cmtc3 = new CompositManagerTableController(cmt3);
         cmtc3.setXYAS(600, 10, -180, 0);
-        this.getChildren().add(cmtc3.view());
+//        this.getChildren().add(cmtc3.view());
 
         CompositManagerTable cmt4 = new CompositManagerTable("4004", Side.UP_RIGHT, Profession.LOCATION_MANAGER);
         CompositManagerTableController cmtc4 = new CompositManagerTableController(cmt4);
         cmtc4.setXYAS(690, 16, -180, 0);
-        this.getChildren().add(cmtc4.view());
+//        this.getChildren().add(cmtc4.view());
 
 
         CompositInformTableController itc = new CompositInformTableController(new CompositInformTable("4005", Profession.BRIGADIER));
         itc.setXY(600, 150);
-        this.getChildren().add(itc.view());
+//        this.getChildren().add(itc.view());
         itc = new CompositInformTableController(new CompositInformTable("4006", Profession.DELIVER));
         itc.setXY(642, 150);
-        this.getChildren().add(itc.view());
+//        this.getChildren().add(itc.view());
         itc = new CompositInformTableController(new CompositInformTable("4007", Profession.ENGINEER));
         itc.setXY(684, 150);
-        this.getChildren().add(itc.view());
+//        this.getChildren().add(itc.view());
         itc = new CompositInformTableController(new CompositInformTable("4008", Profession.BINDER));
         itc.setXY(726, 150);
-        this.getChildren().add(itc.view());
-
+//        this.getChildren().add(itc.view());
     }
 
     private void setEvents() {
         this.setOnDragEntered(dragEvent -> {
-            RightPanel.getInstance().getPanes().get(4).setExpanded(true);
+            try {
+                RightPanel.getInstance().getPanes().get(4).setExpanded(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("On drag entered");
             System.out.println("Old: " + dx + "; " + dy);
             dx = (int)dragEvent.getSceneX();
@@ -287,8 +301,18 @@ public class Layout extends Region {
 
         this.setOnDragOver(dragEvent -> {
             dragEvent.acceptTransferModes(TransferMode.MOVE);
+//            Проблема в том что не каждый компонент имеет parent
+//            sin: 0: 0, 90: 1, 180:  0, 270: -1
+//            cos: 0: 1, 90: 0, 180: -1, 270:  0
+
             ndx = (int)(dragEvent.getSceneX()-dx);
             ndy = (int)(dragEvent.getSceneY()-dy);
+            double sin = 1;
+            double cos = 1;
+            if (dComponentController.parent() != null) {
+                ndx = (int)Math.ceil(ndx*Math.cos(dComponentController.parent().A()));
+                ndy = (int)Math.ceil(ndy*Math.cos(dComponentController.parent().A()));
+            }
             dComponentController.setXY(cx+ndx, cy+ndy);
             System.out.println("On drag over " + ndx + "; " + ndy);
             dragEvent.consume();
@@ -402,7 +426,7 @@ public class Layout extends Region {
 //        gbc1.addOrder(new Order(21117, "MFC1841082A0A", 4, 178.24));
 //        gbc1.addOrder(new Order(21118, "MFC1841082L0A", 47, 188.13));
 ////        Логування
-//        gbc1.logining(14417);
+//        gbc1.action(14417);
 ////        Додавання дошки в набор
 //        BoardsController.getInstance().addGroupBoardController(gbc1);
 //        return gbc1;
@@ -555,6 +579,22 @@ public class Layout extends Region {
         if (t != null){
             this.getChildren().remove(t);
             t = null;
+        }
+    }
+
+    public void addView(LeyoutComponentView view){
+        this.getChildren().add(view);
+    }
+
+    public void delView(LeyoutComponentView view){
+        this.getChildren().remove(view);
+    }
+
+    public boolean isContainsView(LeyoutComponentView view) {
+        if (getChildren().contains(view)) {
+            return true;
+        } else {
+            return false;
         }
     }
 

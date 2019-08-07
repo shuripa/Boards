@@ -5,7 +5,7 @@ import model.Profession;
 
 import java.util.ArrayList;
 
-public class CompositBoard extends LeyoutComposit {
+public class CompositBoard extends WorkPlacedComposit {
     Board b;
     WorkPlace wp;
     BoardIndex i;
@@ -13,6 +13,7 @@ public class CompositBoard extends LeyoutComposit {
     int step;
 
     public CompositBoard (){
+        super();
         step =110;
         b = new Board();
         wp = new WorkPlace(this, Profession.BINDER);
@@ -73,7 +74,7 @@ public class CompositBoard extends LeyoutComposit {
         return b.getConditions();
     }
 
-//    public void logining(Employer employer) {
+//    public void action(Employer employer) {
 //        getWorkPlace().setEmployer(employer);
 //        update();
 //        getBoardIndex().updateData();
@@ -90,6 +91,17 @@ public class CompositBoard extends LeyoutComposit {
 
     public void setProc(int proc) {
         i.setProc(proc);
+    }
+
+    @Override
+    public double getEffectivity() {
+        return (i != null) ? getBoardIndex().getEffectivityShift() : 0;
+    }
+
+    @Override
+    public int getCountFreeWorkPlace() {
+
+        return wp == null || !wp.isLogined() ? 1 : 0;
     }
 
     @Override

@@ -7,7 +7,7 @@ import model.Side;
 public class WorkPlace extends LeyoutComponent {
 
     /**
-     * Приоритеты определены в LeyoutComposit и могут быть переопределены в дочерних классах.
+     * Приоритеты определены в WorkPlacedComposit и могут быть переопределены в дочерних классах.
      * Приоритеты хранятся в классе рабочего места, т.к. именно для него они имеют смысл.
      * Список обоснований приоритетов не окончательный.
      *
@@ -20,7 +20,8 @@ public class WorkPlace extends LeyoutComponent {
      * 6 -
      * 7 -
      * 8 - красный          - любое свободное место на проекте
-     * 9 - обычный серый    - не используется так как использован при обычном выделении хотя для обычного выделения можно установить и 10 или пересмотреть 0
+     * 9 - обычный серый    - не используется так как использован при обычном выделении
+     * хотя для обычного выделения можно установить и 10 или пересмотреть 0
      */
 
 
@@ -30,20 +31,21 @@ public class WorkPlace extends LeyoutComponent {
 
     Side side;
     Profession profession;
+
     @Deprecated
     public WorkPlace(){
     }
 
-    public WorkPlace(LeyoutComposit parent, Profession profession){
+    public WorkPlace(WorkPlacedComposit parent, Profession profession){
         setParent(parent);
-        priority = 9;
+        priority = 1;
         this.side = Side.DOWN;
         this.profession = profession;
     }
 
     public WorkPlace(LeyoutComponent parent, Profession profession, Side side){
         setParent(parent);
-        priority = 9;
+        priority = 1;
         this.profession = profession;
         this.side = side;
     }
@@ -60,7 +62,6 @@ public class WorkPlace extends LeyoutComponent {
         return employer == null ? "0" : employer.getId();
     }
 
-    @Override
     public int getPriority() {
         return priority;
     }
@@ -82,8 +83,8 @@ public class WorkPlace extends LeyoutComponent {
         if (temp != null) temp.free();
         this.employer = employer;
         this.employer.setWorkPlace(this);
+        priority = ((WorkPlacedComposit)this.parent()).getPriorityToEmployer(this.employer);
         update();
-//        if (this.employer.getWorkPlase() != this) employer.setWorkPlace(this);
     }
 
     public void setEmployerWithPriority(Employer employer, int priority){
@@ -112,6 +113,7 @@ public class WorkPlace extends LeyoutComponent {
     public String getText(){
         return "" + getLogined();
     }
+
 
 
 }

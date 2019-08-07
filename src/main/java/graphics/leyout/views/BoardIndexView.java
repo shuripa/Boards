@@ -1,11 +1,9 @@
 package graphics.leyout.views;
 
-import graphics.leftPanel.LeftPanel;
+import graphics.leftpanel.LeftPanel;
 import graphics.leyout.controllers.LeyoutComponentController;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
-import java.io.IOException;
 
 
 public class BoardIndexView extends LeyoutComponentView {
@@ -20,12 +18,7 @@ public class BoardIndexView extends LeyoutComponentView {
         addActiveElements(r1, r2);
         text = new Text();
         text.setOnMouseEntered(mouseEvent -> {
-            LeftPanel lp = null;
-            try {
-                lp = new LeftPanel();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            LeftPanel lp = LeftPanel.getInstance();
             lp.show(this, 0, 0);
         });
 

@@ -130,7 +130,7 @@ public class GroupBoard extends Group implements Infoable {
     }
 
 //    public void setLoginning(int EmployerId){
-//        hc.logining(EmployerId);
+//        hc.action(EmployerId);
 //    }
 
     public ArrayList<Order> getOrd() {

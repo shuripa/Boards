@@ -2,11 +2,10 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositPushcart;
 import graphics.leyout.views.CompositPushcartView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
-public class CompositPushcartController extends LeyoutCompositController {
+public class CompositPushcartController extends LeyoutWorkPlacedController {
 
     PushcartController pushcartController;
     WorkPlaceController workPlaceController;
@@ -32,32 +31,4 @@ public class CompositPushcartController extends LeyoutCompositController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-
-//    @Override
-//    public void update() {
-//        pushcartController.update();
-//        workPlaceController.update();
-//    }
-
-//    @Override
-//    public void select() {
-//        pushcartController.select();
-//        workPlaceController.select();
-//    }
-//
-//    @Override
-//    public void unselect() {
-//        pushcartController.unselect();
-//        workPlaceController.unselect();
-//    }
 }

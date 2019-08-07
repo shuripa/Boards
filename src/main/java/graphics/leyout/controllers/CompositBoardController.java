@@ -3,18 +3,17 @@ package graphics.leyout.controllers;
 import graphics.GraphicsController;
 import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.LeyoutComponent;
-import graphics.leyout.components.LeyoutComposit;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.views.CompositBoardView;
 import graphics.leyout.views.LeyoutComponentView;
 import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
 import model.Condition;
 import model.Employer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CompositBoardController extends LeyoutCompositController {
+public class CompositBoardController extends LeyoutWorkPlacedController {
     //Leaf
     WorkPlaceController wc;
     BoardController bc;
@@ -23,13 +22,13 @@ public class CompositBoardController extends LeyoutCompositController {
 
     public CompositBoardController(CompositBoard cBoard) throws IOException {
         super(cBoard);
-        bc = new BoardController(cBoard.getBoard());
-        wc = new WorkPlaceController(cBoard.getWorkPlace());
+        bc = new BoardController(cBoard.getBoard(), this);
+        wc = new WorkPlaceController(cBoard.getWorkPlace(), this);
         gc = new GridController(cBoard.getGrid());
         ic = new BoardIndexController(cBoard.getBoardIndex());
-
+        setLeaves(bc, gc, wc, ic);
+//        setWorkPlace(wc);
         setView(new CompositBoardView(this));
-        setLeaves(bc, wc, gc, ic);
         //Набор контроллеров композитов
 //        SetCompositControllers scc = SetCompositControllers.getInstance();
 //        scc.addComponentController(this);
@@ -131,49 +130,12 @@ public class CompositBoardController extends LeyoutCompositController {
         setIntProperty((((CompositBoard)component()).getBoardIndex()).procProperty());
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     @Override
     public ArrayList<Condition> getConditions() {
         return component().getConditions();
     }
-//    @Override
-//    public void update() {
-//        bc.update();
-//        wc.update();
-//        ic.update();
-//        gc.update();
 
-//    }
-
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    public void select() {
-        wc.select();
-        bc.select();
-        gc.select();
-        ic.select();
-    }
-
-    @Override
-    public void unselect(){
-        wc.unselect();
-        bc.unselect();
-        gc.unselect();
-        ic.unselect();
-    }
-
-    @Override
-    public int getCountWorkPlase() {
-        return 1;
-    }
 
     @Override
     public double getSumEffectivity() {
@@ -182,6 +144,6 @@ public class CompositBoardController extends LeyoutCompositController {
 
     @Override
     public void selectWhithPriority(Employer empoloyer) {
-        select(((LeyoutComposit)component()).getPriorityToEmployer(empoloyer));
+        select(((WorkPlacedComposit)component()).getPriorityToEmployer(empoloyer));
     }
 }

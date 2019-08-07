@@ -2,7 +2,6 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.Convier;
 import graphics.leyout.views.ConvierView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -13,6 +12,7 @@ public class ConvierController extends LeyoutComponentController {
         setView(new ConvierView(this));
     }
 
+
     public int countPos(){
         return ((Convier)component()).getCountPos();
     }
@@ -22,13 +22,4 @@ public class ConvierController extends LeyoutComponentController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 }

@@ -1,8 +1,7 @@
 package graphics.leyout.controllers;
 
-import javafx.scene.input.MouseButton;
-import graphics.leyout.views.BoardView;
 import graphics.leyout.components.Board;
+import graphics.leyout.views.BoardView;
 
 import java.io.IOException;
 
@@ -14,6 +13,12 @@ public class BoardController extends LeyoutComponentController {
 
     public BoardController (Board board) throws IOException {
         super(board);
+        setView(new BoardView(this));
+    }
+
+    public BoardController (Board board, LeyoutCompositController parent) throws IOException {
+        super(board);
+        setParent(parent);
         setView(new BoardView(this));
     }
 
@@ -37,20 +42,13 @@ public class BoardController extends LeyoutComponentController {
     }
 
     @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-    @Override
     public void update() {
         ((BoardView)view()).setTt(getTitle());
         ((BoardView)view()).setTi("" + getId());
+        super.update();
     }
 
-    @Override
-    protected void setDragEvent() {
 
-    }
 
 //В контроллерах нет необходимости дублировать toString. Функциональность реализована на уровне суперклассов.
 

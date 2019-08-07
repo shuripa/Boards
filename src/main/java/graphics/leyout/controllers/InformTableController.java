@@ -2,7 +2,6 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.InformTableView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -25,13 +24,4 @@ public class InformTableController extends LeyoutComponentController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 }

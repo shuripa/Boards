@@ -1,7 +1,7 @@
 package model;
 
 import graphics.leyout.components.LeyoutComponent;
-import graphics.leyout.components.LeyoutComposit;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.components.WorkPlace;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -30,9 +30,7 @@ public class Employer extends LeyoutComponent {
     private final HashMap<String, Skill> skills;
 
     private WorkPlace workPlace;
-
     private ArrayList<String> bindWorkPlace;
-
     private Profession profession;
 
     /** Constructors */
@@ -180,7 +178,7 @@ public class Employer extends LeyoutComponent {
         return result;
     }
 
-    public int getProductivity (LeyoutComposit component){
+    public int getProductivity (WorkPlacedComposit component){
         int count = 0;
         int result = 0;
         double prod = 0;

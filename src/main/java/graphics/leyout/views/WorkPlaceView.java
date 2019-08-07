@@ -27,7 +27,7 @@ public class WorkPlaceView extends LeyoutComponentView {
         Ellipse rw = new Ellipse(16.5, 15, 2, 2);   //right wrist
         addActiveElements(lh, lw, rh, rw, b, h);
 //        t = new Text(""+ ((WorkPlace)controller().components()).getLogined());
-        t.relocate(-27, -5 );
+        t.relocate(-7, -13);
         addText(t);
     }
 

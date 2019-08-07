@@ -6,7 +6,7 @@ import model.Profession;
 
 import java.util.ArrayList;
 
-public class CompositTestTable extends LeyoutComposit{
+public class CompositTestTable extends WorkPlacedComposit {
     TestTable ttable;
     WorkPlace wplace;
     Palette palette;
@@ -68,6 +68,16 @@ public class CompositTestTable extends LeyoutComposit{
 
     // Условия
 
+    //TODO реализовать
+    @Override
+    public double getEffectivity() {
+        return 100;
+    }
+
+    @Override
+    public int getCountFreeWorkPlace() {
+        return (getWorkPlace().isLogined()) ? 0 : 1;
+    }
 
 
     @Override

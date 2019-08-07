@@ -1,14 +1,14 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositManagerTable;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.views.CompositManagerTableView;
-import javafx.scene.input.MouseButton;
 import model.Side;
 
 import java.io.IOException;
 
 
-public class CompositManagerTableController extends LeyoutCompositController {
+public class CompositManagerTableController extends LeyoutWorkPlacedController {
 
     public CompositManagerTableController(CompositManagerTable component) throws IOException {
         super(component);
@@ -27,7 +27,7 @@ public class CompositManagerTableController extends LeyoutCompositController {
     }
 
     public Side getSide (){
-        return component().getWorkPlace().getSide();
+        return ((WorkPlacedComposit)component()).getWorkPlace().getSide();
     }
 
 
@@ -36,14 +36,5 @@ public class CompositManagerTableController extends LeyoutCompositController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
 }

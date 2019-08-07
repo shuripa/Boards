@@ -2,11 +2,10 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositTestTable;
 import graphics.leyout.views.CompositTestView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
-public class CompositTestTableController extends LeyoutCompositController {
+public class CompositTestTableController extends LeyoutWorkPlacedController{
     TestTableController ttableController;
     WorkPlaceController wplaceController;
     PaletteController paletteController;
@@ -20,8 +19,8 @@ public class CompositTestTableController extends LeyoutCompositController {
         paletteController = new PaletteController(component.getPalette());
         wtableController = new TestWorkTableController(component.getWorkTable());
         canbanController = new TestCanbanController(component.getTestCanban());
-        setView(new CompositTestView(this));
         setLeaves(ttableController, wplaceController, paletteController, wtableController, canbanController);
+        setView(new CompositTestView(this));
 //        SetCompositControllers scc = SetCompositControllers.getInstance();
 //        scc.addComponentController(this);
 
@@ -51,49 +50,9 @@ public class CompositTestTableController extends LeyoutCompositController {
     protected void setComponentProperties() {
 
     }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-//    @Override
-//    public void update() {
-//        ttableController.update();
-//        wplaceController.update();
-//        paletteController.update();
-//        wtableController.update();
-//        canbanController.update();
-//    }
-
-    @Override
-    public void select() {
-        ttableController.select();
-        wplaceController.select();
-        paletteController.select();
-        wtableController.select();
-        canbanController.select();
-    }
-
-    @Override
-    public void unselect() {
-        ttableController.unselect();
-        wplaceController.unselect();
-        paletteController.unselect();
-        wtableController.unselect();
-        canbanController.unselect();
-    }
-
-
-
     @Override
     public String toString() {
         return null;
-    }
-
-    @Override
-    protected void setDragEvent() {
-
     }
 
 

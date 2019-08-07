@@ -9,7 +9,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-
+@Deprecated
 public class BoardCardView extends PaneComponentView {
 
     public BoardCardView (PaneComponentController controller){
@@ -61,6 +61,7 @@ public class BoardCardView extends PaneComponentView {
     }
 }
 
+@Deprecated
 class Hum extends Group{
     Hum(){
         Circle h = new Circle(10, 6, 5);                //head
@@ -76,6 +77,7 @@ class Hum extends Group{
     }
 }
 
+@Deprecated
 class Brd extends Group {
     Brd() {
         Rectangle rb = new Rectangle(.5, .5, 60, 20);
@@ -87,6 +89,7 @@ class Brd extends Group {
     }
 }
 
+@Deprecated
 class Grd extends Group{
     Grd() {
         Rectangle rg = new Rectangle(60, 5);       //rectangle centr

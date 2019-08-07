@@ -2,11 +2,10 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositInformTable;
 import graphics.leyout.views.CompositInformTableView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
-public class CompositInformTableController extends LeyoutCompositController {
+public class CompositInformTableController extends LeyoutWorkPlacedController {
 
     public CompositInformTableController(CompositInformTable component) throws IOException {
         super(component);
@@ -28,13 +27,4 @@ public class CompositInformTableController extends LeyoutCompositController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 }

@@ -96,10 +96,12 @@ public abstract class PaneComponentController extends GraphicsController {
 //                e.printStackTrace();
 //            }
         });
-
+//        TODO: Аналіз.
+//        Очевидно що не всі PaneComponent повинні створювати нові компоненти на лейауті.
+//        Тому доцільність розміщення цієї штуки тут а не в EditorButton доприкладу потрібно переглянути.
         view().setOnDragDetected(mouseEvent -> {
             try {
-                LeyoutComponentController controller = createLeyoutComponent(mouseEvent.getSceneX(), mouseEvent.getSceneY());
+                LeyoutComponentController controller = createLeyoutComponent(mouseEvent.getSceneX()-100, mouseEvent.getSceneY());
                 Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), controller);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -107,7 +109,11 @@ public abstract class PaneComponentController extends GraphicsController {
 
             Dragboard db = view().startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            content.putString(this.toString());
+            if(this.toString() != null) {
+                content.putString(this.toString());
+            }{
+                content.putString("");
+            }
             db.setContent(content);
 
             mouseEvent.consume();

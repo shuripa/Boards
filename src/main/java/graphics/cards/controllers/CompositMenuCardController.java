@@ -3,6 +3,7 @@ package graphics.cards.controllers;
 import graphics.GraphicsController;
 import graphics.cards.views.ComponentMenuCardView;
 import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import model.Skill;
 import sets.SetCompositControllers;
@@ -21,7 +22,7 @@ public class CompositMenuCardController extends PaneComponentController{
         super.viewEvents();
 
         view().setOnMouseClicked(mouseEvent -> {
-            component().logining(((Skill)sender()).getEmployer());
+            ((WorkPlacedComposit)component()).logining(((Skill)sender()).getEmployer());
         });
 
         view().setOnMouseExited(mouseEvent -> {

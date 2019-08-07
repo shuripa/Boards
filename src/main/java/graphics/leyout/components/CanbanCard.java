@@ -2,12 +2,12 @@ package graphics.leyout.components;
 
 import model.Material;
 import model.Order;
+import stock.Store;
 
 import java.util.ArrayList;
 
 public class CanbanCard extends LeyoutComponent {
     String title;
-    CanbanLeaf parent;
 
     int maxCountOrder;
     ArrayList<Order> orders;        //TODO: Нужно бы использовать очередь
@@ -29,7 +29,7 @@ public class CanbanCard extends LeyoutComponent {
         orders = new ArrayList<>();
         this.maxCountOrder = 2;
         this.title = title;
-        this.parent = parent;
+        setParent(parent);
         this.material = new Material("");
     }
 
@@ -52,5 +52,9 @@ public class CanbanCard extends LeyoutComponent {
 
     public int getFactCountOrder(){
         return orders.size();
+    }
+
+    public Store getStore() {
+        return ((CanbanLeaf)parent()).getStore(this);
     }
 }

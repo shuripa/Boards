@@ -1,8 +1,8 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.BoardIndex;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.views.BoardIndexView;
-import javafx.scene.input.MouseButton;
 import model.Order;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class BoardIndexController extends LeyoutComponentController {
 
     private void setText() {
         String text;
-        if ((component().parent()).getWorkPlace().isLogined()) {
+        if (((WorkPlacedComposit)component().parent()).getWorkPlace().isLogined()) {
             text = "" + ((BoardIndex)component()).getEffectivityShift() + "%";
         } else {
             text = "0.0%";
@@ -48,17 +48,11 @@ public class BoardIndexController extends LeyoutComponentController {
     }
 
     @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-    @Override
     public void update() {
         setProc();
         setText();
+        super.update();
     }
 
-    @Override
-    protected void setDragEvent() {
-    }
+
 }

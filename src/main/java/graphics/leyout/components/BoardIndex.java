@@ -15,7 +15,6 @@ public class BoardIndex extends LeyoutComponent {
     private final static String TITLE_PROP_COMPLETESHIFT = "Complete shift";
     private final IntegerProperty completeShift;
     private final static String TITLE_PROP_EFFECTIVITYSHIFT = "Effectivity shift";
-
     private final DoubleProperty effectivityShift;
 
     ArrayList<Order> orders;

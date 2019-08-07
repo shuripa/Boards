@@ -1,7 +1,7 @@
 package graphics.cards.controllers;
 
 import graphics.cards.views.LoginCardView;
-import graphics.leyout.components.LeyoutComposit;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutCompositController;
 import model.Employer;
@@ -21,8 +21,8 @@ public class LoginCardController extends PaneComponentController {
         super(controller.component());
         this.employer = employer;
         this.compositController = controller;
-        this.id = ((LeyoutComposit)controller.component()).getId();
-        this.title = ((LeyoutComposit)controller.component()).getTitle();
+        this.id = ((WorkPlacedComposit)controller.component()).getId();
+        this.title = ((WorkPlacedComposit)controller.component()).getTitle();
         this.priority = priority;
         this.productivity = productivity;
         setView(new LoginCardView(this));
@@ -94,7 +94,7 @@ public class LoginCardController extends PaneComponentController {
         });
         view().setOnMouseClicked(mouseEvent -> {
 //           view().
-            component().logining(employer);
+            ((WorkPlacedComposit)component()).logining(employer);
         });
     }
 

@@ -2,13 +2,12 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositMao;
 import graphics.leyout.views.CompositMaoView;
-import javafx.scene.input.MouseButton;
 import model.Condition;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CompositMaoController extends LeyoutComponentController {
+public class CompositMaoController extends LeyoutCompositController {
 
     public CompositMaoController(CompositMao cm) throws IOException {
         super(cm);
@@ -22,17 +21,6 @@ public class CompositMaoController extends LeyoutComponentController {
     @Override
     protected void setComponentProperties() {
         setStrProperty(((CompositMao)component()).titleProperty());
-    }
-
-
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-        
     }
 
     @Override

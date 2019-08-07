@@ -2,7 +2,7 @@ package graphics.leyout.components;
 
 import model.Profession;
 
-public class CompositPushcart extends LeyoutComposit {
+public class CompositPushcart extends WorkPlacedComposit {
     Pushcart pushcart;
     WorkPlace workPlace;
 
@@ -20,6 +20,16 @@ public class CompositPushcart extends LeyoutComposit {
 
     public WorkPlace getWorkPlace() {
         return workPlace;
+    }
+
+    @Override
+    public double getEffectivity() {
+        return 100;
+    }
+
+    @Override
+    public int getCountFreeWorkPlace() {
+        return (workPlace.isLogined()) ? 0 : 1;
     }
 
     @Override

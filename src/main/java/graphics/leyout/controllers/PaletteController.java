@@ -2,7 +2,6 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.Palette;
 import graphics.leyout.views.PaletteView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -18,13 +17,4 @@ public class PaletteController extends LeyoutComponentController{
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 }

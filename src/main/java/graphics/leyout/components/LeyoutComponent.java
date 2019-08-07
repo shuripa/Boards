@@ -1,9 +1,10 @@
 package graphics.leyout.components;
 
 import graphics.GraphicsController;
+import graphics.leyout.controllers.LeyoutCompositController;
 import model.Condition;
-import model.Employer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class LeyoutComponent {
@@ -12,6 +13,7 @@ public abstract class LeyoutComponent {
     private ArrayList<LeyoutComponent> leafs;
     private ArrayList<GraphicsController> controllerObservers;
     private ArrayList<LeyoutComponent> componentObservers;
+    private ArrayList<LeyoutCompositController> recreateControllers;
     private LeyoutComponent parent;
     private ArrayList<Condition> conditions;
     private int posCount;
@@ -30,6 +32,7 @@ public abstract class LeyoutComponent {
         componentObservers = new ArrayList<>();
         leafs = new ArrayList<>();
         conditions = new ArrayList<>();
+        recreateControllers = new ArrayList<>();              //Для компонентов которые пересоздаются
 //        nodes = new ArrayList<>();
     }
 
@@ -87,13 +90,9 @@ public abstract class LeyoutComponent {
         this.componentObservers.remove(observer);
     }
 
-
     public ArrayList<GraphicsController> getObservers () {
         return controllerObservers;
     }
-
-    @Override
-    public abstract String toString();
 
     /** Leafs */
 
@@ -102,12 +101,20 @@ public abstract class LeyoutComponent {
     }
 
     public void addLeaf(LeyoutComponent leaf) {
-        leafs.add(leaf);
+        if (!leafs.contains(leaf)) {
+            leafs.add(leaf);
+        }
     }
 
     public void addLeafs(LeyoutComponent ... leafs){
         for (LeyoutComponent l: leafs) {
             addLeaf(l);
+        }
+    }
+
+    public void delLeaf(LeyoutComponent leaf){
+        if (leafs.contains(leaf)){
+            leafs.remove(leaf);
         }
     }
 
@@ -123,19 +130,8 @@ public abstract class LeyoutComponent {
         return conditions;
     }
 
-    public void logining(Employer employer){
-        logining(employer, 9);
-    }
 
-    public void logining(Employer employer, int priority){
-        WorkPlace wp = getWorkPlace();
-        if (wp != null) {
-            wp.setEmployerWithPriority(employer, priority);
-        }
-    }
-
-
-    public void update(){
+    public void update() {
         for (LeyoutComponent lc: leafs){
             lc.update();
         }
@@ -147,12 +143,19 @@ public abstract class LeyoutComponent {
         }
     }
 
-    public WorkPlace getWorkPlace() {
-        return null;
+    protected void create() throws IOException {
+//        После пересоздания компонента нужно также пересоздать контроллер
+//        recreateControllers - cпециальный массив для контроллера композита который умеет пересоздаваться.
+//        Запускает процедуру create() в контроллере
+        for (LeyoutCompositController controller: recreateControllers) {
+            controller.create();
+        }
     }
 
-    public int getPriority(){
-        return 9;
+    public void addRecreateObservers(LeyoutCompositController controller){
+        recreateControllers.add(controller);
     }
 
+    @Override
+    public abstract String toString();
 }

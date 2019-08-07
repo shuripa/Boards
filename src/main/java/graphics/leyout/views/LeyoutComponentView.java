@@ -1,11 +1,11 @@
 package graphics.leyout.views;
 
 
+import graphics.cards.Infoable;
+import graphics.leyout.controllers.LeyoutComponentController;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-import graphics.cards.Infoable;
-import graphics.leyout.controllers.LeyoutComponentController;
 
 import java.util.ArrayList;
 
@@ -16,15 +16,16 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
     private ArrayList <Shape> activeElements;       //Активные елементы
     private ArrayList <Shape> bounderys;            //Элементы выделения границы
     private ArrayList <Shape> pasiveElements;       //Неактивные элементы
+
     private Boolean onActive;
 
     public LeyoutComponentView(LeyoutComponentController controller){
         this.controller = controller;
-        disactivate();
         texts = new ArrayList<>();
         bounderys = new ArrayList<>();
         activeElements = new ArrayList<>();
         pasiveElements = new ArrayList<>();
+        disactivate();
     }
 
     /**General - общие методы для композит и Leaf*/
@@ -38,79 +39,61 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
     }
 
 
-    public void activate(int priority){
-        onActive = true;
+    public Boolean isActivate() {
+        return onActive;
+    }
+
+
+    public void formatShape(int i){
         for (Shape s : activeElements) {
-            s.setId("select" + priority);
-        }
-        for (Text t: texts){
-            t.setId("blanktxt");
-            t.setText(controller.getText());
+            s.setId("set" + i);
         }
     }
 
+    public void formatText(int i){
+        for (Text t: texts){
+            t.setId("txt" + i);
+        }
+    }
+
+
     public void activate(){
-        activate(9);
+        activate(1);
+    }
+
+    public void activate(int i) {
+        onActive = true;
+        formatShape(i);
+        formatText (1);
     }
 
     public void disactivate(){
         onActive = false;
-    }
-
-    public void entered(){
-        for (Shape s : activeElements) {
-            s.setId("select");
-        }
-        for (Text t: texts){
-            t.setId("seltxt");
-        }
-        for (Shape b: bounderys) {
-            b.setId("selbound");
-        }
-        entered(9);
+        exited(0);
     }
 
     public void entered(int i){
-        for (Shape s : activeElements) {
-            s.setId("select" + i);
-        }
-        for (Text t: texts){
-            t.setId("seltxt");
-        }
-        for (Shape b: bounderys) {
-            b.setId("selbound" );
-        }
+        formatShape(i);
+        formatText(1);
     }
 
-    public void exited() {
+    public void exited(){
+        exited(1);
+    }
+
+    public void exited(int i) {
         if (onActive == false) {
-            for (Shape s : activeElements) {
-                s.setId("blank");
-            }
-            for (Text t : texts) {
-                t.setId("blanktxt");
-            }
-            for (Shape b : bounderys) {
-                b.setId("blankbound");
-            }
+            formatShape(0);
         } else {
-            activate(controller().getPriority());
-//            for (Shape s : activeElements) {
-//                s.setId("active");
-//            }
-//            for (Text t : texts) {
-//                t.setId("blanktxt");
-//            }
-//            for (Shape b : bounderys) {
-//                b.setId("blankbound");
-//            }
+            formatShape(i);
         }
+        formatText(0);
     }
 
     /** Elements */
 
     public void addText(Text text) {
-        text.setId("blanktxt");
+        text.setId("txt0");
         texts.add(text);
         this.getChildren().add(text);
     }
@@ -123,9 +106,9 @@ public abstract class LeyoutComponentView extends Region implements Infoable{
 
     public void addActiveElement(Shape element) {
         if (onActive == false) {
-            element.setId("blank");
+            element.setId("set0");
         } else {
-            element.setId("active");
+            element.setId("set1");
         }
         this.activeElements.add(element);
         this.getChildren().add(element);

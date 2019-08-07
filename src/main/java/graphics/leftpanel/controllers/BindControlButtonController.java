@@ -1,8 +1,8 @@
-package graphics.leftPanel;
+package graphics.leftpanel.controllers;
 
+import graphics.leftpanel.views.BindControlButtonView;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.controllers.LeyoutComponentController;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -31,13 +31,5 @@ public class BindControlButtonController extends LeyoutComponentController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
 
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 }

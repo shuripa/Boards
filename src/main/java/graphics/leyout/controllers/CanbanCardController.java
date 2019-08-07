@@ -3,7 +3,6 @@ package graphics.leyout.controllers;
 import graphics.leyout.components.CanbanCard;
 import graphics.leyout.components.CanbanLeaf;
 import graphics.leyout.views.CanbanCardView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
@@ -12,6 +11,7 @@ public class CanbanCardController extends LeyoutComponentController {
     public CanbanCardController(CanbanCard canbanCard) throws IOException {
         super(canbanCard);
         setView(new CanbanCardView(this));
+
     }
 
     @Override
@@ -19,15 +19,6 @@ public class CanbanCardController extends LeyoutComponentController {
 
     }
 
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
 
     public int getMaxCountOrder() {
         return ((CanbanCard)component()).getMaxCountOrder();
@@ -44,5 +35,40 @@ public class CanbanCardController extends LeyoutComponentController {
         }
         return maxLeafCntOrd;
     }
+
+    @Override
+    public void update(){
+        super.update();
+        if (((CanbanCard)component()).getStore() == null){
+            activate();
+        } else {
+            setHint(((CanbanCard) component()).getStore().toString());
+        }
+    }
+
+//    @Override
+//    public void viewEvents() throws IOException {
+//        super.viewEvents();
+//
+//        view().setOnMouseClicked(mouseEvent -> {
+////            String s = "";
+////            s = s +((CanbanCard)component()).getCardInd();
+////            s = " " + s +((CanbanCard)component()).getMaterial();
+////            s = " " + s +((CanbanCard)component()).getCount();
+////            Popup hint = new Popup();
+//            Store s = ((CanbanCard)component()).getStore();
+//            if (s != null) {
+//                System.out.println(s.toString());
+//                setHint(s.toString());
+//                showHint((int)Math.ceil(mouseEvent.getX()), (int)Math.ceil(mouseEvent.getY()));
+//            }
+//
+////            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+////            }
+//
+////            if (mouseEvent.getClickCount() == 2){
+////            }
+//        });
+//    }
 
 }

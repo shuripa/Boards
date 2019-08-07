@@ -2,8 +2,8 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.ManagerTable;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.views.ManagerTableView;
-import javafx.scene.input.MouseButton;
 import model.Profession;
 import model.Side;
 
@@ -22,21 +22,11 @@ public class ManagerTableController extends LeyoutComponentController {
     }
 
     public Profession getProfession() {
-        return parent().component().getWorkPlace().getProfession();
+        return ((WorkPlacedComposit)parent().component()).getWorkPlace().getProfession();
     }
 
     @Override
     protected void setComponentProperties() {
-
-    }
-
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
 
     }
 }

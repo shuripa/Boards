@@ -49,8 +49,19 @@ public class StartMenuItem extends Region {
                 e.printStackTrace();
             }
 
+            try {
+                layout.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 ////            Правая панель лейаута
-            Accordion rightPanel = RightPanel.getInstance();
+            Accordion rightPanel = null;
+            try {
+                rightPanel = RightPanel.getInstance();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 //            Корневая панель
             BorderPane rootPane = new BorderPane();

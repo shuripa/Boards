@@ -1,10 +1,10 @@
 package graphics.cards.controllers;
 
-import graphics.leyout.components.LeyoutComposit;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
-import graphics.leyout.controllers.LeyoutCompositController;
+import graphics.leyout.controllers.LeyoutWorkPlacedController;
 import model.Employer;
-import sets.SetCompositControllers;
+import sets.SetWorkPlesedControllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,23 +15,23 @@ public class LoginMenuController extends PaneComponentController {
     ArrayList<PaneComponentController> cards;
     Employer employer;
     MenuConteinerController menu;
-    SetCompositControllers setComposit;
+    SetWorkPlesedControllers setControllers;
 
-    HashMap<Integer, ArrayList<LeyoutCompositController>> controllers;
+    HashMap<Integer, ArrayList<LeyoutWorkPlacedController>> controllers;
     LoginCardController card;
 
     public LoginMenuController(PaneComponentController parent, Employer employer) {
         this.employer = employer;
-        setComposit = SetCompositControllers.getInstance();
+        setControllers = SetWorkPlesedControllers.getInstance();
         menu = new MenuConteinerController(parent);
 //        controllers = new HashMap<>();
-        controllers = setComposit.getControllersToEmployer(employer);
+        controllers = setControllers.getControllersToEmployer(employer);
 
         String productivity;
 
-        for (int priority = 1; priority < 9; priority++) {
+        for (int priority = 1; priority < 10; priority++) {
             if (controllers.containsKey(priority)){
-                for (LeyoutCompositController controller: controllers.get(priority)) {
+                for (LeyoutWorkPlacedController controller: controllers.get(priority)) {
                     String sProd = "-";
 
 
@@ -52,7 +52,7 @@ public class LoginMenuController extends PaneComponentController {
 //                        productivity = "" + (int)Math.ceil(prod/count) + "%";
 //                    } else productivity = "-";
 
-                    productivity = "" + employer.getProductivity((LeyoutComposit) controller.component()) + "%";
+                    productivity = "" + employer.getProductivity((WorkPlacedComposit)controller.component()) + "%";
 
                     card = new LoginCardController(controller, employer, priority, productivity);
                     menu.addCard(card);

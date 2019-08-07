@@ -4,6 +4,6 @@ public class TestCanban extends LeyoutComponent {
 
     @Override
     public String toString() {
-        return null;
+        return "";
     }
 }

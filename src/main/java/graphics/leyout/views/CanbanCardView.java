@@ -4,14 +4,19 @@ import graphics.leyout.controllers.CanbanCardController;
 import graphics.leyout.controllers.LeyoutComponentController;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 public class CanbanCardView extends LeyoutComponentView {
     int maxCntOrd, fctCntOrd, maxLeafCntOrd;
     boolean horisontal;
+    Popup popupHint;
+    Text textHint;
 
     public CanbanCardView(LeyoutComponentController controller) {
         super(controller);
         horisontal = true;
+
     }
 
     @Override

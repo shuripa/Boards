@@ -2,11 +2,11 @@ package graphics.leyout.views;
 
 
 import graphics.leyout.controllers.CompositBoardController;
-import graphics.leyout.controllers.LeyoutComponentController;
+import graphics.leyout.controllers.LeyoutWorkPlacedController;
 
-public class CompositBoardView extends LeyoutComponentView {
+public class CompositBoardView extends LeyoutWorkPlacedView {
 
-    public CompositBoardView(LeyoutComponentController controller) {
+    public CompositBoardView(LeyoutWorkPlacedController controller) {
         super(controller);
     }
 
@@ -26,7 +26,7 @@ public class CompositBoardView extends LeyoutComponentView {
 
     @Override
     public void repaint() {
-        ((CompositBoardController) controller()).getWorkPlaceController().setXY(controller().S()/2-5, 7);
+        ((CompositBoardController) controller()).getWorkPlaceController().setXY(controller().S()/2-10, 7);
         ((CompositBoardController) controller()).getWorkPlaceController().view().update();
         ((CompositBoardController) controller()).getGridController().setS(controller().S());
         ((CompositBoardController) controller()).getGridController().view().update();

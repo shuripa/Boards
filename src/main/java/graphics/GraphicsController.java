@@ -3,6 +3,8 @@ package graphics;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.io.IOException;
+
 public abstract class GraphicsController {
     final static String TITLE_PROP_X = "X";
     final static String TITLE_PROP_Y = "Y";
@@ -12,6 +14,7 @@ public abstract class GraphicsController {
     final IntegerProperty Y;
     final IntegerProperty A;
     final IntegerProperty S;
+
 
     public GraphicsController(){
         X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
@@ -59,7 +62,26 @@ public abstract class GraphicsController {
         this.S.set(s);
     }
 
+
     public abstract void update();
 
+    public void update(String s) throws IOException {
+        update();
+    }
+
     public abstract void select();
+
+    public void setXYAS(int x, int y, int angle, int size){                             //Перемещение группы
+        setX(x);
+        setY(y);
+        setA(angle);
+        setS(size);
+        update();
+    }
+
+    public void setXY(int x, int y) {
+        setX(x);
+        setY(y);
+        update();
+    }
 }

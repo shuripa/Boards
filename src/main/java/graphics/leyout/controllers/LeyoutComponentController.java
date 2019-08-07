@@ -1,6 +1,7 @@
 package graphics.leyout.controllers;
 
 import graphics.GraphicsController;
+import graphics.Hint;
 import graphics.Layout;
 import graphics.cards.ShapeInfo;
 import graphics.leyout.components.LeyoutComponent;
@@ -23,8 +24,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
     private LeyoutComponentController controller;
     private LeyoutComponent component;
     private LeyoutComponentView view;
-
-
+    private Hint hint;
 
     private ArrayList<StringProperty> strProperties; // Строковые свойства
     private ArrayList<IntegerProperty> intProperties; // Строковые свойства
@@ -36,7 +36,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         this.controller = this;
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
-
+        hint = new Hint(this, "");
         setViewProperties();
         component().addControllerObserver(this);
 //        SetCompositControllers scc = SetCompositControllers.getInstance();
@@ -52,6 +52,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         setComponentProperties();
         setViewProperties();
         component().addControllerObserver(this);
+        hint = new Hint(this, "");
 //        SetCompositControllers scc = SetCompositControllers.getInstance();
 //        scc.addComponentController(this);
     }
@@ -73,12 +74,22 @@ public abstract class LeyoutComponentController extends GraphicsController {
     }
 
     public void setView(LeyoutComponentView view) throws IOException {
+//        if (this.view != null)
         this.view = view;
         viewSets();
         viewEvents();
         view().paint();
         if (component != null) update();
     }
+
+    public void setHint(String s){
+        hint.setText(s);
+    }
+
+    public void showHint(int x, int y){
+        hint.showhint(x, y);
+    }
+
 
     public LeyoutComponentController parent () {
         return parent;
@@ -122,51 +133,9 @@ public abstract class LeyoutComponentController extends GraphicsController {
     protected abstract void setComponentProperties();
 
 
-
-    // 1) при обновлении координат родительского объекта (композита) иногда нужно обновить координаты дочерних объектов (leaves).
-    // Процедура update() из LeyoutComponentView
-    //        this.relocate(controller.X(), controller.Y());
-    //        this.setRotate(controller.A());
-    //        repaint();
-    //
-
-
+    //Если где-нибудь в потомках update переопределен, и нет обращения super.update - обновление вида ломается.
     public void update(){
         view().update();
-    }
-
-
-    /** Sizes */
-
-    public void setXYAS(int x, int y, int angle, int size){                             //Перемещение группы
-        setX(x);
-        setY(y);
-        setA(angle);
-        setS(size);
-        view().update();
-    }
-
-    public void setXY(int x, int y) {
-        setX(x);
-        setY(y);
-        view().update();
-    }
-
-    /** Get String */
-
-    @Override
-    public String toString(){
-        return component().toString();
-    }
-
-    public String getText(){
-        return "0";
-    }
-
-    /** Behavior */
-
-    public void activate() {
-        view.activate();
     }
 
     private void viewSets(){
@@ -177,13 +146,16 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
         view().setOnMouseEntered(mouseEvent -> {
             select();
+            hint.showhint(mouseEvent.getSceneX(), mouseEvent.getScreenY());
         });
 
         view().setOnMouseExited(mouseEvent -> {
             unselect();
+            hint.hide();
         });
 
         view().setOnMouseClicked(mouseEvent -> {
+            //TODO Это проблема, когда MouseClick переопределяется свойства не загружаются.
             PropertyPane pp = PropertyPane.getInstance();
             pp.addProperties(controller(), strProperties, intProperties);
             if (mouseEvent.getButton() == MouseButton.SECONDARY) {
@@ -194,7 +166,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
                 Layout l = null;
                 try {
                     l = Layout.getInstace();
-                    l.createTextField (controller(), mouseEvent.getSceneX(), mouseEvent.getSceneY());
+//                    l.createTextField (controller(), mouseEvent.getSceneX(), mouseEvent.getSceneY());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -202,7 +174,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         });
 
         view().setOnDragDetected(mouseEvent -> {
-            System.out.println("On drag detected.");
+//            System.out.println("On drag detected.");
             try {
                 Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), this);
             } catch (IOException e) {
@@ -211,7 +183,11 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
             Dragboard db = view().startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            content.putString(this.toString());
+            if (this.toString() != null){
+                content.putString(this.toString());
+            } else {
+                content.putString("");
+            }
             db.setContent(content);
 
             mouseEvent.consume();
@@ -219,24 +195,25 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
     }
 
-    protected abstract void setDragEvent();
-
-    protected abstract void setEventTonExt(MouseButton button);
-
     public ArrayList<Condition> getConditions(){
         return component().getConditions();
     }
 
+    /** Behavior */
+
+    public void activate() {
+        view.activate();
+    }
+
     public void select() {
-        select(9);
+        select(1);
     }
 
     public void select(int i){
-        if (i > 0){                     //0 - не выделять, 9 серый цвет
-            view().setScaleX(1.02);
-            view().setScaleY(1.02);
-            view().entered(i);
-        }
+        //0 - прозрачный, 1 серый цвет
+        view().setScaleX(1.02);
+        view().setScaleY(1.02);
+        view().entered(i);
     }
 
     public void unselect() {
@@ -245,21 +222,14 @@ public abstract class LeyoutComponentController extends GraphicsController {
         view().exited();
     }
 
-    public void selectHuman() {
+    /** Get String */
+
+    @Override
+    public String toString(){
+        return component().toString();
     }
 
-    public void unselectHuman(){
+    public String getText() {
+        return "0";
     }
-
-    public int getCountWorkPlase() {
-        return 0;
-    }
-
-    public double getSumEffectivity() {
-        return 0;
-    }
-
-    public int getPriority(){
-        return component().getPriority();
-    };
 }

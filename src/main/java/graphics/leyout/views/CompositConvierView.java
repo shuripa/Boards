@@ -49,9 +49,9 @@ public class CompositConvierView extends LeyoutComponentView {
         for (int i = 0; i < countPos(); i++) {
             CompositBoardController cv = ((CompositConvierController)controller()).getCompositBoardController(i);
             if (i < countPos()/2) {
-                cv.setXYAS(Math.round(RBoard+34-controller().S()/2), Math.round(RBoard-27+(controller().S()+10)*i), 90, controller().S());
+                cv.setXYAS(Math.round(RBoard-35+controller().S()/2), Math.round(RBoard-27+(controller().S()+10)*i), 90, controller().S());
             } else {
-                int X = RBoard-36-controller().S()/2;
+                int X = RBoard-35-controller().S()/2;
                 int Y = RBoard+LLine-20-(controller().S()+10)*(i-countPos()/2);
                 System.out.println("RBoard = " + RBoard + ", LLine = " + LLine + ", X = " + X + ", Y = " + Y);
                 cv.setXYAS(RBoard-36-controller().S()/2, RBoard+LLine-20-(controller().S()+10)*(i-countPos()/2), -90, controller().S());

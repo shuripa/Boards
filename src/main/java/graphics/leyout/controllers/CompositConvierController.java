@@ -3,11 +3,10 @@ package graphics.leyout.controllers;
 import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.CompositConvier;
 import graphics.leyout.views.CompositConvierView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
-public class CompositConvierController extends LeyoutComponentController {
+public class CompositConvierController extends LeyoutCompositController {
 
     ConvierController convierController;
     CompositBoardController[] compositBoardControllers;
@@ -15,13 +14,35 @@ public class CompositConvierController extends LeyoutComponentController {
 
     public CompositConvierController(CompositConvier component) throws IOException {
         super(component);
+        component.addRecreateObservers(this);
+        create();
+    }
+
+    @Override
+    public void create() throws IOException {
         convierController = new ConvierController(((CompositConvier)component()).getConvier());
-        compositBoardControllers = new CompositBoardController[countPos()];
-        for (int i = 0; i < countPos(); i++) {
+        convierController.setParent(this);
+        setS(60);   //По замовчуванню розмір дошки
+        int N = countPos();
+        compositBoardControllers = new CompositBoardController[N];
+        for (int i = 0; i < N; i++) {
             CompositBoard cb = ((CompositConvier) component()).getBoard(i);
             compositBoardControllers[i] = new CompositBoardController(cb);
+            compositBoardControllers[i].setS(S());
+            compositBoardControllers[i].setParent(this);
         }
         setView(new CompositConvierView(this));
+    }
+
+    public int countPos(){
+        return ((CompositConvier)component()).getCntPos();
+    }
+
+
+    @Override
+    protected void setComponentProperties() {
+        setStrProperty (((CompositConvier)component()).titleProperty());
+        setIntProperty(((CompositConvier)component()).cntPosProperty());
     }
 
     public ConvierController getConvierController() {
@@ -32,32 +53,15 @@ public class CompositConvierController extends LeyoutComponentController {
         return compositBoardControllers[i];
     }
 
-    public int countPos(){
-        return ((CompositConvier)component()).getCountPos();
-    }
 
     @Override
-    protected void setComponentProperties() {
-
+    public void update(String propertyName) throws IOException {
+        if (propertyName == "Count pos") {
+            delView(view());
+            ((CompositConvier)component()).update();
+            view().relocate(X(), Y());
+        }
     }
-
-    @Override
-    protected void setDragEvent() {
-
-    }
-
-    @Override
-    protected void setEventTonExt(MouseButton button) {
-
-    }
-
-//    @Override
-//    public void update() {
-//        convierController.update();
-//        for (int i = 0; i < countPos(); i++) {
-//            compositBoardControllers[i].update();
-//        }
-//    }
 
     @Override
     public void select() {

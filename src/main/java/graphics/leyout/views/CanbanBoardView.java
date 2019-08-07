@@ -45,4 +45,8 @@ public class CanbanBoardView extends LeyoutComponentView {
     public void repaint() {
 
     }
+
+    public void delLeafView(LeyoutComponentView view) {
+        this.getChildren().remove(view);
+    }
 }

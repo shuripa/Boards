@@ -106,7 +106,7 @@ public class EmployerCardView extends PaneComponentView {
         tp.setText("" + ((EmployerCardController)controller()).getPhone());
         tprof.setText("" + ((EmployerCardController)controller()).getProfession());
         tw.setText("" + ((EmployerCardController)controller()).getWorkPlaceTitle());
-        rw.setId("select" + ((EmployerCardController)controller()).getPriority());
+        rw.setId("set" + ((EmployerCardController)controller()).getPriority());
         rw.setStrokeWidth(0.1);
 
     }

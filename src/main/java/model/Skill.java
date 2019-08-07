@@ -69,8 +69,5 @@ public class Skill extends LeyoutComponent {
         return null;
     }
 
-    @Override
-    public void logining(Employer employer) {
 
-    }
 }

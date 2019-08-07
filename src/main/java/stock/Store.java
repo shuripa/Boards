@@ -22,4 +22,9 @@ public class Store {            //достаток, клажа, припас, с
     public Double getCount() {
         return count;
     }
+
+    @Override
+    public String toString() {
+        return "" + material + " " + count;
+    }
 }

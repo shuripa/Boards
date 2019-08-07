@@ -1,4 +1,4 @@
-package graphics.leftPanel;
+package graphics.leftpanel.components;
 
 import graphics.leyout.components.LeyoutComponent;
 import javafx.stage.Popup;

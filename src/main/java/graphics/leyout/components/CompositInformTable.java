@@ -2,9 +2,12 @@ package graphics.leyout.components;
 
 import model.Profession;
 
-public class CompositInformTable extends LeyoutComposit {
+public class CompositInformTable extends WorkPlacedComposit {
     InformTable informTable;
     WorkPlace workPlace;
+
+    //На етапі створення компоненту не відомо ні id ні proffession
+    // TODO переробити id і proffession в властивості
 
     public CompositInformTable(String id, Profession profession) {
         super("", id);
@@ -19,6 +22,16 @@ public class CompositInformTable extends LeyoutComposit {
 
     public WorkPlace getWorkPlace(){
         return workPlace;
+    }
+
+    @Override
+    public double getEffectivity() {
+        return 100;
+    }
+
+    @Override
+    public int getCountFreeWorkPlace() {
+        return (workPlace.isLogined()) ? 0 : 1;
     }
 
     @Override

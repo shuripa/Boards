@@ -1,13 +1,14 @@
 package graphics.cards.controllers;
 
 import graphics.cards.views.EmployerCardView;
-import graphics.leyout.components.LeyoutComposit;
 import graphics.leyout.components.WorkPlace;
+import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
+import graphics.leyout.controllers.LeyoutWorkPlacedController;
 import model.Employer;
 import model.Profession;
 import model.ProfessionColor;
-import sets.SetCompositControllers;
+import sets.SetWorkPlesedControllers;
 
 import java.io.IOException;
 
@@ -33,12 +34,13 @@ public class EmployerCardController extends PaneComponentController
 
 
     public void boardSelect() {
-        SetCompositControllers set = SetCompositControllers.getInstance();
+        SetWorkPlesedControllers set = SetWorkPlesedControllers.getInstance();
         set.selectControllersToEmployer((Employer)component());
     }
 
     public void boardUnselect() {
-        for (LeyoutComponentController componentController: SetCompositControllers.getInstance().getComponentControllers()) {
+        SetWorkPlesedControllers set = SetWorkPlesedControllers.getInstance();
+        for (LeyoutWorkPlacedController componentController: set) {
             componentController.unselect();
         }
     }
@@ -129,7 +131,7 @@ public class EmployerCardController extends PaneComponentController
         String result = "";
         WorkPlace wp = ((Employer)component()).getWorkPlase();
         if (wp != null && wp.parent()!=null){
-            result =  ((LeyoutComposit)wp.parent()).getTitle() + "  " + ((LeyoutComposit)wp.parent()).getId();
+            result =  ((WorkPlacedComposit)wp.parent()).getTitle() + "  " + ((WorkPlacedComposit)wp.parent()).getId();
         } else {
             System.out.println("WARNING: WorkPlace or WorkPlace.paren is null");
         }

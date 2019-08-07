@@ -2,7 +2,6 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.Grid;
 import graphics.leyout.views.GridView;
-import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,13 +27,5 @@ public class GridController extends LeyoutComponentController {
         System.out.println("No property");
     }
 
-    @Override
-    protected void setEventTonExt(MouseButton button) {
 
-    }
-
-    @Override
-    protected void setDragEvent() {
-
-    }
 }

@@ -1,7 +1,7 @@
 package graphics.leyout.views;
 
-import javafx.scene.shape.Rectangle;
 import graphics.leyout.controllers.LeyoutComponentController;
+import javafx.scene.shape.Rectangle;
 
 public class CompositMaoView extends LeyoutComponentView{
 

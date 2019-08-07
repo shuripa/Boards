@@ -1,4 +1,4 @@
-package graphics.leftPanel;
+package graphics.leftpanel.views;
 
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.views.LeyoutComponentView;

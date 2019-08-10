@@ -19,28 +19,17 @@ package examples;
  *
  ******************************************************************************/
 
-import javax.sound.sampled.Clip;
-
-// for playing midi sound files on some older systems
+import javax.sound.sampled.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.net.MalformedURLException;
-
-import java.io.File;
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.File;
 import java.io.IOException;
-
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
+// for playing midi sound files on some older systems
 
 /**
  *  <i>Standard audio</i>. This class provides a basic capability for
@@ -416,7 +405,7 @@ public final class StdAudio {
         // scale increments
         int[] steps = { 0, 2, 4, 5, 7, 9, 11, 12 };
         for (int i = 0; i < steps.length; i++) {
-            double hz = 440.0 * Math.pow(2, steps[i] / 12.0);
+            double hz = 440 * Math.pow(2, steps[i] / 12.0);
             StdAudio.play(note(hz, 1.0, 0.5));
         }
 

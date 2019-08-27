@@ -6,6 +6,7 @@ import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.views.CompositBoardView;
 import graphics.leyout.views.LeyoutComponentView;
+import inout.CompositBuilder;
 import javafx.scene.Node;
 import model.Condition;
 import model.Employer;
@@ -22,11 +23,7 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 
     public CompositBoardController(CompositBoard cBoard) throws IOException {
         super(cBoard);
-        bc = new BoardController(cBoard.getBoard(), this);
-        wc = new WorkPlaceController(cBoard.getWorkPlace(), this);
-        gc = new GridController(cBoard.getGrid());
-        ic = new BoardIndexController(cBoard.getBoardIndex());
-        setLeaves(bc, gc, wc, ic);
+        leafs(cBoard);
 //        setWorkPlace(wc);
         setView(new CompositBoardView(this));
         //Набор контроллеров композитов
@@ -34,6 +31,21 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 //        scc.addComponentController(this);
 
 //        cBoard.getWorkPlace().addControllerObserver(ic);
+    }
+
+    public CompositBoardController(LeyoutComponent cBoard, CompositBuilder cBuilder) throws IOException {
+        super((WorkPlacedComposit)cBoard);
+        leafs((CompositBoard) cBoard);
+        setView(new CompositBoardView(this));
+        setXYAS(cBuilder.getX(), cBuilder.getY(), cBuilder.getA(), cBuilder.getS());
+    }
+
+    private void leafs(CompositBoard cBoard) throws IOException {
+        bc = new BoardController(cBoard.getBoard(), this);
+        wc = new WorkPlaceController(cBoard.getWorkPlace(), this);
+        gc = new GridController(cBoard.getGrid());
+        ic = new BoardIndexController(cBoard.getBoardIndex());
+        setLeaves(bc, gc, wc, ic);
     }
 
     public void SetComponent (CompositBoard cBoard) {

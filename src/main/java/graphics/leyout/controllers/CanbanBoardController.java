@@ -37,6 +37,10 @@ public class CanbanBoardController extends LeyoutCompositController {
         return ((CanbanBoard)component()).getCountLeaves();
     }
 
+    public String getTitle(){
+        return ((CanbanBoard)component()).getTitle();
+    }
+
     public CanbanLeafController getLeafController(int i){
         return canbanLeafControllers[i];
     }

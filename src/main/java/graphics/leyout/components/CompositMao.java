@@ -1,5 +1,6 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import inout.MaoQueryOrderLoader;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -25,9 +26,17 @@ public class CompositMao extends LeyoutComponent{
         conditions = new ArrayList<>();
         orders = new ArrayList<>();
         boards = new ArrayList<>();
-
 //        getStrProperties().add(title);
     }
+
+    public CompositMao(CompositBuilder builder){
+        this.title = new SimpleStringProperty(this, TITLE_PROP_NAME, "MAO");
+        setTitle(builder.getTitle());
+        conditions = builder.getConditions();
+        orders = new ArrayList<>();
+        boards = new ArrayList<>();
+    }
+
 
     /** Property */
 

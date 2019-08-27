@@ -3,6 +3,7 @@ package graphics;
 import graphics.leyout.components.*;
 import graphics.leyout.controllers.*;
 import graphics.leyout.views.LeyoutComponentView;
+import inout.Connection;
 import inout.EmployesCsvLoader;
 import inout.SkillCsvLoader;
 import javafx.scene.control.TextField;
@@ -73,6 +74,9 @@ public class Layout extends Region {
 //        TODO: Умови для МАО можуть складатись з умов дошок які входять в МАО
         MAOSystem maoSystem = MAOSystem.getInstance();
 
+        Connection connection = new Connection();
+        connection.connect();
+
         CompositMao cm = new CompositMao();
         cm.setTitle("UO_MB23");
         cm.addCondition("MFC1847087***");
@@ -85,6 +89,7 @@ public class Layout extends Region {
 //        TODO При неправильній назві завантажуються замовлення відповідно до назви
 //        TODO При відсутності замовлень система падає
         cm1.setTitle("UO_MB12");
+//        TODO В CompositBoard условие добавляется объектом.
         cm1.addCondition("MFC1802012***");
         cm1.addCondition("MFC1802317***");
         cm1.addCondition("MFC1847164***");
@@ -227,7 +232,7 @@ public class Layout extends Region {
 //        this.getChildren().add(convierController2.view());
 
 
-        CompositConvier convier3= new CompositConvier(20);
+        CompositConvier convier3= new CompositConvier(6);
         CompositConvierController convierController3 = new CompositConvierController(convier3);
         convierController3.setXYAS(600, 200, 90, 60);
 //        this.getChildren().add(convierController3.view());

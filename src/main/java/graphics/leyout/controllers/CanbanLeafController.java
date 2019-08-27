@@ -58,4 +58,6 @@ public class CanbanLeafController extends LeyoutComponentController {
             canbanCardControllers[i].unselect();
         }
     }
+
+
 }

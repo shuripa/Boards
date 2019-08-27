@@ -1,8 +1,11 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
+import inout.EmployesCsvLoader;
 import model.Condition;
 import model.Profession;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CompositBoard extends WorkPlacedComposit {
@@ -15,6 +18,21 @@ public class CompositBoard extends WorkPlacedComposit {
     public CompositBoard (){
         super();
         step =110;
+        leafs();
+    }
+
+    public CompositBoard(CompositBuilder builder) throws IOException {
+        super();
+        step = 110;
+        leafs();
+        b.setId("" + builder.getId());
+        b.setTitle(builder.getTitle());
+        EmployesCsvLoader employes = EmployesCsvLoader.getInstance();                   // Загрузка работников
+        int empid = builder.getEmployer();
+        if (empid != 0) logining(employes.getEmployerByID("" + empid));                 // Спрятать проверку в класс emploer;
+    }
+
+    private void leafs() {
         b = new Board();
         wp = new WorkPlace(this, Profession.BINDER);
         g = new Grid();

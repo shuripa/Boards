@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Material {
     String title;
-    Integer id;
+    Integer id;                     // Что такое id?
     ArrayList <String> knotsEnt;
     ArrayList <String> knotsExt;
 

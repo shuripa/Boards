@@ -52,6 +52,9 @@ public abstract class WorkPlacedComposit extends LeyoutComponent {
 
     public abstract WorkPlace getWorkPlace();
 
+    public Condition getCondition(){
+        return null;
+    }
 
     public void logining(Employer employer){
         logining(employer, getPriorityToEmployer(employer));
@@ -82,10 +85,10 @@ public abstract class WorkPlacedComposit extends LeyoutComponent {
         }
         for (Skill skill : employer.getSkills()) {
             for (Condition condition : getConditions()) {
-                if (condition.isSuited(skill) && this.getWorkPlace().getProfession() == employer.getProfession()) {
+                if (condition.Like(skill) && this.getWorkPlace().getProfession() == employer.getProfession()) {
                     return 3;
                 }
-                if (condition.isSuited(skill)) {
+                if (condition.Like(skill)) {
                     return 7;
                 }
             }
@@ -108,6 +111,5 @@ public abstract class WorkPlacedComposit extends LeyoutComponent {
     }
 
     public abstract int getCountFreeWorkPlace();
-
 
 }

@@ -47,7 +47,7 @@ public class Condition {
     }
 
     // TODO: Переименовать в Like
-    public boolean isSuited (Skill skill){
+    public boolean Like (Skill skill){
         if (skill == null) return false;
         if (step != skill.getStep()) return false;
         if (chCond == null) return false;
@@ -107,6 +107,10 @@ public class Condition {
 
     public char[] getCharCondition(){
         return chCond;
+    }
+
+    public String getConditionString(){
+        return condition;
     }
 
     public int getStep() {

@@ -44,6 +44,7 @@ public abstract class LeyoutComponent {
         return this.parent;
     }
 
+
     public boolean isActive() {
         return active;
     }
@@ -122,10 +123,11 @@ public abstract class LeyoutComponent {
         return leafs.get(i);
     }
 
+//    Удалить
     public void addCondition (Condition condition){
         conditions.add(condition);
     }
-
+//    Удалить
     public ArrayList<Condition> getConditions (){
         return conditions;
     }

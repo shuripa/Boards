@@ -1,9 +1,7 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.BoardIndex;
-import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.views.BoardIndexView;
-import model.Order;
 
 import java.io.IOException;
 
@@ -28,20 +26,6 @@ public class BoardIndexController extends LeyoutComponentController {
         ((BoardIndexView)view()).setLimit(getProc());
     }
 
-    private void setText() {
-        String text;
-        if (((WorkPlacedComposit)component().parent()).getWorkPlace().isLogined()) {
-            text = "" + ((BoardIndex)component()).getEffectivityShift() + "%";
-        } else {
-            text = "0.0%";
-        }
-        ((BoardIndexView)view()).setText(text);
-    }
-
-    public void addOrder(Order order) {
-        ((BoardIndex) component()).addOrder(order);
-    }
-
     @Override
     protected void setComponentProperties() {
         setIntProperty(((BoardIndex)component()).procProperty());
@@ -50,7 +34,6 @@ public class BoardIndexController extends LeyoutComponentController {
     @Override
     public void update() {
         setProc();
-        setText();
         super.update();
     }
 

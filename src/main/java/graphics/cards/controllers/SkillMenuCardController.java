@@ -39,7 +39,7 @@ public class SkillMenuCardController extends PaneComponentController {
             SetCompositControllers set = SetCompositControllers.getInstance();
             for (LeyoutComponentController cont: set.getComponentControllers()) {
                 for (Condition condition: cont.getConditions()) {
-                    if (condition.isSuited((Skill)component())){
+                    if (condition.Like((Skill)component())){
                         boardMenu.addCard(new CompositMenuCardController(cont.component(), component()));
                     }
                 }
@@ -53,7 +53,7 @@ public class SkillMenuCardController extends PaneComponentController {
             SetCompositControllers set = SetCompositControllers.getInstance();
             for (LeyoutComponentController controller: set.getComponentControllers()) {
                 for (Condition condition: controller.getConditions()) {
-                    if (condition.isSuited((Skill)component())){
+                    if (condition.Like((Skill)component())){
                         controller.select();
                     }
                 }

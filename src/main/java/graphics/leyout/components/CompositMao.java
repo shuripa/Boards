@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Condition;
 import model.Order;
+import model.Orders;
+import sets.MAOSystem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +16,8 @@ public class CompositMao extends LeyoutComponent{
 
     private final static String TITLE_PROP_NAME = "MAO title";
     private final StringProperty title;
-    ArrayList<String> conditions;
+//    ArrayList<String> conditions;
+    //TODO: Разработан объек Orders использовать его
     ArrayList<Order> orders;
     @Deprecated //Использовать массив leafs из суперкласса
     ArrayList<CompositBoard> boards;
@@ -23,7 +26,7 @@ public class CompositMao extends LeyoutComponent{
 
     public CompositMao() {
         this.title = new SimpleStringProperty(this, TITLE_PROP_NAME, "MAO");
-        conditions = new ArrayList<>();
+//        conditions = new ArrayList<>();
         orders = new ArrayList<>();
         boards = new ArrayList<>();
 //        getStrProperties().add(title);
@@ -32,11 +35,12 @@ public class CompositMao extends LeyoutComponent{
     public CompositMao(CompositBuilder builder){
         this.title = new SimpleStringProperty(this, TITLE_PROP_NAME, "MAO");
         setTitle(builder.getTitle());
-        conditions = builder.getConditions();
+//        conditions = builder.getConditions();
         orders = new ArrayList<>();
         boards = new ArrayList<>();
+        MAOSystem maoSystem = MAOSystem.getInstance();
+        maoSystem.addCompositMao(this);
     }
-
 
     /** Property */
 
@@ -61,10 +65,10 @@ public class CompositMao extends LeyoutComponent{
 
     /** Conditions */
 
-    public void addCondition(String condition){
-        conditions.add(condition);
-        update();
-    }
+//    public void addCondition(String condition){
+//        conditions.add(condition);
+//        update();
+//    }
 
     /** Orders */
 
@@ -77,14 +81,23 @@ public class CompositMao extends LeyoutComponent{
         return orders;
     }
 
-    public ArrayList<Order> getOrders(ArrayList<Condition> conditions){
+    public ArrayList<Order> orderToBoard(Condition condition){
         ArrayList<Order> result = new ArrayList<>();
         for (Order o: orders) {
 //            TODO: получение списка заказов соответствующих условию. Сделать проверку.
-            for (Condition c: conditions) {
-                if (c.Like(o.getMaterial().getTitle(), 110)) {
-                    result.add(o);
-                }
+            if (condition.Like(o.getMaterial().getTitle(), 110)) {
+                result.add(o);
+            }
+        }
+        return result;
+    }
+
+    public Orders orders(Condition condition){
+        Orders result = new Orders();
+        for (Order o: orders) {
+//            TODO: получение списка заказов соответствующих условию. Сделать проверку.
+            if (condition.Like(o.getMaterial().getTitle(), 110)) {
+                result.addOrder(o);
             }
         }
         return result;
@@ -112,13 +125,14 @@ public class CompositMao extends LeyoutComponent{
     public String toString() {
         String result = title.get();
 
-        for (String s: conditions) {
-        }
+//        for (String s: conditions) {
+//            result = result +"\n Умова: " + s;
+//        }
 
         for (int i = 0; i < leafsLenght(); i++) {
             if (getLeaf(i) != null) {
                 result = result + "\n  Дошка " + (i + 1) + " - " + (((CompositBoard)getLeaf(i)).getTitle());
-                result = result + "\n    Умова " + (((CompositBoard)getLeaf(i)).getCondition());
+                result = result + "\n    Умова " + (((CompositBoard)getLeaf(i)).condition().getConditionString());
             }
         }
 

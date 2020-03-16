@@ -8,12 +8,12 @@ import graphics.leyout.components.LeyoutComponent;
  */
 
 public class Skill extends LeyoutComponent {
-    String materialBlank;
-    int step;
+    private String materialBlank;
+    private int step;
 
-    Double productivity;
+    private Double productivity;
 
-    Employer employer;
+    private Employer employer;
     private char[] chSkill;
 
     public Skill(Employer sender, String materialBlank, int step, double productivity) {

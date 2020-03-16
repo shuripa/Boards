@@ -26,22 +26,22 @@ public class Employer extends LeyoutComponent {
     private final StringProperty name;
     private final StringProperty phone;
     private final StringProperty shift;
-    //TODO создать отдельный класс для набора скилов
-    private final HashMap<String, Skill> skills;
-
-    private WorkPlace workPlace;
-    private ArrayList<String> bindWorkPlace;
     private Profession profession;
 
+    private final HashMap<String, Skill> skills;
+    private WorkPlace workPlace;
+    private ArrayList<String> bindWorkPlace;
+
     /** Constructors */
-    public Employer(){
-        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + 0);
-        this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, "");
-        this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, "");
-        this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, "");
-        this.activated = new SimpleBooleanProperty(this, TITLE_PROP_ACTIVATED, false);
-        skills = new HashMap<>();
-    }
+//    public Employer(){
+//        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + 0);
+//        this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, "");
+//        this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, "");
+//        this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, "");
+//        this.activated = new SimpleBooleanProperty(this, TITLE_PROP_ACTIVATED, false);
+//        skills = new HashMap<>();
+//    }
+
 
     public Employer(String id, String name, String phone, String shift, Profession profession, String project, String ... bindWorkPlace){
         this.profession = profession;
@@ -56,16 +56,15 @@ public class Employer extends LeyoutComponent {
             this.bindWorkPlace.add(s);
         }
     }
-
     /** Properties */
 
     public String getId() {
         return id.getValue();
     }
 
-    public void setId(String id) {
-        this.id.set(id);
-    }
+//    public void setId(String id) {
+//        this.id.set(id);
+//    }
 
     public StringProperty idProperty() {
         return id;
@@ -130,12 +129,13 @@ public class Employer extends LeyoutComponent {
     public void setSkill(Skill skill) {
         if (skills.containsKey(skill.getMaterialBlank())) {
             Skill s = skills.get(skill.getMaterialBlank());
-            s.setProductivity(skill.getProductivity());
+            s.setProductivity(skill.getProductivity());     //Старая продуктивность заменяется новой
         } else {
-            skills.put(skill.getMaterialBlank(), skill);
+            skills.put(skill.getMaterialBlank(), skill);    //Добавляется новый елемент продуктивности
         }
     }
 
+    //Получение всех скилов.
     public Collection<Skill> getSkills() {
         return this.skills.values();
     }
@@ -168,7 +168,7 @@ public class Employer extends LeyoutComponent {
         return listResult;
     }
 
-    public Double getProductivity(Material module){
+    public Double productivity(Material module){
         Double result = 25.0;
         for (Skill s: skills.values()) {
             if (s.Like(module.getTitle(), s.getStep())){
@@ -178,24 +178,39 @@ public class Employer extends LeyoutComponent {
         return result;
     }
 
+
+
+//    Существование метода обусловлено не типом выходных данных а типом параметра метода
     public int getProductivity (WorkPlacedComposit component){
         int count = 0;
         int result = 0;
         double prod = 0;
-        for (Condition condition: component.getConditions()) {
-            count = 0;
-            prod = 0;
+
+//        for (Condition condition: component.getConditions()) {
+//            count = 0;
+//            prod = 0;
+//            for (Skill sk: this.getSkills()) {
+//                if (condition.isSuited(sk)) {
+//                    count = count + 1;
+//                    prod = prod + sk.getProductivity();
+//                }
+//            }
+//        }
+
             for (Skill sk: this.getSkills()) {
-                if (condition.isSuited(sk)) {
-                    count = count + 1;
+                if (component.getCondition() != null)
+                if (component.getCondition().Like(sk)) {
                     prod = prod + sk.getProductivity();
+                    count++;
                 }
             }
-        }
+
+
         if (count != 0) result = (int) Math.ceil(prod / count);
 
         return result;
     }
+
 
     public WorkPlace getWorkPlase() {
         return workPlace;

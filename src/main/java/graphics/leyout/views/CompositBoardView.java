@@ -22,6 +22,7 @@ public class CompositBoardView extends LeyoutWorkPlacedView {
         this.getChildren().add(((CompositBoardController)controller()).getGridShapeView());
         this.getChildren().add(((CompositBoardController)controller()).getBoardView());
         this.getChildren().add(((CompositBoardController)controller()).getBoardIndexView());
+        this.getChildren().add(((CompositBoardController)controller()).getEffectivityIndexView());
     }
 
     @Override
@@ -34,6 +35,8 @@ public class CompositBoardView extends LeyoutWorkPlacedView {
         ((CompositBoardController) controller()).getBoardController().view().update();
         ((CompositBoardController) controller()).getBoardIndexController().setXY(controller().S()-30, 12);
         ((CompositBoardController) controller()).getBoardIndexController().view().update();
+        ((CompositBoardController) controller()).getEffectivityIndexController().setXY(controller().S()-27, 22);
+        ((CompositBoardController) controller()).getEffectivityIndexController().view().update();
     }
 
 }

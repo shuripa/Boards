@@ -11,7 +11,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Region;
-import model.Condition;
 import model.Profession;
 import model.Side;
 import panes.PropertyPane;
@@ -70,17 +69,18 @@ public class Layout extends Region {
             e.printStackTrace();
         }
 
+        Connection connection = new Connection();
+//        connection.connect();
+
 //        MAO_begin
 //        TODO: Умови для МАО можуть складатись з умов дошок які входять в МАО
         MAOSystem maoSystem = MAOSystem.getInstance();
 
-        Connection connection = new Connection();
-        connection.connect();
 
         CompositMao cm = new CompositMao();
         cm.setTitle("UO_MB23");
-        cm.addCondition("MFC1847087***");
-        cm.addCondition("MFC1847034***");
+//        cm.addCondition("MFC1847087***");
+//        cm.addCondition("MFC1847034***");
         maoSystem.addCompositMao(cm);
         CompositMaoController cmc = new CompositMaoController(cm);
         cmc.setXYAS(135, 145, -45, 0);
@@ -90,9 +90,9 @@ public class Layout extends Region {
 //        TODO При відсутності замовлень система падає
         cm1.setTitle("UO_MB12");
 //        TODO В CompositBoard условие добавляется объектом.
-        cm1.addCondition("MFC1802012***");
-        cm1.addCondition("MFC1802317***");
-        cm1.addCondition("MFC1847164***");
+//        cm1.addCondition("MFC1802012***");
+//        cm1.addCondition("MFC1802317***");
+//        cm1.addCondition("MFC1847164***");
         maoSystem.addCompositMao(cm1);
         CompositMaoController cmc1 = new CompositMaoController(cm1);
         cmc1.setXYAS(300, 145, -45, 0);
@@ -106,7 +106,7 @@ public class Layout extends Region {
         cb = new CompositBoard();
         cb.setTitle("KM 034Cb");
         cb.setId("1902");
-        cb.setCondition(new Condition("MFC1847034***", 110));
+        cb.setCondition("MFC1847034***");
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
         cb.logining(employes.getEmployerByID("12630"));
@@ -120,7 +120,7 @@ public class Layout extends Region {
         cb = new CompositBoard();                                           //Не грузится из файла
         cb.setTitle("KM 087Cb");                                            //Файл данных
         cb.setId("1903");                                                     //Файл данных
-        cb.setCondition(new Condition("MFC1847087***", 110));                                   //Файл условий
+        cb.setCondition("MFC1847087***");                                   //Файл условий
         cb.setProc(50);                                                     //Не грузится из файла
         cbc = new CompositBoardController(cb);                              //Не грузится из файла
         cb.logining(employes.getEmployerByID("12700"));                    //Файл логирования
@@ -133,7 +133,7 @@ public class Layout extends Region {
         cb = new CompositBoard();
         cb.setTitle("KM 317Cp");
         cb.setId("1904");
-        cb.setCondition(new Condition("MFC1802317***", 110));
+        cb.setCondition("MFC1802317***");
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
         cb.logining(employes.getEmployerByID("13710"));
@@ -146,7 +146,7 @@ public class Layout extends Region {
         cb = new CompositBoard();
         cb.setTitle("KM 164Cb");
         cb.setId("1905");
-        cb.setCondition(new Condition("MFC1847164***", 110));
+        cb.setCondition("MFC1847164***");
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
         cb.logining(employes.getEmployerByID("13003"));
@@ -159,7 +159,7 @@ public class Layout extends Region {
         cb = new CompositBoard();
         cb.setTitle("KM 217Cb");
         cb.setId("1906");
-        cb.setCondition(new Condition("MFC1847217***", 110));
+        cb.setCondition("MFC1847217***");
         cb.setProc(0);
         cbc = new CompositBoardController(cb);
 //        cb.action(employes.getEmployerByID("13003"));
@@ -172,11 +172,11 @@ public class Layout extends Region {
         cb = new CompositBoard();
         cb.setTitle("KM 012CpR");
         cb.setId("1907");
-        cb.setCondition(new Condition("MFC1802012***", 110));
+        cb.setCondition("MFC1802012***");
         cb.setProc(50);
         cbc = new CompositBoardController(cb);
 //        cb.action(employes.getEmployerByID("13003"));
-        cbc.setXYAS(305, 150, -180, 60);
+        cbc.setXYAS(315, 150, -180, 60);
 //        SetCompositControllers.getInstance().addComponentController(cbc);
 //        this.getChildren().add(cbc.view());
         cm1.addBoard(cb);
@@ -194,7 +194,7 @@ public class Layout extends Region {
         CompositTestTable comptest = new CompositTestTable();
         comptest.setId("1525");
         comptest.setTitle("KM-25");
-        comptest.setCondition(new Condition ("MFC1847164***", 120));
+        comptest.setCondition("MFC1847164***");
         CompositTestTableController compTestController = new CompositTestTableController(comptest);
         compTestController.setXYAS(100, 15, 0, 60);
 //        this.getChildren().add(compTestController.view());
@@ -223,7 +223,7 @@ public class Layout extends Region {
 
         CompositConvier compositConvier = new CompositConvier(8);
         CompositConvierController compositConvierController = new CompositConvierController(compositConvier);
-        compositConvierController.setXYAS(430, 10, 0, 60);
+        compositConvierController.setXYAS(455, 10, 0, 60);
 //        this.getChildren().add(compositConvierController.view());
 
         CompositConvier convier2= new CompositConvier(6);
@@ -234,7 +234,7 @@ public class Layout extends Region {
 
         CompositConvier convier3= new CompositConvier(6);
         CompositConvierController convierController3 = new CompositConvierController(convier3);
-        convierController3.setXYAS(600, 200, 90, 60);
+        convierController3.setXYAS(700, 195, 90, 60);
 //        this.getChildren().add(convierController3.view());
 
 

@@ -30,15 +30,11 @@ public class BoardController extends LeyoutComponentController {
         return ((Board)component()).getTitle();
     }
 
-    public String getCondition (){
-        return ((Board)component()).getCondition();
-    }
 
     @Override
     protected void setComponentProperties() {
         setStrProperty(((Board)component()).idProperty());
         setStrProperty(((Board)component()).titleProperty());
-        setStrProperty(((Board)component()).conditionProperty());
     }
 
     @Override

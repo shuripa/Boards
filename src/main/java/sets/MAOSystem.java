@@ -25,12 +25,12 @@ public class MAOSystem {
     }
 
     public CompositMao getMaoWithBoard (CompositBoard board){
-        CompositMao temp = null;
+        CompositMao result = null;
         for (CompositMao cm: arrMao.values()) {
             if (cm.isContainBoard(board)){
-                temp = cm;
+                result = cm;
             }
         }
-        return temp;
+        return result;
     }
 }

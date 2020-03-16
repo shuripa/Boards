@@ -1,7 +1,9 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositMao;
+import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.CompositMaoView;
+import inout.CompositBuilder;
 import model.Condition;
 
 import java.io.IOException;
@@ -12,6 +14,12 @@ public class CompositMaoController extends LeyoutCompositController {
     public CompositMaoController(CompositMao cm) throws IOException {
         super(cm);
         setView(new CompositMaoView(this));
+    }
+
+    public CompositMaoController(LeyoutComponent cm, CompositBuilder builder) throws IOException {
+        super(cm);
+        setView(new CompositMaoView(this));
+        setXYAS(builder.getX(), builder.getY(), builder.getA(), builder.getS());
     }
 
     public void setTitle(String s) {

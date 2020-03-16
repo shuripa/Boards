@@ -19,6 +19,7 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
     WorkPlaceController wc;
     BoardController bc;
     BoardIndexController ic;
+    EffectivityIndexController ie;
     GridController gc;
 
     public CompositBoardController(CompositBoard cBoard) throws IOException {
@@ -33,11 +34,11 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 //        cBoard.getWorkPlace().addControllerObserver(ic);
     }
 
-    public CompositBoardController(LeyoutComponent cBoard, CompositBuilder cBuilder) throws IOException {
+    public CompositBoardController(LeyoutComponent cBoard, CompositBuilder builder) throws IOException {
         super((WorkPlacedComposit)cBoard);
         leafs((CompositBoard) cBoard);
         setView(new CompositBoardView(this));
-        setXYAS(cBuilder.getX(), cBuilder.getY(), cBuilder.getA(), cBuilder.getS());
+        setXYAS(builder.getX(), builder.getY(), builder.getA(), builder.getS());
     }
 
     private void leafs(CompositBoard cBoard) throws IOException {
@@ -45,7 +46,8 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
         wc = new WorkPlaceController(cBoard.getWorkPlace(), this);
         gc = new GridController(cBoard.getGrid());
         ic = new BoardIndexController(cBoard.getBoardIndex());
-        setLeaves(bc, gc, wc, ic);
+        ie = new EffectivityIndexController(cBoard.getEffectivityIndex());
+        setLeaves(bc, gc, wc, ic, ie);
     }
 
     public void SetComponent (CompositBoard cBoard) {
@@ -62,6 +64,10 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 
     public LeyoutComponentView getBoardIndexView() {
         return ic.view();
+    }
+
+    public LeyoutComponentView getEffectivityIndexView() {
+        return ie.view();
     }
 
     public LeyoutComponentView getGridShapeView() {
@@ -82,6 +88,10 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 
     public LeyoutComponentController getBoardIndexController() {
         return ic;
+    }
+
+    public LeyoutComponentController getEffectivityIndexController(){
+        return ie.controller();
     }
 
     public LeyoutComponent getComponentLeafs(int ind) {
@@ -113,9 +123,6 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
         return bc.getTitle();
     }
 
-    public String getCondition() {
-        return ((BoardController) getBoardController()).getCondition();
-    }
 
     public LeyoutComponent getCompositBoard() {
         return component();
@@ -135,7 +142,6 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 
         setStrProperty((((CompositBoard)component()).getBoard()).idProperty());
         setStrProperty((((CompositBoard)component()).getBoard()).titleProperty());
-        setStrProperty((((CompositBoard)component()).getBoard()).conditionProperty());
 //        setIntProperty((((CompositBoard)component()).getWorkPlace()).idProperty());
 //        setStrProperty((((CompositBoard)component()).getWorkPlace()).nameProperty());
 //        setStrProperty((((CompositBoard)component()).getWorkPlace()).phoneProperty());
@@ -151,7 +157,7 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 
     @Override
     public double getSumEffectivity() {
-        return ((CompositBoard)component()).getBoardIndex().getEffectivityShift();
+        return ((CompositBoard)component()).getEffectivityIndex().getTotalEffectivity();
     }
 
     @Override

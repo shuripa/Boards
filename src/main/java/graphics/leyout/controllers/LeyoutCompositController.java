@@ -3,6 +3,7 @@ package graphics.leyout.controllers;
 import graphics.Layout;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.LeyoutComponentView;
+import inout.CompositBuilder;
 import sets.SetCompositControllers;
 
 import java.io.IOException;
@@ -24,6 +25,13 @@ public abstract class LeyoutCompositController extends LeyoutComponentController
 
     public LeyoutCompositController(LeyoutComponent component) throws IOException {
         super(component);
+        leaves = new ArrayList<>();
+        SetCompositControllers scc = SetCompositControllers.getInstance();
+        scc.addComponentController(this);
+    }
+
+    public LeyoutCompositController(LeyoutComponent component, CompositBuilder builder) throws IOException {
+        super(component, builder);
         leaves = new ArrayList<>();
         SetCompositControllers scc = SetCompositControllers.getInstance();
         scc.addComponentController(this);

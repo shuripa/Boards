@@ -12,11 +12,11 @@ public class CompositTestTable extends WorkPlacedComposit {
     Palette palette;
     TestWorkTable workTable;
     TestCanban canban;
-    int step;
+//    int step;
 
 
     public CompositTestTable(){
-        step = 120;
+//        step = 120;
         ttable = new TestTable();
         wplace = new WorkPlace(this, Profession.TESTER);
         palette = new Palette();
@@ -85,8 +85,12 @@ public class CompositTestTable extends WorkPlacedComposit {
         return "";
     }
 
-    public void setCondition(Condition condition) {
-        getTestTable().setCondition (condition);
+    public void setCondition(String condition) {
+        getTestTable().setCondition (new Condition ("MFC1847164***", 120));
+    }
+
+    public Condition getCondition(){
+        return  ttable.getCondition();
     }
 
     public ArrayList<Condition> getConditions() {

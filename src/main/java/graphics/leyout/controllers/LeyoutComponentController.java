@@ -6,6 +6,7 @@ import graphics.Layout;
 import graphics.cards.ShapeInfo;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.LeyoutComponentView;
+import inout.CompositBuilder;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.input.ClipboardContent;
@@ -52,9 +53,23 @@ public abstract class LeyoutComponentController extends GraphicsController {
         setComponentProperties();
         setViewProperties();
         component().addControllerObserver(this);
-        hint = new Hint(this, "");
+//        hint = new Hint(this, "");
+
 //        SetCompositControllers scc = SetCompositControllers.getInstance();
 //        scc.addComponentController(this);
+    }
+
+    public LeyoutComponentController(LeyoutComponent component, CompositBuilder builder){
+        super();
+        this.controller = this;
+        this.component = component;
+        strProperties = new ArrayList<>();
+        intProperties = new ArrayList<>();
+        setComponentProperties();
+        setViewProperties();
+        component().addControllerObserver(this);
+//        hint = new Hint(this, "");
+        setXYAS(builder.getX(), builder.getY(), builder.getA(), builder.getS());
     }
 
     /** Getters and Setters */
@@ -83,10 +98,11 @@ public abstract class LeyoutComponentController extends GraphicsController {
     }
 
     public void setHint(String s){
-        hint.setText(s);
+        hint = new Hint(controller, s);
     }
 
     public void showHint(int x, int y){
+        if (hint != null);
         hint.showhint(x, y);
     }
 
@@ -146,12 +162,12 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
         view().setOnMouseEntered(mouseEvent -> {
             select();
-            hint.showhint(mouseEvent.getSceneX(), mouseEvent.getScreenY());
+            if (hint != null) hint.showhint(mouseEvent.getSceneX(), mouseEvent.getScreenY());
         });
 
         view().setOnMouseExited(mouseEvent -> {
             unselect();
-            hint.hide();
+            if (hint != null) hint.hide();
         });
 
         view().setOnMouseClicked(mouseEvent -> {

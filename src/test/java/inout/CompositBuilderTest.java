@@ -2,18 +2,19 @@ package inout;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /* Проверка работоспособности и типа всех предусмотренных методов класса*/
 
 public class CompositBuilderTest {
-    CompositBuilder builder;
+    CompositBuilder builder, builder2;
 
     public CompositBuilderTest(){
-        //TODO не созданы Связи, Условия и не использован метод build. Пока не тестируются сеттеры.
+        //TODO не созданы Связи и не использован метод build.
+        // Пока не тестируются сеттеры.
         builder = new CompositBuilder(1219, "CompositBoard").parid(1220).title("KM 035Cb")
                 .assigned(12713).profession("Binder").leafs(3).cards(2).side("Left").stepLevel(4)
-                .stepName("Binding module").xyas(100, 200, 180, 60) ;
+                .stepName("Binding module").xyas(100, 200, 180, 60).condition("MFC1802012***");
     }
 
     @Test
@@ -154,6 +155,8 @@ public class CompositBuilderTest {
 
     @Test
     public void getConditions() {
+//        int size = builder.getConditions().size();
+        assertTrue("MFC1802012***".equals(builder.getCondition()));
     }
 
     @Test

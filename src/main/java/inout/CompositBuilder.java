@@ -24,7 +24,8 @@ public class CompositBuilder {
     private int parid;
     private String stepName;
     private int stepLevel;
-    private ArrayList<String> conditions;
+    private String condition;
+//    private ArrayList<String> conditions;
     private ArrayList<String> bindings;
 
     public CompositBuilder(int id, String tp) {
@@ -43,7 +44,8 @@ public class CompositBuilder {
         side = "";              // Заменить объектом
         stepName = "";
         stepLevel = 0;
-        conditions = new ArrayList<>();
+        condition = "";
+//        conditions = new ArrayList<>();
         bindings = new ArrayList<>();
     }
 
@@ -100,13 +102,13 @@ public class CompositBuilder {
         return this;
     }
 
-    public CompositBuilder conditions(ArrayList<String> val){
-        conditions = val;
+    public CompositBuilder condition(String val){
+        condition = val;
         return this;
     }
 
-    public CompositBuilder bindings(ArrayList<String> val){
-        bindings = val;
+    public CompositBuilder bindings(ArrayList<String> values){
+        bindings = values;
         return this;
     }
 
@@ -171,8 +173,8 @@ public class CompositBuilder {
         return stepLevel;
     }
 
-    public ArrayList<String> getConditions() {
-        return conditions;
+    public String getCondition() {
+        return condition;
     }
 
     public ArrayList<String> getBindings() {

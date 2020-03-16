@@ -1,35 +1,25 @@
 package graphics.leyout.views;
 
-import graphics.leftpanel.LeftPanel;
 import graphics.leyout.controllers.LeyoutComponentController;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 
 public class BoardIndexView extends LeyoutComponentView {
     int limit;
     Rectangle r1, r2;
-    Text text;
+
     public BoardIndexView (LeyoutComponentController controller){
         super(controller);
         limit = 0;
         r1 = new Rectangle(5, 20*limit/100);
         r2 = new Rectangle(5,20*(100-limit)/100);
         addActiveElements(r1, r2);
-        text = new Text();
-        text.setOnMouseEntered(mouseEvent -> {
-            LeftPanel lp = LeftPanel.getInstance();
-            lp.show(this, 0, 0);
-        });
-
-        addText(text);
     }
 
     @Override
     public void paint() {
 //        limit = ((BoardIndexController)controller()).getProc();
 //        r1.setXY(0.5,18.5);
-        text.relocate(3, 10);
         r1.relocate(25,15.5 + 20*(100-limit)/100);
         r2.setStyle("-fx-fill: RED");
 //        r2.setXY(0.5,18.5 + 20*limit/100);
@@ -49,10 +39,6 @@ public class BoardIndexView extends LeyoutComponentView {
     public void setLimit(int limit) {
         this.limit = limit;
         repaint();
-    }
-
-    public void setText(String s){
-        text.setText(s);
     }
 
 }

@@ -8,16 +8,18 @@ public class Board extends LeyoutComponent {
 
     private final static String TITLE_PROP_ID = "Board Id";
     private final static String TITLE_PROP_TITLE = "Board title";
-    private final static String TITLE_PROP_CONDITION = "Condition";
+//    @Deprecated
+//    private final static String TITLE_PROP_CONDITION = "Condition";
     private final StringProperty id;
     private final StringProperty title;
-    private final StringProperty condition;
+//    private final StringProperty condition;
+    private Condition condition;
 
 
     public Board(){
         this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + 0);
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE, "");
-        this.condition = new SimpleStringProperty(this, TITLE_PROP_CONDITION, "");
+//        this.condition = new SimpleStringProperty(this, TITLE_PROP_CONDITION, "");
     }
 
     public void setId(String id) {
@@ -36,20 +38,15 @@ public class Board extends LeyoutComponent {
         return title.get();
     }
 
-    @Deprecated
-    public void setCondition(String condition) {
-        //TODO: оставлено для совместимости. Удалить.
-//        this.condition.set(condition);
-        addCondition(new Condition(condition, 110));
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
     }
 
-    public void setCondition(Condition condition){
-        addCondition(condition);
+    public Condition getCondition(){
+        return condition;
     }
 
-    public String getCondition() {
-        return condition.get();
-    }
 
     public StringProperty idProperty() {
         return id;
@@ -59,11 +56,11 @@ public class Board extends LeyoutComponent {
         return title;
     }
 
-    public StringProperty conditionProperty() {
-        return condition;
-    }
+//    public StringProperty conditionProperty() {
+//        return condition;
+//    }
 
     public String toString(){
-        return "Board:\nID = " + id.get() +";\nTitle = " + title.get() + ";\nCondition = " + condition.get();
+        return "Board:\nID = " + id.get() +";\nTitle = " + title.get() + ";\nCondition = " + condition.getConditionString();
     }
 }

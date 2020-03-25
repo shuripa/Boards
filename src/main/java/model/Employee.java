@@ -12,59 +12,48 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Employer extends LeyoutComponent {
+public class Employee extends LeyoutComponent {
 
-    private final static String TITLE_PROP_ID = "Emploer Id";
-    private final static String TITLE_PROP_NAME = "Name";
-    private final static String TITLE_PROP_PHONE = "Phone";
-    private final static String TITLE_PROP_ACTIVATED = "Activated";
-    private final static String TITLE_PROP_SHIFT = "Shift";         //Зміна
-    private final static String TITLE_PROP_PROFESSION = "Profession";
-
-    private final BooleanProperty activated;
     private final StringProperty id;
     private final StringProperty name;
     private final StringProperty phone;
     private final StringProperty shift;
     private Profession profession;
-
     private final HashMap<String, Skill> skills;
+
     private WorkPlace workPlace;
     private ArrayList<String> bindWorkPlace;
+    private final BooleanProperty activated;
 
-    /** Constructors */
-//    public Employer(){
-//        this.id = new SimpleStringProperty(this, TITLE_PROP_ID, "" + 0);
-//        this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, "");
-//        this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, "");
-//        this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, "");
-//        this.activated = new SimpleBooleanProperty(this, TITLE_PROP_ACTIVATED, false);
-//        skills = new HashMap<>();
-//    }
+    private final static String TITLE_PROP_ID = "Emploer Id";
+    private final static String TITLE_PROP_NAME = "Name";
+    private final static String TITLE_PROP_PHONE = "Phone";
+    private final static String TITLE_PROP_SHIFT = "Shift";         //Зміна
+    private final static String TITLE_PROP_PROFESSION = "Profession";
+    private final static String TITLE_PROP_ACTIVATED = "Activated";
 
 
-    public Employer(String id, String name, String phone, String shift, Profession profession, String project, String ... bindWorkPlace){
-        this.profession = profession;
+    /* Constructors */
+    //Создается классом EmployeesCsvLoader, чем и обусловлена длинная форма конструктора далее используется в тестах. Больше нигде.
+    public Employee(String id, String name, String phone, String shift, Profession profession, String project, String ... bindWorkPlace){
         this.id = new SimpleStringProperty(this, TITLE_PROP_ID, id);
         this.name = new SimpleStringProperty(this, TITLE_PROP_NAME, name);
         this.phone = new SimpleStringProperty(this, TITLE_PROP_PHONE, phone);
         this.shift = new SimpleStringProperty(this, TITLE_PROP_SHIFT, shift);
         this.activated = new SimpleBooleanProperty(this, TITLE_PROP_ACTIVATED, false);
         skills = new HashMap<>();
+        this.profession = profession;
         this.bindWorkPlace = new ArrayList<>();
         for (String s: bindWorkPlace) {
             this.bindWorkPlace.add(s);
         }
     }
-    /** Properties */
 
+    /* Properties */
+    //Предполагается что id не изменяется, поэтому сеттера нету.
     public String getId() {
         return id.getValue();
     }
-
-//    public void setId(String id) {
-//        this.id.set(id);
-//    }
 
     public StringProperty idProperty() {
         return id;
@@ -171,14 +160,13 @@ public class Employer extends LeyoutComponent {
     public Double productivity(Material module){
         Double result = 25.0;
         for (Skill s: skills.values()) {
-            if (s.Like(module.getTitle(), s.getStep())){
+            if (s.isLike(module.getTitle(), s.getStep())){
+//                System.out.println("skill: " + s.getMaterialBlank() + "; prod:" + s.getProductivity());
                 return s.getProductivity();
             }
         }
         return result;
     }
-
-
 
 //    Существование метода обусловлено не типом выходных данных а типом параметра метода
     public int getProductivity (WorkPlacedComposit component){
@@ -186,42 +174,27 @@ public class Employer extends LeyoutComponent {
         int result = 0;
         double prod = 0;
 
-//        for (Condition condition: component.getConditions()) {
-//            count = 0;
-//            prod = 0;
-//            for (Skill sk: this.getSkills()) {
-//                if (condition.isSuited(sk)) {
-//                    count = count + 1;
-//                    prod = prod + sk.getProductivity();
-//                }
-//            }
-//        }
-
             for (Skill sk: this.getSkills()) {
                 if (component.getCondition() != null)
-                if (component.getCondition().Like(sk)) {
+                if (component.getCondition().isLike(sk)) {
                     prod = prod + sk.getProductivity();
                     count++;
+//                    System.out.println("prod: " + prod + "; count: " + count );
                 }
             }
 
-
         if (count != 0) result = (int) Math.ceil(prod / count);
-
         return result;
     }
 
-
-    public WorkPlace getWorkPlase() {
+    public WorkPlace getWorkPlaсe() {
         return workPlace;
     }
 
     public void setWorkPlace(WorkPlace workPlace) {
-        if (this.workPlace != null) {
-            this.workPlace.free();
-        }
+        if (this.workPlace != null) this.workPlace.free();
         this.workPlace = workPlace;
-        if (this.workPlace.getEmployer() != this) this.workPlace.setEmployer(this);
+        if (this.workPlace.getEmployee() != this) this.workPlace.setEmployee(this);
         update();
     }
 
@@ -229,7 +202,7 @@ public class Employer extends LeyoutComponent {
         if (workPlace != null) {
             WorkPlace wp = workPlace;
             workPlace = null;
-            if (wp.getEmployer() != null) wp.free();
+            if (wp.getEmployee() != null) wp.free();
         }
         update();
     }
@@ -238,15 +211,14 @@ public class Employer extends LeyoutComponent {
         return profession;
     }
 
-    /** Overrides */
 
     @Override
     public String toString() {
-        return "Employer{" +
+        return "Employee{" +
                 "id=" + id.get() +
                 ", name=" + name.get() +
                 ", phone=" + phone.get() +
-//                ", shift=" + shift.get() +
+                ", shift=" + shift.get() +
 //                ", skills=" + skills.get() +
                 "}";
     }

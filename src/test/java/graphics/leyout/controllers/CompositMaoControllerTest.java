@@ -5,6 +5,8 @@ import inout.CompositBuilder;
 import org.junit.Test;
 
 import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CompositMaoControllerTest {
@@ -32,21 +34,21 @@ public class CompositMaoControllerTest {
 
     @Test
     public void componentTest(){
-        assertTrue("UO_MB23".equals(((CompositMao)controller1.component()).getTitle()));
-        assertTrue("UO_MB12".equals(((CompositMao)controller2.component()).getTitle()));
+        assertEquals("UO_MB23", ((CompositMao) controller1.component()).getTitle());
+        assertEquals("UO_MB12", ((CompositMao) controller2.component()).getTitle());
     }
 
     @Test
     public void  builderTest(){
-        assertTrue(100 == controller1.X());
-        assertTrue(200 == controller1.Y());
-        assertTrue(45 == controller1.A());
-        assertTrue(60 == controller1.S());
+        assertEquals(100, controller1.X());
+        assertEquals(200, controller1.Y());
+        assertEquals(45, controller1.A());
+        assertEquals(60, controller1.S());
 
-        assertTrue(200 == controller2.X());
-        assertTrue(300 == controller2.Y());
-        assertTrue(90 == controller2.A());
-        assertTrue(60 == controller2.S());
+        assertEquals(200, controller2.X());
+        assertEquals(300, controller2.Y());
+        assertEquals(90, controller2.A());
+        assertEquals(60, controller2.S());
     }
 
     @Test

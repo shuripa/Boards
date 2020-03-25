@@ -1,12 +1,27 @@
 package graphics.leyout.components;
 
-import model.Employer;
+import model.Employee;
 import model.Profession;
 import model.Side;
 
 public class WorkPlace extends LeyoutComponent {
 
     /**
+     * WorkPlace - WorkPosition
+     * ТЗ: Робоча позиція відображає місце куди може бути залогований працівник, або працівника,
+     * який залогований. При наведенні мишки на карточку працівника підсвічуються всі робочі місця,
+     * куди може бути залогований працівник. Кольором виділяються пріоритети куди і чому в першу
+     * чергу потрібно логувати працівника. При натисканні правої клавіші миші в інформмітці
+     * відображається інформація про працівника.
+     * Також повинна бути можливість:
+     * - вилогувати працівника за допомогою контекстного меню, – кнопка "free"
+     * - вибрати зі списку всіх працівників, що підходять для робочого місця, або вільних працівника
+     * і залогувати його. Список повинен бути відсортований по трьох категоріях. "Закріплені",
+     * "Ті що мають навички", "Всі інші".
+     *
+     * Фіксується час логування і вилоговування працівника. Страрт і фініш кожного продукту.
+     * Звіт про виконані замовлення у вигляді діаграми ганта.
+     *
      * Приоритеты определены в WorkPlacedComposit и могут быть переопределены в дочерних классах.
      * Приоритеты хранятся в классе рабочего места, т.к. именно для него они имеют смысл.
      * Список обоснований приоритетов не окончательный.
@@ -26,13 +41,13 @@ public class WorkPlace extends LeyoutComponent {
 
 
 
-    private Employer employer;
+    private Employee employee;
     int priority;
 
     Side side;
     Profession profession;
 
-    @Deprecated
+    //Простое создание используется в тестах
     public WorkPlace(){
     }
 
@@ -50,16 +65,16 @@ public class WorkPlace extends LeyoutComponent {
         this.side = side;
     }
 
-    public Employer getEmployer() {
-        return employer;
+    public Employee getEmployee() {
+        return employee;
     }
 
     public boolean isLogined() {
-        return employer == null ? false : true;
+        return employee == null ? false : true;
     }
 
     public String getLogined(){
-        return employer == null ? "0" : employer.getId();
+        return employee == null ? "0" : employee.getId();
     }
 
     public int getPriority() {
@@ -78,25 +93,26 @@ public class WorkPlace extends LeyoutComponent {
         return profession;
     }
 
-    public void setEmployer(Employer employer) {
-        Employer temp = this.employer;
+    public void setEmployee(Employee employee) {
+        Employee temp = this.employee;
         if (temp != null) temp.free();
-        this.employer = employer;
-        this.employer.setWorkPlace(this);
-        priority = ((WorkPlacedComposit)this.parent()).getPriorityToEmployer(this.employer);
+        this.employee = employee;
+        this.employee.setWorkPlace(this);
+        if (parent() != null)
+        priority = ((WorkPlacedComposit)this.parent()).getPriorityToEmployer(this.employee);
         update();
     }
 
-    public void setEmployerWithPriority(Employer employer, int priority){
+    public void setEmployerWithPriority(Employee employee, int priority){
         this.priority = priority;
-        setEmployer(employer);
+        setEmployee(employee);
     }
 
     public void free(){
-        if (employer != null) {
-            Employer e = employer;
-            employer = null;
-            if (e.getWorkPlase () != null) e.free();
+        if (employee != null) {
+            Employee e = employee;
+            employee = null;
+            if (e.getWorkPlaсe() != null) e.free();
         }
         update();
     }
@@ -104,16 +120,14 @@ public class WorkPlace extends LeyoutComponent {
     @Override
     public String toString(){
         return isLogined()
-                ? "Employer: " + employer.getId()
-                + "\n" + employer.getName()
-                + "\n" + employer.getPhone()
+                ? "Employer: " + employee.getId()
+                + "\n" + employee.getName()
+                + "\n" + employee.getPhone()
                 : "Emloyer isn't logined.";
     }
 
     public String getText(){
         return "" + getLogined();
     }
-
-
 
 }

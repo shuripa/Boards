@@ -2,7 +2,7 @@ package graphics.leyout.components;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import model.Employer;
+import model.Employee;
 import model.Order;
 import java.util.ArrayList;
 
@@ -15,8 +15,6 @@ import java.util.ArrayList;
  * 90	80	80	80	80	70	50	30
  * 90+320+70+50+30 = 560
  * 560/8 = 70% - общая эффективность размещения работника на рабочем месте.
- * Таким образом Общая Еффективность это сумма(Еффективность заказа*время выполнения)/время смены
- *
  */
 
 public class EffectivityIndex extends LeyoutComponent {
@@ -39,7 +37,7 @@ public class EffectivityIndex extends LeyoutComponent {
     public double totalEffectivity(int shiftTime){
         double totalEmpOrdTime = 0;
 
-        Employer e = ((CompositBoard)parent()).getWorkPlace().getEmployer();
+        Employee e = ((CompositBoard)parent()).getWorkPlace().getEmployee();
         ArrayList<Order> orders = ((CompositBoard)parent()).getOrders();
         if (e != null)
             for(Order o: orders){

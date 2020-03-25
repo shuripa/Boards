@@ -1,7 +1,7 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.WorkPlacedComposit;
-import model.Employer;
+import model.Employee;
 import sets.SetWorkPlacedComposits;
 import sets.SetWorkPlesedControllers;
 
@@ -27,12 +27,12 @@ public abstract class LeyoutWorkPlacedController extends LeyoutCompositControlle
     }
 
     //Подсветить все рабочие места для рабочего
-    public void selectWhithPriority(Employer empoloyer){
+    public void selectWhithPriority(Employee empoloyer){
         select(getPriority(empoloyer));
     }
 
-    public int getPriority(Employer employer) {
-        return ((WorkPlacedComposit)component()).getPriorityToEmployer(employer);
+    public int getPriority(Employee employee) {
+        return ((WorkPlacedComposit)component()).getPriorityToEmployer(employee);
     }
 
     public int getPriority(){

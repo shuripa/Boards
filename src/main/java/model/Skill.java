@@ -5,20 +5,22 @@ import graphics.leyout.components.LeyoutComponent;
 /**
  * Skill - (навыки) создан для рабочего Employer и взаимодействует с классом Condition (условие)
  * для того чтобы проверить можно ли рабочего ставить на рабочее место.
+ * TODO: Как додаются скилы для рабочего?
  */
 
 public class Skill extends LeyoutComponent {
     private String materialBlank;
     private int step;
 
+    private Employee employee;
+    private Condition condition;
     private Double productivity;
 
-    private Employer employer;
     private char[] chSkill;
 
-    public Skill(Employer sender, String materialBlank, int step, double productivity) {
+    public Skill(Employee sender, String materialBlank, int step, double productivity) {
         this.step = step;
-        this.employer = sender;
+        this.employee = sender;
         this.materialBlank = materialBlank;
         this.productivity = productivity;
         chSkill = materialBlank.toCharArray();
@@ -39,12 +41,13 @@ public class Skill extends LeyoutComponent {
     public int getStep(){
         return step;
     }
-
-    public Employer getEmployer(){
-        return employer;
+    // Використовується в CompositMenuCatdController при логуванні працівника.
+    // При нажатті кнопки
+    public Employee getEmployee(){
+        return employee;
     }
 
-    public boolean Like (String title, int step) {
+    public boolean isLike(String title, int step) {
         if (this.step != step) return false;
         if (title == null) return false;
         if (chSkill == null) return false;

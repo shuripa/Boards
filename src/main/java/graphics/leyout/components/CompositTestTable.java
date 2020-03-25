@@ -1,7 +1,7 @@
 package graphics.leyout.components;
 
 import model.Condition;
-import model.Employer;
+import model.Employee;
 import model.Profession;
 
 import java.util.ArrayList;
@@ -62,8 +62,8 @@ public class CompositTestTable extends WorkPlacedComposit {
         return ttable.getId();
     }
 
-    public void logining(Employer employer){
-        wplace.setEmployer(employer);
+    public void logining(Employee employee){
+        wplace.setEmployee(employee);
     }
 
     // Условия

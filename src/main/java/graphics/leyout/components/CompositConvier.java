@@ -59,7 +59,6 @@ public class CompositConvier extends LeyoutComponent{
     @Override
     public void update() {
         if (boards.length == cntPos.get()){
-            super.update();
         }else {
             destroy();
             try {

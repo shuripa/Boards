@@ -26,7 +26,7 @@ public class EditorButtonController extends PaneComponentController {
     }
 
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
                             //Тут тип даних це визначення суперкласу
         return ((EditorButton)component()).createLeyoutComponent(x, y);
     }

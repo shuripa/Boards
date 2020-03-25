@@ -1,7 +1,7 @@
 package graphics.leyout.components;
 
 import model.Condition;
-import model.Employer;
+import model.Employee;
 import model.Skill;
 import sets.SetWorkPlacedComposits;
 
@@ -56,15 +56,17 @@ public abstract class WorkPlacedComposit extends LeyoutComponent {
         return null;
     }
 
-    public void logining(Employer employer){
-        logining(employer, getPriorityToEmployer(employer));
-        setActive(true);
+    public void logining(Employee employee){
+        if (employee != null) {
+            logining(employee, getPriorityToEmployer(employee));
+            setActive(true);
+        }
     }
 
-    public void logining(Employer employer, int priority){
+    public void logining(Employee employee, int priority){
         WorkPlace wp = getWorkPlace();
         if (wp != null) {
-            wp.setEmployerWithPriority(employer, priority);
+            wp.setEmployerWithPriority(employee, priority);
             SetWorkPlacedComposits.getInstance().update();
         }
         setActive(true);
@@ -72,23 +74,23 @@ public abstract class WorkPlacedComposit extends LeyoutComponent {
 
     public int getPriority(){
         if (getWorkPlace().isLogined()){
-            return getPriorityToEmployer(getWorkPlace().getEmployer());
+            return getPriorityToEmployer(getWorkPlace().getEmployee());
         } else return 1;
     }
 
-    public int getPriorityToEmployer(Employer employer){
+    public int getPriorityToEmployer(Employee employee){
         int result = 10;
-        for (String s: employer.getBindWorkPlaces()) {
+        for (String s: employee.getBindWorkPlaces()) {
             if (s.equals(getId())) {
                 return 2;
             }
         }
-        for (Skill skill : employer.getSkills()) {
+        for (Skill skill : employee.getSkills()) {
             for (Condition condition : getConditions()) {
-                if (condition.Like(skill) && this.getWorkPlace().getProfession() == employer.getProfession()) {
+                if (condition.isLike(skill) && this.getWorkPlace().getProfession() == employee.getProfession()) {
                     return 3;
                 }
-                if (condition.Like(skill)) {
+                if (condition.isLike(skill)) {
                     return 7;
                 }
             }
@@ -96,8 +98,8 @@ public abstract class WorkPlacedComposit extends LeyoutComponent {
 
 //
 //        if (getWorkPlace().isLogined() == false || getWorkPlace().getLogined() == employer.getId() || getWorkPlace().getPriority() >= 5){
-        if (getWorkPlace().isLogined() == false || getWorkPlace().getLogined() == employer.getId()) {
-            if (this.getWorkPlace().getProfession() == employer.getProfession()) {
+        if (getWorkPlace().isLogined() == false || getWorkPlace().getLogined() == employee.getId()) {
+            if (this.getWorkPlace().getProfession() == employee.getProfession()) {
                 return 5;
             } else {
                 return 9;   //Условие: Профессия не совпадает. Число поставлено на угад.

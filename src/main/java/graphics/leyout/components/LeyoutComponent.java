@@ -27,12 +27,12 @@ public abstract class LeyoutComponent {
 //    public ShapeNode nExt;                     //Точка выхода
 
     public LeyoutComponent() {
-        parent = null;
-        controllerObservers = new ArrayList<>();
-        componentObservers = new ArrayList<>();
-        leafs = new ArrayList<>();
-        conditions = new ArrayList<>();
-        recreateControllers = new ArrayList<>();              //Для компонентов которые пересоздаются
+        this.parent = null;
+        this.controllerObservers = new ArrayList<>();
+        this.componentObservers = new ArrayList<>();
+        this.leafs = new ArrayList<>();
+        this.conditions = new ArrayList<>();
+        this.recreateControllers = new ArrayList<>();              //Для компонентов которые пересоздаются
 //        nodes = new ArrayList<>();
     }
 

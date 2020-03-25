@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class Material {
+    Integer id;
     String title;
-    Integer id;                     // Что такое id?
     ArrayList <String> knotsEnt;
     ArrayList <String> knotsExt;
 

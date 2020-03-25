@@ -22,7 +22,8 @@ public class CompositMenuCardController extends PaneComponentController{
         super.viewEvents();
 
         view().setOnMouseClicked(mouseEvent -> {
-            ((WorkPlacedComposit)component()).logining(((Skill)sender()).getEmployer());
+            //Employee потрібно передати як параметр.
+            ((WorkPlacedComposit)component()).logining(((Skill)sender()).getEmployee());
         });
 
         view().setOnMouseExited(mouseEvent -> {
@@ -49,7 +50,7 @@ public class CompositMenuCardController extends PaneComponentController{
     }
 
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
         return null;
     }
 

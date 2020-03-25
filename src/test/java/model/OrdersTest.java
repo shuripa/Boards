@@ -2,21 +2,22 @@ package model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class OrdersTest {
 
+
     Orders orders;
-    Employer employer;
+    Employee employee;
 
     public OrdersTest(){
         orders = new Orders();
         orders.addOrder(new Order(1, new Material("MFC225317A0B" ), 25, 5.7));
         orders.addOrder(new Order(1, new Material("MFC271012A0C" ), 30, 15.5));
 
-        employer = new Employer("12713", "", "6801020304", "C", Profession.BINDER, "C8", "C8","1271", "1272");
-        employer.setSkill(new Skill(employer, "MFC225317A0B", 110, 75));
-        employer.setSkill(new Skill(employer, "MFC271012A0C", 110, 60));
+        employee = new Employee("12713", "", "6801020304", "C", Profession.BINDER, "C8", "C8","1271", "1272");
+        employee.setSkill(new Skill(employee, "MFC225317A0B", 110, 75));
+        employee.setSkill(new Skill(employee, "MFC271012A0C", 110, 60));
     }
 
     @Test
@@ -26,33 +27,33 @@ public class OrdersTest {
 
     @Test
     public void totalEtalonTime() {
-        assertTrue(orders.totalEtalonTime() == 142.5+465);
+        assertEquals(orders.totalEtalonTime(), 142.5 + 465, 0.0);
     }
 
     @Test
     public void totalEtalonTimeToShift() {
-        assertTrue(orders.totalEtalonTimeToShift(480) == 1.3);
+        assertEquals(1.3, orders.totalEtalonTimeToShift(480), 0.0);
     }
 
     @Test
     public void agrEmployerTime() {
-        assertTrue(orders.agrEmployerTime(employer) == 0.02);
+        assertEquals(16.09, orders.agrEmployerTime(employee), 0.0);
     }
 
     @Test
     public void agrEmployerTimeToShift() {
-        assertTrue(orders.agrEmployerTimeToShift(employer, 480) == 0.1);
+        assertEquals(2.1, orders.agrEmployerTimeToShift(employee, 480), 0.0);
     }
 
     @Test
     public void tableRecords() {
-        assertTrue(("\nMFC225317A0B - 25 : 5.7 * 75.0% = 0.01 год\nMFC271012A0C - 30 : 15.5 * 60.0% = 0.01 год").equals(orders.tableRecords(employer)));
+        assertEquals(("\nMFC225317A0B - 25 : 5.7 * 75.0% = 3.17 год\nMFC271012A0C - 30 : 15.5 * 60.0% = 12.92 год"), orders.tableRecords(employee));
     }
 
     @Test
     public void orderSummaryBlock() {
-        System.out.println(orders.orderSummaryBlock(employer));
-        assertTrue("\n Сумарний час потужності: 1.3 змін\n Сумарний робочий час: 0.1 змін".equals(orders.orderSummaryBlock(employer)));
+//        System.out.println(orders.orderSummaryBlock(employee));
+        assertEquals("\n Сумарний час потужності: 1.3 змін\n Сумарний робочий час: 2.1 змін", orders.orderSummaryBlock(employee));
     }
 
     @Test

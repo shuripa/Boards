@@ -1,21 +1,20 @@
 package graphics.leyout.components;
 
 import inout.CompositBuilder;
-import inout.EmployesCsvLoader;
 import org.junit.Test;
+import sets.SetEmployees;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /*Проверка двух методов создания CompositBoard*/
 
 public class CompositBoardTest {
     CompositBoard cb1, cb2;
 
-    public CompositBoardTest() throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        EmployesCsvLoader employes = EmployesCsvLoader.getInstance();                   // Загрузка работников
+    public CompositBoardTest() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        SetEmployees employees = SetEmployees.getInstance();
         cb1 = new CompositBoard();
         cb1.setTitle("KM 034Cb");
         cb1.setId("1211");
@@ -23,7 +22,7 @@ public class CompositBoardTest {
         cb1.setCondition("MFC1847034***");
         //TODO это лишний шаг. возможно пора его завершить.
         cb1.setProc(50);
-        cb1.logining(employes.getEmployerByID("12630"));
+        cb1.logining(employees.getEmployeeByID("12630"));
 
         //TODO в builder-е пока не реализовано условия и связи. Дополнить тест позже.
         CompositBuilder builder = new CompositBuilder(1212, "CompositBoard").title("KM 035Cb")
@@ -54,8 +53,8 @@ public class CompositBoardTest {
 
     @Test
     public void getTitle() {
-        assertTrue("KM 034Cb".equals(cb1.getTitle()));
-        assertTrue("KM 035Cb".equals(cb2.getTitle()));
+        assertEquals("KM 034Cb", (cb1.getTitle()));
+        assertEquals("KM 035Cb", (cb2.getTitle()));
     }
 
     @Test
@@ -64,8 +63,8 @@ public class CompositBoardTest {
 
     @Test
     public void getId() {
-        assertTrue("1211".equals(cb1.getId()));
-        assertTrue("1212".equals(cb2.getId()));
+        assertEquals("1211", (cb1.getId()));
+        assertEquals("1212", (cb2.getId()));
     }
 
     @Test
@@ -78,14 +77,13 @@ public class CompositBoardTest {
 
     @Test
     public void getCondition() {
-        assertTrue("MFC1847034***".equals(cb1.condition().getConditionString()));
-        assertTrue("MFC1847034***".equals(cb2.condition().getConditionString()));
+        assertEquals("MFC1847034***", cb1.condition().getConditionAsString());
+        assertEquals("MFC1847034***", cb2.condition().getConditionAsString());
     }
 
     @Test
     public void setProc() {
     }
-    //</editor-fold>
 
     @Test
     public void getEffectivity() {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class CanbansStock extends LeyoutComponent{
 
     private Stock stock;
+
     private ArrayList<CanbanBoard> arrCanbans;
 
     public CanbansStock (){

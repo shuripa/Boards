@@ -3,7 +3,7 @@ package sets;
 import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutWorkPlacedController;
-import model.Employer;
+import model.Employee;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,20 +55,20 @@ public class SetWorkPlesedControllers implements Iterable<LeyoutWorkPlacedContro
 
 
     //Подсветка всех рабочих мест для рабочего
-    public void selectControllersToEmployer(Employer employer) {
+    public void selectControllersToEmployer(Employee employee) {
         for (LeyoutWorkPlacedController controller: controllers) {
-            controller.selectWhithPriority(employer);
+            controller.selectWhithPriority(employee);
         }
     }
 
     //Получение рабочих мест с приоритетами
-    public HashMap<Integer, ArrayList<LeyoutWorkPlacedController>> getControllersToEmployer(Employer employer) {
+    public HashMap<Integer, ArrayList<LeyoutWorkPlacedController>> getControllersToEmployer(Employee employee) {
 
         HashMap<Integer, ArrayList<LeyoutWorkPlacedController>> result = new HashMap<>();
 
         for (LeyoutWorkPlacedController controller: controllers) {
             //TODO запрос нужно перенести к компоненту
-            int priority = controller.getPriority(employer);
+            int priority = controller.getPriority(employee);
 
             if (result.containsKey(priority)) {
                 result.get(priority).add(controller);

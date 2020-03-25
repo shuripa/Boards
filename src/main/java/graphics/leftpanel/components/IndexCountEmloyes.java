@@ -1,6 +1,6 @@
 package graphics.leftpanel.components;
 
-import sets.SetEmployers;
+import sets.SetEmployees;
 
 public class IndexCountEmloyes extends IndexButton {
     public IndexCountEmloyes(String hint, String measure) {
@@ -14,8 +14,8 @@ public class IndexCountEmloyes extends IndexButton {
 
     @Override
     public void update(){
-        SetEmployers employers = SetEmployers.getInstance();
-        setIndex(employers.getEmployers().size());
+        SetEmployees employers = SetEmployees.getInstance();
+        setIndex(employers.getEmployees().size());
         super.update();
     }
 }

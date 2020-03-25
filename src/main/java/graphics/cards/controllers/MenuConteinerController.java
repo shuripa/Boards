@@ -34,7 +34,7 @@ public class MenuConteinerController extends PaneComponentController {
 
 
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
         return null;
     }
 

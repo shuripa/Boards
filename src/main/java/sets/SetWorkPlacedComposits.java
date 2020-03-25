@@ -2,7 +2,7 @@ package sets;
 
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.WorkPlacedComposit;
-import model.Employer;
+import model.Employee;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,8 @@ public class SetWorkPlacedComposits {
     }
 
     public void remComposit(WorkPlacedComposit composit){
-        if (composits.contains(composit)) composits.remove(composit);
+        if (composits.contains(composit))
+            composits.remove(composit);
         update();
     }
 
@@ -77,12 +78,12 @@ public class SetWorkPlacedComposits {
         }
     }
 
-    public HashMap<Integer, ArrayList<WorkPlacedComposit>> getWorkPlacedToEmployer(Employer employer) {
+    public HashMap<Integer, ArrayList<WorkPlacedComposit>> getWorkPlacedToEmployer(Employee employee) {
         HashMap<Integer, ArrayList<WorkPlacedComposit>> result = new HashMap<>();
 
         for (WorkPlacedComposit composit: composits) {
             //TODO запрос нужно перенести к компоненту
-            int priority = composit.getPriorityToEmployer(employer);
+            int priority = composit.getPriorityToEmployer(employee);
 
             if (result.containsKey(priority)) {
                 result.get(priority).add(composit);

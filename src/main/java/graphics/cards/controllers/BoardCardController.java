@@ -20,7 +20,7 @@ public class BoardCardController extends PaneComponentController {
 
 
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
         Layout layout = getInstace();
         CompositBoard cb = new CompositBoard();
         CompositBoardController cbc = new CompositBoardController(cb);

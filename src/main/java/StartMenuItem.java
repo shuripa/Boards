@@ -24,7 +24,7 @@ public class StartMenuItem extends Region {
 //        addActiveElement(rb);
         rb.setStroke(Color.rgb(82, 79, 161, 0.5));
         rb.setStrokeWidth(0.5);
-        rb.setId("ent");
+        rb.setId("blankbound");
         rb.setStrokeWidth(0.1);
 
         //td

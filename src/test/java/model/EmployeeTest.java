@@ -1,26 +1,29 @@
 package model;
 
+import graphics.leyout.components.WorkPlace;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class EmployerTest {
-    Employer em1;
+public class EmployeeTest {
+    Employee em1;
 
     /*
     1. Skill содержит метод getMaterialBlank() т.е. скил предназначен для хранения шаблонов в любой их форме,
     в т.ч. если задан не шаблон а конкретный материал. Продуктивность хранится в скиле и имеет тип Double.
     2. Employer содержит два метода getProductivity с возварщаемыми типами Double и int с параметрами
     Material и WorkPlacedComposit соответственно.
-
+    (3 - обов’язок працівника)До робочого місці прив’язується працівник. (Оскільки
+    змін декілька, в кожній зміні може бути по привязаному працівникові, тобто
+    привязок може бути багато)
     */
 
 
-    public EmployerTest(){
-        em1 = new Employer("12630", "Korchinskiy Andriy", "555-555-555", "C", Profession.BINDER, "Audi", "1910");
+    public EmployeeTest(){
+        em1 = new Employee("12630", "Korchinskiy Andriy", "555-555-555", "C", Profession.BINDER, "Audi", "1910");
         em1.setSkill(new Skill(em1, "MFC1847087***", 110, 85));
         em1.setSkill(new Skill(em1, "MFC1847081***", 110, 79));
         em1.setSkill(new Skill(em1, "MFC1847164***", 110, 97));
@@ -28,7 +31,7 @@ public class EmployerTest {
 
     @Test
     public void getId() {
-        assertTrue("12630".equals(em1.getId()));
+        assertEquals("12630", em1.getId());
     }
 
 //    @Test
@@ -39,55 +42,55 @@ public class EmployerTest {
 
     @Test
     public void idProperty() {
-        assertTrue("12630".equals(em1.idProperty().get()));
+        assertEquals("12630", em1.idProperty().get());
     }
 
     @Test
     public void getName() {
-        assertTrue("Korchinskiy Andriy".equals(em1.getName()));
+        assertEquals("Korchinskiy Andriy", em1.getName());
     }
 
     @Test
     public void setName() {
         em1.setName("Korchinska Irina");
-        assertTrue("Korchinska Irina".equals(em1.getName()));
+        assertEquals("Korchinska Irina", em1.getName());
     }
 
     @Test
     public void nameProperty() {
-        assertTrue("Korchinskiy Andriy".equals(em1.nameProperty().get()));
+        assertEquals("Korchinskiy Andriy", em1.nameProperty().get());
     }
 
     @Test
     public void getPhone() {
-        assertTrue("555-555-555".equals(em1.getPhone()));
+        assertEquals("555-555-555", em1.getPhone());
     }
 
     @Test
     public void setPhone() {
         em1.setPhone("666-666-666");
-        assertTrue("666-666-666".equals(em1.getPhone()));
+        assertEquals("666-666-666", em1.getPhone());
     }
 
     @Test
     public void phoneProperty() {
-        assertTrue("555-555-555".equals(em1.phoneProperty().get()));
+        assertEquals("555-555-555", em1.phoneProperty().get());
     }
 
     @Test
     public void getShift() {
-        assertTrue("C".equals(em1.getShift()));
+        assertEquals("C", em1.getShift());
     }
 
     @Test
     public void setShift() {
         em1.setShift("B");
-        assertTrue("B".equals(em1.getShift()));
+        assertEquals("B", em1.getShift());
     }
 
     @Test
     public void shiftProperty() {
-        assertTrue("C".equals(em1.shiftProperty().get()));
+        assertEquals("C", em1.shiftProperty().get());
     }
 
     @Test
@@ -96,43 +99,43 @@ public class EmployerTest {
 
     @Test
     public void isActivated() {
-        assertTrue(false == em1.isActivated());
+        assertEquals(false, em1.isActivated());
     }
 
     @Test
     public void isLogined() {
-        assertTrue(false == em1.isLogined());
+        assertEquals(false, em1.isLogined());
     }
 
     @Test
     public void activatedProperty() {
-        assertTrue(false == em1.activatedProperty().get());
+        assertEquals(false, em1.activatedProperty().get());
     }
 
     @Test
     public void setActivated() {
         em1.setActivated(true);
-        assertTrue(true == em1.isActivated());
+        assertEquals(true, em1.isActivated());
     }
 
     @Test
     public void setSkill() {
         em1.setSkill(new Skill(em1, "MFC1847089***", 110, 85));
-        assertTrue(85.0 == em1.productivity(new Material("MFC1847089***")));
+        assertEquals(85.0, em1.productivity(new Material("MFC1847089***")), 0.0);
     }
 
     @Test
     public void getSkills() {
         Collection<Skill> s = em1.getSkills();
-        assertTrue(3 == s.size());
+        assertEquals(3, s.size());
     }
 
     @Test
     public void getSortedSkills() {
         ArrayList<Skill> skills = em1.getSortedSkills();
-        assertTrue("MFC1847164***".equals(skills.get(0).getMaterialBlank()));       //97
-        assertTrue("MFC1847087***".equals(skills.get(1).getMaterialBlank()));       //85
-        assertTrue("MFC1847081***".equals(skills.get(2).getMaterialBlank()));       //79
+        assertEquals("MFC1847164***", skills.get(0).getMaterialBlank());       //97
+        assertEquals("MFC1847087***", skills.get(1).getMaterialBlank());       //85
+        assertEquals("MFC1847081***", skills.get(2).getMaterialBlank());       //79
     }
 
     @Test
@@ -149,11 +152,12 @@ public class EmployerTest {
     }
 
     @Test
-    public void getWorkPlase() {
-    }
-
-    @Test
-    public void setWorkPlace() {
+    public void WorkPlace() {
+        WorkPlace wp = new WorkPlace();
+        System.out.println(wp.toString());
+        wp.setEmployee(em1);
+        System.out.println(wp.toString());
+//        em1.setWorkPlace(wp);
     }
 
     @Test
@@ -162,7 +166,7 @@ public class EmployerTest {
 
     @Test
     public void getProfession() {
-        assertTrue(Profession.BINDER.equals(em1.getProfession()));
+        assertEquals(Profession.BINDER, em1.getProfession());
     }
 
     @Test

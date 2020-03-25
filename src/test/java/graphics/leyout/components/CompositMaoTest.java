@@ -24,8 +24,8 @@ public class CompositMaoTest {
 
     @Test
     public void getTitle() {
-        assertTrue("UO_MB23".equals(mao1.getTitle()));
-        assertTrue("UO_MB12".equals(mao2.getTitle()));
+        assertEquals("UO_MB23", mao1.getTitle());
+        assertEquals("UO_MB12", mao2.getTitle());
     }
 
     @Test

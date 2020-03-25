@@ -2,9 +2,9 @@ package graphics.leftpanel.components;
 
 import graphics.leyout.components.WorkPlace;
 import graphics.leyout.components.WorkPlacedComposit;
-import model.Employer;
+import model.Employee;
 import sets.Buffer;
-import sets.SetEmployers;
+import sets.SetEmployees;
 import sets.SetWorkPlacedComposits;
 
 import java.util.ArrayList;
@@ -60,25 +60,25 @@ public class IndexDispersion extends IndexButton {
     }
 
     private void freeded(){
-        Buffer<Employer> bufferEmploers = SetEmployers.getInstance().getBufferEmploers();
-        for (Employer employer: bufferEmploers) {
-            employer.free();
+        Buffer<Employee> bufferEmploers = SetEmployees.getInstance().getBufferEmploers();
+        for (Employee employee : bufferEmploers) {
+            employee.free();
         }
     }
 
     private void completed(){
-        Buffer<Employer> bufferEmploers = SetEmployers.getInstance().getBufferEmploers();
+        Buffer<Employee> bufferEmploers = SetEmployees.getInstance().getBufferEmploers();
 //        SetCompositControllers setControllers = SetCompositControllers.getInstance();
 //        HashMap<Integer, ArrayList<LeyoutCompositController>> controllers;
         HashMap<Integer, ArrayList<WorkPlacedComposit>> composits;
         WorkPlace wp;
 
-        for (Employer employer: bufferEmploers) {
-            System.out.println("WATHCING EMPLOYER: " + employer.getId());
+        for (Employee employee : bufferEmploers) {
+            System.out.println("WATHCING EMPLOYER: " + employee.getId());
 //            controllers = setControllers.getControllersToEmployer(employer);
-            composits = setComposits.getWorkPlacedToEmployer(employer);
+            composits = setComposits.getWorkPlacedToEmployer(employee);
             for (int i = 1; i<9; i++) {
-                if (employer.isLogined() && employer.getWorkPlase().getPriority() != 0 && employer.getWorkPlase().getPriority()<i) break;
+                if (employee.isLogined() && employee.getWorkPlaсe().getPriority() != 0 && employee.getWorkPlaсe().getPriority()<i) break;
 
                 if (composits.containsKey(i)) {
                     for (WorkPlacedComposit composit : composits.get(i)) {
@@ -87,45 +87,45 @@ public class IndexDispersion extends IndexButton {
                             if (wp.getPriority() == 0 || wp.getPriority() > i) {
 //                                        b.remove(wp.getEmployer());
                                 free(bufferEmploers, wp);
-                                login(employer, i, composit);
+                                login(employee, i, composit);
                             } else {
-                                int pem = employer.getProductivity(composit);
-                                int pwp = wp.getEmployer().getProductivity(composit);
+                                int pem = employee.getProductivity(composit);
+                                int pwp = wp.getEmployee().getProductivity(composit);
                                 if (wp.getPriority() == i && pem > pwp){
 //                                            arrEmployers.remove(wp.getEmployer());
                                     free(bufferEmploers, wp);
-                                    login(employer, i, composit);
+                                    login(employee, i, composit);
                                 }
                             }
                         } else {
-                            if (employer.isLogined()){
-                                int pem = employer.getProductivity(composit);
-                                int pwp = employer.getProductivity((WorkPlacedComposit)employer.getWorkPlase().parent());
+                            if (employee.isLogined()){
+                                int pem = employee.getProductivity(composit);
+                                int pwp = employee.getProductivity((WorkPlacedComposit) employee.getWorkPlaсe().parent());
                                 if (pem > pwp){
-                                    login(employer, i, composit);
+                                    login(employee, i, composit);
                                 }
                             } else {
-                                login(employer, i, composit);
+                                login(employee, i, composit);
                             }
                         }
                     }
                 }
-                if (employer.isLogined()) break;
+                if (employee.isLogined()) break;
             }
         }
     }
 
 
-    private void free(Buffer<Employer> bufferEmploers, WorkPlace wp) {
-        System.out.println("FREING: employer " + wp.getEmployer()
+    private void free(Buffer<Employee> bufferEmploers, WorkPlace wp) {
+        System.out.println("FREING: employer " + wp.getEmployee()
                 + " free at place " + ((WorkPlacedComposit)wp.parent()).getId()
                 + " with priority " + wp.getPriority());
-        bufferEmploers.enque(wp.getEmployer());
+        bufferEmploers.enque(wp.getEmployee());
     }
     
-    private void login(Employer employer, int i, WorkPlacedComposit composit) {
-        (composit).logining(employer, i);
-        System.out.println("LOGINING: emloyer " + employer.getId()
+    private void login(Employee employee, int i, WorkPlacedComposit composit) {
+        (composit).logining(employee, i);
+        System.out.println("LOGINING: emloyer " + employee.getId()
                 + " logined to " + composit.getId()
                 + " with priority " + i);
     }

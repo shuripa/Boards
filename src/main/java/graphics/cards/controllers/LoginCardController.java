@@ -4,7 +4,7 @@ import graphics.cards.views.LoginCardView;
 import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutCompositController;
-import model.Employer;
+import model.Employee;
 
 import java.io.IOException;
 
@@ -14,12 +14,12 @@ public class LoginCardController extends PaneComponentController {
     String title;
     String productivity;
     int priority;
-    Employer employer;
+    Employee employee;
     LeyoutCompositController compositController;
 
-    public LoginCardController(LeyoutCompositController controller, Employer employer, int priority, String productivity){
+    public LoginCardController(LeyoutCompositController controller, Employee employee, int priority, String productivity){
         super(controller.component());
-        this.employer = employer;
+        this.employee = employee;
         this.compositController = controller;
         this.id = ((WorkPlacedComposit)controller.component()).getId();
         this.title = ((WorkPlacedComposit)controller.component()).getTitle();
@@ -29,7 +29,7 @@ public class LoginCardController extends PaneComponentController {
     }
 
     @Override
-    public LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    public LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
         return null;
     }
 
@@ -94,7 +94,7 @@ public class LoginCardController extends PaneComponentController {
         });
         view().setOnMouseClicked(mouseEvent -> {
 //           view().
-            ((WorkPlacedComposit)component()).logining(employer);
+            ((WorkPlacedComposit)component()).logining(employee);
         });
     }
 

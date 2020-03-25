@@ -101,7 +101,7 @@ public abstract class PaneComponentController extends GraphicsController {
 //        Тому доцільність розміщення цієї штуки тут а не в EditorButton доприкладу потрібно переглянути.
         view().setOnDragDetected(mouseEvent -> {
             try {
-                LeyoutComponentController controller = createLeyoutComponent(mouseEvent.getSceneX()-100, mouseEvent.getSceneY());
+                LeyoutComponentController controller = createLeyautComponent(mouseEvent.getSceneX()-100, mouseEvent.getSceneY());
                 Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), controller);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -121,7 +121,7 @@ public abstract class PaneComponentController extends GraphicsController {
         });
     }
 
-    protected abstract LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException;
+    protected abstract LeyoutComponentController createLeyautComponent(double x, double y) throws IOException;
 
     public void update(){
         updateData();

@@ -14,31 +14,31 @@ public class HouseBuilderTest {
     @Test
     public void buildWalls() {
         houseBuilder.buildWalls(4);
-        assertTrue(houseBuilder.getResult().getWalls() == 4);
+        assertEquals(4, houseBuilder.getResult().getWalls());
     }
 
     @Test
     public void buildDoors() {
         houseBuilder.buildDoors(2);
-        assertTrue(houseBuilder.getResult().getDoors() == 2);
+        assertEquals(2, houseBuilder.getResult().getDoors());
     }
 
     @Test
     public void buildWondows() {
         houseBuilder.buildWondows(3);
-        assertTrue(houseBuilder.getResult().getWindows() == 3);
+        assertEquals(3, houseBuilder.getResult().getWindows());
     }
 
     @Test
     public void buildRoof() {
         houseBuilder.buildRoof(true);
-        assertTrue(houseBuilder.getResult().isRoof() == true);
+        assertEquals(true, houseBuilder.getResult().isRoof());
     }
 
     @Test
     public void buildGarage() {
         houseBuilder.buildGarage(false);
-        assertTrue(houseBuilder.getResult().isGarage() == false);
+        assertEquals(false, houseBuilder.getResult().isGarage());
     }
 
     @Test

@@ -5,7 +5,7 @@ import graphics.leyout.components.WorkPlace;
 import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutWorkPlacedController;
-import model.Employer;
+import model.Employee;
 import model.Profession;
 import model.ProfessionColor;
 import sets.SetWorkPlesedControllers;
@@ -15,27 +15,27 @@ import java.io.IOException;
 public class EmployerCardController extends PaneComponentController
 {
 
-    public EmployerCardController(Employer component){
+    public EmployerCardController(Employee component){
         super(component);
         setView(new EmployerCardView(this));
     }
 
     public String getId(){
-        return ((Employer)component()).getId();
+        return ((Employee)component()).getId();
     }
 
     public String getName() {
-        return ((Employer)component()).getName();
+        return ((Employee)component()).getName();
     }
 
     public String getPhone() {
-        return ((Employer)component()).getPhone();
+        return ((Employee)component()).getPhone();
     }
 
 
     public void boardSelect() {
         SetWorkPlesedControllers set = SetWorkPlesedControllers.getInstance();
-        set.selectControllersToEmployer((Employer)component());
+        set.selectControllersToEmployer((Employee)component());
     }
 
     public void boardUnselect() {
@@ -77,14 +77,14 @@ public class EmployerCardController extends PaneComponentController
 //            }
 //            menu.showConteiner(140);
 
-            LoginMenuController loginMenu = new LoginMenuController(this, (Employer)component());
+            LoginMenuController loginMenu = new LoginMenuController(this, (Employee)component());
 
         });
     }
 
     //TODO: Створення WorkPlace, в цьому класі не потрібно
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
 //        Layout layout = getInstace();
 //        WorkPlace h = new WorkPlace();
 //        h.setEmployer((Employer)component());
@@ -98,7 +98,7 @@ public class EmployerCardController extends PaneComponentController
     @Override
     public void updateData() {
         view().setViewProperties();
-        if (((Employer)component()).isLogined()){
+        if (((Employee)component()).isLogined()){
             view().activate();
         } else {
             view().disactivate();
@@ -112,24 +112,24 @@ public class EmployerCardController extends PaneComponentController
     }
 
     public String getProfessionColor(){
-        Profession p =((Employer)component()).getProfession();
+        Profession p =((Employee)component()).getProfession();
         return ProfessionColor.valueOf(p.name()).toString();
     }
 
     public String getProfession() {
-        Profession p =((Employer)component()).getProfession();
+        Profession p =((Employee)component()).getProfession();
         return p.toString();
     }
 
     public int getPriority(){
-        if (((Employer)component()).getWorkPlase() != null)
-        return  ((Employer)component()).getWorkPlase().getPriority();
+        if (((Employee)component()).getWorkPlaсe() != null)
+        return  ((Employee)component()).getWorkPlaсe().getPriority();
         else return 9;
     }
 
     public String getWorkPlaceTitle() {
         String result = "";
-        WorkPlace wp = ((Employer)component()).getWorkPlase();
+        WorkPlace wp = ((Employee)component()).getWorkPlaсe();
         if (wp != null && wp.parent()!=null){
             result =  ((WorkPlacedComposit)wp.parent()).getTitle() + "  " + ((WorkPlacedComposit)wp.parent()).getId();
         } else {

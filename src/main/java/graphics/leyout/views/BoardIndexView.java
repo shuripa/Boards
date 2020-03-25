@@ -12,7 +12,11 @@ public class BoardIndexView extends LeyoutComponentView {
         super(controller);
         limit = 0;
         r1 = new Rectangle(5, 20*limit/100);
+        r1.setArcWidth(2);
+        r1.setArcHeight(2);
         r2 = new Rectangle(5,20*(100-limit)/100);
+        r2.setArcWidth(2);
+        r2.setArcHeight(2);
         addActiveElements(r1, r2);
     }
 
@@ -20,11 +24,11 @@ public class BoardIndexView extends LeyoutComponentView {
     public void paint() {
 //        limit = ((BoardIndexController)controller()).getProc();
 //        r1.setXY(0.5,18.5);
-        r1.relocate(25,15.5 + 20*(100-limit)/100);
+        r1.relocate(25.5,15.5 + 20*(100-limit)/100);
         r2.setStyle("-fx-fill: RED");
 //        r2.setXY(0.5,18.5 + 20*limit/100);
         r1.setStyle("-fx-fill: LIME");
-        r2.relocate(25.5,15.5);
+        r2.relocate(25,15.5);
 
     }
 

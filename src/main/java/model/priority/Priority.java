@@ -1,7 +1,7 @@
 package model.priority;
 
 import graphics.leyout.components.WorkPlace;
-import model.Employer;
+import model.Employee;
 
 public abstract class Priority {
 //    Закрепленное рабочее место
@@ -15,7 +15,7 @@ public abstract class Priority {
 //    Работник и рабочее место
 //
 
-    Employer employer;
+    Employee employee;
     WorkPlace workPlace;
     int rank;
     double productivity;
@@ -25,8 +25,8 @@ public abstract class Priority {
         rank = 0;
     }
 
-    public Priority(Employer employer, WorkPlace workPlace){
-        this.employer = employer;
+    public Priority(Employee employee, WorkPlace workPlace){
+        this.employee = employee;
         this.workPlace = workPlace;
         rank = 0;
     }
@@ -39,6 +39,6 @@ public abstract class Priority {
         return rank;
     }
 
-    abstract Priority verification(Employer employer, WorkPlace workPlace);
+    abstract Priority verification(Employee employee, WorkPlace workPlace);
 
 }

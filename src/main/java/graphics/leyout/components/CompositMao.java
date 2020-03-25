@@ -22,7 +22,7 @@ public class CompositMao extends LeyoutComponent{
     @Deprecated //Использовать массив leafs из суперкласса
     ArrayList<CompositBoard> boards;
 
-    /** General */
+    /* General */
 
     public CompositMao() {
         this.title = new SimpleStringProperty(this, TITLE_PROP_NAME, "MAO");
@@ -42,7 +42,7 @@ public class CompositMao extends LeyoutComponent{
         maoSystem.addCompositMao(this);
     }
 
-    /** Property */
+    /* Property */
 
     public void setTitle(String title) {
         this.title.set(title);
@@ -63,14 +63,14 @@ public class CompositMao extends LeyoutComponent{
         return title;
     }
 
-    /** Conditions */
+    /* Conditions */
 
 //    public void addCondition(String condition){
 //        conditions.add(condition);
 //        update();
 //    }
 
-    /** Orders */
+    /* Orders */
 
     public void addOrder (Order order){
         update();
@@ -85,7 +85,7 @@ public class CompositMao extends LeyoutComponent{
         ArrayList<Order> result = new ArrayList<>();
         for (Order o: orders) {
 //            TODO: получение списка заказов соответствующих условию. Сделать проверку.
-            if (condition.Like(o.getMaterial().getTitle(), 110)) {
+            if (condition.isLike(o.getMaterial().getTitle(), 110)) {
                 result.add(o);
             }
         }
@@ -96,7 +96,7 @@ public class CompositMao extends LeyoutComponent{
         Orders result = new Orders();
         for (Order o: orders) {
 //            TODO: получение списка заказов соответствующих условию. Сделать проверку.
-            if (condition.Like(o.getMaterial().getTitle(), 110)) {
+            if (condition.isLike(o.getMaterial().getTitle(), 110)) {
                 result.addOrder(o);
             }
         }
@@ -132,7 +132,7 @@ public class CompositMao extends LeyoutComponent{
         for (int i = 0; i < leafsLenght(); i++) {
             if (getLeaf(i) != null) {
                 result = result + "\n  Дошка " + (i + 1) + " - " + (((CompositBoard)getLeaf(i)).getTitle());
-                result = result + "\n    Умова " + (((CompositBoard)getLeaf(i)).condition().getConditionString());
+                result = result + "\n    Умова " + (((CompositBoard)getLeaf(i)).condition().getConditionAsString());
             }
         }
 

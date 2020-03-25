@@ -3,7 +3,7 @@
 .idea/.gitignore
 .idea/Boards.iml
 CreateDB.sql
-UML/Boards.mdj
+UML/Old/Boards.mdj
 "UML/~$\320\232\320\275\320\270\320\263\320\2601.xlsx"
 "src/main/resources/Boards - \320\257\321\200\320\273\321\213\320\272.lnk"
 src/main/resources/Buttons/
@@ -11,4 +11,27 @@ src/main/resources/EditorButtons/
 src/main/resources/Logo.png
 src/main/resources/qo1.csv
 src/main/resources/sqljdbc42.jar
+src/main/resources/Employers
+src/main/resources/14.Lagerbestand.csv
+src/main/resources/employes.csv
+src/main/resources/logined.csv
+src/main/resources/materialongrid.csv
+src/main/resources/plan_C8_M_BL37.csv
+src/main/resources/planB9E.csv
+src/main/resources/q14xpps.csv
+src/main/resources/skill.csv
+src/main/resources/Лист Microsoft Excel.xlsx
 target/
+UML/Книга1.xlsx
+UML/Board.mmap
+UML/Boards.emmx
+UML/Canban.mmap
+UML/CompositBoard.mmap
+UML/Condition.mmap
+UML/Eployer.mmap
+UML/LoginMenuController.mmap
+UML/Project.mmap
+UML/Requirements.mmap
+UML/Skill.mmap
+UML/TaskCanban.mmap
+out/

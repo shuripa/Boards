@@ -2,7 +2,7 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.WorkPlace;
 import graphics.leyout.views.WorkPlaceView;
-import model.Employer;
+import model.Employee;
 
 import java.io.IOException;
 
@@ -34,10 +34,10 @@ public class WorkPlaceController extends LeyoutComponentController {
 
     @Override
     protected void setComponentProperties() {
-        if (((WorkPlace)component()).getEmployer() !=  null) {
-            setStrProperty(((WorkPlace) component()).getEmployer().idProperty());
-            setStrProperty(((WorkPlace) component()).getEmployer().nameProperty());
-            setStrProperty(((WorkPlace) component()).getEmployer().phoneProperty());
+        if (((WorkPlace)component()).getEmployee() !=  null) {
+            setStrProperty(((WorkPlace) component()).getEmployee().idProperty());
+            setStrProperty(((WorkPlace) component()).getEmployee().nameProperty());
+            setStrProperty(((WorkPlace) component()).getEmployee().phoneProperty());
         }
     }
 
@@ -55,7 +55,7 @@ public class WorkPlaceController extends LeyoutComponentController {
 
     @Override
     public void unselect(){
-        Employer emp = ((WorkPlace)component()).getEmployer();
+        Employee emp = ((WorkPlace)component()).getEmployee();
         if (emp != null){
             super.select(((WorkPlace) component()).getPriority());
         } else {

@@ -60,7 +60,6 @@ public class TablePlan {
 //            System.out.println(e);
 //        }
 
-
         for (int i = 0; (i < arrPlan.size()); i++) {
             Rectangle r = new Rectangle(100, 15);
 //                r.setFill(Color.LIGHTBLUE);

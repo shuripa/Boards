@@ -9,7 +9,7 @@ import graphics.leyout.views.LeyoutComponentView;
 import inout.CompositBuilder;
 import javafx.scene.Node;
 import model.Condition;
-import model.Employer;
+import model.Employee;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -161,7 +161,7 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
     }
 
     @Override
-    public void selectWhithPriority(Employer empoloyer) {
+    public void selectWhithPriority(Employee empoloyer) {
         select(((WorkPlacedComposit)component()).getPriorityToEmployer(empoloyer));
     }
 }

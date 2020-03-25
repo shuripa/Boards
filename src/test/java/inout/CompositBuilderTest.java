@@ -2,7 +2,7 @@ package inout;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /* Проверка работоспособности и типа всех предусмотренных методов класса*/
 
@@ -19,15 +19,15 @@ public class CompositBuilderTest {
 
     @Test
     public void title() {
-        assertTrue("KM 035Cb".equals(builder.getTitle()));
+        assertEquals("KM 035Cb", builder.getTitle());
     }
 
     @Test
     public void xyas() {
-        assertTrue(100 == builder.getX());
-        assertTrue(200 == builder.getY());
-        assertTrue(180 == builder.getA());
-        assertTrue(60 == builder.getS());
+        assertEquals(100, builder.getX());
+        assertEquals(200, builder.getY());
+        assertEquals(180, builder.getA());
+        assertEquals(60, builder.getS());
     }
 
     @Test
@@ -80,83 +80,83 @@ public class CompositBuilderTest {
 
     @Test
     public void getId() {
-        assertTrue(1219 == builder.getId());
+        assertEquals(1219, builder.getId());
     }
 
     @Test
     public void getTp() {
-        assertTrue("CompositBoard".equals(builder.getTp()));
+        assertEquals("CompositBoard", builder.getTp());
     }
 
     @Test
     public void getTitle() {
-        assertTrue("KM 035Cb".equals(builder.getTitle()));
+        assertEquals("KM 035Cb", builder.getTitle());
     }
 
     @Test
     public void getX() {
-        assertTrue(100 == builder.getX());
+        assertEquals(100, builder.getX());
     }
 
     @Test
     public void getY() {
-        assertTrue(200 == builder.getY());
+        assertEquals(200, builder.getY());
     }
 
     @Test
     public void getA() {
-        assertTrue(180 == builder.getA());
+        assertEquals(180, builder.getA());
     }
 
     @Test
     public void getS() {
-        assertTrue(60 == builder.getS());
+        assertEquals(60, builder.getS());
     }
 
     @Test
     public void getLeafs() {
-        assertTrue(3 == builder.getLeafs());
+        assertEquals(3, builder.getLeafs());
     }
 
     @Test
     public void getCards() {
-        assertTrue(2 == builder.getCards());
+        assertEquals(2, builder.getCards());
     }
 
     @Test
     public void getEmployer() {
-        assertTrue(12713 == builder.getEmployer());
+        assertEquals(12713, builder.getEmployeeId());
     }
 
     @Test
     public void getProfession() {
-        assertTrue("Binder".equals(builder.getProfession()));
+        assertEquals("Binder", builder.getProfession());
     }
 
     @Test
     public void getSide() {
-        assertTrue("Left".equals(builder.getSide()));
+        assertEquals("Left", builder.getSide());
     }
 
     @Test
     public void getParid() {
-        assertTrue(1220 == builder.getParid());
+        assertEquals(1220, builder.getParid());
     }
 
     @Test
     public void getStepName() {
-        assertTrue("Binding module".equals(builder.getStepName()));
+        assertEquals("Binding module", builder.getStepName());
     }
 
     @Test
     public void getStepLevel() {
-        assertTrue(4 == builder.getStepLevel());
+        assertEquals(4, builder.getStepLevel());
     }
 
     @Test
     public void getConditions() {
 //        int size = builder.getConditions().size();
-        assertTrue("MFC1802012***".equals(builder.getCondition()));
+        assertEquals("MFC1802012***", builder.getConditionString());
     }
 
     @Test

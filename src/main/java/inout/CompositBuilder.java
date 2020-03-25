@@ -149,7 +149,7 @@ public class CompositBuilder {
         return cards;
     }
 
-    public int getEmployer() {
+    public int getEmployeeId() {
         return employer;
     }
 
@@ -173,7 +173,7 @@ public class CompositBuilder {
         return stepLevel;
     }
 
-    public String getCondition() {
+    public String getConditionString() {
         return condition;
     }
 
@@ -181,7 +181,8 @@ public class CompositBuilder {
         return bindings;
     }
 
-    public LeyoutComponent build() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public LeyoutComponent build() throws ClassNotFoundException, NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException, InstantiationException {
         LeyoutComponent component;
         LeyoutComponentController controller;
 

@@ -3,7 +3,7 @@ package graphics.cards.controllers;
 import graphics.leyout.components.WorkPlacedComposit;
 import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutWorkPlacedController;
-import model.Employer;
+import model.Employee;
 import sets.SetWorkPlesedControllers;
 
 import java.io.IOException;
@@ -13,19 +13,19 @@ import java.util.HashMap;
 public class LoginMenuController extends PaneComponentController {
 
     ArrayList<PaneComponentController> cards;
-    Employer employer;
+    Employee employee;
     MenuConteinerController menu;
     SetWorkPlesedControllers setControllers;
 
     HashMap<Integer, ArrayList<LeyoutWorkPlacedController>> controllers;
     LoginCardController card;
 
-    public LoginMenuController(PaneComponentController parent, Employer employer) {
-        this.employer = employer;
+    public LoginMenuController(PaneComponentController parent, Employee employee) {
+        this.employee = employee;
         setControllers = SetWorkPlesedControllers.getInstance();
         menu = new MenuConteinerController(parent);
 //        controllers = new HashMap<>();
-        controllers = setControllers.getControllersToEmployer(employer);
+        controllers = setControllers.getControllersToEmployer(employee);
 
         String productivity;
 
@@ -52,9 +52,9 @@ public class LoginMenuController extends PaneComponentController {
 //                        productivity = "" + (int)Math.ceil(prod/count) + "%";
 //                    } else productivity = "-";
 
-                    productivity = "" + employer.getProductivity((WorkPlacedComposit)controller.component()) + "%";
+                    productivity = "" + employee.getProductivity((WorkPlacedComposit)controller.component()) + "%";
 
-                    card = new LoginCardController(controller, employer, priority, productivity);
+                    card = new LoginCardController(controller, employee, priority, productivity);
                     menu.addCard(card);
                 }
             }
@@ -64,7 +64,7 @@ public class LoginMenuController extends PaneComponentController {
 
 
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
         return null;
     }
 

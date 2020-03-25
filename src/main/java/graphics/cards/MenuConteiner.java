@@ -21,10 +21,6 @@ public class MenuConteiner extends Popup {
     Arc arc;
     Rectangle rect;
 
-    public void setCards(ArrayList<PaneComponentView> cards) {
-        this.cards = cards;
-    }
-
     ArrayList<PaneComponentView> cards;
     VBox vb;
     Bounds bounds;
@@ -37,6 +33,10 @@ public class MenuConteiner extends Popup {
         this.setHideOnEscape(true);
         vb = new VBox();
         bounds = controller.view().localToScreen(controller.view().getBoundsInLocal());           //Границы текущего элемента
+    }
+
+    public void setCards(ArrayList<PaneComponentView> cards) {
+        this.cards = cards;
     }
 
     public void addCard(PaneComponentController card){

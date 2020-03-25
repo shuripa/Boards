@@ -39,7 +39,7 @@ public class SkillMenuCardController extends PaneComponentController {
             SetCompositControllers set = SetCompositControllers.getInstance();
             for (LeyoutComponentController cont: set.getComponentControllers()) {
                 for (Condition condition: cont.getConditions()) {
-                    if (condition.Like((Skill)component())){
+                    if (condition.isLike((Skill)component())){
                         boardMenu.addCard(new CompositMenuCardController(cont.component(), component()));
                     }
                 }
@@ -53,7 +53,7 @@ public class SkillMenuCardController extends PaneComponentController {
             SetCompositControllers set = SetCompositControllers.getInstance();
             for (LeyoutComponentController controller: set.getComponentControllers()) {
                 for (Condition condition: controller.getConditions()) {
-                    if (condition.Like((Skill)component())){
+                    if (condition.isLike((Skill)component())){
                         controller.select();
                     }
                 }
@@ -68,7 +68,7 @@ public class SkillMenuCardController extends PaneComponentController {
     }
 
     @Override
-    protected LeyoutComponentController createLeyoutComponent(double x, double y) throws IOException {
+    protected LeyoutComponentController createLeyautComponent(double x, double y) throws IOException {
         return null;
     }
 

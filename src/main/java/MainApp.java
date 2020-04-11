@@ -2,13 +2,16 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+import startmenu.StartMenu;
 
 
 public class MainApp extends Application {
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-//        //TODO: lc8 отображает тот же лейаут что и lb9
+
         TilePane startMenu = new StartMenu(primaryStage);
 
         Scene scene1 = new Scene(startMenu, 800, 600);

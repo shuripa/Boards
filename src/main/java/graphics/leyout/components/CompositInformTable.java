@@ -1,5 +1,6 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import model.Profession;
 
 public class CompositInformTable extends WorkPlacedComposit {
@@ -13,6 +14,13 @@ public class CompositInformTable extends WorkPlacedComposit {
         super("", id);
         informTable = new InformTable(this);
         workPlace = new WorkPlace(this, profession);
+        addLeafs(informTable, workPlace);
+    }
+
+    public CompositInformTable(CompositBuilder builder) {
+        super("", "" + builder.getId());
+        informTable = new InformTable(this);
+        workPlace = new WorkPlace(this, Profession.valueOf(builder.getProfession()));
         addLeafs(informTable, workPlace);
     }
 

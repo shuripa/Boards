@@ -32,7 +32,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
     /**    General */
 
 
-    public LeyoutComponentController() throws IOException {
+    public LeyoutComponentController() {
         super();
         this.controller = this;
         strProperties = new ArrayList<>();
@@ -44,7 +44,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
 //        scc.addComponentController(this);
     }
 
-    public LeyoutComponentController(LeyoutComponent component) throws IOException {
+    public LeyoutComponentController(LeyoutComponent component) {
         super();
         this.controller = this;
         this.component = component;
@@ -179,24 +179,13 @@ public abstract class LeyoutComponentController extends GraphicsController {
             }
 
             if (mouseEvent.getClickCount() == 2){
-                Layout l = null;
-                try {
-                    l = Layout.getInstace();
-//                    l.createTextField (controller(), mouseEvent.getSceneX(), mouseEvent.getSceneY());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Layout l = Layout.getInstace();
             }
         });
 
         view().setOnDragDetected(mouseEvent -> {
 //            System.out.println("On drag detected.");
-            try {
-                Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), this);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            Layout.getInstace().drugComponent((int)mouseEvent.getSceneX(), (int)mouseEvent.getSceneY(), this);
             Dragboard db = view().startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
             if (this.toString() != null){

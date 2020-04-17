@@ -5,7 +5,6 @@ import graphics.leyout.controllers.LeyoutComponentController;
 import graphics.leyout.controllers.LeyoutWorkPlacedController;
 import model.Employee;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,7 +27,7 @@ public class SetWorkPlesedControllers implements Iterable<LeyoutWorkPlacedContro
         return instance;
     }
 
-    public void addController(LeyoutWorkPlacedController controller) throws IOException {
+    public void addController(LeyoutWorkPlacedController controller)  {
         controllers.add(controller);
         for (LeyoutComponentController observer: observers) {
             controller.component().addComponentObserver(observer.component());

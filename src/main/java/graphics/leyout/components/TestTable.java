@@ -1,5 +1,6 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Condition;
@@ -16,9 +17,16 @@ public class TestTable extends LeyoutComponent {
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE, "");
     }
 
+    public void building(CompositBuilder builder) {
+        setId("" + builder.getId());
+        setTitle(builder.getTitle());
+        setCondition(builder.getConditionString(), 120);
+    }
+
     public String getId() {
         return id.get();
     }
+
     public StringProperty idProperty() {
         return id;
     }
@@ -51,8 +59,11 @@ public class TestTable extends LeyoutComponent {
         this.condition = condition;
     }
 
+    public void setCondition (String template, int step){
+        this.condition = new Condition(template, 110);
+    }
+
     public Condition getCondition(){
         return condition;
     }
-
 }

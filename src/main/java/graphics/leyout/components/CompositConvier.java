@@ -1,5 +1,6 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,6 +29,14 @@ public class CompositConvier extends LeyoutComponent{
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         this.cntPos.set(cntPos);
+        create();
+    }
+
+    public CompositConvier(CompositBuilder builder) throws IOException{
+        this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
+        this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
+        this.title.set(builder.getTitle());
+        this.cntPos.set(builder.getLeafs());
         create();
     }
 

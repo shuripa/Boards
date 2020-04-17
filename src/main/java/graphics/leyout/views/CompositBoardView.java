@@ -18,11 +18,11 @@ public class CompositBoardView extends LeyoutWorkPlacedView {
 //        ((CompositBoardController) controller()).getBoardController().setXYAS(0, 27, 0, controller().getS());
 //        ((CompositBoardController)controller()).getBoardIndexView().relocate(controller().getS()-5, 7);
         //Добавление компонентов к лейауту
-        this.getChildren().add(((CompositBoardController)controller()).getHumanView());
         this.getChildren().add(((CompositBoardController)controller()).getGridShapeView());
         this.getChildren().add(((CompositBoardController)controller()).getBoardView());
         this.getChildren().add(((CompositBoardController)controller()).getBoardIndexView());
         this.getChildren().add(((CompositBoardController)controller()).getEffectivityIndexView());
+        this.getChildren().add(((CompositBoardController)controller()).getHumanView());
     }
 
     @Override

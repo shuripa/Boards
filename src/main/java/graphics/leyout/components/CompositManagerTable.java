@@ -1,5 +1,6 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import model.Profession;
 import model.Side;
 
@@ -13,6 +14,13 @@ public class CompositManagerTable extends WorkPlacedComposit {
         setId(id);
         mt = new ManagerTable(this, side);
         wp = new WorkPlace(this, profession, side);
+        addLeafs(mt, wp);
+    }
+
+    public CompositManagerTable(CompositBuilder builder) {
+        setId("" + builder.getId());
+        mt = new ManagerTable(this, Side.valueOf(builder.getSide()));
+        wp = new WorkPlace(this, Profession.valueOf(builder.getProfession()), Side.valueOf(builder.getSide()));
         addLeafs(mt, wp);
     }
 

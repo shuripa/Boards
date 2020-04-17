@@ -72,7 +72,7 @@ public class CompositBuilder {
         return this;
     }
 
-    public CompositBuilder assigned(int val){
+    public CompositBuilder employer(int val){
         employer = val;
         return this;
     }
@@ -181,9 +181,8 @@ public class CompositBuilder {
         return bindings;
     }
 
-    public LeyoutComponent build() throws ClassNotFoundException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
-        LeyoutComponent component;
+    public LeyoutComponent build()  {
+        LeyoutComponent component = null;
         LeyoutComponentController controller;
 
         String componentClassName, contrlollerClassName;
@@ -191,14 +190,30 @@ public class CompositBuilder {
         Constructor<?> componentConstructor, controllerConstructor;
 
         componentClassName = "graphics.leyout.components."+tp;
-        componentClass = Class.forName(componentClassName);
-        componentConstructor = componentClass.getConstructor(inout.CompositBuilder.class);
-        component = (LeyoutComponent) componentConstructor.newInstance(this);
-
         contrlollerClassName = "graphics.leyout.controllers."+tp+"Controller";
-        controllerClass = Class.forName(contrlollerClassName);
-        controllerConstructor = controllerClass.getConstructor(graphics.leyout.components.LeyoutComponent.class, inout.CompositBuilder.class);
-        controller = (LeyoutComponentController)controllerConstructor.newInstance(component, this);
+
+        try {
+            componentClass = Class.forName(componentClassName);
+            controllerClass = Class.forName(contrlollerClassName);
+            try {
+                componentConstructor = componentClass.getConstructor(CompositBuilder.class);
+                controllerConstructor = controllerClass.getConstructor(LeyoutComponent.class, CompositBuilder.class);
+                try {
+                    component = (LeyoutComponent) componentConstructor.newInstance(this);
+                    controller = (LeyoutComponentController)controllerConstructor.newInstance(component, this);
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         return component;
     }

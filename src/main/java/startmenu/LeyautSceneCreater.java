@@ -7,8 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import panes.RightPanel;
 
-import java.io.IOException;
-
 public class LeyautSceneCreater implements ItemAction {
     Stage stage;
 
@@ -19,29 +17,13 @@ public class LeyautSceneCreater implements ItemAction {
         // Создание компонентов новой сцены
 
     private Layout layout(){
-        Layout result = null;
-        try {
-            result = Layout.getInstace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            result.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Layout result = Layout.getInstace();
+        result.show();
         return result;
     }
 
     private Accordion rightPanel(){
-        Accordion result = null;
-        try {
-            result = RightPanel.getInstance();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return RightPanel.getInstance();
     }
 
     private BorderPane rootPane(){

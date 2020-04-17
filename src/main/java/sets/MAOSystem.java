@@ -24,6 +24,10 @@ public class MAOSystem {
         arrMao.put(mao.getTitle(), mao);
     }
 
+    public CompositMao getCompositMao(String title){
+        return arrMao.get(title);
+    }
+
     public CompositMao getMaoWithBoard (CompositBoard board){
         CompositMao result = null;
         for (CompositMao cm: arrMao.values()) {

@@ -1,8 +1,10 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import model.Condition;
 import model.Employee;
 import model.Profession;
+import sets.SetEmployees;
 
 import java.util.ArrayList;
 
@@ -17,12 +19,32 @@ public class CompositTestTable extends WorkPlacedComposit {
 
     public CompositTestTable(){
 //        step = 120;
+        leafs();
+    }
+
+    public CompositTestTable(CompositBuilder builder){
+//        super();
+        leafs();
+        building(builder);
+    }
+
+    private void leafs() {
         ttable = new TestTable();
         wplace = new WorkPlace(this, Profession.TESTER);
         palette = new Palette();
         workTable = new TestWorkTable();
         canban = new TestCanban();
         addLeafs(ttable, wplace, palette, workTable, canban);
+    }
+
+    private void building(CompositBuilder builder){
+        ttable.building(builder);
+        if (builder.getEmployeeId() != 0)
+        logining(getEmployeeFromSetEmployees(builder.getEmployeeId()));
+    }
+
+    private Employee getEmployeeFromSetEmployees(int id){
+        return SetEmployees.getInstance().getEmployeeByID("" + id);
     }
 
     public TestTable getTestTable() {

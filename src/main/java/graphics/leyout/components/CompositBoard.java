@@ -5,7 +5,6 @@ import model.*;
 import sets.MAOSystem;
 import sets.SetEmployees;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class CompositBoard extends WorkPlacedComposit {
@@ -24,7 +23,7 @@ public class CompositBoard extends WorkPlacedComposit {
         leafs();
     }
 
-    public CompositBoard(CompositBuilder builder) throws IOException {
+    public CompositBoard(CompositBuilder builder) {
         super();
         orders = new ArrayList<>();
 //        step = 110;
@@ -45,6 +44,7 @@ public class CompositBoard extends WorkPlacedComposit {
     private void building(CompositBuilder builder){
         b.building(builder);
         logining(getEmployeeFromSetEmployees(builder.getEmployeeId()));
+        i.setProc(builder.getParid());
 
         //        if(builder.getConditions().size() != 0){
         //TODO CompositBoard хранит только одно значение условия

@@ -12,6 +12,13 @@ import sets.MAOSystem;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Требования:
+ * 1. id номер состоит из 1000 для SB, 2000 для MB и 3000 для конвеера  + N фактический номер синглборда или мультиборда
+ * 2. CompositMao содержит доски
+ * 4. условия для заказов хранятся в досках которые входят в МАОComponent
+ * 5. все МАОComponent-ы хрянятся в MAOSystem
+ */
 public class CompositMao extends LeyoutComponent{
 
     private final static String TITLE_PROP_NAME = "MAO title";

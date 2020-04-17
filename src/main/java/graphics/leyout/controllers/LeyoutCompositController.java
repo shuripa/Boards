@@ -46,7 +46,7 @@ public abstract class LeyoutCompositController extends LeyoutComponentController
         super.setView(view);
     }
 
-    public void delView(LeyoutComponentView view) throws IOException {
+    public void delView(LeyoutComponentView view) {
         Layout layout = Layout.getInstace();
         if (layout.isContainsView(view)) {
             layout.delView(view());

@@ -4,6 +4,7 @@ import graphics.leyout.components.CanbanBoard;
 import graphics.leyout.components.CanbanLeaf;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.CanbanBoardView;
+import inout.CompositBuilder;
 
 import java.io.IOException;
 
@@ -15,6 +16,13 @@ public class CanbanBoardController extends LeyoutCompositController {
         super(component);
         component.addRecreateObservers(this);
         create();
+    }
+
+    public CanbanBoardController(LeyoutComponent component, CompositBuilder builder) throws IOException {
+        super(component);
+        component.addRecreateObservers(this);
+        create();
+        setXYAS(builder.getX(), builder.getY(), builder.getA(), builder.getS());
     }
 
     public void create() throws IOException {

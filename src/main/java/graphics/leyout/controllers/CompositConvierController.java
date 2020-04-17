@@ -2,7 +2,9 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.CompositConvier;
+import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.views.CompositConvierView;
+import inout.CompositBuilder;
 
 import java.io.IOException;
 
@@ -16,6 +18,13 @@ public class CompositConvierController extends LeyoutCompositController {
         super(component);
         component.addRecreateObservers(this);
         create();
+    }
+
+    public CompositConvierController(LeyoutComponent component, CompositBuilder builder) throws IOException{
+        super(component);
+        component.addRecreateObservers(this);
+        create();
+        setXYAS(builder.getX(), builder.getY(), builder.getA(), builder.getS());
     }
 
     @Override

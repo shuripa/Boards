@@ -26,7 +26,7 @@ public class CompositBoardTest {
 
         //TODO в builder-е пока не реализовано условия и связи. Дополнить тест позже.
         CompositBuilder builder = new CompositBuilder(1212, "CompositBoard").title("KM 035Cb")
-                .assigned(12713).condition("MFC1847034***");
+                .employer(12713).condition("MFC1847034***");
         cb2 = (CompositBoard) builder.build();
 
     }

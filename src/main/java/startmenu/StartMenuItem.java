@@ -12,13 +12,10 @@ StartMenuItem - кнопка, которая создает сцену.
 
 public class StartMenuItem extends Region {
     TitledPane propertyPane;
-    ItemAction itemAction;                                                                                                                    // свойства окна
-                                                                                                                        // app - нужно для получения stage
-                                                                                                                        // stage - нужен для получения размеров для создания сцены
+    ItemAction itemAction;
                                                                                                                         // Свойства кнопки.
                                                                                                                         // w, h, x, y - размеры кнопки// text - текст кнопки
     public StartMenuItem(ItemAction action, int w, int h, int x, int y, String text){
-                                                                                                                        // Получение сцены
         this.getStylesheets().add("style.css");                                                                         // Получение стиля стиля
         this.itemAction = action;
 
@@ -27,7 +24,7 @@ public class StartMenuItem extends Region {
         rb.setStroke(Color.rgb(82, 79, 161, 0.5));
         rb.setStrokeWidth(0.5);
         rb.setId("blankbound");
-        rb.setStrokeWidth(0.1);
+        rb.relocate(x,y);
 //        rb.setStyle("-fx-fill: #4287f5");
 
         //td
@@ -55,9 +52,6 @@ public class StartMenuItem extends Region {
             td.setId("blanktxt");
         });
 
-        rb.setId("blankbound");
-        rb.setStrokeWidth(0.5);
-        rb.relocate(x,y);
 
         this.getChildren().addAll(rb, td);
     }

@@ -1,6 +1,7 @@
 package graphics.leyout.components;
 
 import graphics.leyout.controllers.StockController;
+import inout.CompositBuilder;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -45,6 +46,14 @@ public class CanbanBoard extends LeyoutComponent {
         this.parent = parent;
         this.cntLeaves.set(cntLeaves);
         this.cntCards.set(cntCards);
+        create();
+    }
+
+    public CanbanBoard(CompositBuilder builder) throws IOException {
+        createProperty();
+        this.cntLeaves.set(builder.getLeafs());
+        this.cntCards.set(builder.getCards());
+        this.setTitle(builder.getTitle());
         create();
     }
 

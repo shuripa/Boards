@@ -1,5 +1,6 @@
 package graphics.leyout.components;
 
+import inout.CompositBuilder;
 import model.Profession;
 
 public class CompositPushcart extends WorkPlacedComposit {
@@ -8,6 +9,15 @@ public class CompositPushcart extends WorkPlacedComposit {
 
     public CompositPushcart(String id){
         setId(id);
+        leafs();
+    }
+
+    public CompositPushcart(CompositBuilder builder){
+        setId("" + builder.getId());
+        leafs();
+    }
+
+    private void leafs() {
         pushcart = new Pushcart();
         workPlace = new WorkPlace(this, Profession.DELIVER);
         addLeafs(pushcart, workPlace);

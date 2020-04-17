@@ -11,7 +11,7 @@ import java.io.IOException;
 public class RightPanel extends Accordion {
     private static RightPanel instance;
 
-    private RightPanel() throws IOException {
+    private RightPanel() {
 
 //         !!! План !!! Сам класс наследуется от TitledPane
         this.getPanes().add(new PlanPane());
@@ -22,11 +22,14 @@ public class RightPanel extends Accordion {
         // но не очевидно что здесь происходит.
         this.getPanes().add(new TitledPane("Material", materialBox));
 
-//         !!! Редактор !!! Заглушка.
-        this.getPanes().add(new EditorGroupPane());
+//         !!! Редактор
+        try {
+            this.getPanes().add(new EditorGroupPane());
+        }catch (IOException ioe){
+            System.out.println("Error on create EditorGroupPane()");
+        }
 
-
-//         !!! Карточки клиентов !!! Класс возвращает VBox.
+//         !!! Карточки сотрудников !!! Класс возвращает VBox.
         this.getPanes().add(new EmployerGroupPane());
 
 //         !!! Панель свойств
@@ -34,7 +37,7 @@ public class RightPanel extends Accordion {
     }
 
 
-    public static RightPanel getInstance() throws IOException {
+    public static RightPanel getInstance() {
         if (instance == null) {
             instance = new RightPanel();
         }

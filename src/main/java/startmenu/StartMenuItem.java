@@ -6,8 +6,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-/*
-StartMenuItem - кнопка, которая создает сцену.
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ <b><i>{@code StartMenuItem}</i></b> - кнопка, которая создает сцену лейаута.
  */
 
 public class StartMenuItem extends Region {
@@ -16,6 +19,7 @@ public class StartMenuItem extends Region {
                                                                                                                         // Свойства кнопки.
                                                                                                                         // w, h, x, y - размеры кнопки// text - текст кнопки
     public StartMenuItem(ItemAction action, int w, int h, int x, int y, String text){
+        Logger.getLogger("MainApp").log(Level.CONFIG, "Creating MenuItem : " + text + ", with " + action.toString());
         this.getStylesheets().add("style.css");                                                                         // Получение стиля стиля
         this.itemAction = action;
 

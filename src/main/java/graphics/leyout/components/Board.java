@@ -41,7 +41,6 @@ public class Board extends LeyoutComponent {
         setCondition(builder.getConditionString(), 110);
     }
 
-
     public void setId(String id) {
         this.id.set(id);
     }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CompositBuilder {
 
     private int id;
-    private String tp;
+    private String type;
     private String title;
     private int x;
     private int y;
@@ -28,10 +28,10 @@ public class CompositBuilder {
 //    private ArrayList<String> conditions;
     private ArrayList<String> bindings;
 
-    public CompositBuilder(int id, String tp) {
+    public CompositBuilder(int id, String title, String type) {
         this.id = id;
-        this.tp = tp;
-        title = "";
+        this.type = type;
+        this.title = title;
         parid = 0;
         x = 100;
         y = 100;
@@ -47,11 +47,6 @@ public class CompositBuilder {
         condition = "";
 //        conditions = new ArrayList<>();
         bindings = new ArrayList<>();
-    }
-
-    public CompositBuilder title(String title){
-        this.title = title;
-        return this;
     }
 
     public CompositBuilder xyas(int x, int y, int a, int s){
@@ -117,8 +112,8 @@ public class CompositBuilder {
         return id;
     }
 
-    public String getTp() {
-        return tp;
+    public String getType() {
+        return type;
     }
 
     public String getTitle() {
@@ -189,8 +184,8 @@ public class CompositBuilder {
         Class<?> componentClass, controllerClass;
         Constructor<?> componentConstructor, controllerConstructor;
 
-        componentClassName = "graphics.leyout.components."+tp;
-        contrlollerClassName = "graphics.leyout.controllers."+tp+"Controller";
+        componentClassName = "graphics.leyout.components."+ type;
+        contrlollerClassName = "graphics.leyout.controllers."+ type +"Controller";
 
         try {
             componentClass = Class.forName(componentClassName);

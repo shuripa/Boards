@@ -14,7 +14,7 @@ public class CompositMaoTest {
 //        mao1.addCondition("MFC1847087***");
 
         //TODO Builder условия пока не поддерживает. Дополнить тест позже.
-        CompositBuilder builder = new CompositBuilder(4012, "CompositMao").title("UO_MB12");
+        CompositBuilder builder = new CompositBuilder(4012, "UO_MB12", "CompositMao");
         mao2 = new CompositMao(builder);
     }
 

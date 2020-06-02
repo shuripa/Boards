@@ -41,7 +41,7 @@ public class BoardTest {
 
     @Test
     public void building(){
-        CompositBuilder builder = new CompositBuilder(1212, "CompositBoard").title("KM 035Cb")
+        CompositBuilder builder = new CompositBuilder(1212, "KM 035Cb", "CompositBoard")
                 .employer(12713).condition("MFC1847034***");
         b.building(builder);
         assertEquals("Board:\nID = 1212;\nTitle = KM 035Cb;\nCondition = MFC1847034***.", (b.toString()));

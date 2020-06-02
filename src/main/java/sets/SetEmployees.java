@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //Завдання: отримати, зберігати, оперувати і надавати список працівників.
 
@@ -34,6 +36,7 @@ public class SetEmployees implements Iterable<String> {
     }
 
     public static SetEmployees getInstance(){
+        Logger.getLogger("MainApp").log(Level.CONFIG, "Geting instance SetEmployees");
         if (instance == null){
             new SetEmployees();
         }

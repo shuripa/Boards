@@ -12,7 +12,7 @@ public class CompositBuilderTest {
     public CompositBuilderTest(){
         //TODO не созданы Связи и не использован метод build.
         // Пока не тестируются сеттеры.
-        builder = new CompositBuilder(1219, "CompositBoard").parid(1220).title("KM 035Cb")
+        builder = new CompositBuilder(1219, "KM 035Cb","CompositBoard").parid(1220)
                 .employer(12713).profession("Binder").leafs(3).cards(2).side("Left").stepLevel(4)
                 .stepName("Binding module").xyas(100, 200, 180, 60).condition("MFC1802012***");
     }
@@ -85,7 +85,7 @@ public class CompositBuilderTest {
 
     @Test
     public void getTp() {
-        assertEquals("CompositBoard", builder.getTp());
+        assertEquals("CompositBoard", builder.getType());
     }
 
     @Test

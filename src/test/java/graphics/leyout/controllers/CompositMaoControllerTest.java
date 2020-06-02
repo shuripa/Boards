@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class CompositMaoControllerTest {
 
@@ -26,7 +25,8 @@ public class CompositMaoControllerTest {
         controller1.setXYAS(100, 200, 45, 60);
 
         //TODO Builder условия пока не поддерживает. Дополнить тест позже.
-        CompositBuilder builder = new CompositBuilder(4012, "CompositMao").title("UO_MB12").xyas(200, 300, 90, 60);
+        CompositBuilder builder = new CompositBuilder(4012,"UO_MB12", "CompositMao")
+                .xyas(200, 300, 90, 60);
         mao2 = new CompositMao(builder);
         controller2 = new CompositMaoController(mao2, builder);
 

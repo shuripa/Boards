@@ -25,7 +25,7 @@ public class CompositBoardTest {
         cb1.logining(employees.getEmployeeByID("12630"));
 
         //TODO в builder-е пока не реализовано условия и связи. Дополнить тест позже.
-        CompositBuilder builder = new CompositBuilder(1212, "CompositBoard").title("KM 035Cb")
+        CompositBuilder builder = new CompositBuilder(1212, "KM 035Cb", "CompositBoard")
                 .employer(12713).condition("MFC1847034***");
         cb2 = (CompositBoard) builder.build();
 

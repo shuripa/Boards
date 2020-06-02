@@ -120,6 +120,14 @@
             </exclusions>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.12.1</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
 

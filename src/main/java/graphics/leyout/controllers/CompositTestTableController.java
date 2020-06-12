@@ -2,12 +2,13 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositTestTable;
 import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import graphics.leyout.views.CompositTestView;
 import inout.CompositBuilder;
 
 import java.io.IOException;
 
-public class CompositTestTableController extends LeyoutWorkPlacedController{
+public class CompositTestTableController extends LeyoutWorkPlacedController {
     TestTableController ttableController;
     WorkPlaceController wplaceController;
     PaletteController paletteController;

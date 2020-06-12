@@ -9,9 +9,9 @@ import sets.SetCompositControllers;
 
 import java.io.IOException;
 
-public class SkillMenuCardController extends PaneComponentController {
+public class SkillMenuCardElement extends PaneComponentElement {
 
-    public SkillMenuCardController(Skill skill){
+    public SkillMenuCardElement(Skill skill){
         super(skill);
         setView(new SkillMenuCardView(this));
     }
@@ -40,7 +40,7 @@ public class SkillMenuCardController extends PaneComponentController {
             for (LeyoutComponentController cont: set.getComponentControllers()) {
                 for (Condition condition: cont.getConditions()) {
                     if (condition.isLike((Skill)component())){
-                        boardMenu.addCard(new CompositMenuCardController(cont.component(), component()));
+                        boardMenu.addCard(new CompositMenuCardElement(cont.component(), component()));
                     }
                 }
             }

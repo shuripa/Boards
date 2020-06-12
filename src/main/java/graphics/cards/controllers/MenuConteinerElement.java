@@ -7,12 +7,12 @@ import graphics.leyout.controllers.LeyoutComponentController;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MenuConteinerController extends PaneComponentController {
+public class MenuConteinerElement extends PaneComponentElement {
 
     MenuConteiner menu;
     ArrayList<PaneComponentView> cards;
 
-    public MenuConteinerController(PaneComponentController sender) {
+    public MenuConteinerElement(PaneComponentElement sender) {
         menu = new MenuConteiner(sender);
         cards = new ArrayList<>();
 //        setView(new MenuConteinerView(this));
@@ -23,7 +23,7 @@ public class MenuConteinerController extends PaneComponentController {
         menu.showConteiner(140);
     }
 
-    public void addCard(PaneComponentController card){
+    public void addCard(PaneComponentElement card){
         cards.add(card.view());
     }
 

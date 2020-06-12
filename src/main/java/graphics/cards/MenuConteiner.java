@@ -1,6 +1,6 @@
 package graphics.cards;
 
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.PaneComponentElement;
 import graphics.cards.views.PaneComponentView;
 import javafx.geometry.Bounds;
 import javafx.scene.layout.VBox;
@@ -24,9 +24,9 @@ public class MenuConteiner extends Popup {
     ArrayList<PaneComponentView> cards;
     VBox vb;
     Bounds bounds;
-    PaneComponentController controller;
+    PaneComponentElement controller;
 
-    public MenuConteiner(PaneComponentController controller){
+    public MenuConteiner(PaneComponentElement controller){
         this.controller = controller;
         cards = new ArrayList<>();
         this.setAutoHide(true);
@@ -39,7 +39,7 @@ public class MenuConteiner extends Popup {
         this.cards = cards;
     }
 
-    public void addCard(PaneComponentController card){
+    public void addCard(PaneComponentElement card){
         cards.add(card.view());
     }
 

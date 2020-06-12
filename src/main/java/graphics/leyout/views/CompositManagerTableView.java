@@ -2,7 +2,7 @@ package graphics.leyout.views;
 
 import graphics.leyout.controllers.CompositManagerTableController;
 import graphics.leyout.controllers.LeyoutComponentController;
-import graphics.leyout.controllers.WorkPlaceController;
+import graphics.leyout.controllers.component.WorkPlaceController;
 
 public class CompositManagerTableView extends LeyoutComponentView {
     CompositManagerTableController tcontroller;

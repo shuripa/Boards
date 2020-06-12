@@ -37,6 +37,7 @@ public class CompositConvier extends LeyoutComponent{
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         this.title.set(builder.getTitle());
         this.cntPos.set(builder.getLeafs());
+
         create();
     }
 
@@ -99,7 +100,6 @@ public class CompositConvier extends LeyoutComponent{
     public void setTitle(String title) {
         this.title.set(title);
     }
-
 
     public int getCntPos() {
         return cntPos.get();

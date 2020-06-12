@@ -27,6 +27,11 @@ public class CompositBuilder {
     private String condition;
 //    private ArrayList<String> conditions;
     private ArrayList<String> bindings;
+    private String materialStoreViewType;
+    private String toolViewType;
+    private String toolWorkPlaceType;
+    private String productStoreViewType;
+    private String compositToolView;
 
     public CompositBuilder(int id, String title, String type) {
         this.id = id;
@@ -107,6 +112,31 @@ public class CompositBuilder {
         return this;
     }
 
+    public CompositBuilder materialStoreView(String type){
+        this.materialStoreViewType = type;
+        return this;
+    }
+
+    public CompositBuilder toolView(String type){
+        this.toolViewType = type;
+        return this;
+    }
+
+    public CompositBuilder workPlaceView(String type){
+        this.toolWorkPlaceType = type;
+        return this;
+    }
+
+    public CompositBuilder productStoreView(String productStoreViewType) {
+        this.productStoreViewType = productStoreViewType;
+        return this;
+    }
+
+    public CompositBuilder compositToolView(String compositToolView) {
+        this.compositToolView = compositToolView;
+        return this;
+    }
+
 
     public int getId() {
         return id;
@@ -174,6 +204,26 @@ public class CompositBuilder {
 
     public ArrayList<String> getBindings() {
         return bindings;
+    }
+
+    public String getMaterialStoreViewType(){
+        return materialStoreViewType;
+    }
+
+    public String getToolViewType() {
+        return toolViewType;
+    }
+
+    public String getToolWorkPlaceType() {
+        return toolWorkPlaceType;
+    }
+
+    public String getProductStoreView() {
+        return productStoreViewType;
+    }
+
+    public String getCompositToolView() {
+        return compositToolView;
     }
 
     public LeyoutComponent build()  {

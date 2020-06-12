@@ -1,7 +1,7 @@
 package graphics.editor.views;
 
 import graphics.cards.views.PaneComponentView;
-import graphics.editor.controllers.EditorButtonController;
+import graphics.editor.controllers.EditorButtonElement;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -14,7 +14,7 @@ public class EditorButtonView extends PaneComponentView {
     Image im;
     ImageView imv;
 
-    public EditorButtonView(EditorButtonController controller) {
+    public EditorButtonView(EditorButtonElement controller) {
         super(controller);
         if (controller().S() < 150) h = 50; else h = 100;
         r = new Rectangle(2, 2, controller().S(), h);

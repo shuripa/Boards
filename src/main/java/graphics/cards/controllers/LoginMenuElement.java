@@ -10,20 +10,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LoginMenuController extends PaneComponentController {
+public class LoginMenuElement extends PaneComponentElement {
 
-    ArrayList<PaneComponentController> cards;
+    ArrayList<PaneComponentElement> cards;
     Employee employee;
-    MenuConteinerController menu;
+    MenuConteinerElement menu;
     SetWorkPlesedControllers setControllers;
 
     HashMap<Integer, ArrayList<LeyoutWorkPlacedController>> controllers;
-    LoginCardController card;
+    LoginCardElement card;
 
-    public LoginMenuController(PaneComponentController parent, Employee employee) {
+    public LoginMenuElement(PaneComponentElement parent, Employee employee) {
         this.employee = employee;
         setControllers = SetWorkPlesedControllers.getInstance();
-        menu = new MenuConteinerController(parent);
+        menu = new MenuConteinerElement(parent);
 //        controllers = new HashMap<>();
         controllers = setControllers.getControllersToEmployer(employee);
 
@@ -54,7 +54,7 @@ public class LoginMenuController extends PaneComponentController {
 
                     productivity = "" + employee.getProductivity((WorkPlacedComposit)controller.component()) + "%";
 
-                    card = new LoginCardController(controller, employee, priority, productivity);
+                    card = new LoginCardElement(controller, employee, priority, productivity);
                     menu.addCard(card);
                 }
             }

@@ -1,6 +1,6 @@
 package graphics.cards.views;
 
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.PaneComponentElement;
 import graphics.leyout.components.WorkPlacedComposit;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 public class ComponentMenuCardView extends PaneComponentView {
     Text tid, tdesc;
 
-    public ComponentMenuCardView(PaneComponentController controller) {
+    public ComponentMenuCardView(PaneComponentElement controller) {
         super(controller);
     }
 

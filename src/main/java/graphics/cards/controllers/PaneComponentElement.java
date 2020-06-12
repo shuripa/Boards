@@ -1,7 +1,7 @@
 package graphics.cards.controllers;
 
 
-import graphics.GraphicsController;
+import graphics.GraphicsElement;
 import graphics.Layout;
 import graphics.cards.views.PaneComponentView;
 import graphics.leyout.components.LeyoutComponent;
@@ -15,7 +15,7 @@ import javafx.scene.input.TransferMode;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class PaneComponentController extends GraphicsController {
+public abstract class PaneComponentElement extends GraphicsElement {
 
     private ArrayList<StringProperty> strProperties; // Строковые свойства
     private ArrayList<IntegerProperty> intProperties; // Строковые свойства
@@ -23,18 +23,18 @@ public abstract class PaneComponentController extends GraphicsController {
     private LeyoutComponent component;
     private LeyoutComponent sender;
     private PaneComponentView view;
-    private PaneComponentController controller;
+    private PaneComponentElement controller;
 //    private ArrayList<StringProperty> strProperties; // Строковые свойства
 //    private ArrayList<IntegerProperty> intProperties; // Строковые свойства
 
 
-    public PaneComponentController() {
+    public PaneComponentElement() {
         super();
         this.controller = this;
 //        component().addControllerObserver(this);
     }
 
-    public PaneComponentController(LeyoutComponent component) {
+    public PaneComponentElement(LeyoutComponent component) {
         super();
         this.component = component;
         this.controller = this;
@@ -42,7 +42,7 @@ public abstract class PaneComponentController extends GraphicsController {
 //        view.setComponentProperties();
     }
 
-    public PaneComponentController(LeyoutComponent component, LeyoutComponent sender) {
+    public PaneComponentElement(LeyoutComponent component, LeyoutComponent sender) {
         super();
         this.component = component;
         this.controller = this;
@@ -72,7 +72,7 @@ public abstract class PaneComponentController extends GraphicsController {
         return sender;
     }
 
-    public PaneComponentController controller(){
+    public PaneComponentElement controller(){
         return controller;
     }
 

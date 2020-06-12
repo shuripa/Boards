@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Удаление вида из лейаута.
  */
 
-public abstract class LeyoutCompositController extends LeyoutComponentController{
+public abstract class LeyoutCompositController extends LeyoutComponentController {
 
     private ArrayList<LeyoutComponentController> leaves;
 
@@ -62,7 +62,7 @@ public abstract class LeyoutCompositController extends LeyoutComponentController
         return leaves.get(ind);
     }
 
-    public void setLeaves(LeyoutComponentController ... leaves){
+    public void setLeaves(LeyoutComponentController... leaves){
         for (LeyoutComponentController l : leaves) {
             l.setParent(this);
             this.leaves.add(l);
@@ -96,6 +96,5 @@ public abstract class LeyoutCompositController extends LeyoutComponentController
     public void create() throws IOException {}
 
     public void destroy(){}
-
 
 }

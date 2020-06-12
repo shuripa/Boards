@@ -1,17 +1,17 @@
 package graphics.editor.controllers;
 
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.PaneComponentElement;
 import graphics.editor.components.EditorButton;
 import graphics.editor.views.EditorButtonView;
 import graphics.leyout.controllers.LeyoutComponentController;
 
 import java.io.IOException;
 
-public class EditorButtonController extends PaneComponentController {
+public class EditorButtonElement extends PaneComponentElement {
 
     //TODO Аналіз.
                                     //Тут тип даних це просто обмеження
-    public EditorButtonController(EditorButton component, int s) throws IOException {
+    public EditorButtonElement(EditorButton component, int s) throws IOException {
         super(component);
         setS(s);
         setView(new EditorButtonView(this));

@@ -1,6 +1,7 @@
 package graphics.leyout.controllers;
 
 import graphics.leyout.components.WorkPlacedComposit;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import model.Employee;
 import sets.SetWorkPlacedComposits;
 import sets.SetWorkPlesedControllers;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * Все что связано с рабочими местами.
  */
 
-public abstract class LeyoutWorkPlacedController extends LeyoutCompositController{
+public abstract class LeyoutWorkPlacedController extends LeyoutCompositController {
 
     private ArrayList<WorkPlaceController> workplaces;
 

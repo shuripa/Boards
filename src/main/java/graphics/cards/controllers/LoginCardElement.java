@@ -8,7 +8,7 @@ import model.Employee;
 
 import java.io.IOException;
 
-public class LoginCardController extends PaneComponentController {
+public class LoginCardElement extends PaneComponentElement {
 
     String id;
     String title;
@@ -17,7 +17,7 @@ public class LoginCardController extends PaneComponentController {
     Employee employee;
     LeyoutCompositController compositController;
 
-    public LoginCardController(LeyoutCompositController controller, Employee employee, int priority, String productivity){
+    public LoginCardElement(LeyoutCompositController controller, Employee employee, int priority, String productivity){
         super(controller.component());
         this.employee = employee;
         this.compositController = controller;

@@ -1,7 +1,7 @@
 package graphics.cards.views;
 
 import graphics.leyout.components.LeyoutComponent;
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.PaneComponentElement;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.shape.Circle;
@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 @Deprecated
 public class BoardCardView extends PaneComponentView {
 
-    public BoardCardView (PaneComponentController controller){
+    public BoardCardView (PaneComponentElement controller){
         super (controller);
     }
 

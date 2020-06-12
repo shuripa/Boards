@@ -1,8 +1,8 @@
 package graphics.cards.views;
 
 
-import graphics.cards.controllers.EmployerCardController;
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.EmployerCardElement;
+import graphics.cards.controllers.PaneComponentElement;
 import graphics.leyout.components.LeyoutComponent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +17,7 @@ public class EmployerCardView extends PaneComponentView {
     ImageView imv;
     Rectangle rw;
 
-    public EmployerCardView(PaneComponentController controller){
+    public EmployerCardView(PaneComponentElement controller){
         super (controller);
         ti = new Text("");
         td = new Text("");
@@ -52,7 +52,7 @@ public class EmployerCardView extends PaneComponentView {
         //Rectangle profession shape
         Rectangle rs = new Rectangle(7, 45);
         rs.relocate(213, 0);
-        rs.setStyle("-fx-fill:" + ((EmployerCardController)controller()).getProfessionColor());
+        rs.setStyle("-fx-fill:" + ((EmployerCardElement)controller()).getProfessionColor());
 
         //text profession
         tprof.setFont(new javafx.scene.text.Font(11));
@@ -66,12 +66,12 @@ public class EmployerCardView extends PaneComponentView {
 
         //Rectangle work place priority shape
         rw.relocate(100, 2);
-        rw.setId("select" + ((EmployerCardController)controller()).getPriority());
+        rw.setId("select" + ((EmployerCardElement)controller()).getPriority());
         rw.setStrokeWidth(0.1);
 
         //image
         imv = new ImageView();
-        String id = ((EmployerCardController)controller()).getId();
+        String id = ((EmployerCardElement)controller()).getId();
         try {
             String url = new StringBuilder().append("Employers/images").append(id).append(".jpg").toString();
 //            String url = "src\\main\\resources\\Employers\\images" + id + ".jpg";
@@ -101,12 +101,12 @@ public class EmployerCardView extends PaneComponentView {
 
     @Override
     public void setViewProperties() {
-        ti.setText("" + ((EmployerCardController)controller()).getId());
-        td.setText("" + ((EmployerCardController)controller()).getName());
-        tp.setText("" + ((EmployerCardController)controller()).getPhone());
-        tprof.setText("" + ((EmployerCardController)controller()).getProfession());
-        tw.setText("" + ((EmployerCardController)controller()).getWorkPlaceTitle());
-        rw.setId("set" + ((EmployerCardController)controller()).getPriority());
+        ti.setText("" + ((EmployerCardElement)controller()).getId());
+        td.setText("" + ((EmployerCardElement)controller()).getName());
+        tp.setText("" + ((EmployerCardElement)controller()).getPhone());
+        tprof.setText("" + ((EmployerCardElement)controller()).getProfession());
+        tw.setText("" + ((EmployerCardElement)controller()).getWorkPlaceTitle());
+        rw.setId("set" + ((EmployerCardElement)controller()).getPriority());
         rw.setStrokeWidth(0.1);
 
     }

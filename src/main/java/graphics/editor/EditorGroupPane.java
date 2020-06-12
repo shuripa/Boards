@@ -1,8 +1,8 @@
 package graphics.editor;
 
 import graphics.editor.components.*;
-import graphics.cards.controllers.BoardCardController;
-import graphics.editor.controllers.EditorButtonController;
+import graphics.cards.controllers.BoardCardElement;
+import graphics.editor.controllers.EditorButtonElement;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -21,34 +21,34 @@ public class EditorGroupPane extends TitledPane {
 
 
 
-        BoardCardController bc = new BoardCardController("board");
+        BoardCardElement bc = new BoardCardElement("board");
         vBox.getChildren().addAll(bc.view());
 
 
-        EditorButtonController button;
+        EditorButtonElement button;
 
-        button = new EditorButtonController(new CompositBoardButton(), 50);
+        button = new EditorButtonElement(new CompositBoardButton(), 50);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositTestTableButton(), 120);
+        button = new EditorButtonElement(new CompositTestTableButton(), 120);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositMaoButton(), 30);
+        button = new EditorButtonElement(new CompositMaoButton(), 30);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositInformTableButton(), 50);
+        button = new EditorButtonElement(new CompositInformTableButton(), 50);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositManagerTableButton(), 100);
+        button = new EditorButtonElement(new CompositManagerTableButton(), 100);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositPushCartButton(), 50);
+        button = new EditorButtonElement(new CompositPushCartButton(), 50);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositCanbanButton(), 220);
+        button = new EditorButtonElement(new CompositCanbanButton(), 220);
         root.getChildren().add(button.view());
 
-        button = new EditorButtonController(new CompositConvierButton(), 220);
+        button = new EditorButtonElement(new CompositConvierButton(), 220);
         root.getChildren().add(button.view());
 
 

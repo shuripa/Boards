@@ -5,13 +5,13 @@ import javafx.scene.Node;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import graphics.leyout.components.LeyoutComponent;
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.PaneComponentElement;
 
 import java.util.ArrayList;
 
 public abstract class PaneComponentView extends Group {
 
-    private PaneComponentController controller;
+    private PaneComponentElement controller;
     private ArrayList <Shape> activeElements;       //Активные елементы
     private ArrayList <Shape> priorityElements;       //Активные елементы с приоритетами
 
@@ -19,7 +19,7 @@ public abstract class PaneComponentView extends Group {
     private ArrayList<Node> nodes;                 //ImageView
     private Boolean onActive;
 
-    public PaneComponentView(PaneComponentController controller){
+    public PaneComponentView(PaneComponentElement controller){
         this.controller = controller;
         disactivate();
         activeElements = new ArrayList<>();
@@ -44,7 +44,7 @@ public abstract class PaneComponentView extends Group {
         onActive = false;
     }
 
-    public PaneComponentController controller() {
+    public PaneComponentElement controller() {
         return controller;
     }
 

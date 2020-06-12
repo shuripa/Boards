@@ -1,6 +1,8 @@
-package graphics.leyout.controllers;
+package graphics.leyout.controllers.component;
 
 import graphics.leyout.components.WorkPlace;
+import graphics.leyout.controllers.LeyoutComponentController;
+import graphics.leyout.controllers.LeyoutWorkPlacedController;
 import graphics.leyout.views.WorkPlaceView;
 import model.Employee;
 

@@ -1,6 +1,6 @@
 package graphics.cards.views;
 
-import graphics.cards.controllers.LoginCardController;
+import graphics.cards.controllers.LoginCardElement;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -9,14 +9,14 @@ public class LoginCardView extends PaneComponentView{
     Text tid, tdesc, tprod;
     int priority;
 
-    public LoginCardView(LoginCardController controller) {
+    public LoginCardView(LoginCardElement controller) {
         super(controller);
 //        this.fillPriority = fillPriority;
-        tid = new Text("" + ((LoginCardController)controller()).getId());
-        tdesc = new Text(""+ ((LoginCardController)controller()).getTitle());
-        tprod = new Text(""+ ((LoginCardController)controller()).getProductivity());
+        tid = new Text("" + ((LoginCardElement)controller()).getId());
+        tdesc = new Text(""+ ((LoginCardElement)controller()).getTitle());
+        tprod = new Text(""+ ((LoginCardElement)controller()).getProductivity());
 //        tprod = new Text("-");
-        priority = ((LoginCardController)controller()).getPriority();
+        priority = ((LoginCardElement)controller()).getPriority();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class LoginCardView extends PaneComponentView{
 
     @Override
     public void repaint() {
-        tprod.setText(""+ ((LoginCardController)controller()).getProductivity());
+        tprod.setText(""+ ((LoginCardElement)controller()).getProductivity());
     }
 
     @Override

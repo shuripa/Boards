@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import java.io.IOException;
 
-public abstract class GraphicsController {
+public abstract class GraphicsElement {
     final static String TITLE_PROP_X = "X";
     final static String TITLE_PROP_Y = "Y";
     final static String TITLE_PROP_A = "A";
@@ -16,7 +16,7 @@ public abstract class GraphicsController {
     final IntegerProperty S;
 
 
-    public GraphicsController(){
+    public GraphicsElement(){
         X = new SimpleIntegerProperty(this, TITLE_PROP_X, 0);
         Y = new SimpleIntegerProperty(this, TITLE_PROP_Y, 0);
         A = new SimpleIntegerProperty(this, TITLE_PROP_A, 0);

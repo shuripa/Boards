@@ -1,6 +1,6 @@
 package graphics.leyout.controllers;
 
-import graphics.GraphicsController;
+import graphics.GraphicsElement;
 import graphics.Hint;
 import graphics.Layout;
 import graphics.cards.ShapeInfo;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class LeyoutComponentController extends GraphicsController {
+public abstract class LeyoutComponentController extends GraphicsElement {
     private LeyoutCompositController parent;
     private LeyoutComponentController controller;
     private LeyoutComponent component;
@@ -50,7 +50,11 @@ public abstract class LeyoutComponentController extends GraphicsController {
         this.component = component;
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
-        setComponentProperties();
+        try {
+            setComponentProperties();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         setViewProperties();
         component().addControllerObserver(this);
 //        hint = new Hint(this, "");
@@ -65,7 +69,11 @@ public abstract class LeyoutComponentController extends GraphicsController {
         this.component = component;
         strProperties = new ArrayList<>();
         intProperties = new ArrayList<>();
-        setComponentProperties();
+        try {
+            setComponentProperties();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         setViewProperties();
         component().addControllerObserver(this);
 //        hint = new Hint(this, "");
@@ -84,7 +92,11 @@ public abstract class LeyoutComponentController extends GraphicsController {
 
     public void setComponent(LeyoutComponent component) {
         this.component = component;
-        setComponentProperties();
+        try {
+            setComponentProperties();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         component.addControllerObserver(this);
     }
 
@@ -146,7 +158,7 @@ public abstract class LeyoutComponentController extends GraphicsController {
         intProperties.addAll(Arrays.asList(new IntegerProperty[]{xProperty(), yProperty(), aProperty(), sProperty()}));
     }
 
-    protected abstract void setComponentProperties();
+    protected abstract void setComponentProperties() throws IOException;
 
 
     //Если где-нибудь в потомках update переопределен, и нет обращения super.update - обновление вида ломается.

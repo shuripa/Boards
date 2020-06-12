@@ -7,16 +7,16 @@ import java.io.IOException;
 
 public class BoardController extends LeyoutComponentController {
 
-    public BoardController () throws IOException {
+    public BoardController() throws IOException {
         setView(new BoardView(this));
     }
 
-    public BoardController (Board board) throws IOException {
+    public BoardController(Board board) throws IOException {
         super(board);
         setView(new BoardView(this));
     }
 
-    public BoardController (Board board, LeyoutCompositController parent) throws IOException {
+    public BoardController(Board board, LeyoutCompositController parent) throws IOException {
         super(board);
         setParent(parent);
         setView(new BoardView(this));

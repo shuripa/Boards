@@ -4,6 +4,7 @@ import stock.Stock;
 
 import java.util.ArrayList;
 
+@Deprecated
 public class CanbansStock extends LeyoutComponent{
 
     private Stock stock;

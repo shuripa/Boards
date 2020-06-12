@@ -12,10 +12,10 @@ import sets.SetWorkPlesedControllers;
 
 import java.io.IOException;
 
-public class EmployerCardController extends PaneComponentController
+public class EmployerCardElement extends PaneComponentElement
 {
 
-    public EmployerCardController(Employee component){
+    public EmployerCardElement(Employee component){
         super(component);
         setView(new EmployerCardView(this));
     }
@@ -77,7 +77,7 @@ public class EmployerCardController extends PaneComponentController
 //            }
 //            menu.showConteiner(140);
 
-            LoginMenuController loginMenu = new LoginMenuController(this, (Employee)component());
+            LoginMenuElement loginMenu = new LoginMenuElement(this, (Employee)component());
 
         });
     }

@@ -8,6 +8,7 @@ public class Store {            //достаток, клажа, припас, с
     String material;
     Double count;
     //TODO: Запас должен содержать набор от 1 до 4... заказов. Продолжить мысль позже.
+    //    Заказ должен быть очередью
     ArrayList<Order> orders;
 
     public Store(String material, Double count){
@@ -26,5 +27,9 @@ public class Store {            //достаток, клажа, припас, с
     @Override
     public String toString() {
         return "" + material + " " + count;
+    }
+
+    public void degCount() {
+        count--;
     }
 }

@@ -1,9 +1,10 @@
 package graphics.leyout.controllers;
 
-import graphics.GraphicsController;
+import graphics.GraphicsElement;
 import graphics.leyout.components.CompositBoard;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.WorkPlacedComposit;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import graphics.leyout.views.CompositBoardView;
 import graphics.leyout.views.LeyoutComponentView;
 import inout.CompositBuilder;
@@ -103,8 +104,8 @@ public class CompositBoardController extends LeyoutWorkPlacedController {
 //        Слушатели компонента пока ограничиваются слушателеями лейаута. Если появятся другие слушатели, нужно будет
 //        сделать общий интерфейс, заменить в LeyoutCompontnt клас массива observers и тут тип переменной lcc на тип
 //        сoзданного общего интерфейса.
-        for (GraphicsController lcc : getComponentLeafs(leafInd).getObservers()) {
-            if (lcc.getClass().getName().equals(GraphicsController.class.getName())) {
+        for (GraphicsElement lcc : getComponentLeafs(leafInd).getObservers()) {
+            if (lcc.getClass().getName().equals(GraphicsElement.class.getName())) {
                 lcv.add(((LeyoutComponentController)lcc).view());
             }
         }

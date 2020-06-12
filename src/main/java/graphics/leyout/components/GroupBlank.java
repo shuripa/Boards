@@ -1,6 +1,6 @@
 package graphics.leyout.components;
 
-import graphics.leyout.controllers.WorkPlaceController;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import graphics.leyout.views.*;
 import javafx.scene.Group;
 import graphics.cards.Infoable;

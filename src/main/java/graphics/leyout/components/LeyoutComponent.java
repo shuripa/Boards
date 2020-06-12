@@ -1,6 +1,6 @@
 package graphics.leyout.components;
 
-import graphics.GraphicsController;
+import graphics.GraphicsElement;
 import graphics.leyout.controllers.LeyoutCompositController;
 import model.Condition;
 
@@ -11,7 +11,7 @@ public abstract class LeyoutComponent {
 
 //    TODO: оставлен для совместимости - удалить
     private ArrayList<LeyoutComponent> leafs;
-    private ArrayList<GraphicsController> controllerObservers;
+    private ArrayList<GraphicsElement> controllerObservers;
     private ArrayList<LeyoutComponent> componentObservers;
     private ArrayList<LeyoutCompositController> recreateControllers;
     private LeyoutComponent parent;
@@ -75,11 +75,11 @@ public abstract class LeyoutComponent {
 //        this.getChildren().add(node);
 //    }
 
-    public void addControllerObserver(GraphicsController observer){
+    public void addControllerObserver(GraphicsElement observer){
         this.controllerObservers.add(observer);
     }
 
-    public void delControllerObsetver(GraphicsController observer){
+    public void delControllerObsetver(GraphicsElement observer){
         this.controllerObservers.remove(observer);
     }
 
@@ -91,7 +91,7 @@ public abstract class LeyoutComponent {
         this.componentObservers.remove(observer);
     }
 
-    public ArrayList<GraphicsController> getObservers () {
+    public ArrayList<GraphicsElement> getObservers () {
         return controllerObservers;
     }
 
@@ -140,7 +140,7 @@ public abstract class LeyoutComponent {
         for (LeyoutComponent lc:componentObservers) {
             lc.update();
         }
-        for (GraphicsController gc: controllerObservers) {
+        for (GraphicsElement gc: controllerObservers) {
             gc.update();
         }
     }
@@ -160,4 +160,6 @@ public abstract class LeyoutComponent {
 
     @Override
     public abstract String toString();
+
+
 }

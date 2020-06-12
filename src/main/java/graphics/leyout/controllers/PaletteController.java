@@ -5,7 +5,7 @@ import graphics.leyout.views.PaletteView;
 
 import java.io.IOException;
 
-public class PaletteController extends LeyoutComponentController{
+public class PaletteController extends LeyoutComponentController {
 
     public PaletteController(Palette palette) throws IOException {
         super(palette);

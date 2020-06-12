@@ -3,6 +3,7 @@ package graphics.leyout.controllers;
 import graphics.leyout.components.CompositPushcart;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.WorkPlacedComposit;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import graphics.leyout.views.CompositPushcartView;
 import inout.CompositBuilder;
 

@@ -1,9 +1,9 @@
 package graphics.cards.views;
 
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.PaneComponentElement;
 
 public class MenuConteinerView extends PaneComponentView {
-    public MenuConteinerView(PaneComponentController controller) {
+    public MenuConteinerView(PaneComponentElement controller) {
         super(controller);
     }
 

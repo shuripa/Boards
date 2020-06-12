@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import panes.PropertyPane;
 import panes.RightPanel;
 import sets.SetEmployees;
+import sets.SetInstructions;
 
 public class Layout extends Region {
 
@@ -29,6 +30,8 @@ public class Layout extends Region {
     }
 
     public void show() {
+        SetInstructions instructions = SetInstructions.getInstance();
+//        instructions.print();
 
         SetEmployees employes = SetEmployees.getInstance();
 

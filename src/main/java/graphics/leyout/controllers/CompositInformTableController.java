@@ -2,6 +2,7 @@ package graphics.leyout.controllers;
 
 import graphics.leyout.components.CompositInformTable;
 import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import graphics.leyout.views.CompositInformTableView;
 import inout.CompositBuilder;
 

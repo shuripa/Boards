@@ -1,7 +1,7 @@
 package graphics.leyout.components;
 
 
-import graphics.leyout.controllers.WorkPlaceController;
+import graphics.leyout.controllers.component.WorkPlaceController;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Bounds;

@@ -2,7 +2,7 @@ package graphics.leyout.views;
 
 import graphics.leyout.controllers.CompositInformTableController;
 import graphics.leyout.controllers.LeyoutWorkPlacedController;
-import graphics.leyout.controllers.WorkPlaceController;
+import graphics.leyout.controllers.component.WorkPlaceController;
 
 public class CompositInformTableView extends LeyoutWorkPlacedView {
     LeyoutComponentView workPlaceView;

@@ -1,10 +1,10 @@
 package graphics;
 
-import graphics.leyout.components.CompositBoard;
-import graphics.leyout.components.CompositMao;
-import graphics.leyout.components.LeyoutComponent;
+import graphics.leyout.components.*;
 import inout.CompositBuilder;
 import sets.MAOSystem;
+import sets.SetControl;
+import sets.SetInstructions;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class LayoutComponentLoader {
     MAOSystem maoSystem;
     LeyoutComponent component;
+    LeyoutComponent control;
 
     public LayoutComponentLoader(){
         Logger.getLogger("MainApp").log(Level.CONFIG, "Load compontns");
@@ -21,6 +22,7 @@ public class LayoutComponentLoader {
 
 //        Connection connection = new Connection();
 //        connection.connect();
+        loadTestCompositTool();
         loadTestMaoSystem();
         loadTestCompositBoards();
         loadTestCompositTestTable();
@@ -29,6 +31,7 @@ public class LayoutComponentLoader {
         loadTestCompositManagerTable();
         loadTestCompositInformTable();
         loadTestCanbanBoard();
+
 //        TODO: Другие компоненты: Blank, Welding, Twisting, Melding, WaterTest
 //    private void Blanks() {
 //                Заготовки
@@ -39,6 +42,61 @@ public class LayoutComponentLoader {
 
 //        TODO: Загрузка материалов на сетки
 //        TODO: Загрузка заказов
+    }
+
+    private void loadTestCompositTool() {
+        SetInstructions instructions = SetInstructions.getInstance();
+        SetControl setControl = SetControl.getInstance();
+
+        component = new CompositBuilder(2023, "KM-000Cb", "CompositTool")
+                .compositToolView("CompositToolBoardView")
+                .materialStoreView("ToolGridView")
+                .productStoreView("ToolProductStoreView")
+                .toolView("ToolBoardView")
+                .workPlaceView("ToolWorkPlaceView")
+                .xyas(1150, 50, 0, 60).build();
+
+        ((CompositTool)component).setInstruction(instructions.get("MFC184700000C", 110));
+        ((CompositTool)component).setInstruction(instructions.get("MFC184700000D", 110));
+        ((CompositTool)component).setInstruction(instructions.get("MFC1847000A0C", 110));
+
+        control = new CompositBuilder(2026, "UO_MB23", "CompositControl")
+                .compositToolView("CompositControlConcreteView")
+                .toolView("MaoControlView")
+                .xyas(1135, 100, 35, 0).build();
+//        maoSystem.addCompositMao((CompositMao) component);
+        setControl.addCompositControl((CompositControl) control);
+        ((CompositControl) control).addTool((CompositTool) component);
+
+        component = new CompositBuilder(2024, "t-1t", "CompositTool")
+                .compositToolView("CompositToolTestView")
+                .materialStoreView("ToolTestCanbanView")
+                .productStoreView("ToolPaletteView")
+                .toolView("ToolTestTableView")
+                .workPlaceView("ToolWorkPlaceView")
+                .xyas(1150, 150, 0, 60).build();
+
+
+
+        component = new CompositBuilder(2025, "t-2t", "CompositRelocation")
+                .compositToolView("CompositToolPushcartView")
+                .toolView("ToolPushcartView")
+                .workPlaceView("ToolWorkPlaceView")
+                .xyas(1150, 250, 0, 60).build();
+
+        component = new CompositBuilder(2027, "UO_MB24", "CompositControl")
+                .compositToolView("CompositControlConcreteView")
+                .toolView("InformControlView")
+                .xyas(1150, 350, 0, 0).build();
+
+        component = new CompositBuilder(3010, "CC-3001", "CompositToolConvier")
+                .compositToolView("CompositToolConvierView")
+                .toolView("ToolConvierView")
+                .leafs(8).xyas(1150,430,0,60).build();
+
+        component = new CompositBuilder(5001, "MT-5001","CompositLeaderTable")
+                .xyas(900,430,0,0).side("UP_RIGHT").profession("MASTER").build();
+
     }
 
     private void loadTestMaoSystem() {

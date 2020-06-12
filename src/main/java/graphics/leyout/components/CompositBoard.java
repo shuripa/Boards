@@ -16,7 +16,7 @@ public class CompositBoard extends WorkPlacedComposit {
 //    int step;
     ArrayList<Order> orders;
 
-    public CompositBoard (){
+    public CompositBoard(){
         super();
         orders = new ArrayList<>();
 //        step =110;

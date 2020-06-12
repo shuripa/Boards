@@ -8,7 +8,7 @@ import sets.SetCompositControllers;
 
 import java.io.IOException;
 
-public class IndexButtonController extends LeyoutComponentController{
+public class IndexButtonController extends LeyoutComponentController {
 
     Hint hint;
 

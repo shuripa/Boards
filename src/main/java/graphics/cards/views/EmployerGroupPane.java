@@ -1,7 +1,7 @@
 package graphics.cards.views;
 
-import graphics.cards.controllers.EmployerCardController;
-import graphics.cards.controllers.PaneComponentController;
+import graphics.cards.controllers.EmployerCardElement;
+import graphics.cards.controllers.PaneComponentElement;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
@@ -17,7 +17,7 @@ public class EmployerGroupPane extends TitledPane {                             
         vBox.setSpacing(2.0);
 
         for (Employee e: ems.getEmployees()) {                              // Создание набора карточек
-            PaneComponentController emc = new EmployerCardController(e);
+            PaneComponentElement emc = new EmployerCardElement(e);
             vBox.getChildren().add(emc.view());
         }
 

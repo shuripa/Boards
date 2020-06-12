@@ -1,6 +1,6 @@
 package graphics.cards.controllers;
 
-import graphics.GraphicsController;
+import graphics.GraphicsElement;
 import graphics.cards.views.ComponentMenuCardView;
 import graphics.leyout.components.LeyoutComponent;
 import graphics.leyout.components.WorkPlacedComposit;
@@ -10,9 +10,9 @@ import sets.SetCompositControllers;
 
 import java.io.IOException;
 
-public class CompositMenuCardController extends PaneComponentController{
+public class CompositMenuCardElement extends PaneComponentElement {
 
-    public CompositMenuCardController(LeyoutComponent component, LeyoutComponent sender) {
+    public CompositMenuCardElement(LeyoutComponent component, LeyoutComponent sender) {
         super(component, sender);
         setView(new ComponentMenuCardView(this));
     }
@@ -38,7 +38,7 @@ public class CompositMenuCardController extends PaneComponentController{
     }
 
     private void boardSelect() {
-        for (GraphicsController lcc: component().getObservers()) {
+        for (GraphicsElement lcc: component().getObservers()) {
             lcc.select();
         }
     }

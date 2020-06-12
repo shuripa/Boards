@@ -241,31 +241,31 @@ public class LayoutComponentLoader {
 
     private void loadTestCanbanBoard() {
         //TODO: К каой группе и где именно присоединяются канбаны
-        component = new CompositBuilder(7001, "01O","CanbanBoard")
+        component = new CompositBuilder(7001, "01O","KanbanBoard")
                 .xyas(50, 550, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7002, "02O","CanbanBoard")
+        component = new CompositBuilder(7002, "02O","KanbanBoard")
                 .xyas(50, 610, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7003, "16D", "CanbanBoard")
+        component = new CompositBuilder(7003, "16D", "KanbanBoard")
                 .xyas(230, 550, 0, 0).leafs(4).cards(4).build();
 
-        component = new CompositBuilder(7004, "13O", "CanbanBoard")
+        component = new CompositBuilder(7004, "13O", "KanbanBoard")
                 .xyas(230, 610, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7005, "14O", "CanbanBoard")
+        component = new CompositBuilder(7005, "14O", "KanbanBoard")
                 .xyas(410, 550, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7006, "15O","CanbanBoard")
+        component = new CompositBuilder(7006, "15O","KanbanBoard")
                 .xyas(410, 610, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7007, "16O", "CanbanBoard")
+        component = new CompositBuilder(7007, "16O", "KanbanBoard")
                 .xyas(590, 550, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7008, "17O", "CanbanBoard")
+        component = new CompositBuilder(7008, "17O", "KanbanBoard")
                 .xyas(590, 610, 0, 0).leafs(7).cards(4).build();
 
-        component = new CompositBuilder(7009, "A", "CanbanBoard")
+        component = new CompositBuilder(7009, "A", "KanbanBoard")
                 .xyas(50, 670, 0, 0).leafs(35).cards(8).build();
 
     }

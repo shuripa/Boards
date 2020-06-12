@@ -1,7 +1,7 @@
 package graphics.leyout.components;
 
 import model.Material;
-import stock.Store;
+import sets.stock.Store;
 
 import java.util.ArrayList;
 

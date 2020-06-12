@@ -1,7 +1,7 @@
 package graphics.leyout.controllers;
 
 import inout.StockLoader;
-import stock.Stock;
+import sets.stock.Stock;
 
 import java.io.IOException;
 import java.util.HashMap;

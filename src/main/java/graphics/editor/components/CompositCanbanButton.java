@@ -1,7 +1,7 @@
 package graphics.editor.components;
 
-import graphics.leyout.components.CanbanBoard;
-import graphics.leyout.controllers.CanbanBoardController;
+import graphics.leyout.components.KanbanBoard;
+import graphics.leyout.controllers.KanbanBoardController;
 import graphics.leyout.controllers.LeyoutComponentController;
 
 import java.io.IOException;
@@ -14,8 +14,8 @@ public class CompositCanbanButton extends EditorButton{
 
     @Override
     public LeyoutComponentController createComponent() throws IOException {
-        CanbanBoard component = new CanbanBoard(10, 6);
-        CanbanBoardController controller = new CanbanBoardController(component);
+        KanbanBoard component = new KanbanBoard(10, 6);
+        KanbanBoardController controller = new KanbanBoardController(component);
         return controller;
     }
 }

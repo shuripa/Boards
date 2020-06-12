@@ -2,9 +2,9 @@ package inout;
 
 import graphics.leyout.controllers.MaterialController;
 import model.Material;
-import stock.Stock;
+import sets.stock.Stock;
 import graphics.leyout.controllers.StockController;
-import stock.Store;
+import sets.stock.Store;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

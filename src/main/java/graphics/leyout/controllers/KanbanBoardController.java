@@ -34,7 +34,9 @@ public class KanbanBoardController extends LeyoutCompositController {
         for (int i = 0; i < n; i++) {
             KanbanSection kanbanSection = ((KanbanBoard)component()).getLeaf(i);
             kanbanSectionControllers[i] = new KanbanSectionController(kanbanSection);
-            kanbanSectionControllers[i].setXY( 3+(kanbanSection.getMaxLeafCountOrder()*4+15)*i, 2);
+            int max = Math.max(kanbanSection.getMaxLeafCountOrder(), 2);
+//            System.out.println( "" + max + " : " + kanbanSection.getMaxLeafCountOrder());
+            kanbanSectionControllers[i].setXY( 3+(max*4+15)*i, 2);
         }
 
         setView(new KanbanBoardView(this));
@@ -42,7 +44,7 @@ public class KanbanBoardController extends LeyoutCompositController {
     }
 
     public int countLeaves(){
-        return ((KanbanBoard)component()).getCountLeaves();
+        return ((KanbanBoard)component()).getCntSections();
     }
 
     public String getTitle(){
@@ -61,11 +63,11 @@ public class KanbanBoardController extends LeyoutCompositController {
     }
 
     @Override
-    public void update(String propertyName) throws IOException {
+    public void update(String propertyName) {
         if ((propertyName == "Count leaves") || (propertyName == "Count cards") ) {
             if (((KanbanBoard)component()).cntSectionsProperty().get() !=0 && ((KanbanBoard)component()).cntLeafsProperty().get() !=0){
             delView(view());
-            ((KanbanBoard)component()).update();
+            component().update();
             view().relocate(X(), Y());
             }
         }

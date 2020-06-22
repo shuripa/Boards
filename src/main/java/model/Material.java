@@ -1,14 +1,18 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Material {
-    Integer id;
+    private static final Logger logger = Logger.getLogger("MainApp");
+    Integer id;                         //id нужен для модулей. возможно понадобиться еще что нибудь, время создания
+                                        //информация о тестах. МастерДата со всей историей. Примечания.
     String title;
-    ArrayList <String> knotsEnt;
-    ArrayList <String> knotsExt;
+    ArrayList <String> knotsEnt;        //TODO: Это узлы для связи. Сюда прописывается позиция на канбане.
+    ArrayList <String> knotsExt;        //TODO: Сюда прописывается сетка.
 
     public Material(String title){
+//        logger.log(Level.CONFIG, "Material constructor: " + title);
         knotsEnt = new ArrayList();
         knotsExt = new ArrayList();
         this.title = title;
@@ -18,6 +22,10 @@ public class Material {
     public Material(String title, int id){
         this.title = title;
         this.id = id;
+    }
+
+    public Integer getId(){
+        return id;
     }
 
     public String getTitle() {
@@ -44,4 +52,5 @@ public class Material {
     public String toString() {
         return title;
     }
+
 }

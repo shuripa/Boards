@@ -6,9 +6,11 @@ import graphics.leyout.controllers.LeyoutComponentController;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompositBuilder {
-
+    private static final Logger logger = Logger.getLogger("MainApp");
     private int id;
     private String type;
     private String title;
@@ -16,8 +18,8 @@ public class CompositBuilder {
     private int y;
     private int a;
     private int s;
+    private int sections;
     private int leafs;
-    private int cards;
     private int employer;
     private String profession;
     private String side;
@@ -42,8 +44,8 @@ public class CompositBuilder {
         y = 100;
         a = 0;
         s = 60;
+        sections = 0;
         leafs = 0;
-        cards = 0;
         employer = 0;
         profession = "";        // Заменить объектом
         side = "";              // Заменить объектом
@@ -62,13 +64,13 @@ public class CompositBuilder {
         return this;
     }
 
-    public CompositBuilder leafs(int val){
-        leafs = val;
+    public CompositBuilder sections(int val){
+        sections = val;
         return this;
     }
 
-    public CompositBuilder cards(int val) {
-        cards = val;
+    public CompositBuilder leafs(int val) {
+        leafs = val;
         return this;
     }
 
@@ -166,12 +168,12 @@ public class CompositBuilder {
         return s;
     }
 
-    public int getLeafs() {
-        return leafs;
+    public int getSections() {
+        return sections;
     }
 
-    public int getCards() {
-        return cards;
+    public int getLeafs() {
+        return leafs;
     }
 
     public int getEmployeeId() {
@@ -247,16 +249,21 @@ public class CompositBuilder {
                     component = (LeyoutComponent) componentConstructor.newInstance(this);
                     controller = (LeyoutComponentController)controllerConstructor.newInstance(component, this);
                 } catch (InstantiationException e) {
+                    logger.log(Level.WARNING, "Ошибка билдера:", e);
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
+                    logger.log(Level.WARNING, "Ошибка билдера:", e);
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
+                    logger.log(Level.WARNING, "Ошибка билдера:", e);
                     e.printStackTrace();
                 }
             } catch (NoSuchMethodException e) {
+                logger.log(Level.WARNING, "Ошибка билдера:", e);
                 e.printStackTrace();
             }
         } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, "Ошибка билдера:", e);
             e.printStackTrace();
         }
 

@@ -22,27 +22,27 @@ public class CompositConvier extends LeyoutComponent{
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         cntPos.set(6);
-        create();
+        recreateControllers();
     }
 
     public CompositConvier (int cntPos) throws IOException {
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         this.cntPos.set(cntPos);
-        create();
+        recreateControllers();
     }
 
     public CompositConvier(CompositBuilder builder) throws IOException{
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         this.title.set(builder.getTitle());
-        this.cntPos.set(builder.getLeafs());
+        this.cntPos.set(builder.getSections());
 
-        create();
+        recreateControllers();
     }
 
     @Override
-    protected void create() throws IOException {
+    protected void recreateControllers() throws IOException {
         convier = new Convier(cntPos.get());
         addLeaf(convier);
         boards = new CompositBoard[cntPos.get()];
@@ -53,7 +53,7 @@ public class CompositConvier extends LeyoutComponent{
             boards[i] = b;
             addLeaf(b);
         }
-        super.create();
+        super.recreateControllers();
     }
 
     public void destroy(){
@@ -72,7 +72,7 @@ public class CompositConvier extends LeyoutComponent{
         }else {
             destroy();
             try {
-                create();
+                recreateControllers();
             } catch (IOException e) {
                 e.printStackTrace();
             }

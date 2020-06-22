@@ -22,9 +22,9 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         setLogger();
-        logger.log(Level.CONFIG, "Start project");
+        logger.log(Level.FINE, "Start project");
         launch(args);
-        logger.log(Level.CONFIG, "End project");
+        logger.log(Level.FINE, "End project");
     }
 
     private static void setLogger() {
@@ -32,13 +32,13 @@ public class MainApp extends Application {
         && System.getProperty("java.util.logging.config.file") == null){
             try{
                 logger.setLevel(Level.FINE);
-                final int LOG_ROTATION_COUNT = 3;
+                final int LOG_ROTATION_COUNT = 2;
                 FileHandler txtLog = new FileHandler("logging/MainApp.log", 0, LOG_ROTATION_COUNT);
                 Formatter txtFormatter = new LogFormatter();
                 txtLog.setFormatter(txtFormatter);
                 logger.addHandler(txtLog);
             } catch (IOException e) {
-                logger.log(Level.CONFIG, "Can't create log file MainApp.log", e);
+                logger.log(Level.FINE, "Can't create log file MainApp.log", e);
             }
         }
     }
@@ -46,12 +46,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         TilePane startMenu = startMenu(primaryStage);
-        logger.log(Level.CONFIG, "Creating menuScene");
+        logger.log(Level.FINE, "Creating menuScene");
         Scene scene1 = new Scene(startMenu, 800, 600);
         scene1.getStylesheets().add(MainApp.class.getResource("style.css").toExternalForm());
         primaryStage.setScene(scene1);
         primaryStage.setTitle("MainApp");
-        logger.log(Level.CONFIG, "Showing stage");
+        logger.log(Level.FINE, "Showing stage");
         primaryStage.show();
     }
 

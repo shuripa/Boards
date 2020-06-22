@@ -1,15 +1,11 @@
 package inout;
 
-import graphics.leyout.controllers.MaterialController;
 import model.Material;
+import sets.stock.MaterialController;
 import sets.stock.Stock;
-import graphics.leyout.controllers.StockController;
-import sets.stock.Store;
+import sets.stock.StockSet;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * <p>{@code LSLANR[0]} - склад
@@ -30,20 +26,23 @@ import java.io.InputStreamReader;
 
 public class StockLoader {
     private static StockLoader instance;
-    final String file = "q14xpps.csv";
+    final String file = "14.Lagerbestand.csv";
+
     String LSLANR, LSLORT, LSTENR, TEBEZ1, TEBEZ2, TEBEZ;
 
     Integer TEPDIM, TEWKSF;
     Double LSLGBE, TEINPR, WERT;
-    StockController stockController;
+    StockSet stockSet;
     Stock stock;
-    MaterialController matCon;
+    MaterialController matContr;
     Material mat;
+    CSVReader reader;
+    String[] tokens;
 
     private StockLoader(){
         instance = this;
         try {
-            reader();
+            load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,11 +55,16 @@ public class StockLoader {
         return instance;
     }
 
-    public void reader()throws IOException {
-        BufferedReader inputf = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\" + file), "UTF-8"));
-        String line;
-        while ((line = inputf.readLine()) != null) {          //Цикл чтения строк их файла
-            String[] tokens = line.split(",");          //разделение на строки
+    public void load()throws IOException {
+        reader = new CSVReader("src\\main\\resources\\14.Lagerbestand.csv", ",");
+        if (reader.hasNext()) reader.next();
+//        BufferedReader inputf = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\14.Lagerbestand.csv"), "UTF-8"));
+//        String line;
+//        while ((line = inputf.readLine()) != null) {          //Цикл чтения строк их файла
+            for (;reader.hasNext();) {
+                tokens = reader.next();
+
+//            String[] tokens = line.split(",");          //разделение на строки
             LSLANR = tokens[0].substring(1,tokens[0].length()-1);
             LSLORT = tokens[1].substring(1,tokens[1].length()-1);
             LSTENR = tokens[2].substring(1,tokens[2].length()-1);
@@ -74,13 +78,16 @@ public class StockLoader {
             TEBEZ2 = tokens1[3];
 //                System.out.println(LSLANR + "; " + LSLORT+ "; " + LSTENR + "; " + LSLGBE + "; " + TEBEZ1 + "; " + TEBEZ2 + "; " + tokens.length);
 
-            stock = StockController.getInstance().getStock(LSLANR);
-//            stock.setStore(LSTENR, LSLORT, LSLGBE);
-            Store store = stock.setStore(LSTENR, LSLORT, LSLGBE);
-            matCon = MaterialController.getInstance();
-            mat = matCon.getMaterial(LSTENR);
-            mat.setKnotsExt(LSLORT);
+            stock = StockSet.getInstance().getStock(LSLANR);
+            //TODO: справедливо если весь материал поместить на канбан.
+            //TODO: Хотя речь идет не о канбане а о складе, в таком случае зачем ему нужна позиция на канбане.
+            stock.setStore(LSTENR, LSLORT, LSLGBE);     //(тайленомер, позиція на канбані, количество)
+
+            //Создание связей
+            matContr = MaterialController.getInstance();    //Получить материалконтроллер
+            mat = matContr.getMaterial(LSTENR);         //Получить материал с тайленомером
+            mat.setKnotsExt(LSLORT);                    //Вписать позицию на канбане для создания линий-связей между канбаном и сеткой.
         }
-        inputf.close();
+//        inputf.close();
     }
 }

@@ -9,13 +9,14 @@ public class InstructionLoader{
     Instruction instruction;
     String[] tokens;
     CSVReader reader;
+    SetInstructions setInstruction;
 
     public InstructionLoader(){
     }
 
     public void load(){
-        SetInstructions setInstruction = SetInstructions.getInstance();
-        reader = new CSVReader("src\\main\\resources\\B7CLOUT002.csv");
+        setInstruction = SetInstructions.getInstance();
+        reader = new CSVReader("src\\main\\resources\\B7CLOUT002.csv", ";");
         if (reader.hasNext()) reader.next();
         for (;reader.hasNext();) {
             tokens = reader.next();

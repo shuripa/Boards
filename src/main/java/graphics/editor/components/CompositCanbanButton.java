@@ -14,7 +14,7 @@ public class CompositCanbanButton extends EditorButton{
 
     @Override
     public LeyoutComponentController createComponent() throws IOException {
-        KanbanBoard component = new KanbanBoard(10, 6);
+        KanbanBoard component = new KanbanBoard();
         KanbanBoardController controller = new KanbanBoardController(component);
         return controller;
     }

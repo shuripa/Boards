@@ -1,6 +1,10 @@
 package sets.stock;
 
+import model.Material;
+
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * <b>Склад - Набір позиций<b/>
@@ -18,15 +22,22 @@ import java.util.HashMap;
  */
 
 
+
 public class Stock {
     //TODO: Пока не понятно когда это должно заполняться.
+    @Deprecated
     private Store store;
+    @Deprecated
+    private HashMap<String, Store> stores = new HashMap<>();
+    private HashMap<Material,Integer> stock;
+    private HashMap<String, Store> newStores = new HashMap<>();
+
     private String descript1;
     private String descript2;
-    //TODO: String заменить на CompositUnit
     Transactions actions;
-    private HashMap<String, Store> stores = new HashMap<>();
+    //TODO: String заменить на CompositUnit
     private HashMap<String, Transactions> transactions = new HashMap<>();
+    private static final Logger logger = Logger.getLogger("MainApp");
 
     //Это хорошо для какого-то поиска, но для канбана например нужен другой механизм доступа
     public Double getUnitCount (String unit){
@@ -84,5 +95,14 @@ public class Stock {
         if (stores.containsKey(titleStore)){
             return stores.get(titleStore);
         } else return null;
+    }
+
+    public Store getStore(LeafAddress address) {
+        if (stores.containsKey(address.toString())){
+            return stores.get(address.toString());
+        } else {
+            logger.log(Level.FINE, "Адресс отсутствует store = null : " + address.toString());
+            return null;
+        }
     }
 }

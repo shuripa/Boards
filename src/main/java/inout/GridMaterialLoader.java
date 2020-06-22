@@ -1,6 +1,6 @@
 package inout;
 
-import graphics.leyout.controllers.MaterialController;
+import sets.stock.MaterialController;
 import graphics.leyout.components.GroupBoard;
 import sets.BoardsController;
 import model.Material;
@@ -17,6 +17,13 @@ import java.util.List;
  * example record: VT 15; 3FC1307650172
  */
 
+/**
+ * GridMaterialLoader
+ * 1) загружает информацию для сетки о том какой материал должен быть на ней размещен.
+ * 2) создает связи в материале укзаывая позиции, которые служат изначальными узлами.
+ * Введение инстркуций для инструмента перечень размещенного материала должен браться оттуда.
+ */
+@Deprecated
 public class GridMaterialLoader {
 
     HashMap<String, ArrayList<String>> arrWkPcGrMat;                    //Название р/м, набор материалов.

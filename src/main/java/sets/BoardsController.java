@@ -20,7 +20,7 @@ import java.util.HashMap;
 // ?            - условия
 // ?            - точки входа / выхода
 // ind          - индикатор
-
+@Deprecated
 public class BoardsController {
     private static BoardsController instance;
 

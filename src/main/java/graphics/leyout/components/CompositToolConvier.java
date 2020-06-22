@@ -22,27 +22,27 @@ public class CompositToolConvier extends WorkPlacedComposit{
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         cntPos.set(6);
-        create();
+        recreateControllers();
     }
 
     public CompositToolConvier(int cntPos) throws IOException {
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         this.cntPos.set(cntPos);
-        create();
+        recreateControllers();
     }
 
     public CompositToolConvier(CompositBuilder builder) throws IOException{
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE);
         this.cntPos = new SimpleIntegerProperty(this, TITLE_PROP_COUNTPOS);
         this.title.set(builder.getTitle());
-        this.cntPos.set(builder.getLeafs());
+        this.cntPos.set(builder.getSections());
         this.id = builder.getId();
-        create();
+        recreateControllers();
     }
 
     @Override
-    protected void create() throws IOException {
+    protected void recreateControllers() throws IOException {
         convier = new Convier(cntPos.get(), ""+ getID(), getTitle());
         addLeaf(convier);
         boards = new CompositBoard[cntPos.get()];
@@ -53,7 +53,7 @@ public class CompositToolConvier extends WorkPlacedComposit{
             boards[i] = b;
             addLeaf(b);
         }
-        super.create();
+        super.recreateControllers();
     }
 
     private String getID() {
@@ -76,7 +76,7 @@ public class CompositToolConvier extends WorkPlacedComposit{
         }else {
             destroy();
             try {
-                create();
+                recreateControllers();
             } catch (IOException e) {
                 e.printStackTrace();
             }

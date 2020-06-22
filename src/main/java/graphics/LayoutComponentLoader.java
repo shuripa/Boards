@@ -92,7 +92,7 @@ public class LayoutComponentLoader {
         component = new CompositBuilder(3010, "CC-3001", "CompositToolConvier")
                 .compositToolView("CompositToolConvierView")
                 .toolView("ToolConvierView")
-                .leafs(8).xyas(1150,430,0,60).build();
+                .sections(8).xyas(1150,430,0,60).build();
 
         component = new CompositBuilder(5001, "MT-5001","CompositLeaderTable")
                 .xyas(900,430,0,0).side("UP_RIGHT").profession("MASTER").build();
@@ -202,13 +202,13 @@ public class LayoutComponentLoader {
 
     private void loadTestCompositConvier() {
         component = new CompositBuilder(3001, "CC-3001", "CompositConvier")
-                .leafs(8).xyas(455,10,0,60).build();
+                .sections(8).xyas(455,10,0,60).build();
 
         component = new CompositBuilder(3002, "CC-3002", "CompositConvier")
-                .leafs(6).xyas(160,100,-90,90).build();
+                .sections(6).xyas(160,100,-90,90).build();
 
         component = new CompositBuilder(3003, "CC-3003", "CompositConvier")
-                .leafs(6).xyas(700,195,90,60).build();
+                .sections(6).xyas(700,195,90,60).build();
     }
 
     private void loadTestCompositManagerTable() {
@@ -242,31 +242,72 @@ public class LayoutComponentLoader {
     private void loadTestCanbanBoard() {
         //TODO: К каой группе и где именно присоединяются канбаны
         component = new CompositBuilder(7001, "01O","KanbanBoard")
-                .xyas(50, 550, 0, 0).leafs(7).cards(4).build();
+                .xyas(50, 650, 0, 0).sections(7).leafs(4).build();
 
-        component = new CompositBuilder(7002, "02O","KanbanBoard")
-                .xyas(50, 610, 0, 0).leafs(7).cards(4).build();
+        component = new CompositBuilder(7003, "02O", "KanbanBoard")
+                .xyas(280, 650, 0, 0).sections(7).leafs(4).build();
 
-        component = new CompositBuilder(7003, "16D", "KanbanBoard")
-                .xyas(230, 550, 0, 0).leafs(4).cards(4).build();
+        component = new CompositBuilder(7005, "03O", "KanbanBoard")
+                .xyas(510, 650, 0, 0).sections(7).leafs(4).build();
 
-        component = new CompositBuilder(7004, "13O", "KanbanBoard")
-                .xyas(230, 610, 0, 0).leafs(7).cards(4).build();
+        component = new CompositBuilder(7007, "04O", "KanbanBoard")
+                .xyas(740, 650, 0, 0).sections(7).leafs(4).build();
 
-        component = new CompositBuilder(7005, "14O", "KanbanBoard")
-                .xyas(410, 550, 0, 0).leafs(7).cards(4).build();
+        component = new CompositBuilder(7002, "05O","KanbanBoard")
+                .xyas(50, 710, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7004, "06O", "KanbanBoard")
+                .xyas(280, 710, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7006, "07O","KanbanBoard")
+                .xyas(510, 710, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7008, "08O", "KanbanBoard")
+                .xyas(740, 710, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7002, "09O","KanbanBoard")
+                .xyas(50, 770, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7004, "10O", "KanbanBoard")
+                .xyas(280, 770, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7006, "11O","KanbanBoard")
+                .xyas(510, 770, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7008, "12O", "KanbanBoard")
+                .xyas(740, 770, 0, 0).sections(7).leafs(4).build();
+
+
+        component = new CompositBuilder(7002, "13O","KanbanBoard")
+                .xyas(50, 830, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7004, "14O", "KanbanBoard")
+                .xyas(280, 830, 0, 0).sections(7).leafs(4).build();
 
         component = new CompositBuilder(7006, "15O","KanbanBoard")
-                .xyas(410, 610, 0, 0).leafs(7).cards(4).build();
+                .xyas(510, 830, 0, 0).sections(7).leafs(4).build();
 
-        component = new CompositBuilder(7007, "16O", "KanbanBoard")
-                .xyas(590, 550, 0, 0).leafs(7).cards(4).build();
+        component = new CompositBuilder(7008, "16O", "KanbanBoard")
+                .xyas(740, 830, 0, 0).sections(7).leafs(4).build();
 
-        component = new CompositBuilder(7008, "17O", "KanbanBoard")
-                .xyas(590, 610, 0, 0).leafs(7).cards(4).build();
+
+        component = new CompositBuilder(7002, "17O","KanbanBoard")
+                .xyas(50, 890, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7004, "18O", "KanbanBoard")
+                .xyas(280, 890, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7006, "19O","KanbanBoard")
+                .xyas(510, 890, 0, 0).sections(7).leafs(4).build();
+
+        component = new CompositBuilder(7008, "20O", "KanbanBoard")
+                .xyas(740, 890, 0, 0).sections(7).leafs(4).build();
+
 
         component = new CompositBuilder(7009, "A", "KanbanBoard")
-                .xyas(50, 670, 0, 0).leafs(35).cards(8).build();
+                .xyas(50, 950, 0, 0).sections(35).leafs(8).build();
 
+        component = new CompositBuilder(7008, "B", "KanbanBoard")
+                .xyas(900, 950, 0, 0).sections(31).leafs(8).build();
     }
 }

@@ -145,7 +145,7 @@ public abstract class LeyoutComponent {
         }
     }
 
-    protected void create() throws IOException {
+    protected void recreateControllers() throws IOException {
 //        После пересоздания компонента нужно также пересоздать контроллер
 //        recreateControllers - cпециальный массив для контроллера композита который умеет пересоздаваться.
 //        Запускает процедуру create() в контроллере

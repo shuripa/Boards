@@ -73,7 +73,7 @@ public class Connection {
             System.out.println(id + "  " + title + " " +  tp + " x: " + x + ", y: " + y + ", a: " +  a + ", s: " + s);
 
             builder = new CompositBuilder(id, title, tp)
-                    .xyas(x, y, a, s).leafs(l).parid(pid).cards(c).employer(eid).profession(prof)
+                    .xyas(x, y, a, s).sections(l).parid(pid).leafs(c).employer(eid).profession(prof)
                     .side(side).stepLevel(stepLvl).stepName(stepName).condition(condition);
             component = builder.build();
             builders.put(id, builder);

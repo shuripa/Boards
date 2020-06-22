@@ -36,7 +36,7 @@ public class SetEmployees implements Iterable<String> {
     }
 
     public static SetEmployees getInstance(){
-        Logger.getLogger("MainApp").log(Level.CONFIG, "Geting instance SetEmployees");
+        Logger.getLogger("MainApp").log(Level.FINE, "Geting instance SetEmployees");
         if (instance == null){
             new SetEmployees();
         }

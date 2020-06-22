@@ -11,25 +11,25 @@ public class KanbanSectionController extends LeyoutComponentController {
 
     public KanbanSectionController(KanbanSection kanbanSection) throws IOException {
         super(kanbanSection);
-        kanbanLeafControllers = new KanbanLeafController[countCards()];
-        for (int i = 0; i < countCards(); i++) {
-            KanbanLeaf kanbanLeaf = ((KanbanSection)component()).getCard(i);
+        kanbanLeafControllers = new KanbanLeafController[countLeafs()];
+        for (int i = 0; i < countLeafs(); i++) {
+            KanbanLeaf kanbanLeaf = ((KanbanSection)component()).getLeaf(i);
             kanbanLeafControllers[i] = new KanbanLeafController(kanbanLeaf);
-            kanbanLeafControllers[i].setXY(0, (countCards()-i-1)*10);
+            kanbanLeafControllers[i].setXY(0, (countLeafs()-i-1)*10);
         }
         setView(new KanbanSectionView(this));
     }
 
-    public int countCards(){
-        return ((KanbanSection)component()).getCountCard();
+    public int countLeafs(){
+        return ((KanbanSection)component()).getCountLeafs();
     }
 
-    public KanbanLeafController getCardController (int i){
+    public KanbanLeafController getLeafController(int i){
         return kanbanLeafControllers[i];
     }
 
     public int getMaxLeafCountOrder() {
-        return ((KanbanSection)component()).getMaxLeafCountOrder();
+        return Math.max(((KanbanSection)component()).getMaxLeafCountOrder(),2);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class KanbanSectionController extends LeyoutComponentController {
 
     @Override
     public void update() {
-        for (int i = 0; i < countCards(); i++) {
+        for (int i = 0; i < countLeafs(); i++) {
             kanbanLeafControllers[i].update();
         }
         super.update();
@@ -47,14 +47,14 @@ public class KanbanSectionController extends LeyoutComponentController {
 
     @Override
     public void select() {
-        for (int i = 0; i < countCards(); i++) {
+        for (int i = 0; i < countLeafs(); i++) {
             kanbanLeafControllers[i].select();
         }
     }
 
     @Override
     public void unselect(){
-        for (int i = 0; i < countCards(); i++) {
+        for (int i = 0; i < countLeafs(); i++) {
             kanbanLeafControllers[i].unselect();
         }
     }

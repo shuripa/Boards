@@ -23,17 +23,19 @@ public class KanbanSectionView extends LeyoutComponentView {
 //        Rectangle r = new Rectangle(0,0, countCards()*5 +2, 10);
 //        addActiveElement(r);
 
+        //Лыжа с максимальным заказом
         maxLeafCntOrd = ((KanbanSectionController)controller()).getMaxLeafCountOrder();
-        KanbanLeafController cardController;
+        KanbanLeafController leafController;
 
         for (int i = 0; i < countCards(); i++) {
-            cardController = ((KanbanSectionController)controller()).getCardController(i);
-            maxCntOrd = cardController.getMaxCountOrder();
+            leafController = ((KanbanSectionController)controller()).getLeafController(i);
+            //Количество заказов на лыже
+            maxCntOrd = leafController.getMaxCountOrder();
 //            cardNo = new Text (-2, 10*i+10, ""+ (countCards()-i));
 //            addText(cardNo);
-            hLine = new Line (0, 10*i, (maxCntOrd+maxLeafCntOrd)*2+3, 10*i);
-            addActiveElements(hLine);
-            this.getChildren().add(cardController.view());
+//            hLine = new Line (0, 10*i, (maxCntOrd+maxLeafCntOrd)*2+3, 10*i);
+//            addActiveElements(hLine);
+            this.getChildren().add(leafController.view());
         }
 
     }
@@ -44,6 +46,6 @@ public class KanbanSectionView extends LeyoutComponentView {
     }
 
     public int countCards(){
-        return ((KanbanSectionController)controller()).countCards();
+        return ((KanbanSectionController)controller()).countLeafs();
     }
 }

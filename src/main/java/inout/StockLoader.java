@@ -81,7 +81,8 @@ public class StockLoader {
             stock = StockSet.getInstance().getStock(LSLANR);
             //TODO: справедливо если весь материал поместить на канбан.
             //TODO: Хотя речь идет не о канбане а о складе, в таком случае зачем ему нужна позиция на канбане.
-            stock.setStore(LSTENR, LSLORT, LSLGBE);     //(тайленомер, позиція на канбані, количество)
+            stock.setReserve(LSTENR, LSLORT, LSLGBE);     //(тайленомер, позиція на канбані, количество)
+            stock.setCount(LSTENR, LSLGBE);
 
             //Создание связей
             matContr = MaterialController.getInstance();    //Получить материалконтроллер

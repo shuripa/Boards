@@ -3,7 +3,7 @@ package graphics.leyout.components;
 import model.Material;
 import sets.stock.KeyStore;
 import sets.stock.LeafAddress;
-import sets.stock.Store;
+import sets.stock.Reserve;
 
 //Отсек
 
@@ -62,7 +62,7 @@ public class KanbanSection extends LeyoutComponent {
         return ((KanbanBoard)parent()).getStoreKey(this, leaf, material);
     }
 
-    public Store getStore(KanbanLeaf leaf) {
+    public Reserve getStore(KanbanLeaf leaf) {
         String adres = "-" + getLeafInd(leaf);
         return ((KanbanBoard)parent()).getStore(this, adres);
     }

@@ -38,10 +38,10 @@ public class CompositTool extends WorkPlacedComposit{
         tool = new Tool();
         wp = new WorkPlace(this, Profession.BINDER);
         //TODO остальное массивы, проверить как их добавлять
-        mst = new MaterialStore();
         pst = new ProductionStore();
         inds = new ArrayList();
         inss = new Instructions();
+        mst = new MaterialStore(inss);
         //TODO конкретные индексы нужно еще создавать
         addLeafs(tool, wp);
     }
@@ -51,10 +51,10 @@ public class CompositTool extends WorkPlacedComposit{
         tool = new Tool(builder);
         wp = new WorkPlace(this, Profession.BINDER);
        //TODO остальное массивы, проверить как их добавлять
-        mst = new MaterialStore();
         pst = new ProductionStore();
         inds = new ArrayList();
         inss = new Instructions();
+        mst = new MaterialStore(inss);
         //TODO конкретные индексы нужно еще создавать
         addLeafs(tool, wp);
     }

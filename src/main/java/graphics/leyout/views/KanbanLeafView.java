@@ -54,10 +54,11 @@ public class KanbanLeafView extends LeyoutComponentView {
                 if (0 == i-free-join) {
                     rect.setFill(Color.WHITE);
                     if (((KanbanLeafController)controller()).orderIsStarted()){
-                        rect.setFill(Color.PLUM);
+                        rect.setFill(Color.BLACK);
                     }
                 } else {
-                    rect.setFill(Color.ROYALBLUE);
+//                    rect.setFill(Color.PLUM);
+                    rect.setFill(Color.PLUM);
                 }
                 rect.setStroke(Color.BLUE);
                 rect.setLayoutX(rect.getLayoutX() - 3);

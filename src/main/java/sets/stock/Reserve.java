@@ -10,7 +10,7 @@ import java.util.ArrayList;
 //Я просто спрашиваю вот тебе материал скажи сколько его есть? и получаю результат.
 
 //Количество чего либо
-public class Store {            //достаток, клажа, припас, склад, запас, крамниця
+public class Reserve {            //достаток, клажа, припас, склад, запас, крамниця
     //TODO: изменить тип на Material
     String material;
     Double count;
@@ -18,7 +18,7 @@ public class Store {            //достаток, клажа, припас, с
     //    Заказ должен быть очередью
     ArrayList<Order> orders;
 
-    public Store(String material, Double count){
+    public Reserve(String material, Double count){
         this.material = material;
         this.count = count;
     }

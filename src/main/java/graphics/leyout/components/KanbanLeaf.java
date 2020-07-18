@@ -15,7 +15,8 @@ public class KanbanLeaf extends LeyoutComponent {
     private static final Logger logger = Logger.getLogger("MainApp");
     private LeafAddress address;
     private MasterStore master;
-    private Store store;
+    private Reserve reserve;
+    private Storage storage;
     private List<Order> orders;
 
     private PriorityQueue<KanbanCard> freeCards;
@@ -33,7 +34,7 @@ public class KanbanLeaf extends LeyoutComponent {
         orderCards = new PriorityQueue<>();
         //Загрузка данных
         master = getMaster(address);
-        store = getStore();
+        reserve = getReserve();
         orders = getOrders();
         //Создание карточек
         setCountCards(master.getOrderCnt());
@@ -53,26 +54,30 @@ public class KanbanLeaf extends LeyoutComponent {
         }
     }
 
-    public Store getStore(){
-        Store result = StockSet.getInstance().getStock("F5").getStore(address);
+    public Reserve getReserve(){
+        storage = new KanbanStorage("F5", material(), address.toString());
+        StockSet.getInstance().getStock("F5").setStorage(storage);
+//        return storage.getCount();
+
+        Reserve result = StockSet.getInstance().getStock("F5").getReserve(address);
         if (result != null){
             logger.log(Level.FINE, "store to " + address.toString() + " not null.");
             if (master.getMaterialStr().equals("")) master.setMaterialStr(result.getMaterial());
             return result;
         } else {
             logger.log(Level.FINE, "store to " + address.toString() + " is null.");
-            return new Store("", .0);
+            return new Reserve("", .0);
         }
     }
 
     private List<Order> getOrders() {
         List<Order> result;
         if (master.getMaterialStr().equals("")){
-            if (store.getMaterial().equals("")){
+            if (storage.getMaterial().equals("")){
                 result = new ArrayList<>();
                 logger.log(Level.FINE, "address : " + address + " : " + "master and store is null");
             } else{
-                result = SetOrders.getInstance().getOders("F5", store.getMaterial());
+                result = SetOrders.getInstance().getOders("F5", storage.getMaterial());
                 logger.log(Level.FINE, "address : " + address + " : " + "master is null, store not null");
             }
         } else{
@@ -97,7 +102,7 @@ public class KanbanLeaf extends LeyoutComponent {
         }
 
         for (int i = cntCard(); i < countCards; i++) {
-            if ((joinCards.size()+1)* masterDefinition() < cntMaterial()){
+            if ((joinCards.size()+1)* masterDefinition() < cntInStockMaterial()){
                 KanbanCard card = new KanbanCard(joinCards.size()+1);
                 // При первом создании если данных нет устанавливаются значения по умолчанию
                 // в последующих запросах нужно использовать реальное количество и реальную дифиницию
@@ -142,8 +147,12 @@ public class KanbanLeaf extends LeyoutComponent {
         return result;
     }
 
-    public double cntMaterial(){
-        if (store != null) return store.getCount(); else return 0;
+    public double cntInStockMaterial(){
+        return StockSet.getInstance().getStock("F5").getCount(material());
+    }
+
+    public double cntInStoreMaterial(){
+        return storage.getCount();
     }
 
     public int cntCard(){
@@ -185,7 +194,7 @@ public class KanbanLeaf extends LeyoutComponent {
         //Пока в лыже не прописан собственный материал ил существует понятие Store для склада
         //используем Store для материала отображения материала и количества
 
-        String  result = "F5: cnt = " + cntMaterial() + " addr = " + address.toString();
+        String  result = "F5: cnt = " + cntInStockMaterial() + "; pos " + address.toString() + " cnt = " + cntInStoreMaterial();
         result = result  + "\n mat = " + material();
         result = result + "\n cards = " + cntCard() + "; def = " + masterDefinition();
 
@@ -200,7 +209,7 @@ public class KanbanLeaf extends LeyoutComponent {
         }
 
         result = result + "\n    Free Cards : " + cntFreed();
-        for (KanbanCard card: freeCards) {
+        for (KanbanCard card : freeCards) {
             result = result + "\n def = " + masterDefinition();
         }
 

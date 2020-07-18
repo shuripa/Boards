@@ -43,16 +43,17 @@ import java.io.IOException;
 
 
 public class KanbanLeafTest {
+    LeyoutComponent component;
     KanbanBoard board;
     KanbanSection section;
     KanbanLeaf leaf;
 
-    public KanbanLeafTest() {
-        try {
-            board = new KanbanBoard();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public KanbanLeafTest() throws IOException {
+        //Есть два варианта создания:
+        // 1) По билдеру.
+        // 2) Из кнопки, сначала компонент создается, затем ему присваивается название, затем читаются данные ...
+//        component = new CompositBuilder(7001, "16O","KanbanBoard").xyas(50, 650, 0, 0).sections(7).leafs(4).build();
+        board = new KanbanBoard();
         board.setTitle("16O");
     }
 
@@ -90,11 +91,15 @@ public class KanbanLeafTest {
 
     @Test
     public void testToString() {
+//        Создание по билдеру
+//        System.out.println(component.toString());
+
+//        Создание по кнопке
         System.out.println(board.toString());
-        section = board.getLeaf(6);
-        System.out.println(section.toString());
-        leaf = section.getLeaf(2);
-        System.out.println(leaf.toString());
+//        section = board.getLeaf(6);
+//        System.out.println(section.toString());
+//        leaf = section.getLeaf(2);
+//        System.out.println(leaf.toString());
     }
 
     @Test

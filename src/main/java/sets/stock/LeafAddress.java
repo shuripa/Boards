@@ -7,9 +7,9 @@ public class LeafAddress {
     private static final Logger logger = Logger.getLogger("MainApp");
 
     private String board;
-
     private int section;
     private int leaf;
+
     public LeafAddress(String board, int section) {
         setBoard(board);
         setSection(section);

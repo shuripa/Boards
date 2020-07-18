@@ -44,7 +44,7 @@ public class KanbanLeafController extends LeyoutComponentController {
     @Override
     public void update(){
         super.update();
-        if (((KanbanLeaf)component()).getStore() == null){
+        if (((KanbanLeaf)component()).getReserve() == null){
             activate();
             setHint (component().toString());
         } else {

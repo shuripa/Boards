@@ -62,7 +62,7 @@ public class MainApp extends Application {
 //        TODO: lc8 и далее отображает тот же лейаут что и lb9
         ItemAction sceneB9 = new LayoutSceneCreater(stage);
         StartMenuItem lb9 = new StartMenuItem(sceneB9, 190, 75 , 5, 5, "CHO B9");
-        StartMenuItem lc8 = new StartMenuItem(sceneB9, 190, 75 , 5, 5, "CHO C8");
+        StartMenuItem lc8 = new StartMenuItem(sceneB9, 190, 75 , 5, 5, "Golf");
         StartMenuItem pre = new StartMenuItem(sceneB9, 190, 75 , 5, 5, "PreProd");
         StartMenuItem prs = new StartMenuItem(sceneB9, 190, 75 , 5, 5, "Porche");
         result.getChildren().addAll(lb9, lc8, prs, pre);

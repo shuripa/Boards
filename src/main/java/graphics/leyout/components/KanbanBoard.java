@@ -24,29 +24,83 @@ public class KanbanBoard extends LeyoutComponent {
     SetStockLeafs parent;    //TODO: использовать Stock вместо KanbansStock
     Stock stock;
     KanbanSection[] leaves;
-    boolean isUpdate;
+    boolean isTitleEmpty;
 
     //Конструктор для створення з кнопки
-    public KanbanBoard() throws IOException {
-        createProperty();
+    public KanbanBoard() {
+        createCommonProperty();
         this.cntSections.set(7);
         this.cntLeafs.set(4);
-        recreateControllers();
-        isUpdate = false;
+        createLeafs();    //Нет названия канбана, создается канбан с пустыми узлами
+        isTitleEmpty = true;
     }
 
-    public KanbanBoard(CompositBuilder builder) throws IOException {
-        createProperty();
+    public KanbanBoard(CompositBuilder builder) {
+        createCommonProperty();
         this.cntSections.set(builder.getSections());   //TODO: внести изменения в билдере лист стал секцией
         this.cntLeafs.set(builder.getLeafs());      //TODO: внести изменения в билдере карточка стала листом(лыжей)
-        this.setTitle(builder.getTitle());
-        recreateControllers();
+        this.title.set(builder.getTitle());
+        createLeafs();
     }
 
-    private void createProperty() {
+    private void createCommonProperty() {
         this.title = new SimpleStringProperty(this, TITLE_PROP_TITLE, "");
         this.cntSections = new SimpleIntegerProperty(this, TITLE_PROP_COUNTSECTIONS, 0);
         this.cntLeafs = new SimpleIntegerProperty(this, TITLE_PROP_COUNTLEAVES, 0);
+    }
+
+    private void createLeafs(){
+        leaves = new KanbanSection[cntSections.get()];
+        for (int i = 0; i < cntSections.get(); i++) {
+            leaves[i] = new KanbanSection(this, cntLeafs.get(), new LeafAddress(title.getValue(), i));
+        }
+    }
+
+    public void setTitle(String title) throws IOException {
+        this.title.set(title);
+        isTitleEmpty = false;
+//        recreateControllers();
+        createLeafs();
+    }
+
+    @Override
+    protected void recreateControllers() throws IOException {
+        createLeafs();
+        super.recreateControllers();
+    }
+
+    // 1) Изменение название канбана
+    // 2) Изменение количества секций
+    // 3) Изменение количества узлов
+
+    @Override
+    public void update () {
+//        if (leaves.length != cntSections.getValue()) System.out.println("1");
+//        if ((getLeaf(1).getLeafsLength() != cntLeafs.getValue())) System.out.println("1");
+        if(isTitleEmpty == false) {
+            try {
+//                createLeafs();
+                recreateControllers();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            super.update();
+        }
+    }
+
+    public void setCntSections(int cntSections) throws IOException {
+        if (this.cntSections.get() != cntSections) {
+            this.cntSections.set(cntSections);
+            recreateControllers();
+        }
+    }
+
+    public void setCntLeafs(int cntLeafs) throws IOException {
+        if (this.cntLeafs.get() != cntLeafs) {
+            this.cntLeafs.set(cntLeafs);
+            recreateControllers();
+        }
     }
 
     /*Propertise*/
@@ -54,14 +108,9 @@ public class KanbanBoard extends LeyoutComponent {
     public String getTitle() {
         return title.get();
     }
+
     public StringProperty titleProperty() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title.set(title);
-        isUpdate = true;
-        update();
     }
 
     public int getCntSections() {
@@ -82,13 +131,6 @@ public class KanbanBoard extends LeyoutComponent {
         this.stock = stock;
     }
 
-    public void setCntSections(int cntSections) throws IOException {
-        if (this.cntSections.get() != cntSections) {
-            this.cntSections.set(cntSections);
-            recreateControllers();
-        }
-    }
-
     public void setEvents(){
     }
 
@@ -104,44 +146,10 @@ public class KanbanBoard extends LeyoutComponent {
         return cntLeafs;
     }
 
-    public void setCntLeafs(int cntLeafs) throws IOException {
-        if (this.cntLeafs.get() != cntLeafs) {
-            this.cntLeafs.set(cntLeafs);
-            recreateControllers();
-        }
-    }
-
     public KanbanSection getLeaf(int i){
         return leaves[i];
     }
 
-    @Override
-    public void update () {
-//        if (leaves.length != cntSections.getValue()) System.out.println("1");
-//        if ((getLeaf(1).getLeafsLength() != cntLeafs.getValue())) System.out.println("1");
-        if(isUpdate == true) {
-            try {
-                recreateControllers();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            super.update();
-        }
-        isUpdate = false;
-    }
-
-
-
-    @Override
-    protected void recreateControllers() throws IOException {
-
-        leaves = new KanbanSection[cntSections.get()];
-        for (int i = 0; i < cntSections.get(); i++) {
-            leaves[i] = new KanbanSection(this, cntLeafs.get(), new LeafAddress(title.getValue(), i));
-        }
-        super.recreateControllers();
-    }
 
     @Override
     public String toString() {
@@ -171,7 +179,7 @@ public class KanbanBoard extends LeyoutComponent {
     }
 
     //TODO: Чудо происходит здесь. Мы получаем склад и весь материал который в нем хранится.
-    public Store getStore(KanbanSection section, String a) {
+    public Reserve getStore(KanbanSection section, String a) {
         String adres = "";
         if (getTitle().length()==1 && getSectionInd(section)<10) {
                 adres = "" + getTitle() + "0" + getSectionInd(section) + a;
@@ -181,7 +189,7 @@ public class KanbanBoard extends LeyoutComponent {
 
         Stock stock = null;
         stock = StockSet.getInstance().getStock("F5");
-        return stock.getStore(adres);
+        return stock.getReserve(adres);
     }
 
     public String getStockTitle() {

@@ -1,6 +1,8 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Set;
+
 
 public class Instruction {
     //Одна инструкция, - одно условие.
@@ -18,6 +20,10 @@ public class Instruction {
 
     public void addEntry(Material material, int count){
         entry.put(material, count);
+    }
+
+    public Set<Material> getMaterials (){
+        return entry.keySet();
     }
 
     public void print() {

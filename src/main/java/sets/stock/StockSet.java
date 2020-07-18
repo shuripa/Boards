@@ -30,7 +30,7 @@ public class StockSet {
         if (arrStocks.containsKey(stock)){
             return arrStocks.get(stock);
         }else{
-            arrStocks.put(stock,new Stock());
+            arrStocks.put(stock,new Stock(stock));
             return arrStocks.get(stock);
         }
     }

@@ -12,6 +12,7 @@ public class Transactions {
     HashMap<Long, Transaction> transaction = new HashMap<>();
 
 
+
     protected void setTransaction(Integer date, Integer time, Double amt, Double rst, String kod, String user){
         faction = false;
         if (transaction.containsKey(date*10000000+time*10)){

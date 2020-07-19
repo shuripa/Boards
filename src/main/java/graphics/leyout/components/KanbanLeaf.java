@@ -190,7 +190,6 @@ public class KanbanLeaf extends LeyoutComponent {
     }
 
     public String toString() {
-        //TODO: Refactoring
         //Пока в лыже не прописан собственный материал ил существует понятие Store для склада
         //используем Store для материала отображения материала и количества
 

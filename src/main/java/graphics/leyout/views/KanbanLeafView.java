@@ -36,13 +36,14 @@ public class KanbanLeafView extends LeyoutComponentView {
 
         for (int i = 0; i < maxCntOrd; i++) {
             //Рисуем с конца
-            Rectangle rect = new Rectangle((maxCntOrd+ maxCntOrdInSection)*2+3 - i*4, 3, 4, 4);
+            Rectangle rect = new Rectangle((maxCntOrd+ maxCntOrdInSection)*2+5 - i*4, 3, 4, 4);
             rect.setStroke(Color.GREY);
             rect.setFill(Color.WHITE);
 
             int ordr = ((KanbanLeafController)controller()).ordered();
             int join = ((KanbanLeafController)controller()).joined();
             int free = ((KanbanLeafController)controller()).freed();
+            int trans = ((KanbanLeafController)controller()).trans();
             if(free > i){
                 if (free > i+ 1) rect.setFill(Color.SALMON);
                 rect.setStroke(Color.RED);
@@ -50,7 +51,11 @@ public class KanbanLeafView extends LeyoutComponentView {
             }else if(join > i-free){
                 rect.setFill(Color.PALEGREEN);
                 rect.setStroke(Color.GREEN);
-            } else if(ordr > i-free-join){
+            }else if(trans > i-free-join){
+                rect.setFill(Color.YELLOW);
+                rect.setStroke(Color.DARKGOLDENROD);
+                rect.setLayoutX(rect.getLayoutX() - 3);
+            }else if(ordr > i-free-join-trans){
                 if (0 == i-free-join) {
                     rect.setFill(Color.WHITE);
                     if (((KanbanLeafController)controller()).orderIsStarted()){
@@ -61,7 +66,8 @@ public class KanbanLeafView extends LeyoutComponentView {
                     rect.setFill(Color.PLUM);
                 }
                 rect.setStroke(Color.BLUE);
-                rect.setLayoutX(rect.getLayoutX() - 3);
+                rect.setLayoutX(rect.getLayoutX() - 6);
+
             }
 
             //Старая реализация. Оставлено для примера.

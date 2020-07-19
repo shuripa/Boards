@@ -65,6 +65,10 @@ public class KanbanLeafController extends LeyoutComponentController {
         return ((KanbanLeaf)component()).cntFreed();
     }
 
+    public int trans() {
+        return ((KanbanLeaf)component()).cntTrans();
+    }
+
     public String getMaterial() {
         return ((KanbanLeaf)component()).material();
     }

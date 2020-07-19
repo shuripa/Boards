@@ -30,13 +30,16 @@ public class KanbanBoardController extends LeyoutCompositController {
         int n = countLeaves();
 
         kanbanSectionControllers = new KanbanSectionController[n];
+        int space = 3;
 
         for (int i = 0; i < n; i++) {
             KanbanSection kanbanSection = ((KanbanBoard)component()).getLeaf(i);
             kanbanSectionControllers[i] = new KanbanSectionController(kanbanSection);
             int max = Math.max(kanbanSection.getMaxLeafCountOrder(), 2);
 //            System.out.println( "" + max + " : " + kanbanSection.getMaxLeafCountOrder());
-            kanbanSectionControllers[i].setXY( 3+(max*4+15)*i, 2);
+//            kanbanSectionControllers[i].setXY( 3+(max*4+15)*i, 2);
+            kanbanSectionControllers[i].setXY( space, 2);
+            space = space + max*4 +15;
         }
 
         setView(new KanbanBoardView(this));

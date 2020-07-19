@@ -22,6 +22,7 @@ public class KanbanLeaf extends LeyoutComponent {
     private PriorityQueue<KanbanCard> freeCards;
     private PriorityQueue<KanbanCard> joinCards;
     private PriorityQueue<KanbanCard> orderCards;
+    private PriorityQueue<KanbanCard> transCards;
 
     public KanbanLeaf(KanbanSection parent, LeafAddress address){
         //Установка адреса
@@ -32,6 +33,8 @@ public class KanbanLeaf extends LeyoutComponent {
         joinCards = new PriorityQueue<>();
         freeCards = new PriorityQueue<>();
         orderCards = new PriorityQueue<>();
+        transCards = new PriorityQueue<>();
+
         //Загрузка данных
         master = getMaster(address);
         reserve = getReserve();
@@ -169,6 +172,10 @@ public class KanbanLeaf extends LeyoutComponent {
 
     public int cntFreed (){
         return freeCards.size();
+    }
+
+    public int cntTrans() {
+        return transCards.size();
     }
 
     private int masterDefinition(){

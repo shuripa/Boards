@@ -16,6 +16,9 @@ public class KanbanLeaf extends LeyoutComponent {
     private LeafAddress address;
     private MasterStore master;
     private Reserve reserve;
+    private double t1;
+    private double t2;
+    private double t3;
     private Storage storage;
     private List<Order> orders;
 
@@ -61,8 +64,14 @@ public class KanbanLeaf extends LeyoutComponent {
         storage = new KanbanStorage("F5", material(), address.toString());
         StockSet.getInstance().getStock("F5").setStorage(storage);
 //        return storage.getCount();
-
+        if (storage.getPosition().equals("12O6-1")) {
+            System.out.println("");
+        }
         Reserve result = StockSet.getInstance().getStock("F5").getReserve(address);
+        t1 = StockSet.getInstance().getStock("F2").getCount(material());
+        t2 = StockSet.getInstance().getStock("T3").getCount(material());
+        t3 = StockSet.getInstance().getStock("N1").getCount(material());
+
         if (result != null){
             logger.log(Level.FINE, "store to " + address.toString() + " not null.");
             if (master.getMaterialStr().equals("")) master.setMaterialStr(result.getMaterial());
@@ -102,6 +111,27 @@ public class KanbanLeaf extends LeyoutComponent {
                 card.setCardDefinition(master.getMasterDefinition());
                 orderCards.offer(card);
             }
+        }
+
+        if (t1 != 0){
+            KanbanCard card = new KanbanCard(transCards.size()+1);
+            card.setCardDefinition(master.getMasterDefinition());
+            card.setCountMaterial((int)Math.round(t1));
+            transCards.offer(card);
+        }
+
+        if (t2 != 0) {
+            KanbanCard card = new KanbanCard(transCards.size()+1);
+            card.setCardDefinition(master.getMasterDefinition());
+            card.setCountMaterial((int)Math.round(t2));
+            transCards.offer(card);
+        }
+
+        if (t3 != 0) {
+            KanbanCard card = new KanbanCard(transCards.size()+1);
+            card.setCardDefinition(master.getMasterDefinition());
+            card.setCountMaterial((int)Math.round(t3));
+            transCards.offer(card);
         }
 
         for (int i = cntCard(); i < countCards; i++) {
@@ -159,7 +189,7 @@ public class KanbanLeaf extends LeyoutComponent {
     }
 
     public int cntCard(){
-        return joinCards.size() + freeCards.size() + orderCards.size();
+        return joinCards.size() + freeCards.size() + orderCards.size() + transCards.size();
     }
 
     public int cntJoined(){
@@ -218,6 +248,13 @@ public class KanbanLeaf extends LeyoutComponent {
         result = result + "\n    Free Cards : " + cntFreed();
         for (KanbanCard card : freeCards) {
             result = result + "\n def = " + masterDefinition();
+        }
+
+        result = result + "\n Transport Cards: " + cntTrans();
+        int i = 0;
+        for (KanbanCard card : transCards){
+            i++;
+            result = result + "\n" + i + ": cnt = " + card.getCountMaterial();
         }
 
         return result;

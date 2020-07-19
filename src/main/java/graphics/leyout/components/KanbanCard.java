@@ -13,6 +13,7 @@ public class KanbanCard implements Comparable{
     private long freeTime;
     private long joinTime;
 
+
     public KanbanCard(int priority){
         this.priority = priority;
         cardDefinition = 0;

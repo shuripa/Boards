@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Reserve {            //достаток, клажа, припас, склад, запас, крамниця
     //TODO: изменить тип на Material
     String material;
+    //TODO: действительно ли тип должен быть Double
     Double count;
     //TODO: Запас должен содержать набор от 1 до 4... заказов. Продолжить мысль позже.
     //    Заказ должен быть очередью
